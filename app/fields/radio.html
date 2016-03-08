@@ -1,0 +1,12 @@
+<div *ngIf="field.options.length <= 5">
+    <div class="radio" [ngClass]="{disabled:!field.input}" *ngFor="#option of field.options">
+        <div class="container-fluid">
+            <input type="radio" name="{{id}}" (click)="field.selected = option"> {{option}}
+        </div>
+    </div>
+</div>
+<div *ngIf="field.options.length > 5">
+    <select class="form-control" [ngDisabled]="!field.input" [(ngModel)]="field.selected" >
+        <option *ngFor="#option of field.options" [value]="option">{{option}}</option>
+    </select>
+</div>

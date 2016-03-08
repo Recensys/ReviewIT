@@ -1,0 +1,63 @@
+<div class="card" *ngFor="#phase of phases">
+    <h3 class="card-header">
+        <span class="menu">
+            <button type="button" class="btn btn-danger-outline">
+                Reset all <i class="fa fa-undo"></i>
+            </button>
+            <button type="button" class="btn btn-primary-outline">
+                Submit all <i class="fa fa-refresh"></i>
+            </button>
+        </span>
+        {{phase.name}}
+        <small class="text-muted">{{phase.description}}</small>   
+    </h3>
+    <div class="card-block card-text" *ngIf="phase.tasks.length <= 0">
+        No tasks have been generated yet...
+    </div>
+
+    <div class="card-block table" *ngIf="phase.tasks.length > 0">
+        <div class="row" >
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th>#</th>
+                        <th *ngFor="#field of phase.datafields">{{field.name}}</th>
+                        <th style="text-align:center;"><i class="fa fa-filter"></i></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="#task of phase.tasks">
+                            <th>{{task.id}}</th>
+                            <td *ngFor="#field of task.taskfields">
+                                <div [ngSwitch]="field.datafield.datatype">
+                                    <template [ngSwitchWhen]="'checkbox'">
+                                        <fieldset class="form-group">
+                                            <checkbox [field]="field"></checkbox>
+                                        </fieldset>
+                                    </template>
+                                    <template [ngSwitchWhen]="'radio'"><radio [field]="field" [id]="task.id"></radio></template>
+                                    <template [ngSwitchWhen]="'string'"><string [field]="field"></string></template>
+                                    <template [ngSwitchWhen]="'boolean'"><boolean [field]="field" [id]="task.id"></boolean></template>
+                                    <template [ngSwitchWhen]="'resource'"><a href="/details/{{task.id}}"><i class="fa fa-file-pdf-o"></i></a></template>
+                                    <template [ngSwitchWhen]="'number'">number</template>
+                                    <template [ngSwitchWhen]="'date'">date</template>
+                                    <template ngSwitchDefault>Unknown type</template>
+                                </div>
+                            </td>
+                            <td style="text-align:center;">
+                                <span [ngSwitch]="task.state">
+                                    <template [ngSwitchWhen]="1"><span class="label label-default">new</span></template>
+                                    <template [ngSwitchWhen]="2"><span class="label label-warning">in progress</span></template>
+                                    <template [ngSwitchWhen]="3"><span class="label label-success">submitted</span></template>
+                                    <template ngSwitchDefault><span class="label label-danger">unknown</span></template>
+                                </span>
+                            </td>
+                            <!--<td><i class="fa fa-undo"></i></td>
+                            <td><i class="fa fa-refresh"></i></td>
+                            <td><i class="fa fa-caret-square-o-right"></i></td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

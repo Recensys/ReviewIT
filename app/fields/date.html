@@ -1,0 +1,8 @@
+<div [ngSwitch]="field.input" class="text-area-box">
+    <template [ngSwitchWhen]="true">
+        <input type ="text" class="form-control date" required [(ngModel)]="field.date"/>
+    </template>
+    <template [ngSwitchWhen]="false">{{field.value}}</template>
+    <template ngSwitchDefault>Error! The input value was neither true nor false</template>
+</div>
+

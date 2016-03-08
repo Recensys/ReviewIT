@@ -1,0 +1,17 @@
+<!--<div class="checkbox" [ngClass]="{disabled:!field.datafield.input}">
+    <label> 
+    <input type="checkbox" name="{{field.id}}" [ngDisabled]="!field.datafield.input" [ngChecked]="field.data.value" [(ngModel)]="field.data.value"> 
+    <span class="text-muted"> ({{field.data.value? field.datafield.trueval : field.datafield.falseval}}) </span>
+    </label>
+    </div>
+-->
+
+
+<div class="container-fluid">
+    <div class="radio" [ngClass]="{disabled:!field.datafield.input}">
+        <input type="radio" name="{{id}}" (click)="field.data.value = 'true'" [ngChecked]="field.data.value == 'true'"> {{field.datafield.trueval}}
+    </div>
+    <div class="radio" [ngClass]="{disabled:!field.datafield.input}">
+        <input type="radio" name="{{id}}" (click)="field.data.value = 'false'" [ngChecked]="field.data.value == 'false'"> {{field.datafield.falseval}}
+    </div>
+</div>

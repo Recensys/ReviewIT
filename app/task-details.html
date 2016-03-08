@@ -1,0 +1,124 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card" *ngIf="task == null">
+                <h3 class="card-header">No such task exists</h3>
+                <div class="card-block">
+                    The task with id ... does not exist
+                </div>
+            </div>
+            <div class="card" *ngIf="task != null">
+                <h3 class="card-header">
+                    Task #{{task.id}}
+                    <div class="label" [ngSwitch]="task.state">
+                        <template [ngSwitchWhen]="1"><span class="label label-default">new</span></template>
+                        <template [ngSwitchWhen]="2"><span class="label label-warning">in progress</span></template>
+                        <template [ngSwitchWhen]="3"><span class="label label-success">submitted</span></template>
+                        <template ngSwitchDefault><span class="label label-danger">unknown</span></template>
+                    </div>
+                    <span class="menu">
+                        <a class="btn btn-primary-outline" href="/details/{{task.id - 1}}">
+                            <i class="fa fa-angle-left"></i> previous 
+                        </a>
+                        <a class="btn btn-primary-outline" href="/details/{{task.id + 1}}">
+                            next <i class="fa fa-angle-right"></i>
+                        </a>
+                    </span>
+                </h3>
+                <div class="card-block">
+                    <h6 class="card-subtitle text-muted">Visible fields:</h6>
+                </div>
+                <div class="card-block">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <dl class="dl-horizontal">
+                                    <div *ngFor="#field of visibleFields" [ngSwitch]="field.datafield.datatype">
+                                        <template [ngSwitchWhen]="'string'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9"><string [field]="field"></string></dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'checkbox'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9"><checkbox [field]="field"></checkbox></dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'radio'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9"><radio [field]="field" [id]="task.id"></radio></dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'resource'"></template>
+                                        <template ngSwitchDefault>Unknown type</template>
+                                    </div>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block">
+                    <h6 class="card-subtitle text-muted">Requested fields:</h6>
+                </div>
+                <div class="card-block">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >
+                            <div class="container-fluid">
+                                <dl class="dl-horizontal">
+                                    <div *ngFor="#field of requestedFields" [ngSwitch]="field.datafield.datatype">
+                                        <template [ngSwitchWhen]="'string'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9">
+                                            <fieldset class="form-group">
+                                                <label>Please fill out following:</label>
+                                                <string [field]="field"></string>
+                                            </fieldset>
+                                            </dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'checkbox'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9">
+                                            <fieldset class="form-group">
+                                                <label>Select one or more:</label>
+                                                <checkbox [field]="field"></checkbox>
+                                            </fieldset>
+                                            </dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'radio'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9">
+                                            <fieldset class="form-group">
+                                                <label>Select one of following:</label>
+                                                <radio [field]="field"></radio>
+                                            </fieldset>
+                                            </dd>
+                                        </template>
+                                        <template [ngSwitchWhen]="'boolean'">
+                                            <dt class="col-sm-3">{{field.datafield.name}}</dt>
+                                            <dd class="col-sm-9">
+                                            <fieldset class="form-group">
+                                                <label>Select one of following:</label>
+                                                <boolean [field]="field" [id]="task.id"></boolean>
+                                            </fieldset>
+                                            </dd>
+                                        </template>
+
+                                        <template [ngSwitchWhen]="'resource'"><resource [field]="field"></resource></template>
+                                        <template ngSwitchDefault>Unknown type ({{field.datafield.datatype}})</template>
+                                    </div>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--<div class="card-block text-xs-right">
+                    <a href="#" class="btn btn-primary">Submit</a>
+                    <a href="#" class="btn btn-secondary">Cancel</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    2 days ago
+                    </div>-->
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <resource [task]="task"></resource> 
+        </div>
+    </div>
+</div>
