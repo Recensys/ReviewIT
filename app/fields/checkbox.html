@@ -1,5 +1,0 @@
-<div class="checkbox" [ngClass]="{disabled:!field.input}" *ngFor="#kvp of field.values">
-    <div class="container-fluid">
-        <input type="checkbox" [ngDisabled]="!field.input" [ngChecked]="kvp.value" [(ngModel)]="kvp.value"> {{kvp.key}}
-    </div>
-</div>
