@@ -10,5 +10,5 @@ export interface Phase {
   name: string,
   description: string,
   tasks: Task[],
-  header: Field[]
+  fields: Field[]
 }
