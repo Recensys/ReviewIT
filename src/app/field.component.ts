@@ -4,6 +4,9 @@
 
 import { Component, Input, ViewContainerRef, ComponentResolver, ViewChild, OnInit} from "@angular/core";
 import { Data } from "./model/field.model";
+import {NgClass} from "@angular/common";
+import {CheckedDirective} from "./directives/checked.directive";
+import {DisabledDirective} from "./directives/disabled.directive";
 
 @Component({
   selector: 'field',
@@ -20,16 +23,17 @@ export class FieldComponent implements OnInit {
   constructor(private componentResolver: ComponentResolver) {}
 
   ngOnInit() {
-    var dynamicComponent = this.createContentComponent(this.data);
+    var dynamicComponent = FieldComponent.createContentComponent(this.data);
     this.componentResolver.resolveComponent(dynamicComponent)
       .then((factory: any) => this.contentTarget.createComponent(factory));
   }
 
-  createContentComponent(inputData: Data) {
+  static createContentComponent(inputData: Data) {
 
     @Component({
       selector: 'field-content',
-      templateUrl: inputData.field.getView()
+      templateUrl: inputData.field.getView(),
+      directives: [ NgClass, DisabledDirective, CheckedDirective ]
     })
 
     class FieldContentComponent {
@@ -37,6 +41,6 @@ export class FieldComponent implements OnInit {
     }
 
     return FieldContentComponent ;
-    
+
   }
 }

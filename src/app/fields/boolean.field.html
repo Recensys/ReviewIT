@@ -1,1 +1,8 @@
-{{data.value}}
+<div class="container-fluid">
+  <div class="radio" [ngClass]="{disabled:!data.field.input}">
+    <input type="radio" name="{{data.id}}" (click)="data.value = 'true'" [ngChecked]="data.value == 'true'"> {{data.field.trueval}}
+  </div>
+  <div class="radio" [ngClass]="{disabled:!data.field.input}">
+    <input type="radio" name="{{data.id}}" (click)="data.value = 'false'" [ngChecked]="data.value == 'false'"> {{data.field.falseval}}
+  </div>
+</div>

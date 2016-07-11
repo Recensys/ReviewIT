@@ -1,1 +1,5 @@
-{{data.value}}
+<div class="checkbox" [ngClass]="{disabled:!data.field.input}" *ngFor="let kvp of data.value">
+  <div class="container-fluid">
+    <input type="checkbox" [ngDisabled]="!data.field.input" [ngChecked]="kvp.value" [(ngModel)]="kvp.value"> {{kvp.key}}
+  </div>
+</div>

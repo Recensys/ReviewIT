@@ -9,11 +9,6 @@ export interface Field {
   getView(): string;
 }
 
-export interface Reference {
-  id: number,
-  data: Data[]
-}
-
 export interface Data {
   id: number,
   field: Field,

@@ -5,7 +5,7 @@
 import {Injectable} from "@angular/core";
 import {Phase} from "./model/phase.model";
 import {Task} from "./model/task.model"
-import {Field, Reference, Data} from "./model/field.model";
+import {Field, Data} from "./model/field.model";
 import {StringField} from "./fields/string.field";
 import {NumberField} from "./fields/number.field";
 import {ResourceField} from "./fields/resource.field";
@@ -15,13 +15,13 @@ import {BooleanField} from "./fields/boolean.field";
 export class TaskService {
 
 
-  private _fields : Field[] = [
-    new StringField({name: "author", input: false }),
-    new StringField({ name: "title", input: false }),
-    new NumberField({ name: "year", input: false, min: 0 }),
-    new ResourceField({ name: "pdf", input:false }),
-    new StringField({ name: "abstract", input: false }),
-    new BooleanField({ name: "isGsd?", input: true, trueval: "yes", falseval: "no" })
+  private _fields: Field[] = [
+    new StringField ({name: "author", input: false }),
+    new StringField ({ name: "title", input: false }),
+    new NumberField ({ name: "year", input: false, min: 0 }),
+    new ResourceField ({ name: "pdf", input:false }),
+    new StringField ({ name: "abstract", input: false }),
+    new BooleanField ({ name: "isGsd?", input: true, trueval: "yes", falseval: "no" })
   ];
 
   private _data: Data[] = [
@@ -33,15 +33,11 @@ export class TaskService {
     { id: 6, field: this._fields[5], value: true }
   ];
 
-  private _references: Reference[] = [
-    { id: 1, data: this._data }
-  ];
-
   private _tasks: Task[] = [
     {
       id: 1,
       state: 2,
-      data: this._data,
+      data: this._data
     }
   ];
 
@@ -57,6 +53,10 @@ export class TaskService {
 
   public getPhases(): Promise<Phase[]> {
     return Promise.resolve(this._phases).then(list => list);
+  }
+
+  public getPhase(id:number): Promise<Phase> {
+    return Promise.resolve(this._phases).then(list => list.filter(p => p.id == id)[0]);
   }
 
   public getTask(id:number): Promise<Task> {

@@ -1,1 +1,9 @@
-{{data.value}}
+<div [ngSwitch]="data.field.input" class="text-area-box">
+  <template [ngSwitchWhen]="true">
+    <!--<input type ="text" class="form-control" required [(ngModel)]="data.value"/>-->
+    <textarea class="form-control" [(ngModel)]="data.value" rows="3"></textarea>
+  </template>
+  <template [ngSwitchWhen]="false">
+    <p class="max-lines">{{data.value}}</p></template>
+  <template ngSwitchDefault>Error! The input value was neither true nor false</template>
+</div>

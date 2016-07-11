@@ -2,7 +2,7 @@
  * Created by jbec on 08/06/2016.
  */
 
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TaskService} from "./task.service";
 import {Phase} from "./model/phase.model";
 import {FieldComponent} from "./field.component";
@@ -21,5 +21,4 @@ export class TasklistComponent{
   constructor(private _taskService: TaskService){
     this._taskService.getPhases().then(list => this.phases = list);
   }
-
 }
