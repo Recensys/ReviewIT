@@ -48,6 +48,13 @@ export class TaskService {
       description: "based on the title assess whether the paper is related to global software engineering",
       fields: this._fields,
       tasks: this._tasks
+    },
+    {
+      id: 2,
+      name: "Stage 2",
+      description: "based on the title assess whether the paper is related to global software engineering",
+      fields: this._fields,
+      tasks: this._tasks
     }
   ];
 

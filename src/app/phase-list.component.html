@@ -1,0 +1,30 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <h3 class="card-header">
+    <span class="menu">
+      <button type="button" class="btn btn-round btn-primary-outline">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </span>
+          Study details
+        </h3>
+        <div class="card-block">
+          <p class="card-text">Navigation to study setup goes here.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let phase of phases">
+            <h4 class="list-group-item-heading">{{phase.name}}</h4>
+            <p class="list-group-item-text">{{phase.description}}</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <phase-config [id]="1"></phase-config>
+    </div>
+  </div>
+</div>

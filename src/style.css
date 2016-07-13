@@ -51,3 +51,53 @@ table .max-lines{
   top:-3px;
   font-size:10pt;
 }
+
+.btn.btn-round {
+  border-radius: 100%;
+  padding: .375rem .75rem;
+}
+
+.meter {
+  height: 1.5rem;
+  position: relative;
+  background: #eee;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+
+.meter > span {
+
+  display: block;
+  float:left;
+  height: 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  text-align: center;
+  text-overflow: clip;
+  line-height: 1.5rem;
+  font-size:0.8rem;
+}
+
+.meter > span:first-child{
+  color:#000000;
+  background-color: #eee;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.meter > span:last-child{
+  color:#000000;
+  background-color: #eee;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.meter > span.selected {
+  color: #FFF;
+  background-color: #0074d9;
+}
+
+

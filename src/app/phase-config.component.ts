@@ -4,12 +4,11 @@
 /**
  * Created by jbec on 08/06/2016.
  */
-
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {TaskService} from "./task.service";
 import {Phase} from "./model/phase.model";
 import {FieldComponent} from "./field.component";
-import {RouteSegment, Router} from "@angular/router";
 
 @Component({
   selector: 'phase-config',
@@ -19,28 +18,40 @@ import {RouteSegment, Router} from "@angular/router";
 })
 
 export class PhaseConfigComponent implements OnInit, OnDestroy {
+
+
+  @Input() id: number;
   public phase: Phase;
 
   constructor(
     private _taskService: TaskService,
-    private route: RouteSegment,
-    private router: Router){}
+    private route: ActivatedRoute,
+    private router: Router
+  ){}
 
   private sub: any;
 
   ngOnInit() {
-    this.sub = this.route.par
-    this.sub = this.route.params.subscribe(params => {
-      let id = +params['id']; // (+) converts string 'id' to a number
-      this._taskService.getPhase(id).then(p => {
-        this.phase = p;
-        console.log(p);
+
+    console.log(this.id);
+
+    if(isNaN(this.id)) {
+      this.sub = this.route.params.subscribe(params => {
+        let id = +params['id']; // (+) converts string 'id' to a number
+        this._taskService.getPhase(id).then(p => {
+          this.phase = p;
+        });
       });
-    });
+    } else {
+      this._taskService.getPhase(this.id).then(p => {
+        this.phase = p;
+      });
+    }
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
-
 }
