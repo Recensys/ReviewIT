@@ -118,3 +118,9 @@ table .max-lines{
 }
 
 
+.login{
+  max-width: 500px;
+}
+.signup{
+  max-width: 500px;
+}
