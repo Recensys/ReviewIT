@@ -34,45 +34,68 @@
     <!--<input type="range" min="10" max="1000" step="10" />-->
 
     <div class="container-fluid">
-      <dl class="dl-horizontal">
 
+      <div class="form-group row">
+        <label for="exampleSelect1" class="col-sm-2 form-control-label">Preset</label>
+        <div class="col-sm-10 contains-select">
+          <select class="form-control" id="exampleSelect1">
+            <option>Equal</option>
+          </select>
+        </div>
+        <p class="col-sm-10 col-sm-offset-2 text-muted">
+          This is a preset to how to distribute tasks between researchers. You can manually change the preset by dragging the bars below.
+        </p>
+      </div>
+
+      <div class="form-group row">
+        <label for="exampleSelect2" class="col-sm-2 form-control-label">Coverage</label>
+        <div class="col-sm-10 contains-select">
+          <select class="form-control" id="exampleSelect2">
+            <option>200%</option>
+          </select>
+        </div>
+        <p class="col-sm-10 col-sm-offset-2 text-muted">
+          This covers how many times each task will be reviewed. 200% means that all tasks will be reviewed twice
+        </p>
+      </div>
+
+
+      <dl class="dl-horizontal">
+        <hr/>
         <dt class="col-sm-2 text-truncate">All</dt>
         <!--<dd class="col-sm-10"><progress class="progress" value="100" max="100">0%</progress></dd>-->
         <dd class="col-sm-10">
           <div class="meter">
-            <span class="selected" style="width: 100%; margin-left: 0">100%</span>
+            <span class="selected" style="width: 200%; margin-left: 0">200%</span>
           </div>
         </dd>
 
         <dt class="col-sm-2 text-truncate">Jacob</dt>
         <dd class="col-sm-10">
           <div class="meter">
-            <span class="selected" style="width: 50%">50%</span>
-            <span style="width: 50%"></span>
+            <span class="selected" style="width: 66%">66%</span>
+            <span></span>
           </div>
         </dd>
 
         <dt class="col-sm-2 text-truncate">Paolo</dt>
         <dd class="col-sm-10">
           <div class="meter">
-            <span style="width: 50%"></span>
-            <span class="selected" style="width: 50%">50%</span>
+            <span></span>
+            <span class="selected" style="width: 66%">66%</span>
           </div>
         </dd>
 
         <dt class="col-sm-2 text-truncate">Mathias</dt>
         <dd class="col-sm-10">
           <div class="meter">
-            <span style="width: 25%"></span>
-            <span class="selected" style="width: 50%">50%</span>
-            <span style="width: 25%"></span>
+            <span class="selected" style="width: 33%">33%</span>
+            <span></span>
+            <span class="selected" style="width: 33%">33%</span>
           </div>
-        </dd>
+          </dd>
       </dl>
     </div>
-    <p class="text-muted">
-      100% of the tasks are reviewed by 2 different researchers
-    </p>
   </div>
 </div>
 

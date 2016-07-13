@@ -65,12 +65,27 @@ table .max-lines{
   border-radius: 0.25rem;
 }
 
+/*.form-group.row select.form-control {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}*/
+
+.form-group.row > .contains-select {
+  padding: .375rem .75rem;
+}
+
+.form-group > .form-control-description {
+}
+
+
+
 
 .meter > span {
 
-  display: block;
+  display: inline-block;
   float:left;
   height: 100%;
+  max-width: 100%;
 
   position: relative;
   overflow: hidden;
@@ -89,10 +104,12 @@ table .max-lines{
 }
 
 .meter > span:last-child{
+  position: absolute;
   color:#000000;
   background-color: #eee;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+  right:0;
 }
 
 .meter > span.selected {
