@@ -20,7 +20,8 @@ import {DraglistDirective} from "./directives/draglist.directive";
 export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
-  @Input() private phase: Phase;
+  @Input()
+  private phase: Phase;
 
   private available:any[] = [
     "Abstract",

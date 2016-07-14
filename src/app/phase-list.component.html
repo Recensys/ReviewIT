@@ -1,30 +1,33 @@
-
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <h3 class="card-header">
-    <span class="menu">
-      <button type="button" class="btn btn-round btn-primary-outline">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-      </button>
-    </span>
-          Study details
-        </h3>
-        <div class="card-block">
-          <p class="card-text">Navigation to study setup goes here.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let phase of phases">
-            <h4 class="list-group-item-heading">{{phase.name != "" ? phase.name : "New stage"}}</h4>
-            <p class="list-group-item-text">{{phase.description}}</p>
-          </li>
-        </ul>
-      </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h3 class="card-header card-header-nospace">
+                    Study details
+                </h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"
+                        [class.active]="!selected"
+                        (click)="onSelect(undefined)">
+                        <h4 class="list-group-item-heading">
+                            Study configuration
+                        </h4>
+                        <p class="list-group-item-text">Some text for the study.. bla. bla. bla</p>
+                    </li>
+                    <li class="list-group-item"
+                        *ngFor="let phase of phases"
+                        [class.active]="phase === selected"
+                        (click)="onSelect(phase)">
+                        <h4 class="list-group-item-heading">{{phase.name != "" ? phase.name : "New stage"}}</h4>
+                        <p class="list-group-item-text">{{phase.description}}</p>
+                    </li>
+                </ul>
+            </div>
 
+        </div>
+        <div class="col-md-8">
+            <phase-config *ngIf(selected) [phase]="selected"></phase-config>
+            <study-config *ngIf(!selected)></study-config>
+        </div>
     </div>
-    <div class="col-md-8">
-      <phase-config [phase]="phases[0]"></phase-config>
-    </div>
-  </div>
 </div>
