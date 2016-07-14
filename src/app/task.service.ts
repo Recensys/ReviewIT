@@ -10,10 +10,18 @@ import {StringField} from "./fields/string.field";
 import {NumberField} from "./fields/number.field";
 import {ResourceField} from "./fields/resource.field";
 import {BooleanField} from "./fields/boolean.field";
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import Globals = require('../globals');
+
 
 @Injectable()
 export class TaskService {
 
+  constructor(private http: HTTP){}
 
   private _fields: Field[] = [
     new StringField ({name: "author", input: false }),
@@ -58,6 +66,7 @@ export class TaskService {
     }
   ];
 
+  /* old methods
   public getPhases(): Promise<Phase[]> {
     return Promise.resolve(this._phases).then(list => list);
   }
@@ -68,5 +77,10 @@ export class TaskService {
 
   public getTask(id:number): Promise<Task> {
     return Promise.resolve(this._tasks).then(list => list.filter(t => t.id == id)[0]);
+  }
+  */
+  
+  public getTasks(uid: int){
+    return this.http.get()
   }
 }

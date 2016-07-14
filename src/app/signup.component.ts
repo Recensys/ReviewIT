@@ -6,22 +6,29 @@
 
 
 import {Component} from '@angular/core';
-import {TaskService} from "./task.service";
-import {Phase} from "./model/phase.model";
-import {FieldComponent} from "./field.component";
+import {SignupinService} from "./services/api.service";
 
 @Component({
   selector: 'signup',
-  templateUrl: 'app/signup.component.html'
+  templateUrl: 'app/signup.component.html',
+  providers: [SignupinService]
 })
 
 export class SignupComponent{
 
+  errorMessage: string;
 
-  constructor(){  }
+  constructor(private _signupinService : SignupinService){  }
 
-  login(username, password) {
+  signin(username, password) {
     console.log(username + " " + password);
+
+
+    this._signupinService.Create(username, password)
+      .subscribe(
+        bool => console.log(bool),
+        error => this.errorMessage = <any>error
+      );
   }
 
 }
