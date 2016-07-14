@@ -259,3 +259,12 @@ table .max-lines{
     transform: rotate(360deg);
   }
 }
+
+/* Login */
+
+.login{
+  max-width: 500px;
+}
+.signup{
+  max-width: 500px;
+}
