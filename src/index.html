@@ -18,7 +18,8 @@
 </head>
 <body>
 
-  <review-it-app>Loading...</review-it-app>
+  <review-it-app><div class="loading">Loading&#8230;</div></review-it-app>
+
 
 {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}
 <script>
@@ -26,10 +27,9 @@
     System.import('main');
   }).catch(console.error.bind(console));
 </script>
+<!--<script src="//cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-
-
 </body>
 </html>

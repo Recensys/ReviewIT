@@ -3,10 +3,13 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+    //'angular-sortablejs': 'vendor/angular-sortablejs',
+    sortablejs: 'vendor/sortablejs/Sortable.js'
 };
 
 /** User packages configuration. */
 const packages: any = {
+    //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +21,7 @@ const barrels: string[] = [
   '@angular/core',
   '@angular/common',
   '@angular/compiler',
+  '@angular/forms',
   '@angular/http',
   '@angular/router',
   '@angular/platform-browser',
@@ -43,7 +47,6 @@ declare var System: any;
 // Apply the CLI SystemJS configuration.
 System.config({
   map: {
-    //'app': 'dist',
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js'

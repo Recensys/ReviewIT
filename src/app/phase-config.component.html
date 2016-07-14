@@ -1,118 +1,182 @@
-<div class="card">
-  <div class="card-header">
-    <h5> Review details (title, description and research questions)</h5>
-  </div>
-  <div class="card-block">
-
-    <fieldset class="form-group">
-      <!--<label for="titleInput">Title</label>-->
-      <input type="text" class="form-control" id="titleInput" placeholder="Enter study title">
-    </fieldset>
-
-    <fieldset class="form-group">
-      <!--<label for="descriptionInput">Description</label>-->
-      <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter study description"></textarea>
-    </fieldset>
-  </div>
-  <div class="card-footer">
-    <a href="#" class="btn btn-primary">Save</a>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Selection Criteria
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Review strategy
-  </div>
-  <div class="card-block">
-
-    <!--<input type="range" min="10" max="1000" step="10" />-->
-
-    <div class="container-fluid">
+<div *ngIf="phase">
+  <div class="card">
+    <div class="card-header">
+      <h5> Stage details</h5>
+    </div>
+    <div class="card-block">
 
       <div class="form-group row">
-        <label for="exampleSelect1" class="col-sm-2 form-control-label">Preset</label>
-        <div class="col-sm-10 contains-select">
-          <select class="form-control" id="exampleSelect1">
-            <option>Equal</option>
-          </select>
-        </div>
-        <p class="col-sm-10 col-sm-offset-2 text-muted">
-          This is a preset to how to distribute tasks between researchers. You can manually change the preset by dragging the bars below.
-        </p>
+        <label for="titleInput" class="col-sm-2 form-control-label">Title</label>
+        <div class="col-sm-10">
+        <input type="text"
+               class="form-control"
+               id="titleInput"
+               placeholder="Enter stage title"
+               [(ngModel)]="phase.name">
+          </div>
       </div>
 
       <div class="form-group row">
-        <label for="exampleSelect2" class="col-sm-2 form-control-label">Coverage</label>
-        <div class="col-sm-10 contains-select">
-          <select class="form-control" id="exampleSelect2">
-            <option>200%</option>
-          </select>
+        <label for="descriptionInput" class="col-sm-2 form-control-label">Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter stage description" [(ngModel)]="phase.description"></textarea>
         </div>
-        <p class="col-sm-10 col-sm-offset-2 text-muted">
-          This covers how many times each task will be reviewed. 200% means that all tasks will be reviewed twice
-        </p>
       </div>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="btn btn-primary">Save</a>
+      <a href="#" class="btn btn-danger">Reset</a>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="card-header">
+      Datafields
+    </div>
+    <div class="card-block">
+      <div class="row list-group-combined">
+        <div class="col-md-4">
+          <ul [draglist]="available" class="list-group list-group-header">
+            <li class="list-group-item list-group-item-header">
+              Available fields
+              <i class="fa fa-eye-slash" aria-hidden="true"></i>
+            </li>
+            <li class="list-group-item" *ngIf="available.length <= 0">No available fields</li>
+            <li class="list-group-item" *ngFor="let field of available">{{field}}</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul [draglist]="visible" class="list-group list-group-header">
+            <li class="list-group-item list-group-item-header">
+              Visible fields
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </li>
+            <li class="list-group-item" *ngIf="visible.length <= 0">No visible fields</li>
+            <li class="list-group-item" *ngFor="let field of visible">{{field}}</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul [draglist]="requested" class="list-group list-group-header">
+            <li class="list-group-item list-group-item-header">
+              Requested fields
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </li>
+            <li class="list-group-item" *ngIf="requested.length <= 0">No requested fields</li>
+            <li class="list-group-item" *ngFor="let field of requested">{{field}}</li>
+          </ul>
+        </div>
+      </div>
+      <hr/>
 
-      <dl class="dl-horizontal">
-        <hr/>
-        <dt class="col-sm-2 text-truncate">All</dt>
-        <!--<dd class="col-sm-10"><progress class="progress" value="100" max="100">0%</progress></dd>-->
-        <dd class="col-sm-10">
-          <div class="meter">
-            <span class="selected" style="width: 200%; margin-left: 0">200%</span>
+      <p class="text-muted">
+        Here you can drag-and-drop data fields.
+        The available fields are all the fields you have available in this study.
+        The visible fields are those data that will be displayed to the user.
+        The requested fields are those data that the researcher will be promoted to edit.
+        You can add more data fields in the study configuration tab.
+      </p>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="btn btn-primary">Save</a>
+      <a href="#" class="btn btn-danger">Reset</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Review strategy
+    </div>
+    <div class="card-block">
+
+      <!--<input type="range" min="10" max="1000" step="10" />-->
+
+      <div class="container-fluid">
+
+        <div class="form-group row">
+          <label for="exampleSelect1" class="col-sm-2 form-control-label">Preset</label>
+          <div class="col-sm-10 contains-select">
+            <select class="form-control" id="exampleSelect1">
+              <option>Equal</option>
+              <option>Custom</option>
+            </select>
           </div>
-        </dd>
+          <p class="col-sm-10 col-sm-offset-2 text-muted">
+            This is a preset for how to distribute tasks between researchers. You can change to a custom configuration by draging the bars below.
+          </p>
+        </div>
 
-        <dt class="col-sm-2 text-truncate">Jacob</dt>
-        <dd class="col-sm-10">
-          <div class="meter">
-            <span class="selected" style="width: 66%">66%</span>
-            <span></span>
+        <div class="form-group row">
+          <label for="exampleSelect2" class="col-sm-2 form-control-label">Coverage</label>
+          <div class="col-sm-10 contains-select">
+            <select class="form-control" id="exampleSelect2">
+              <option>200%</option>
+              <option>Custom</option>
+            </select>
           </div>
-        </dd>
+          <p class="col-sm-10 col-sm-offset-2 text-muted">
+            Coverage is how many times each task will be reviewed. 200% means that all tasks will be reviewed twice. 150% means that all tasks will be reviewed once, and 50% of the tasks will be reviewed twice.
+          </p>
+        </div>
 
-        <dt class="col-sm-2 text-truncate">Paolo</dt>
-        <dd class="col-sm-10">
-          <div class="meter">
-            <span></span>
-            <span class="selected" style="width: 66%">66%</span>
-          </div>
-        </dd>
-
-        <dt class="col-sm-2 text-truncate">Mathias</dt>
-        <dd class="col-sm-10">
-          <div class="meter">
-            <span class="selected" style="width: 33%">33%</span>
-            <span></span>
-            <span class="selected" style="width: 33%">33%</span>
-          </div>
+        <dl class="dl-horizontal">
+          <hr/>
+          <dt class="col-sm-2 text-truncate">All</dt>
+          <!--<dd class="col-sm-10"><progress class="progress" value="100" max="100">0%</progress></dd>-->
+          <dd class="col-sm-10">
+            <div class="meter">
+              <span class="selected" style="width: 200%; margin-left: 0">200%</span>
+            </div>
           </dd>
-      </dl>
+
+          <dt class="col-sm-2 text-truncate">Jacob</dt>
+          <dd class="col-sm-10">
+            <div class="meter">
+              <span class="selected" style="width: 66%">66%</span>
+              <span></span>
+            </div>
+          </dd>
+
+          <dt class="col-sm-2 text-truncate">Paolo</dt>
+          <dd class="col-sm-10">
+            <div class="meter">
+              <span></span>
+              <span class="selected" style="width: 66%">66%</span>
+            </div>
+          </dd>
+
+          <dt class="col-sm-2 text-truncate">Mathias</dt>
+          <dd class="col-sm-10">
+            <div class="meter">
+              <span class="selected" style="width: 33%">33%</span>
+              <span></span>
+              <span class="selected" style="width: 33%">33%</span>
+            </div>
+          </dd>
+
+
+        <dt class="col-sm-12 text-truncate">
+          <span class="label label-primary"> Add researcher
+            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+          </span>
+        </dt>
+        <!--<dd class="col-sm-10"></dd>-->
+        </dl>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="btn btn-primary">Save</a>
+      <a href="#" class="btn btn-danger">Reset</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Validation strategy
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Sources
     </div>
   </div>
 </div>
-
-<div class="card">
-  <div class="card-header">
-    Validation strategy
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Sources
-  </div>
-</div>
-
-
-
-
-
-{{phase}}

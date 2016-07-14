@@ -11,7 +11,9 @@ module.exports = function(defaults) {
       'reflect-metadata/**/*.+(js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      'zone.js/dist/**/*.+(js|js.map)'
+      'zone.js/dist/**/*.+(js|js.map)',
+      'angular-sortablejs/**/*.+(js|js.map)',
+      'sortablejs/Sortable.js'
     ]
   });
 };

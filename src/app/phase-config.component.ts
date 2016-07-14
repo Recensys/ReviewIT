@@ -8,46 +8,56 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {TaskService} from "./task.service";
 import {Phase} from "./model/phase.model";
-import {FieldComponent} from "./field.component";
+import {DraglistDirective} from "./directives/draglist.directive";
 
 @Component({
   selector: 'phase-config',
   templateUrl: 'app/phase-config.component.html',
-  directives: [FieldComponent],
-  providers: [TaskService]
+  directives: [ DraglistDirective ],
+  providers: [ TaskService ]
 })
 
 export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
-  @Input() id: number;
-  public phase: Phase;
+  @Input() private phase: Phase;
+
+  private available:any[] = [
+    "Abstract",
+    "Year",
+    "DOI",
+    "PDF"
+  ];
+
+  private visible:string[] = [
+    "Title",
+    "Author"
+  ]
+  private requested:string[] = [
+    "Is GSD?"
+  ]
+
+
+
 
   constructor(
     private _taskService: TaskService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ){}
 
   private sub: any;
 
   ngOnInit() {
-
-    console.log(this.id);
-
-    if(isNaN(this.id)) {
+    if (this.phase == undefined) {
       this.sub = this.route.params.subscribe(params => {
         let id = +params['id']; // (+) converts string 'id' to a number
         this._taskService.getPhase(id).then(p => {
           this.phase = p;
         });
       });
-    } else {
-      this._taskService.getPhase(this.id).then(p => {
-        this.phase = p;
-      });
     }
   }
+
 
   ngOnDestroy() {
     if (this.sub) {
