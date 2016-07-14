@@ -1,5 +1,10 @@
 language: node_js
+node_js:
+- "6"
 install:
 - npm install -g typescript typings angular-cli
 - npm install
 script: ng build
+cache:
+    directories:
+    - node_modules
