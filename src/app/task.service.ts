@@ -72,11 +72,11 @@ export class TaskService {
   }
 
   public getPhase(id:number): Promise<Phase> {
-    return Promise.resolve(this._phases).then(list => list.filter(p => p.id == id)[0]);
+    return Promise.resolve(this._phases).then(phases => phases.find(phase => phase.id === id));
   }
 
   public getTask(id:number): Promise<Task> {
-    return Promise.resolve(this._tasks).then(list => list.filter(t => t.id == id)[0]);
+    return Promise.resolve(this._tasks).then(tasks => tasks.find(task => task.id === id));
   }
   */
   

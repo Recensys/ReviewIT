@@ -16,7 +16,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item" *ngFor="let phase of phases">
-            <h4 class="list-group-item-heading">{{phase.name}}</h4>
+            <h4 class="list-group-item-heading">{{phase.name != "" ? phase.name : "New stage"}}</h4>
             <p class="list-group-item-text">{{phase.description}}</p>
           </li>
         </ul>
@@ -24,7 +24,7 @@
 
     </div>
     <div class="col-md-8">
-      <phase-config [id]="1"></phase-config>
+      <phase-config [phase]="phases[0]"></phase-config>
     </div>
   </div>
 </div>
