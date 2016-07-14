@@ -6,7 +6,7 @@
 
 
 import {Component} from '@angular/core';
-import {SignupinService} from "./services/signupin.service";
+import {SignupinService} from "./services/api.service";
 
 @Component({
   selector: 'login',
@@ -16,6 +16,7 @@ import {SignupinService} from "./services/signupin.service";
 
 export class LoginComponenet{
 
+  errorMessage: string;
 
   constructor(private _signupinService: SignupinService){
 
@@ -28,7 +29,7 @@ export class LoginComponenet{
     this._signupinService.Validate(username, password)
       .subscribe(
         bool => console.log(bool),
-        error => console.log(error)
+        error => this.errorMessage=<any>error
       );
 
   }
