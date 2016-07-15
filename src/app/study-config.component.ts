@@ -4,7 +4,7 @@
 /**
  * Created by jbec on 08/06/2016.
  */
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {TaskService} from './task.service';
 import {DraglistDirective} from './directives/draglist.directive';
@@ -19,10 +19,7 @@ import {DraglistDirective} from './directives/draglist.directive';
 export class StudyConfigComponent implements OnInit, OnDestroy {
 
     @Input()
-    private study = {
-        title: 'some title',
-        description: 'some description'
-    };
+    private study: any;
 
      constructor(
         private taskservice: TaskService,
@@ -33,9 +30,16 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
     private sub: any;
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            let id = +params['id'];
-        });
+        if(!this.study){
+            this.sub = this.route.params.subscribe(params => {
+                let id = +params['id'];
+                this.study = { 
+                    title: 'some title',
+                    description: 'some description'
+                };
+                //TODO get study
+            });
+        }
     }
 
 

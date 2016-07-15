@@ -1,9 +1,7 @@
 /**
  * Created by jbec on 11/07/2016.
  */
-/**
- * Created by jbec on 08/06/2016.
- */
+
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {TaskService} from './task.service';
