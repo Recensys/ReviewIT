@@ -2,11 +2,11 @@
  * Created by jbec on 08/06/2016.
  */
 
-import {Field} from "../model/field.model";
+import {Field} from '../model/field.model';
 
 export class RadioField implements Field {
 
-  constructor(data){
+  constructor(data) {
     this.name = data.name;
     this.input = data.input;
     this.options = data.options;
@@ -15,7 +15,8 @@ export class RadioField implements Field {
   name: string;
   input: boolean;
   options: string[];
+  type: string = 'radio';
 
-  getView(): string{ return "app/fields/radio.field.html" }
+  getView(): string { return 'app/fields/radio.field.html'; }
 
 }

@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card" *ngIf="!task">
+                <h3 class="card-header">No such task exists</h3>
+                <div class="card-block">
+                    The task with id ... does not exist
+                </div>
+            </div>
+            <div class="card" *ngIf="task">
+                <h3 class="card-header">
+                    Task #{{task.id}}
+                    <div class="label" [ngSwitch]="task.state">
+                        <template [ngSwitchWhen]="1"><span class="label label-default">new</span></template>
+                        <template [ngSwitchWhen]="2"><span class="label label-warning">in progress</span></template>
+                        <template [ngSwitchWhen]="3"><span class="label label-success">submitted</span></template>
+                        <template ngSwitchDefault><span class="label label-danger">unknown</span></template>
+                    </div>
+                    <span class="menu">
+                        <a class="btn btn-primary-outline" href="/details/{{task.id - 1}}">
+                            <i class="fa fa-angle-left"></i> previous 
+                        </a>
+                        <a class="btn btn-primary-outline" href="/details/{{task.id + 1}}">
+                            next <i class="fa fa-angle-right"></i>
+                        </a>
+                    </span>
+                </h3>
+                <div class="card-block">
+                    <h6 class="card-subtitle text-muted">Visible fields:</h6>
+                </div>
+                <div class="card-block">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <dl class="dl-horizontal">
+                                    <div *ngFor="let data of visible">
+                                        <dt class="col-sm-3">{{data.field.name}}</dt>
+                                        <dd class="col-sm-9">
+                                        <field [data]="data"></field>
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block">
+                    <h6 class="card-subtitle text-muted">Requested fields:</h6>
+                </div>
+                <div class="card-block">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="container-fluid">
+                                <dl class="dl-horizontal">
+                                    <div *ngFor="let data of requested">
+                                        <dt class="col-sm-3">{{data.field.name}}</dt>
+                                        <dd class="col-sm-9">
+                                        <field [data]="data"></field>
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-view hidden-md-down" *ngIf="resource">
+            <object [data]="url" type="application/pdf">
+                <p>It appears you don't have a PDF plugin for this browser.</p>
+            </object>
+        </div>
+    </div>
+</div>
