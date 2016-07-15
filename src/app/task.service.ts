@@ -78,7 +78,7 @@ export class TaskService {
   }
   
   
-  public getTasks(uid: int){
+  public getTasks(uid: number){
     return 1;
   }
 }

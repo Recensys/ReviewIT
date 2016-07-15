@@ -6,25 +6,25 @@
 
 
 import {Component} from '@angular/core';
-import {SignupinService} from "./services/api.service";
+import {APIService} from "./services/api.service";
 
 @Component({
   selector: 'signup',
   templateUrl: 'app/signup.component.html',
-  providers: [SignupinService]
+  providers: [APIService]
 })
 
 export class SignupComponent{
 
   errorMessage: string;
 
-  constructor(private _signupinService : SignupinService){  }
+  constructor(private _api : APIService){  }
 
   signin(username, password) {
     console.log(username + " " + password);
 
 
-    this._signupinService.Create(username, password)
+    this._api.CreateUser(username, password)
       .subscribe(
         bool => console.log(bool),
         error => this.errorMessage = <any>error
