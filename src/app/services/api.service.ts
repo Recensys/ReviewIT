@@ -17,15 +17,8 @@ export class APIService {
 
   constructor(private http: Http){  }
 
-  /****
-   * 
-   * @param username
-   * @param password
-   * @returns {Observable<R>}
-   * @constructor
-     */
-
-  public Validate(username: string, password: string) : Observable<string>{
+  
+  public ValidateUser(username: string, password: string) : Observable<string>{
 
 
     let body = JSON.stringify({'Username': username, 'Password': password});
@@ -37,7 +30,7 @@ export class APIService {
   }
 
 
-  public Create(username: string, password: string) : Observable<string> {
+  public CreateUser(username: string, password: string) : Observable<string> {
 
 
     let body = JSON.stringify({'Username': username, 'Password': password});
@@ -45,8 +38,19 @@ export class APIService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(Globals.api+'user/create', body, options)
-      .map(this.extractData).catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
+  public GetTask(id: number) : Observable<string>{
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+    let options = new RequestOptions({ headers: headers });
+
+    let url = Globals.api + 'task/' + id;
+
+    return this.http.get(url, options)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private handleError (error: any) {
