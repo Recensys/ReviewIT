@@ -15,11 +15,14 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {APIService} from './services/api.service';
 
 
 @Injectable()
 export class TaskService {
 
+
+  constructor(private _APIService : APIService){}
 
   private _fields: Field[] = [
     new StringField ({name: "author", input: false }),
@@ -79,6 +82,6 @@ export class TaskService {
   
   
   public getTasks(uid: number){
-    return 1;
+    
   }
 }

@@ -4,12 +4,14 @@
 /** Map relative paths to URLs. */
 const map: any = {
     //'angular-sortablejs': 'vendor/angular-sortablejs',
-    sortablejs: 'vendor/sortablejs/Sortable.js'
+    sortablejs: 'vendor/sortablejs/Sortable.js',
+    'angular2-cookie': 'vendor/angular2-cookie',
 };
 
 /** User packages configuration. */
 const packages: any = {
     //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
+    'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

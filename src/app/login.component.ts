@@ -39,6 +39,7 @@ export class LoginComponenet{
         }
       );
 
+      this._api.GetTask(1).subscribe(task => console.log(task), error => console.log(error));
   }
 
 }

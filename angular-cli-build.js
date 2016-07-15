@@ -13,7 +13,8 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       'zone.js/dist/**/*.+(js|js.map)',
       'angular-sortablejs/**/*.+(js|js.map)',
-      'sortablejs/Sortable.js'
+      'sortablejs/Sortable.js',
+      'angular2-cookie/**/*.+(js|js.map)'
     ]
   });
 };
