@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-8">
             <phase-config *ngIf(selected) [phase]="selected"></phase-config>
-            <study-config *ngIf(!selected)></study-config>
+            <study-config *ngIf(!selected) [study]="study"></study-config>
         </div>
     </div>
 </div>
