@@ -275,3 +275,19 @@ border-top-left-radius: 0;
 }
 
 
+@media (min-width: 62em) {
+    .pdf-view {
+        position:fixed;
+        top: 54px;
+        right: 0;
+        left: 50%;
+        bottom: 0;
+        padding: 1rem;
+    }
+
+    .pdf-view object {
+        width:100%;
+        height:calc(100vh - 74px);
+    }
+}
+

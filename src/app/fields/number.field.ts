@@ -2,11 +2,11 @@
  * Created by jbec on 08/06/2016.
  */
 
-import {Field} from "../model/field.model";
+import {Field} from '../model/field.model';
 
 export class NumberField implements Field {
 
-  constructor(data){
+  constructor(data) {
     this.name = data.name;
     this.input = data.input;
   }
@@ -15,7 +15,9 @@ export class NumberField implements Field {
   input: boolean;
   min: number;
   max: number;
-  getView(){
-    return "app/fields/number.field.html"
+  type: string = 'number';
+
+  getView() {
+    return 'app/fields/number.field.html';
   }
 }
