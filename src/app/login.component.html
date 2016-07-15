@@ -11,6 +11,7 @@
     </div>
     <div class="card-block">
       <button type="submit" class="btn btn-lg">Log in</button>
+      <div *ngIf="loading" class="loading">loading</div>
     </div>
     <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
   </form>

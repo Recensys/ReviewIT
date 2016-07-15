@@ -17,19 +17,26 @@ import {APIService} from "./services/api.service";
 export class LoginComponenet{
 
   errorMessage: string;
+  loading: boolean;
 
   constructor(private _api: APIService){
-
+      this.loading = false;
   }
 
   login(username, password) {
     console.log(username + " " + password);
-
+    this.loading = true;
+    this.errorMessage = null;
 
     this._api.ValidateUser(username, password)
       .subscribe(
-        bool => console.log(bool),
-        error => this.errorMessage=<any>error
+        bool => {
+          this.loading = false;          
+        },
+        error => {
+          this.loading = false;
+          this.errorMessage=<any>error
+        }
       );
 
   }

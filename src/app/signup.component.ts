@@ -17,17 +17,19 @@ import {APIService} from "./services/api.service";
 export class SignupComponent{
 
   errorMessage: string;
+  loading: boolean;
 
-  constructor(private _api : APIService){  }
+  constructor(private _api : APIService){ this.loading=false;  }
 
   signin(username, password) {
     console.log(username + " " + password);
-
+    this.loading = true;
+    this.errorMessage = null;
 
     this._api.CreateUser(username, password)
       .subscribe(
-        bool => console.log(bool),
-        error => this.errorMessage = <any>error
+        bool => this.loading = false,
+        error => {this.loading = false; this.errorMessage = <any>error;}
       );
   }
 
