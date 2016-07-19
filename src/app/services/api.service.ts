@@ -19,14 +19,17 @@ export class APIService {
 
   constructor(private http: Http, private _cookieService:CookieService){  }
 
+
+
   /***
    * USER METHODS
    */
   public ValidateUser(username: string, password: string) : Observable<string>{
     let body = JSON.stringify({'Username': username, 'Password': password});
 
-    return this.http.post(Globals.api+'login', body, this.GetOptions)
-              .map(this.extractData).catch(this.handleError);
+    return this.http.post(Globals.api+'login', body, this.GetOptions())
+              .map(this.storeToken.bind(this))
+              .catch(this.handleError);
   }
 
   public CreateUser(username: string, password: string) : Observable<string> {
@@ -34,7 +37,7 @@ export class APIService {
     
     let url = Globals.api+'user/create';
 
-    return this.http.post(url, body, this.GetOptions)
+    return this.http.post(url, body, this.GetOptions())
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -44,8 +47,7 @@ export class APIService {
    */
   public GetTask(id: number) : Observable<Task>{
     let url = Globals.api + 'task/' + id;
-
-    return this.http.get(url, this.GetOptions)
+    return this.http.get(url, this.GetOptions())
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -58,9 +60,11 @@ export class APIService {
   */
   private GetOptions () : RequestOptions {
       let token = this._cookieService.get('token');
+      console.log('stored token: '+token);
       let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
       if (token) {
         headers.append('sessionToken',token);
+        console.log(headers);
       }
       let options = new RequestOptions({ headers: headers });
       return options
@@ -77,6 +81,15 @@ export class APIService {
   private extractData(res: Response) {
     let body = res.json();
     return body.data || { };
+  }
+
+  private storeToken(res: Response){
+    let json = res.json();
+    let token = json['sessionToken'];
+    
+    this._cookieService.put('token',token);
+
+    return json;
   }
 
 }

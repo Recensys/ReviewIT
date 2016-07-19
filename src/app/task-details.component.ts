@@ -10,12 +10,13 @@ import {Data} from './model/field.model';
 import {FieldComponent} from './field.component';
 import {WherePipe} from './pipes/where.pipe';
 import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
+import {APIService} from './services/api.service';
 
 @Component({
     selector: 'task-details',
     templateUrl: 'app/task-details.component.html',
     directives: [ FieldComponent ],
-    providers: [ TaskService ],
+    providers: [ TaskService, APIService ],
     pipes: [ WherePipe ]
 })
 
@@ -26,14 +27,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     public requested: Data[];
     public resource: Data;
     public url: SafeResourceUrl;
-
-
     private sub: any;
 
     constructor(
         private taskservice: TaskService,
         private route: ActivatedRoute,
-        private sanitizer: DomSanitizationService
+        private sanitizer: DomSanitizationService,
+        private _api: APIService
     ) {}
 
     ngOnInit() {
@@ -42,6 +42,11 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
                 let id = +params['id'];
                 this.taskservice.getTask(id).then(t => {
                     this.task = t;
+
+                    this._api.GetTask(id).subscribe(
+                        task => console.log("task: "+task),
+                        error => console.log("task error: "+error)
+                    );
 
                     this.visible = t.data.filter(
                         data => data.field.input === false

@@ -30,8 +30,9 @@ export class LoginComponenet{
 
     this._api.ValidateUser(username, password)
       .subscribe(
-        bool => {
-          this.loading = false;          
+        json => {
+          this.loading = false;
+          console.log(json);        
         },
         error => {
           this.loading = false;
@@ -39,7 +40,6 @@ export class LoginComponenet{
         }
       );
 
-      this._api.GetTask(1).subscribe(task => console.log(task), error => console.log(error));
   }
 
 }

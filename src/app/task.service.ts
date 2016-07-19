@@ -21,16 +21,6 @@ import 'rxjs/add/observable/throw';
 export class TaskService {
 
 
-<<<<<<< HEAD
-
-  private _fields: Field[] = [
-    new StringField ({name: "author", input: false }),
-    new StringField ({ name: "title", input: false }),
-    new NumberField ({ name: "year", input: false, min: 0 }),
-    new ResourceField ({ name: "pdf", input:false }),
-    new StringField ({ name: "abstract", input: false }),
-    new BooleanField ({ name: "isGsd?", input: true, trueval: "yes", falseval: "no" })
-=======
   private fields: Field[] = [
     new StringField ({name: 'author', input: false }),
     new StringField ({ name: 'title', input: false }),
@@ -38,7 +28,6 @@ export class TaskService {
     new StringField ({ name: 'abstract', input: false }),
     new BooleanField ({ name: 'isGsd?', input: true, trueval: 'yes', falseval: 'no' }),
     new ResourceField ({ name: 'pdf', input: false })
->>>>>>> origin/task-details
   ];
 
   private data: Data[] = [
@@ -87,15 +76,9 @@ export class TaskService {
   public getTask(id: number): Promise<Task> {
     return Promise.resolve(this.tasks).then(tasks => tasks.find(task => task.id === id));
   }
-<<<<<<< HEAD
-  
-  
-  public getTasks(uid: number){
-    
-=======
+
 
   public getTasks(uid: number) {
     return 1;
->>>>>>> origin/task-details
   }
 }
