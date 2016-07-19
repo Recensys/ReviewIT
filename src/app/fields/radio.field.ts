@@ -2,20 +2,20 @@
  * Created by jbec on 08/06/2016.
  */
 
-import {Field} from '../model/field.model';
+import {Field} from '../model/field';
 
 export class RadioField implements Field {
 
-  constructor(data) {
-    this.name = data.name;
-    this.input = data.input;
-    this.options = data.options;
+  constructor(name: string, input: boolean, options: string[]) {
+    this.Name = name;
+    this.Input = input;
+    this.Options = options;
   }
 
-  name: string;
-  input: boolean;
-  options: string[];
-  type: string = 'radio';
+  Name: string;
+  Input: boolean;
+  Options: string[];
+  Type: string = 'radio';
 
   getView(): string { return 'app/fields/radio.field.html'; }
 

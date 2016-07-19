@@ -1,26 +1,21 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <div class="card" *ngIf="!task">
-                <h3 class="card-header">No such task exists</h3>
-                <div class="card-block">
-                    The task with id ... does not exist
-                </div>
-            </div>
-            <div class="card" *ngIf="task">
+            <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+            <div class="card" *ngIf="taskModel">
                 <h3 class="card-header">
-                    Task #{{task.id}}
-                    <div class="label" [ngSwitch]="task.state">
-                        <template [ngSwitchWhen]="1"><span class="label label-default">new</span></template>
-                        <template [ngSwitchWhen]="2"><span class="label label-warning">in progress</span></template>
-                        <template [ngSwitchWhen]="3"><span class="label label-success">submitted</span></template>
-                        <template ngSwitchDefault><span class="label label-danger">unknown</span></template>
+                    Task #{{task.Id}}
+                    <div class="label" [ngSwitch]="task.State">
+                        <p *ngSwitchCase="taskState.New"><span class="label label-default">new</span></p>
+                        <p *ngSwitchCase="taskState.InProgress"><span class="label label-warning">in progress</span></p>
+                        <p *ngSwitchCase="taskState.Subnmitted"><span class="label label-success">submitted</span></p>
+                        <p *ngSwitchDefault><span class="label label-danger">unknown</span></p>
                     </div>
                     <span class="menu">
-                        <a class="btn btn-primary-outline" href="/details/{{task.id - 1}}">
+                        <a class="btn btn-primary-outline" href="/details/{{task.Id - 1}}">
                             <i class="fa fa-angle-left"></i> previous 
                         </a>
-                        <a class="btn btn-primary-outline" href="/details/{{task.id + 1}}">
+                        <a class="btn btn-primary-outline" href="/details/{{task.Id + 1}}">
                             next <i class="fa fa-angle-right"></i>
                         </a>
                     </span>
@@ -33,11 +28,9 @@
                         <li class="list-group-item">
                             <div class="container-fluid">
                                 <dl class="dl-horizontal">
-                                    <div *ngFor="let data of visible">
-                                        <dt class="col-sm-3">{{data.field.name}}</dt>
-                                        <dd class="col-sm-9">
-                                        <field [data]="data"></field>
-                                        </dd>
+                                    <div *ngFor="let item of fieldData">
+                                        <dt class="col-sm-3">{{item.field.Name}}</dt>
+                                        <field [fieldData]="item"></field>
                                     </div>
                                 </dl>
                             </div>

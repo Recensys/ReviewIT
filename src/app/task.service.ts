@@ -22,12 +22,6 @@ export class TaskService {
 
 
   private fields: Field[] = [
-    new StringField ({name: 'author', input: false }),
-    new StringField ({ name: 'title', input: false }),
-    new NumberField ({ name: 'year', input: false, min: 0 }),
-    new StringField ({ name: 'abstract', input: false }),
-    new BooleanField ({ name: 'isGsd?', input: true, trueval: 'yes', falseval: 'no' }),
-    new ResourceField ({ name: 'pdf', input: false })
   ];
 
   private data: Data[] = [
@@ -81,4 +75,5 @@ export class TaskService {
   public getTasks(uid: number) {
     return 1;
   }
+
 }

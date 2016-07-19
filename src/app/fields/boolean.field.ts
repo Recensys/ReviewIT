@@ -2,22 +2,22 @@
  * Created by jbec on 08/06/2016.
  */
 
-import {Field} from '../model/field.model';
+import {Field} from '../model/field';
 
 export class BooleanField implements Field {
 
-  constructor(data) {
-    this.name = data.name;
-    this.input = data.input;
-    this.trueval = data.trueval;
-    this.falseval = data.falseval;
+  constructor(name: string, input: boolean, trueval: string, falseval: string) {
+    this.Name = name;
+    this.Input = input;
+    this.Trueval = trueval;
+    this.Falseval = falseval;
   }
 
-  name: string;
-  input: boolean;
-  trueval: string;
-  falseval: string;
-  type: string = 'boolean';
+  Name: string;
+  Input: boolean;
+  Trueval: string;
+  Falseval: string;
+  Type: string = 'boolean';
 
   getView() {
     return 'app/fields/boolean.field.html';

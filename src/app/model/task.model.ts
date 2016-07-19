@@ -9,3 +9,15 @@ export interface Task {
   state: number,
   data: Data[],
 }
+
+
+import { Field } from "./field";
+import { Task } from "./task";
+
+
+export class TaskModel {
+  constructor(
+    public Fields: Field[],
+    public Tasks: Task[]
+  ) {  }
+}

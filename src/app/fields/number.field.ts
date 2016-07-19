@@ -2,20 +2,20 @@
  * Created by jbec on 08/06/2016.
  */
 
-import {Field} from '../model/field.model';
+import {Field} from '../model/field';
 
 export class NumberField implements Field {
 
-  constructor(data) {
-    this.name = data.name;
-    this.input = data.input;
+  constructor(name: string, input: boolean) {
+    this.Name = name;
+    this.Input = input;
   }
 
-  name: string;
-  input: boolean;
+  Name: string;
+  Input: boolean;
   min: number;
   max: number;
-  type: string = 'number';
+  Type: string = 'number';
 
   getView() {
     return 'app/fields/number.field.html';

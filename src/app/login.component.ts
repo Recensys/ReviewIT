@@ -7,11 +7,13 @@
 
 import {Component} from '@angular/core';
 import {APIService} from "./services/api.service";
+import {CookieService} from 'angular2-cookie/core';
+
 
 @Component({
   selector: 'login',
   templateUrl: 'app/login.component.html',
-  providers: [APIService]
+  providers: [APIService, CookieService]
 })
 
 export class LoginComponenet{
@@ -19,7 +21,7 @@ export class LoginComponenet{
   errorMessage: string;
   loading: boolean;
 
-  constructor(private _api: APIService){
+  constructor(private _api: APIService, private _cookieService:CookieService){
       this.loading = false;
   }
 
@@ -32,7 +34,9 @@ export class LoginComponenet{
       .subscribe(
         json => {
           this.loading = false;
-          console.log(json);        
+          console.log(json);
+          var token = json['token'];  
+          this._cookieService.put('token', token);      
         },
         error => {
           this.loading = false;

@@ -1,6 +1,8 @@
+import {TemplateRef} from '@angular/core';
 
 export interface Field {
-  name: string;
-  input: boolean;
-  getView(): string;
+  Name: string;
+  Input: boolean;
+  getView(): string;  
+  Type: string;
 }

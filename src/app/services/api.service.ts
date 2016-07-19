@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import Globals = require('../globals');
 import {CookieService} from 'angular2-cookie/core';
-import {Task} from '../model/task';
+import {TaskModel} from '../model/task.model';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class APIService {
     let body = JSON.stringify({'Username': username, 'Password': password});
 
     return this.http.post(Globals.api+'login', body, this.GetOptions())
-              .map(this.storeToken.bind(this))
+              .map(this.extractData)
               .catch(this.handleError);
   }
 
@@ -45,9 +45,9 @@ export class APIService {
   /***
    * TASK METHODS
    */
-  public GetTask(id: number) : Observable<Task>{
+  public GetTask(id: number) : Observable<TaskModel>{
     let url = Globals.api + 'task/' + id;
-    return this.http.get(url, this.GetOptions())
+    return this.http.get(url, { withCredentials: true })
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -62,10 +62,10 @@ export class APIService {
       let token = this._cookieService.get('token');
       console.log('stored token: '+token);
       let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
-      if (token) {
-        headers.append('sessionToken',token);
+      headers.append('withCredentials','true');
+        headers.append('sessiontoken','token');
         console.log(headers);
-      }
+      
       let options = new RequestOptions({ headers: headers });
       return options
   }
@@ -79,17 +79,9 @@ export class APIService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
-    return body.data || { };
+    console.log(res);
+    return res.json();
   }
 
-  private storeToken(res: Response){
-    let json = res.json();
-    let token = json['sessionToken'];
-    
-    this._cookieService.put('token',token);
-
-    return json;
-  }
 
 }
