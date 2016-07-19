@@ -30,7 +30,7 @@
                                 <dl class="dl-horizontal">
                                     <div *ngFor="let item of fieldData">
                                         <dt class="col-sm-3">{{item.field.Name}}</dt>
-                                        <field [fieldData]="item"></field>
+                                        <field [data]="item"></field>
                                     </div>
                                 </dl>
                             </div>
@@ -44,14 +44,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="container-fluid">
-                                <dl class="dl-horizontal">
-                                    <div *ngFor="let data of requested">
-                                        <dt class="col-sm-3">{{data.field.name}}</dt>
-                                        <dd class="col-sm-9">
-                                        <field [data]="data"></field>
-                                        </dd>
-                                    </div>
-                                </dl>
+                                
                             </div>
                         </li>
                     </ul>

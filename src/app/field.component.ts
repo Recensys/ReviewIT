@@ -16,7 +16,7 @@ import {DisabledDirective} from "./directives/disabled.directive";
 
 export class FieldComponent implements OnInit {
 
-  @Input() private fieldData: [Field, Data];
+  @Input() private data: [Field, Data];
 
   @ViewChild('typedfield', { read: ViewContainerRef })
   protected contentTarget: ViewContainerRef;
@@ -24,21 +24,21 @@ export class FieldComponent implements OnInit {
   constructor(private componentResolver: ComponentResolver) {}
 
   ngOnInit() {
-    var dynamicComponent = FieldComponent.createContentComponent(this.fieldData);
+    var dynamicComponent = FieldComponent.createContentComponent(this.data);
     this.componentResolver.resolveComponent(dynamicComponent)
       .then((factory: any) => this.contentTarget.createComponent(factory));
   }
 
-  static createContentComponent(data: [Field, Data]) {
+  static createContentComponent(inputData: [Field, Data]) {
 
     @Component({
       selector: 'field-content',
-      templateUrl: data[0].getView(),
+      templateUrl: inputData['field'].getView(),
       directives: [ NgClass, DisabledDirective, CheckedDirective ]
     })
 
     class FieldContentComponent {
-      data: Data = data[1];
+      data: [Field, Data] = inputData;
     }
 
     return FieldContentComponent ;
