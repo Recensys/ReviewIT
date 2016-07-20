@@ -3,7 +3,6 @@
  */
 
 import {Field} from '../model/field';
-import { AlertComponent } from 'ng2-bootstrap/ng2-bootstrap'
 
 
 export class RadioField implements Field {

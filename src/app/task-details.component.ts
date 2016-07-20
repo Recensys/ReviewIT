@@ -17,11 +17,13 @@ import {NumberField} from './fields/number.field';
 import {ResourceField} from './fields/resource.field';
 import {BooleanField} from './fields/boolean.field';
 import {RadioField} from './fields/radio.field';
+import {NGB_ALERT_DIRECTIVES} from 'ng-bootstrap/ng-bootstrap';
+
 
 @Component({
     selector: 'task-details',
     templateUrl: 'app/task-details.component.html',
-    directives: [ FieldComponent ],
+    directives: [ FieldComponent, NGB_ALERT_DIRECTIVES ],
     providers: [ TaskService, APIService ],
     pipes: [ WherePipe ]
 })

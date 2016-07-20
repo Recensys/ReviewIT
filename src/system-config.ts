@@ -36,7 +36,6 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
-  'vendor/ng2-bootstrap',
 
   // App specific barrels.
   'app',
@@ -58,8 +57,6 @@ System.config({
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
-    'ng2-bootstrap': 'vendor/ng2-bootstrap',
-    'moment': 'vendor/moment/moment.js',
   },
   packages: cliSystemConfigPackages
 });

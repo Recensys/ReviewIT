@@ -8,7 +8,7 @@ import { Field } from "./model/field";
 import {NgClass} from "@angular/common";
 import {CheckedDirective} from "./directives/checked.directive";
 import {DisabledDirective} from "./directives/disabled.directive";
-import {NGB_DIRECTIVES} from '@ng-bootstrap/ng-bootstrap';
+import {NGB_ALERT_DIRECTIVES} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'field',
@@ -35,7 +35,7 @@ export class FieldComponent implements OnInit {
     @Component({
       selector: 'field-content',
       templateUrl: inputData['field'].getView(),
-      directives: [ NgClass, DisabledDirective, CheckedDirective, NGB_DIRECTIVES]
+      directives: [ NgClass, DisabledDirective, CheckedDirective, NGB_ALERT_DIRECTIVES]
     })
 
     class FieldContentComponent {
