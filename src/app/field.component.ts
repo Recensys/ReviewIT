@@ -38,7 +38,8 @@ export class FieldComponent implements OnInit {
     })
 
     class FieldContentComponent {
-      data: [Field, Data] = inputData;
+      Data: Data = inputData['data'];
+      Field: Field = inputData['field'];
     }
 
     return FieldContentComponent ;

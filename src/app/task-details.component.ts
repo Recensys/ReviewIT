@@ -16,6 +16,7 @@ import {StringField} from './fields/string.field';
 import {NumberField} from './fields/number.field';
 import {ResourceField} from './fields/resource.field';
 import {BooleanField} from './fields/boolean.field';
+import {RadioField} from './fields/radio.field';
 
 @Component({
     selector: 'task-details',
@@ -51,19 +52,21 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
                 this.taskModel = new TaskModel([
                                 new StringField ('author', false ),
-                                /*new StringField ('title', false ),
+                                new StringField ('title', false ),
                                 new NumberField ('year', false),
                                 new StringField ('abstract', false ),
                                 new BooleanField ('isGsd?', true, 'yes', 'no' ),
-                                new ResourceField ('pdf', false )*/
+                                new RadioField ('Quality of study', true, ['Bad', 'Good', 'Great']),
+                                new ResourceField ('pdf', false )
                             ],[
                                 new Task (1, TaskState.New, [
                                         {Id: 1, Value: 'John Doe'},
-                                        /*{Id: 2, Value: "John Doe's big adventure"}, 
+                                        {Id: 2, Value: "John Doe's big adventure"}, 
                                         {Id: 3, Value: 2005}, 
                                         {Id: 4, Value: 'This paper describes the adventure of John Doe, a masculine and handsome young man. It is also written by John Doe'}, 
+                                        {Id: 7, Value: 'hej'},
                                         {Id: 5, Value: false, }, 
-                                        {Id: 6, Value: 'http://nexgsd.org/wp-content/uploads/2013/09/BjornEtal2014b.pdf'},*/
+                                        {Id: 6, Value: 'http://nexgsd.org/wp-content/uploads/2013/09/BjornEtal2014b.pdf'},
                                     ]),
                             ]);
                             this.task = this.taskModel.Tasks[0];

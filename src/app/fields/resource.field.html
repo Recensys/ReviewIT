@@ -1,4 +1,4 @@
-<div *ngIf="data.field.input">
+<div *ngIf="Field.Input">
   <form class="form">
     <div class="form-group">
       <input  type="file" class="form-control-file">
@@ -6,8 +6,8 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
-<div *ngIf="!data.field.input">
-    <a href="{{data.value}}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+<div *ngIf="!Field.Input">
+    <a href="{{Data.Value}}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
     <!--<a href="/details/{{data.id}}">Download <i class="fa fa-file-pdf-o"></i></a>-->
 </div>
 
