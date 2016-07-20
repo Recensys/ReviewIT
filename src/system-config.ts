@@ -6,12 +6,17 @@ const map: any = {
     //'angular-sortablejs': 'vendor/angular-sortablejs',
     sortablejs: 'vendor/sortablejs/Sortable.js',
     'angular2-cookie': 'vendor/angular2-cookie',
+    'ng2-bootstrap': 'vendor/ng2-bootstrap',
+    'moment': 'vendor/moment/moment.js'
 };
 
 /** User packages configuration. */
 const packages: any = {
     //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
-    'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' }
+    'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' },
+    'vendor/ng2-bootstrap': {
+        defaultExtension: 'js'
+    }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +36,7 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'vendor/ng2-bootstrap',
 
   // App specific barrels.
   'app',
@@ -51,7 +57,9 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
+    'main': 'main.js',
+    'ng2-bootstrap': 'vendor/ng2-bootstrap',
+    'moment': 'vendor/moment/moment.js',
   },
   packages: cliSystemConfigPackages
 });

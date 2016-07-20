@@ -14,7 +14,9 @@ module.exports = function(defaults) {
       'zone.js/dist/**/*.+(js|js.map)',
       'angular-sortablejs/**/*.+(js|js.map)',
       'sortablejs/Sortable.js',
-      'angular2-cookie/**/*.+(js|js.map)'
+      'angular2-cookie/**/*.+(js|js.map)',
+      'ng2-bootstrap//*.js',
+      'moment/moment.js'
     ]
   });
 };

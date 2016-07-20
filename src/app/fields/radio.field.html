@@ -2,7 +2,7 @@
   <div class="btn-group" data-toggle="buttons">
     <div [ngClass]="{disabled:!Field.Input}" *ngFor="let Option of Field.Options">
       <label class="btn btn-primary">
-        <input type="radio" name="{{Data.Id}}" id="{{Data.Id}}" autocomplete="off" > {{Option}}
+        <input type="radio" name="options" id="{{Data.Id}}" autocomplete="off" > {{Option}}
       </label>
     </div>
   </div>

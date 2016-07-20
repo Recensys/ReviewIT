@@ -13,8 +13,8 @@ export class NumberField implements Field {
 
   Name: string;
   Input: boolean;
-  min: number;
-  max: number;
+  Min: number;
+  Max: number;
   Type: string = 'number';
 
   getView() {
