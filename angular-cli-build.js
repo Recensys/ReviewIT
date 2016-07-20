@@ -15,7 +15,7 @@ module.exports = function(defaults) {
       'angular-sortablejs/**/*.+(js|js.map)',
       'sortablejs/Sortable.js',
       'angular2-cookie/**/*.+(js|js.map)',
-      'ng2-bootstrap//*.js',
+      'ng2-bootstrap/**/*',
       'moment/moment.js'
     ]
   });
