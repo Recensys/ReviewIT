@@ -3,6 +3,9 @@
  */
 
 import {Field} from '../model/field';
+import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup} from '@angular/common';
+import {Component} from '@angular/core';
+import {NgFor} from '@angular/common';
 
 
 export class RadioField implements Field {
@@ -16,8 +19,10 @@ export class RadioField implements Field {
   Name: string;
   Input: boolean;
   Options: string[];
+  model = {};
   Type: string = 'radio';
 
   getView(): string { return 'app/fields/radio.field.html'; }
 
 }
+

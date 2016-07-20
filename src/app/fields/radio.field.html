@@ -1,4 +1,4 @@
-<div *ngIf="Field.Options.length <= 5">
+<!--<div *ngIf="Field.Options.length <= 5">
   <div class="btn-group" data-toggle="buttons">
     <div [ngClass]="{disabled:!Field.Input}" *ngFor="let Option of Field.Options">
       <label class="btn btn-primary">
@@ -7,23 +7,27 @@
     </div>
   </div>
 </div>
+    
 
-<div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+-->
+
+<div [(ngModel)]="Data.model" ngbRadioGroup>
+  <label class="btn btn-primary">
+    <input type="radio" [value]="1"> Left (pre-checked)
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+    <input type="radio" value="middle"> Middle
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+    <input type="radio" [value]="false"> Right
   </label>
 </div>
+<hr>
+<pre>{{model}}</pre>
 
 
 
-<div *ngIf="Field.Options.length > 5">
-  <select class="form-control" [ngDisabled]="!Field.Input" [(ngModel)]="Data.Value" >
-    <option *ngFor="let Option of Field.Options" [value]="Option">{{Option}}</option>
-  </select>
-</div>
+
+
+
+
