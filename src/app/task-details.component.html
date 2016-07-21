@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
@@ -24,31 +25,22 @@
                     <h6 class="card-subtitle text-muted">Visible fields:</h6>
                 </div>
                 <div class="card-block">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
+                    
                             <div class="container-fluid">
                                 <dl class="dl-horizontal">
-                                    <div *ngFor="let item of fieldData">
-                                        <dt class="col-sm-3">{{item.field.Name}}</dt>
-                                        <field [data]="item"></field>
-                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" *ngFor="let item of fieldData">
+                                            <div class="container-fluid">
+                                                <dt  class="col-sm-4">{{item.field.Name}}</dt>
+                                                <field [data]="item"></field>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </dl>
                             </div>
-                        </li>
-                    </ul>
+           
                 </div>
-                <div class="card-block">
-                    <h6 class="card-subtitle text-muted">Requested fields:</h6>
-                </div>
-                <div class="card-block">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="container-fluid">
-                                
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                
             </div>
         </div>
         <div class="pdf-view hidden-md-down" *ngIf="resource">

@@ -1,33 +1,12 @@
-<!--<div *ngIf="Field.Options.length <= 5">
-  <div class="btn-group" data-toggle="buttons">
-    <div [ngClass]="{disabled:!Field.Input}" *ngFor="let Option of Field.Options">
-      <label class="btn btn-primary">
-        <input type="radio" name="options" id="{{Data.Id}}" autocomplete="off" > {{Option}}
-      </label>
-    </div>
-  </div>
+<div class="btn-group">
+    <label class="btn btn-secondary" *ngFor="let item of Field.Options">
+        <input type="radio" 
+        (click)="Field.Pick = item" 
+        [checked]="item === Field.Pick">
+        {{item}}
+    </label>
 </div>
-    
-
--->
-
-<div [(ngModel)]="Data.model" ngbRadioGroup>
-  <label class="btn btn-primary">
-    <input type="radio" [value]="1"> Left (pre-checked)
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" value="middle"> Middle
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" [value]="false"> Right
-  </label>
-</div>
-<hr>
-<pre>{{model}}</pre>
-
-
-
-
-
+<!--<button (click)="Field.model.options = 'one'">set one</button>-->
+<!--{{Field.debug}}-->
 
 

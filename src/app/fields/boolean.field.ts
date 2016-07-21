@@ -18,9 +18,12 @@ export class BooleanField implements Field {
   Trueval: string;
   Falseval: string;
   Type: string = 'boolean';
+  Options: string[] = ["Yes", "No"]
+  Pick: string;
 
   getView() {
     return 'app/fields/boolean.field.html';
   }
+  get debug() { return JSON.stringify(this); }
 
 }

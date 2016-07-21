@@ -5,7 +5,8 @@
 const map: any = {
     //'angular-sortablejs': 'vendor/angular-sortablejs',
     sortablejs: 'vendor/sortablejs/Sortable.js',
-    'angular2-cookie': 'vendor/angular2-cookie',
+    'angular2-cookie': 'vendor/angular2-cookie',    
+    'ng2-bootstrap': 'vendor/ng2-bootstrap',
     'moment': 'vendor/moment/moment.js'
 };
 
@@ -13,6 +14,11 @@ const map: any = {
 const packages: any = {
     //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
     'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' },
+    'ng2-bootstrap': {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: 'ng2-bootstrap.js'
+  },
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

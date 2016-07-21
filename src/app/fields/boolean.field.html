@@ -1,8 +1,15 @@
-<div class="container-fluid">
-  <div class="radio" [ngClass]="{disabled:!Field.Input}">
-    <input type="radio" name="{{Data.Id}}" (click)="Data.Value = 'true'" [ngChecked]="Data.Value == 'true'"> {{Field.Trueval}}
-  </div>
-  <div class="radio" [ngClass]="{disabled:!Field.Input}">
-    <input type="radio" name="{{Data.Id}}" (click)="Data.Value = 'false'" [ngChecked]="Data.Value == 'false'"> {{Field.Falseval}}
-  </div>
+
+<div class="btn-group">
+    <label class="btn btn-secondary" *ngFor="let item of Field.Options">
+        <input type="radio" 
+        (click)="Field.Pick = item" 
+        [checked]="item === Field.Pick">
+        {{item}}
+    </label>
 </div>
+<!--<button (click)="Field.model.options = 'one'">set one</button>-->
+<!--{{Field.debug}}-->
+
+
+
+

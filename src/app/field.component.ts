@@ -5,10 +5,12 @@
 import { Component, Input, ViewContainerRef, ComponentResolver, ViewChild, OnInit} from "@angular/core";
 import { Data } from "./model/data";
 import { Field } from "./model/field";
-import {NgClass, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup} from "@angular/common";
+import {NgClass, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, NgModel} from "@angular/common";
 import {CheckedDirective} from "./directives/checked.directive";
 import {DisabledDirective} from "./directives/disabled.directive";
-import {NGB_RADIO_DIRECTIVES} from '@ng-bootstrap/ng-bootstrap';
+import {BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+import {CORE_DIRECTIVES} from '@angular/common';
+import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'field',
@@ -35,7 +37,7 @@ export class FieldComponent implements OnInit {
     @Component({
       selector: 'field-content',
       templateUrl: inputData['field'].getView(),
-      directives: [ NgClass, DisabledDirective, CheckedDirective, NGB_RADIO_DIRECTIVES]
+      directives: [ CORE_DIRECTIVES, DisabledDirective, CheckedDirective, BUTTON_DIRECTIVES, NgModel]
     })
 
     class FieldContentComponent {

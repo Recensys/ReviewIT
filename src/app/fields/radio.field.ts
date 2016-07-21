@@ -19,10 +19,10 @@ export class RadioField implements Field {
   Name: string;
   Input: boolean;
   Options: string[];
-  model = {};
+  Pick: string;
   Type: string = 'radio';
 
   getView(): string { return 'app/fields/radio.field.html'; }
-
+  get debug() { return JSON.stringify(this); }
 }
 

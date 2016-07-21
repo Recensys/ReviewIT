@@ -17,12 +17,14 @@ import {NumberField} from './fields/number.field';
 import {ResourceField} from './fields/resource.field';
 import {BooleanField} from './fields/boolean.field';
 import {RadioField} from './fields/radio.field';
+import {BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 
 @Component({
     selector: 'task-details',
     templateUrl: 'app/task-details.component.html',
-    directives: [ FieldComponent ],
+    directives: [ FieldComponent, BUTTON_DIRECTIVES, CORE_DIRECTIVES ],
     providers: [ TaskService, APIService ],
     pipes: [ WherePipe ]
 })
@@ -39,6 +41,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     private sub: any;
     public errorMessage: string;
     public taskState = TaskState;
+
 
     constructor(
         private taskservice: TaskService,

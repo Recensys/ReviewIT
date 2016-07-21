@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
-  "experimentalDecorators": true,
   "scripts": {
     "start": "ng server",
     "postinstall": "typings install",
