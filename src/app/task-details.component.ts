@@ -17,13 +17,12 @@ import {NumberField} from './fields/number.field';
 import {ResourceField} from './fields/resource.field';
 import {BooleanField} from './fields/boolean.field';
 import {RadioField} from './fields/radio.field';
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 
 @Component({
     selector: 'task-details',
     templateUrl: 'app/task-details.component.html',
-    directives: [ FieldComponent, BUTTON_DIRECTIVES ],
+    directives: [ FieldComponent ],
     providers: [ TaskService, APIService ],
     pipes: [ WherePipe ]
 })
