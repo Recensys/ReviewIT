@@ -1,9 +1,9 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
             <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-            <div class="card" *ngIf="taskModel">
+            <div [hidden]="!loading" class="loading">loading</div>
+            <div class="card" *ngIf="task">
                 <h3 class="card-header">
                     Task #{{task.Id}}
                     <div class="label" [ngSwitch]="task.State">
@@ -21,9 +21,6 @@
                         </a>
                     </span>
                 </h3>
-                <div class="card-block">
-                    <h6 class="card-subtitle text-muted">Visible fields:</h6>
-                </div>
                 <div class="card-block">
                     
                             <div class="container-fluid">

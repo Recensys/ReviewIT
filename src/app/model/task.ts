@@ -7,9 +7,14 @@ export enum TaskState {
 }
 
 export class Task {
-  constructor(
-    public Id: number,
-    public State: TaskState,    
-    public Data: Data[]
-  ) {  }
+  constructor(data) 
+  {  
+    this.Id = data.Id,
+    this.State = data.TaskState,
+    this.Data = data.Data
+  }
+
+  public Id: number;
+  public State: TaskState;
+  public Data: Data[]
 }

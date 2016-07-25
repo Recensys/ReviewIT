@@ -6,12 +6,12 @@ import {Field} from '../model/field';
 
 export class StringField implements Field {
 
-  constructor(name: string, input: boolean) {
-    this.Name = name;
-    this.Input = input;
+  constructor(data) {
+    this.Name = data.Name;
+    this.Input = data.Input;
   }
 
-  Name: string = 'string name'
+  Name: string;
   Input: boolean;
   Type: string =  'string';
 

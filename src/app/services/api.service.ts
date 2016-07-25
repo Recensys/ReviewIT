@@ -11,7 +11,15 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import Globals = require('../globals');
 import {CookieService} from 'angular2-cookie/core';
-import {TaskModel} from '../model/task.model';
+import {TasksModel} from '../model/tasksModel';
+import {Field} from '../model/field';
+import {Task} from '../model/task';
+import {StringField} from '../fields/string.field';
+import {ResourceField} from '../fields/resource.field';
+import {RadioField} from '../fields/radio.field';
+import {NumberField} from '../fields/number.field';
+import {CheckboxField} from '../fields/checkbox.field';
+import {BooleanField} from '../fields/boolean.field';
 
 
 @Injectable()
@@ -45,10 +53,10 @@ export class APIService {
   /***
    * TASK METHODS
    */
-  public GetTask(id: number) : Observable<TaskModel>{
+  public GetTask(id: number) : Observable<TasksModel>{
     let url = Globals.api + 'task/' + id;
     return this.http.get(url, { withCredentials: true })
-      .map(this.extractData)
+      .map(this.exstractTasksModel)
       .catch(this.handleError);
   }
 
@@ -79,9 +87,46 @@ export class APIService {
   }
 
   private extractData(res: Response) {
-    console.log(res);
     return res.json();
   }
 
+  private exstractTasksModel(res: Response){
+    let json = res.json();
+    let fields: Field[] = [];
+    let tasks: Task[] = [];
+    console.log(json);
+    json['Fields'].forEach(element => {
+      var field = InstanceLoader.getFieldInstance<Field>(element.DataType, element);
+      fields.push(field)
+    });
+
+    json['Tasks'].forEach(element => {
+      tasks.push(new Task(element));
+    })
+
+    return new TasksModel(fields,tasks);
+  }
+
+  
+
+
+}
+
+class InstanceLoader {
+
+    private static map = {
+      '0' : StringField,
+      '1' : BooleanField,      
+      '2' : RadioField,
+      '3' : CheckboxField,      
+      '4' : NumberField,
+      '5' : ResourceField,
+    }
+
+    static getFieldInstance<T>(name: string, ...args: any[]) : T {
+        var instance = Object.create(this.map[name].prototype);
+        instance.constructor.apply(instance, args);
+        return <T> instance;
+    }
 
 }

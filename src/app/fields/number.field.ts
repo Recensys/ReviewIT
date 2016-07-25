@@ -6,9 +6,9 @@ import {Field} from '../model/field';
 
 export class NumberField implements Field {
 
-  constructor(name: string, input: boolean) {
-    this.Name = name;
-    this.Input = input;
+  constructor(data) {
+    this.Name = data.Name;
+    this.Input = data.Input;
   }
 
   Name: string;
