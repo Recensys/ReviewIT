@@ -18,7 +18,7 @@ import {BooleanField} from './fields/boolean.field';
 import {RadioField} from './fields/radio.field';
 import {BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {CORE_DIRECTIVES} from '@angular/common';
-import {TasksModel} from './model/tasksModel';
+import {StageModel} from './model/stageModel';
 
 
 @Component({
@@ -31,7 +31,7 @@ import {TasksModel} from './model/tasksModel';
 
 export class TaskDetailsComponent implements OnInit, OnDestroy {
 
-    public tasksModel: TasksModel;
+    public stageModel: StageModel;
     public task: Task;
     public fieldData = [];
     public visible: Data[];
@@ -79,18 +79,16 @@ new Task (1, TaskState.New, [
 */
 
                         this._api.GetTask(id).subscribe(
-                            tasksModel => {
-                                console.log(tasksModel);
-                                this.tasksModel = tasksModel;
-                                this.task = tasksModel.Tasks[0];
+                            stageModel => {
+                                this.stageModel = stageModel;
+                                this.task = stageModel.Tasks[0];
 
-                                for (var index = 0; index < this.tasksModel.Fields.length; index++) {
+                                for (var index = 0; index < this.stageModel.Fields.length; index++) {
                                     this.fieldData.push({
-                                        field: this.tasksModel.Fields[index],
-                                        data: this.tasksModel.Tasks[0].Data[index]
+                                        field: this.stageModel.Fields[index],
+                                        data: this.stageModel.Tasks[0].Data[index]
                                 });
 
-                                console.log(this.fieldData[0]);
                                 this.loading = false;
                                 }
                             }

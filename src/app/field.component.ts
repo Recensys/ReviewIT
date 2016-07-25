@@ -19,7 +19,9 @@ import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 export class FieldComponent implements OnInit {
 
-  @Input() private data: [Field, Data];
+  //@Input() private data: [Field, Data];
+  @Input() private field: Field;
+  @Input() private data: Data;
 
   @ViewChild('typedfield', { read: ViewContainerRef })
   protected contentTarget: ViewContainerRef;
@@ -27,22 +29,22 @@ export class FieldComponent implements OnInit {
   constructor(private componentResolver: ComponentResolver) {}
 
   ngOnInit() {
-    var dynamicComponent = FieldComponent.createContentComponent(this.data);
+    var dynamicComponent = FieldComponent.createContentComponent(this.field, this.data);
     this.componentResolver.resolveComponent(dynamicComponent)
       .then((factory: any) => this.contentTarget.createComponent(factory));
   }
 
-  static createContentComponent(inputData: [Field, Data]) {
+  static createContentComponent(Field: Field, Data: Data) {
 
     @Component({
       selector: 'field-content',
-      templateUrl: inputData['field'].getView(),
+      templateUrl: Field.getView(),
       directives: [ CORE_DIRECTIVES, DisabledDirective, CheckedDirective, BUTTON_DIRECTIVES, NgModel]
     })
 
     class FieldContentComponent {
-      Data: Data = inputData['data'];
-      Field: Field = inputData['field'];
+      Data: Data = Data;
+      Field: Field = Field;
     }
 
     return FieldContentComponent ;

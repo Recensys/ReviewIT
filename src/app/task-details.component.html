@@ -26,10 +26,10 @@
                             <div class="container-fluid">
                                 <dl class="dl-horizontal">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" *ngFor="let item of fieldData">
+                                        <li class="list-group-item" *ngFor="let field of stageModel.Fields; let i = index">
                                             <div class="container-fluid">
-                                                <dt  class="col-sm-4">{{item.field.Name}}</dt>
-                                                <field [data]="item"></field>
+                                                <dt  class="col-sm-4">{{field.Name}}</dt>
+                                                <field [field]="field" [data]="task.Data[i]"></field>
                                             </div>
                                         </li>
                                     </ul>

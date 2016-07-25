@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import Globals = require('../globals');
 import {CookieService} from 'angular2-cookie/core';
-import {TasksModel} from '../model/tasksModel';
+import {StageModel} from '../model/stageModel';
 import {Field} from '../model/field';
 import {Task} from '../model/task';
 import {StringField} from '../fields/string.field';
@@ -36,7 +36,7 @@ export class APIService {
     let body = JSON.stringify({'Username': username, 'Password': password});
 
     return this.http.post(Globals.api+'login', body, this.GetOptions())
-              .map(this.extractData)
+              .map(this.extractJson)
               .catch(this.handleError);
   }
 
@@ -46,17 +46,23 @@ export class APIService {
     let url = Globals.api+'user/create';
 
     return this.http.post(url, body, this.GetOptions())
-      .map(this.extractData)
+      .map(this.extractJson)
       .catch(this.handleError);
   }
 
   /***
    * TASK METHODS
    */
-  public GetTask(id: number) : Observable<TasksModel>{
+  public GetTask(id: number) : Observable<StageModel>{
     let url = Globals.api + 'task/' + id;
     return this.http.get(url, { withCredentials: true })
-      .map(this.exstractTasksModel)
+      .map(this.exstractStageModel.bind(this))
+      .catch(this.handleError);
+  }
+  public GetStages(studyId: number) : Observable<StageModel[]> {
+    let url = Globals.api + 'stage';
+    return this.http.get(url, { withCredentials: true })
+      .map(this.exstractStageModels.bind(this))
       .catch(this.handleError);
   }
 
@@ -86,15 +92,13 @@ export class APIService {
     return Observable.throw(errMsg);
   }
 
-  private extractData(res: Response) {
+  private extractJson(res: Response) {
     return res.json();
   }
 
-  private exstractTasksModel(res: Response){
-    let json = res.json();
+  private buildStageModel(json: any) : StageModel{
     let fields: Field[] = [];
     let tasks: Task[] = [];
-    console.log(json);
     json['Fields'].forEach(element => {
       var field = InstanceLoader.getFieldInstance<Field>(element.DataType, element);
       fields.push(field)
@@ -104,10 +108,20 @@ export class APIService {
       tasks.push(new Task(element));
     })
 
-    return new TasksModel(fields,tasks);
+    return new StageModel(+json.Id, json.Name, json.Description, fields, tasks);
   }
-
-  
+  private exstractStageModel(res: Response){
+    return this.buildStageModel(res.json());
+  }
+  private exstractStageModels(res: Response){
+    let json = res.json();
+    let models: StageModel[] = [];
+    json.forEach(element => {
+      models.push(this.buildStageModel(element));
+    });
+    console.log(models);
+    return models;
+  }
 
 
 }
