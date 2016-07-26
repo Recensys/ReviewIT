@@ -7,7 +7,10 @@ const map: any = {
     sortablejs: 'vendor/sortablejs/Sortable.js',
     'angular2-cookie': 'vendor/angular2-cookie',    
     'ng2-bootstrap': 'vendor/ng2-bootstrap',
-    'moment': 'vendor/moment/moment.js'
+    'moment': 'vendor/moment/moment.js',
+    'dragula': 'vendor/dragula/dist/dragula.js',
+    'ng2-dragula': 'vendor/ng2-dragula',
+    'ng2-dnd': 'vendor/ng2-dnd',
 };
 
 /** User packages configuration. */
@@ -15,10 +18,13 @@ const packages: any = {
     //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
     'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' },
     'ng2-bootstrap': {
-    format: 'cjs',
-    defaultExtension: 'js',
-    main: 'ng2-bootstrap.js'
-  },
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'ng2-bootstrap.js'
+    },
+    'ng2-dragula': { format: 'cjs', defaultExtension: 'js', main: 'ng2-dragula' },
+    //'ng2-dragula': {main:'ng2-dragula.js', defaultExtension: 'js',},
+    'ng2-dnd':         { defaultExtension: 'js' },
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -16,7 +16,11 @@ module.exports = function(defaults) {
       'sortablejs/Sortable.js',
       'angular2-cookie/**/*.+(js|js.map)',
       'ng2-bootstrap/**/*.js',
-      'moment/moment.js'
+      'moment/moment.js',
+      'dragula/dist/dragula.js',
+      'ng2-dragula/**/*.js',
+      'ng2-dnd/**/*.js',
+      'ng2-dnd/ng2-dnd.css',
     ]
   });
 };

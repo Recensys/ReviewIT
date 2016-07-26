@@ -9,6 +9,7 @@ export class NumberField implements Field {
   constructor(data) {
     this.Name = data.Name;
     this.Input = data.Input;
+    console.log("numberField created with name: " + this.Name);
   }
 
   Name: string;

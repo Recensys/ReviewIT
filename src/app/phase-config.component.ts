@@ -4,15 +4,20 @@
 
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
-import {TaskService} from './task.service';
+import {APIService} from './services/api.service';
 import {Phase} from './model/phase.model';
 import {DraglistDirective} from './directives/draglist.directive';
+import {Field} from "./model/field";
+import {NumberField} from "./fields/number.field";
+import {StringField} from "./fields/string.field";
+import {DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
+import {COMMON_DIRECTIVES} from '@angular/common';
 
 @Component({
     selector: 'phase-config',
     templateUrl: 'app/phase-config.component.html',
-    directives: [ DraglistDirective ],
-    providers: [ TaskService ]
+    directives: [ DND_DIRECTIVES, COMMON_DIRECTIVES ],
+    providers: [ APIService ],
 })
 
 export class PhaseConfigComponent implements OnInit, OnDestroy {
@@ -21,43 +26,53 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
     @Input()
     private phase: Phase;
 
-    private available: string[] = [
-        'Abstract',
-        'Year',
-        'DOI',
-        'PDF'
-    ];
 
-    private visible: string[] = [
-        'Title',
-        'Author'
-    ];
-    private requested: string[] = [
-        'Is GSD?'
-    ];
+    availableFields: Array<Field> = [];
+    visibleFields: Array<Field> = [];
+    requestedFields: Array<Field> = [];
 
     constructor(
-        private taskservice: TaskService,
+        private _api: APIService,
         private route: ActivatedRoute
-    ) {}
+        
+    ) {    }
 
     private sub: any;
 
+
     ngOnInit() {
-        if (this.phase == undefined) {
-            this.sub = this.route.params.subscribe(params => {
-                let id = +params['id']; // (+) converts string 'id' to a number
-                this.taskservice.getPhase(id).then(p => {
-                    this.phase = p;
-                });
-            });
-        }
+          this._api.GetFields(1).subscribe(
+                    fieldArray => {
+                        console.log(fieldArray);
+                        this.availableFields = fieldArray
+                    },
+                    error => console.log(error)
+                );
     }
 
+    dropToVisible(field: Field){
+        field.Input = false;
+    }
+    dropToRequested(field: Field){
+        field.Input = true;
+    }
+
+
+    saveDatafields(){
+        console.log('saving datafields');
+        this._api.SaveDatefields(1, this.visibleFields, this.requestedFields).subscribe(
+            res => console.log(res),
+            error => console.log(error)
+        );
+    }
 
     ngOnDestroy() {
         if (this.sub) {
             this.sub.unsubscribe();
         }
     }
+
+
+
+    
 }

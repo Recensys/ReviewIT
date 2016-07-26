@@ -8,12 +8,13 @@ import {ActivatedRoute} from '@angular/router';
 import {Component, OnDestroy, OnInit, Input} from '@angular/core';
 import {TaskService} from './task.service';
 import {DraglistDirective} from './directives/draglist.directive';
+import {APIService} from './services/api.service'
 
 @Component({
     selector: 'study-config',
     templateUrl: 'app/study-config.component.html',
     directives: [ DraglistDirective ],
-    providers: [ TaskService ]
+    providers: [ TaskService, APIService ]
 })
 
 export class StudyConfigComponent implements OnInit, OnDestroy {

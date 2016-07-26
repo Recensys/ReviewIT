@@ -17,7 +17,7 @@ export const routes: RouterConfig = [
   { path: 'task/:id', component: TaskDetailsComponent },
   { path: 'phase/:id', component: PhaseConfigComponent },
   { path: 'study', component: StudyComponent },
-  { path: 'study/:id', component: StudyConfigComponent },
+  { path: 'study/:id', component: StudyComponent },
   { path: 'login', component: LoginComponenet },
   { path: 'signup', component: SignupComponent }
 ];

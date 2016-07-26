@@ -66,7 +66,32 @@ export class APIService {
       .catch(this.handleError);
   }
 
+  /***
+   * FIELD METHODS
+   */
+  public GetFields(studyId: number) : Observable<Field[]> {
+    let url = `${Globals.api}study/${studyId}/field`
+    return this.http.get(url, { withCredentials: true })
+      .map(this.extractJson)
+      .catch(this.handleError);
+  }
 
+
+  /***
+   * STAGE METHODS
+   */
+  public SaveDatefields(stageId: number, visible: Field[], requested: Field[]) : Observable<string> {
+    let body = JSON.stringify({'Visible': visible, 'Requested': requested});
+    console.log(body);
+    let url = `${Globals.api}stage/datafields`
+    let args = new RequestOptions();
+    args.withCredentials = true;
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
+    args.headers = headers;    
+    return this.http.post(url, body, args)
+      .map(this.exstractStatusText)
+      .catch(this.handleError);
+  }
 
 
   /*** 
@@ -94,6 +119,10 @@ export class APIService {
 
   private extractJson(res: Response) {
     return res.json();
+  }
+
+  private exstractStatusText(res: Response){
+    return res.statusText;
   }
 
   private buildStageModel(json: any) : StageModel{

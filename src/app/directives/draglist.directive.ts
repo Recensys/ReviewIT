@@ -2,6 +2,7 @@
  * Created by jbec on 13/07/2016.
  */
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import {Field} from '../model/field';
 
 let Sortablejs = {
   Sortable: require('sortablejs')
@@ -12,7 +13,7 @@ let Sortablejs = {
 export class DraglistDirective implements OnInit, OnDestroy{
 
   @Input('draglist')
-  private _items: any[];
+  private _items: Field[];
   private _sortable: Sortablejs.Sortable;
 
 

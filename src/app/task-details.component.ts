@@ -82,15 +82,7 @@ new Task (1, TaskState.New, [
                             stageModel => {
                                 this.stageModel = stageModel;
                                 this.task = stageModel.Tasks[0];
-
-                                for (var index = 0; index < this.stageModel.Fields.length; index++) {
-                                    this.fieldData.push({
-                                        field: this.stageModel.Fields[index],
-                                        data: this.stageModel.Tasks[0].Data[index]
-                                });
-
                                 this.loading = false;
-                                }
                             }
                             , 
                             error =>{
@@ -99,68 +91,6 @@ new Task (1, TaskState.New, [
                             }
                         );
 
-/*
-                            this.task = this.taskModel.Tasks[0];
-                            
-                            this.visible = [];
-                            this.requested = [];
-
-                            for (var index = 0; index < this.taskModel.Fields.length; index++) {
-                                this.fieldData.push({
-                                    field: this.taskModel.Fields[index],
-                                    data: this.taskModel.Tasks[0].Data[index]
-                                });
-                            }
-                            console.log(this.fieldData[0]);
-
-
-                            for (var i = 0; i < this.taskModel.Fields.length; i++) {
-                                if (this.taskModel.Fields[i].input) {
-                                    console.log('+');
-                                    this.requested.push(this.taskModel.Tasks[0].Data[i]);                                    
-                                }else{
-                                    this.visible.push(this.taskModel.Tasks[0].Data[i]);
-                                }
-                                
-                            }
-
-                            console.log(this.requested);
-                            console.log(this.visible);
-                            */
-/*
-                    this._api.GetTask(id).subscribe(
-                        t => {
-                            
-
-
-                            this.visible = t.data.filter(
-                                data => data.field.input === false
-                            );
-
-                            this.requested = t.data.filter(
-                                data => data.field.input === true
-                            );
-
-                            this.resource = t.data.find(
-                                data => data.field.type === 'resource'
-                            );
-                            this.url =
-                                this.sanitizer.bypassSecurityTrustResourceUrl(this.resource.Value);
-
-                                
-                        },
-                        error => this.errorMessage = error
-                    );
-
-                    /*
-
-                this.taskservice.getTask(id).then(t => {
-                    this.task = t;
-
-                    
-
-                    
-                });*/
             });
         
     }

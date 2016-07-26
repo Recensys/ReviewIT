@@ -20,6 +20,7 @@ export class StudyComponent implements OnInit, OnDestroy {
 
     public phases: Phase[];
     public selected: Phase;
+    public bibtexError: string;
 
     public study = {
         title: 'some title',
@@ -52,4 +53,8 @@ export class StudyComponent implements OnInit, OnDestroy {
     }
 
     onSelect(phase: Phase) { this.selected = phase; }
+
+    loadBibtex(){
+        this.bibtexError = "";
+    }
 }
