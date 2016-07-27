@@ -25,6 +25,9 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
 
     @Input()
     private phase: Phase;
+    name: string;
+    description: string;
+    messages: any = {};
 
 
     availableFields: Array<Field> = [];
@@ -59,11 +62,17 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
     saveDatafields(){
-        console.log('saving datafields');
         this._api.SaveDatefields(1, this.visibleFields, this.requestedFields).subscribe(
-            res => console.log(res),
-            error => console.log(error)
+            status => this.messages.datafields = status,
+            error => this.messages.datafields = error
         );
+    }
+
+    saveDetails(){
+        this._api.SaveStageDetails(1, this.name, this.description).subscribe(
+            status => this.messages.details = status,
+            error => this.messages.details = error
+        )
     }
 
     ngOnDestroy() {

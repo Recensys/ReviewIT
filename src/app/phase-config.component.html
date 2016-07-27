@@ -12,19 +12,20 @@
                class="form-control"
                id="titleInput"
                placeholder="Enter stage title"
-               [(ngModel)]="phase.name">
+               [(ngModel)]="title">
           </div>
       </div>
 
       <div class="form-group row">
         <label for="descriptionInput" class="col-sm-2 form-control-label">Description</label>
         <div class="col-sm-10">
-          <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter stage description" [(ngModel)]="phase.description"></textarea>
+          <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter stage description" [(ngModel)]="description"></textarea>
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <a href="#" class="btn btn-primary">Save</a>
+      <a (click)="saveDetails()" class="btn btn-primary">Save</a>
+      <a class="text-muted">{{messages.details}}</a>
     </div>
   </div>
 
@@ -83,6 +84,7 @@
     </div>
     <div class="card-footer">
       <a (click)="saveDatafields()" class="btn btn-primary">Save</a>
+      <a class="text-muted" >{{messages.datafields}}</a>      
     </div>
   </div>
   <div class="card">

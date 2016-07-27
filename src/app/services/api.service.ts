@@ -82,8 +82,19 @@ export class APIService {
    */
   public SaveDatefields(stageId: number, visible: Field[], requested: Field[]) : Observable<string> {
     let body = JSON.stringify({'Visible': visible, 'Requested': requested});
-    console.log(body);
-    let url = `${Globals.api}stage/datafields`
+    let url = `${Globals.api}stage/${stageId}/datafields`;
+    let args = new RequestOptions();
+    args.withCredentials = true;
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
+    args.headers = headers;    
+    return this.http.post(url, body, args)
+      .map(this.exstractStatusText)
+      .catch(this.handleError);
+  }
+
+  public SaveStageDetails(stageId: number, name: string, description: string) : Observable<string> {
+    let body = JSON.stringify({'Name': name, 'Description': description});
+    let url = `${Globals.api}stage/${stageId}/details`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
