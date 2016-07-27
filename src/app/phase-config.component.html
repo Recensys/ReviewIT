@@ -44,7 +44,7 @@
                     <div class="card-title">Available Fields</div>
                     <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="availableFields" [dropZones]="['datafields']">
                         <div *ngFor="let field of availableFields; let i = index" class="list-group-item" 
-                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i">
+                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i" (onDropSuccess)="dropToAvailable($event)">
                               {{field.Name}}
                         </div>
                     </div>

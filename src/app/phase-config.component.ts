@@ -24,8 +24,7 @@ import {ReviewStrategyComponent} from './review-strategy.component';
 export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
-    @Input()
-    private phase: Phase;
+    @Input() private phase: Phase;
     name: string;
     description: string;
     messages: any = {};
@@ -45,7 +44,7 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-          this._api.GetFields(1).subscribe(
+          this._api.GetFields(0).subscribe(
                     fieldArray => {
                         console.log(fieldArray);
                         this.availableFields = fieldArray
@@ -60,6 +59,7 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
     dropToRequested(field: Field){
         field.Input = true;
     }
+    dropToAvailable(){}
 
 
     saveDatafields(){

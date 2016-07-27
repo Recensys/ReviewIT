@@ -18,9 +18,19 @@ import {StudyConfigComponent} from './study-config.component';
 
 export class StudyComponent implements OnInit, OnDestroy {
 
-    public phases: Phase[];
+    public phases: Phase[] = [
+    {
+      id: 1,
+      name: 'Stage 1',
+      description: 'based on the title assess whether the paper is related to global software engineering',
+      fields: null,
+      tasks: null
+    }
+  ];
     public selected: Phase;
     public bibtexError: string;
+    public loading: boolean = false;
+    public disabled: boolean = false;
 
     public study = {
         title: 'some title',
@@ -41,8 +51,7 @@ export class StudyComponent implements OnInit, OnDestroy {
 
             //GET STUDY TOO!
 
-            this.taskService.getPhases().then(list => this.phases = list);
-        });
+       });
     }
 
 
@@ -56,5 +65,10 @@ export class StudyComponent implements OnInit, OnDestroy {
 
     loadBibtex(){
         this.bibtexError = "";
+    }
+
+    startStudy(){
+        this.loading = true;
+        this.disabled = true;
     }
 }

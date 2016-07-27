@@ -22,6 +22,8 @@ module.exports = function(defaults) {
       'ng2-dnd/**/*.js',
       'ng2-dnd/ng2-dnd.css',
       'ng2-slideable-directive/**/*.js',
+      'ng2-slider-component/**/*.js',
+      'ng2-slider-component/**/*.html',
       'ng2-styled-directive/**/*.js',
     ]
   });

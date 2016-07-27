@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from './services/api.service';
 import {COMMON_DIRECTIVES} from '@angular/common';
-import {Ng2SliderComponent} from './directives/ng2-slider.component';
+import {Ng2SliderComponent} from 'ng2-slider-component/ng2-slider.component';
 
 
 @Component({
@@ -26,7 +26,7 @@ import {Ng2SliderComponent} from './directives/ng2-slider.component';
                 Presets
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <a class="dropdown-item" *ngFor="let preset of presets">{{preset}}</a>
+                <a (click)="setPreset(preset)" class="dropdown-item" *ngFor="let preset of presets">{{preset.Name}}</a>
             </div>
             </div>
           <p class="col-sm-10  text-muted">
@@ -50,24 +50,23 @@ import {Ng2SliderComponent} from './directives/ng2-slider.component';
           <div *ngFor="let researcher of researchers">
             <dt class="col-sm-2 text-truncate">{{researcher.Name}}</dt>
             <div class="col-sm-10">
-              <ng2-slider #range min="0" max="100" inputs="false" [normalHandlerStyle]="{ 'background-color': 'blue'}" startValue="{{researcher.start}}" endValue="{{researcher.end}}">
+              <ng2-slider id="{{researcher.Id}}" #range min="0" max="100" startValue="{{researcher.start}}" endValue="{{researcher.end}}" (onRangeChanged)=updateRange($event)>
               </ng2-slider>
             </div>
           </div>
 
           
-
+          <!--
         <dt class="col-sm-12 text-truncate">
           <span class="label label-primary"> Add researcher
-            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
           </span>
-        </dt>
+        </dt>-->
         <!--<dd class="col-sm-10"></dd>-->
         </dl>
       </div>
     </div>
     <div class="card-footer">
-      <a href="#" class="btn btn-primary">Save</a>
+      <a (click)="updateDivision()" class="btn btn-primary">Save</a>
     </div>
   </div>
     `
@@ -76,19 +75,55 @@ import {Ng2SliderComponent} from './directives/ng2-slider.component';
 export class ReviewStrategyComponent{
 
     presets: Array<any> = [
-        "Equal Distribution",
-        "Full Overlap"
+        {Id: 0, Name: "Equal Distribution"},
+        {Id: 1, Name: "Full Overlap"},
     ]
     researchers: Array<any> = [
-        {Name: "Mathias", Percentage: 50},
-        {Name: "Jacob", Percentage: 50}
+        {Id: 0, Name: "Mathias", start: 50, end: 75},
+        {Id: 1, Name: "Jacob", start: 0, end: 50}
     ]
 
     constructor(private _api: APIService){}
 
 
-    updateDivision(){
+    setPreset(preset){
+      switch (preset.Id) {
+        case 0:
+          this.setEqualDivision();
+          break;
+        case 1:
+          this.setOverlapDivision();
+          break;
+      
+        default:
+          break;
+      }
+    }
 
+    setEqualDivision(){
+        let count = this.researchers.length;
+        let division = 100 / count;
+        let start = 0;
+        this.researchers.forEach(element => {
+          element.start = start;
+          element.end = start+division;
+          start = element.end;
+        });
+    }
+
+    setOverlapDivision(){
+      this.researchers.forEach(element => {
+        element.start = 0;
+        element.end = 100;
+      })
+    }
+    
+
+    updateRange(event){
+      let researcher = this.researchers.filter(e => e.Id == event.id)[0];
+      researcher.start = event.startValue;
+      researcher.end = event.endValue;
+      console.log(this.researchers)
     }
 
 }

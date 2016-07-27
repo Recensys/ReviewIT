@@ -22,6 +22,10 @@
                         <p class="list-group-item-text">{{phase.description}}</p>
                     </li>
                 </ul>
+                <div class="card-footer">
+                        <button [disabled]="disabled" (click)="startStudy()" type="button" class="btn btn-success">Start Study</button>
+                              <div *ngIf="loading" class="loading">loading</div>
+                    </div>
             </div>
 
         </div>

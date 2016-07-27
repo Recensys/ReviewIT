@@ -13,8 +13,9 @@ export enum RangeHandle {Start, End, Both}
 
 @Component({
     selector: 'ng2-slider',
-    templateUrl: 'ng2-slider.component.html',
+    templateUrl: 'app/directives/ng2-slider.component.html',
     directives: [SlideAbleDirective],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class Ng2SliderComponent {
@@ -27,7 +28,6 @@ export class Ng2SliderComponent {
     @Input() set value(value:string) {
         this.startValue = parseFloat(value);
     }
-    @Input() inputs: boolean;
 
     @Input() normalHandlerStyle: Object;
     @Input() slidingHandlerStyle: Object;
