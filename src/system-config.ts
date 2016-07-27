@@ -11,6 +11,9 @@ const map: any = {
     'dragula': 'vendor/dragula/dist/dragula.js',
     'ng2-dragula': 'vendor/ng2-dragula',
     'ng2-dnd': 'vendor/ng2-dnd',
+    'ng2-slider-component': 'vendor/ng2-slider-component',
+    'ng2-slideable-directive': 'vendor/ng2-slideable-directive',
+    'ng2-styled-directive': 'vendor/ng2-styled-directive',
 };
 
 /** User packages configuration. */
@@ -25,6 +28,9 @@ const packages: any = {
     'ng2-dragula': { format: 'cjs', defaultExtension: 'js', main: 'ng2-dragula' },
     //'ng2-dragula': {main:'ng2-dragula.js', defaultExtension: 'js',},
     'ng2-dnd':         { defaultExtension: 'js' },
+    'ng2-slider-component': {defaultExtension: 'js', main: 'ng2-slider.component'},
+    'ng2-slideable-directive': {defaultExtension: 'js'},
+    'ng2-styled-directive': {defaultExtension: 'js'},
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

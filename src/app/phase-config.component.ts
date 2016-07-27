@@ -12,11 +12,12 @@ import {NumberField} from "./fields/number.field";
 import {StringField} from "./fields/string.field";
 import {DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
 import {COMMON_DIRECTIVES} from '@angular/common';
+import {ReviewStrategyComponent} from './review-strategy.component';
 
 @Component({
     selector: 'phase-config',
     templateUrl: 'app/phase-config.component.html',
-    directives: [ DND_DIRECTIVES, COMMON_DIRECTIVES ],
+    directives: [ DND_DIRECTIVES, COMMON_DIRECTIVES, ReviewStrategyComponent ],
     providers: [ APIService ],
 })
 

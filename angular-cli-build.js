@@ -21,6 +21,8 @@ module.exports = function(defaults) {
       'ng2-dragula/**/*.js',
       'ng2-dnd/**/*.js',
       'ng2-dnd/ng2-dnd.css',
+      'ng2-slideable-directive/**/*.js',
+      'ng2-styled-directive/**/*.js',
     ]
   });
 };
