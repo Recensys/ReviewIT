@@ -24,7 +24,7 @@ export class TasklistComponent implements OnInit{
   }
 
   ngOnInit(){
-    this._api.GetStages(1).subscribe(
+    this._api.GetStages(0).subscribe(
       stageModels =>{
           console.log(stageModels);
           this.stages = stageModels

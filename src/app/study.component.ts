@@ -8,12 +8,14 @@ import {TaskService} from './task.service';
 import {Phase} from './model/phase.model';
 import {PhaseConfigComponent} from './phase-config.component';
 import {StudyConfigComponent} from './study-config.component';
+import {APIService} from './services/api.service'
+import {DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
 
 @Component({
     selector: 'study',
     templateUrl: 'app/study.component.html',
-    directives: [PhaseConfigComponent, StudyConfigComponent],
-    providers: [TaskService]
+    directives: [PhaseConfigComponent, StudyConfigComponent, DND_DIRECTIVES],
+    providers: [TaskService, APIService]
 })
 
 export class StudyComponent implements OnInit, OnDestroy {
@@ -27,20 +29,21 @@ export class StudyComponent implements OnInit, OnDestroy {
       tasks: null
     }
   ];
+
+    
+
     public selected: Phase;
     public bibtexError: string;
     public loading: boolean = false;
     public disabled: boolean = false;
 
-    public study = {
-        title: 'some title',
-        description: 'some description'
-    };
+    public model = {Name: "name of study", Description: "desc", Stages: [{Name: "name of stage1", Description: "desc of stage 1"}]};
 
 
     constructor(
         private taskService: TaskService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private _api: APIService
     ) {}
 
         private sub: any;
@@ -48,6 +51,12 @@ export class StudyComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             let id = +params['id'];
+
+            this._api.GetStages(id).subscribe(
+                stages => this.phases,
+                error => console.log(error)
+            );
+
 
             //GET STUDY TOO!
 
@@ -70,5 +79,17 @@ export class StudyComponent implements OnInit, OnDestroy {
     startStudy(){
         this.loading = true;
         this.disabled = true;
+    }
+
+    addNewStage(){
+        this.model.Stages.push({Name: "", Description: ""});
+    }
+
+    removeStage(stage){
+
+    }
+
+    cloneStage(stage){
+        this.model.Stages.push(JSON.parse(JSON.stringify(stage)));
     }
 }

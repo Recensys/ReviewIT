@@ -19,8 +19,7 @@ import {APIService} from './services/api.service'
 
 export class StudyConfigComponent implements OnInit, OnDestroy {
 
-    @Input()
-    private study: any;
+    @Input() model: any;
 
      constructor(
         private taskservice: TaskService,
@@ -31,16 +30,11 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
     private sub: any;
 
     ngOnInit() {
-        if(!this.study){
             this.sub = this.route.params.subscribe(params => {
                 let id = +params['id'];
-                this.study = { 
-                    title: 'some title',
-                    description: 'some description'
-                };
+                
                 //TODO get study
             });
-        }
     }
 
 

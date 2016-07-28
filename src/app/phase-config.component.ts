@@ -24,7 +24,8 @@ import {ReviewStrategyComponent} from './review-strategy.component';
 export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
-    @Input() private phase: Phase;
+    @Input() model: any;
+    
     name: string;
     description: string;
     messages: any = {};
@@ -63,14 +64,14 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
 
 
     saveDatafields(){
-        this._api.SaveDatefields(1, this.visibleFields, this.requestedFields).subscribe(
+        this._api.SaveDatefields(0, this.visibleFields, this.requestedFields).subscribe(
             status => this.messages.datafields = status,
             error => this.messages.datafields = error
         );
     }
 
     saveDetails(){
-        this._api.SaveStageDetails(1, this.name, this.description).subscribe(
+        this._api.SaveStageDetails(0, this.name, this.description).subscribe(
             status => this.messages.details = status,
             error => this.messages.details = error
         )
@@ -83,6 +84,7 @@ export class PhaseConfigComponent implements OnInit, OnDestroy {
     }
 
 
+      get diagnostic() { return JSON.stringify(this.model); }
 
     
 }

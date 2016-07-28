@@ -34,6 +34,13 @@ import {Ng2SliderComponent} from 'ng2-slider-component/ng2-slider.component';
           </p>
         </div>
 
+        <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select class="form-control" required>
+            <option *ngFor="let p of presets" [value]="p">{{p}}</option>
+        </select>
+        </div>
+
         
 
 
@@ -73,6 +80,8 @@ import {Ng2SliderComponent} from 'ng2-slider-component/ng2-slider.component';
 })
 
 export class ReviewStrategyComponent{
+
+    public model2 = "mooooodel2";
 
     presets: Array<any> = [
         {Id: 0, Name: "Equal Distribution"},

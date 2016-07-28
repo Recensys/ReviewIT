@@ -6,11 +6,11 @@ import {Field} from '../model/field';
 
 export class BooleanField implements Field {
 
-  constructor(name: string, input: boolean, trueval: string, falseval: string) {
-    this.Name = name;
-    this.Input = input;
-    this.Trueval = trueval;
-    this.Falseval = falseval;
+  constructor(data) {
+    this.Name = data.Name;
+    this.Input = data.Input;
+    this.Trueval = data.Trueval;
+    this.Falseval = data.Falseval;
   }
 
   Name: string;
@@ -21,9 +21,10 @@ export class BooleanField implements Field {
   Options: string[] = ["Yes", "No"]
   Pick: string;
 
+  get debug() { return JSON.stringify(this); }  
+
   getView() {
     return 'app/fields/boolean.field.html';
   }
-  get debug() { return JSON.stringify(this); }
 
 }
