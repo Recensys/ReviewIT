@@ -10,8 +10,8 @@
                 Submit all <i class="fa fa-refresh"></i>
             </button>
         </span>
-    {{stage.Name}}
-    <small class="text-muted">{{stage.Description}}</small>
+    Stage 1
+    <small class="text-muted">based on the title assess whether the paper is related to global software engineering</small>
   </h3>
   <div class="card-block card-text" *ngIf="stage.Tasks.length <= 0">
     No tasks have been generated yet...
@@ -34,12 +34,14 @@
               <field [field]="stage.Fields[i]" [data]="data"></field>
             </td>
             <td style="text-align:center;">
+              <span class="label label-default">new</span>
+              <!--
               <span [ngSwitch]="task.State">
                   <template [ngSwitchCase]="1"><span class="label label-default">new</span></template>
                   <template [ngSwitchCase]="2"><span class="label label-warning">in progress</span></template>
                   <template [ngSwitchCase]="3"><span class="label label-success">submitted</span></template>
                   <template ngSwitchDefault><span class="label label-danger">unknown</span></template>
-              </span>
+              </span>-->
             </td>
           </tr>
           

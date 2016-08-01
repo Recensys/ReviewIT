@@ -12,7 +12,7 @@
                         <h4 class="list-group-item-heading">
                             {{model.Name}}
                         </h4>
-                        <p class="list-group-item-text">Some text for the study.. bla. bla. bla</p>
+                        <p class="list-group-item-text">{{model.Description}}</p>
                     </li>
 
                     <h3 class="card-header card-header-nospace">
@@ -33,7 +33,7 @@
                                 </div>                        
                         
                             <h4 class="list-group-item-heading">{{stage.Name != "" ? stage.Name : "New stage"}}</h4>
-                            <p class="list-group-item-text">{{stage.Description}}</p>                 
+                            <p class="list-group-item-text">{{stage.Description != "" ? stage.Description : "..."}}</p>                 
                     </li>
                     </div>
                 </ul>

@@ -37,7 +37,7 @@ export class StudyComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     public disabled: boolean = false;
 
-    public model = {Name: "name of study", Description: "desc", Stages: [{Name: "name of stage1", Description: "desc of stage 1"}]};
+    public model = {Name: "Name of Study", Description: "Study Description", Stages: [{Name: "", Description: ""}]};
 
 
     constructor(
