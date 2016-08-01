@@ -5,9 +5,3 @@ import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
 import { StudyconfigComponent } from './studyconfig.component';
 
-describe('Component: Studyconfig', () => {
-  it('should create an instance', () => {
-    let component = new StudyconfigComponent();
-    expect(component).toBeTruthy();
-  });
-});
