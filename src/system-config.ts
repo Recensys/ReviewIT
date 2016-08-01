@@ -14,7 +14,7 @@ const map: any = {
     'ng2-slider-component': 'vendor/ng2-slider-component',
     'ng2-slideable-directive': 'vendor/ng2-slideable-directive',
     'ng2-styled-directive': 'vendor/ng2-styled-directive',
-};
+  };
 
 /** User packages configuration. */
 const packages: any = {
@@ -54,6 +54,10 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/components/startmodal',
+  'app/test',
+  'app/components/test',
+  'app/components/studyconfig',
   /** @cli-barrel */
 ];
 

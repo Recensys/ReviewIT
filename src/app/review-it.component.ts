@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { ROUTER_DIRECTIVES } from "@angular/router";
 import { TasklistComponent } from "./task-list.component";
 import {PhaseConfigComponent} from "./phase-config.component";
@@ -13,4 +13,10 @@ import {APP_ROUTER_PROVIDERS} from "./review-it.routes";
 
 export class ReviewITAppComponent {
   title: "ReviewIT"
+
+  viewContainerRef: ViewContainerRef;
+
+  constructor(viewContainerRef:ViewContainerRef) {
+    this.viewContainerRef = viewContainerRef;
+  }
 }

@@ -1,33 +1,26 @@
-/**
- * Created by jbec on 11/07/2016.
- */
-
 import {Component, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TaskService} from './task.service';
-import {Phase} from './model/phase.model';
-import {PhaseConfigComponent} from './phase-config.component';
-import {StudyConfigComponent} from './study-config.component';
-import {APIService} from './services/api.service';
+import {TaskService} from '../../task.service';
+import {Phase} from '../../model/phase.model';
+import {PhaseConfigComponent} from '../../phase-config.component';
+import {StudyConfigComponent} from '../../study-config.component';
+import {APIService} from '../../services/api.service';
 import {DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
-import {StartmodalComponent} from './components/startmodal/';
+import {StartmodalComponent} from '../../components/startmodal/';
 import {MODAL_DIRECTIVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
 
 
 
 @Component({
-    selector: 'study',
-    templateUrl: 'app/study.component.html',
+    selector: 'app-studyconfig',
     directives: [PhaseConfigComponent, StudyConfigComponent, DND_DIRECTIVES, StartmodalComponent],
     providers: [TaskService, APIService],
-    viewProviders:[BS_VIEW_PROVIDERS]
+    viewProviders:[BS_VIEW_PROVIDERS],
+    templateUrl: 'studyconfig.component.html',
+    styleUrls: ['studyconfig.component.css']
 })
 
-export class StudyComponent implements OnInit, OnDestroy {
-
-
-
-
+export class StudyconfigComponent implements OnInit, OnDestroy {
 
     public phases: Phase[] = [
     {
@@ -117,3 +110,4 @@ export class StudyComponent implements OnInit, OnDestroy {
         this.model.Stages.push(JSON.parse(JSON.stringify(stage)));
     }
 }
+
