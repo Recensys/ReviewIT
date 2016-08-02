@@ -58,6 +58,20 @@ const barrels: string[] = [
   'app/test',
   'app/components/test',
   'app/components/studyconfig',
+  'app/study',
+  'app/task/task-list',
+  'app/task/task-details',
+  'app/study/config/stageconfig',
+  'app/login',
+  'app/signup',
+  'app/field',
+  'app/field/fields',
+  'app/studyconfig/review-strategy',
+  'app/studyconfig/stageconfig',
+  'app/studyconfig/studyconfig',
+  'app/studyconfig-menu',
+  'app/page-not-found',
+  'app/shared/navbar',
   /** @cli-barrel */
 ];
 

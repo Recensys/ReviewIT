@@ -1,7 +1,3 @@
-/**
- * Created by mk_ti on 13-07-2016.
- */
-
 
 import {Injectable} from "@angular/core";
 import { Http, Response } from '@angular/http';
@@ -9,17 +5,12 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import Globals = require('../globals');
+
+import Globals = require('../shared/globals');
 import {CookieService} from 'angular2-cookie/core';
 import {StageModel} from '../model/stageModel';
-import {Field} from '../model/field';
+import {Field, StringField, ResourceField, RadioField, NumberField, CheckboxField, BooleanField} from '../field';
 import {Task} from '../model/task';
-import {StringField} from '../fields/string.field';
-import {ResourceField} from '../fields/resource.field';
-import {RadioField} from '../fields/radio.field';
-import {NumberField} from '../fields/number.field';
-import {CheckboxField} from '../fields/checkbox.field';
-import {BooleanField} from '../fields/boolean.field';
 
 
 @Injectable()

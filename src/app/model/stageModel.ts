@@ -1,4 +1,4 @@
-import { Field } from "./field";
+import { Field } from "../field";
 import { Task } from "./task";
 
 export class StageModel {

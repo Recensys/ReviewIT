@@ -1,0 +1,75 @@
+
+
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h3 class="card-header card-header-nospace">
+                    Study
+                </h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"
+                        [class.selected]="!selected"
+                        (click)="onSelect(undefined)">
+                        <h4 class="list-group-item-heading">
+                            {{model.Name}}
+                        </h4>
+                        <p class="list-group-item-text">{{model.Description}}</p>
+                    </li>
+
+                    <h3 class="card-header card-header-nospace">
+                    Stages
+                    </h3>
+                    <div dnd-sortable-container [sortableData]="model.Stages" [dropZones]="['stages']">
+                    <li class="list-group-item" dnd-sortable [dragEnabled]="true" [effectCursor]=""
+                        *ngFor="let stage of model.Stages; let i = index" [sortableIndex]="i"
+                        [class.selected]="stage === selected"
+                        (click)="onSelect(stage)">
+                            <div class="tag tag-default tag-pill pull-xs-right">
+                                <div>
+                                    <i (click)="removeStage(i)" class="fa fa-times" aria-hidden="true"></i> 
+                                </div>
+                                <div>
+                                    <i (click)="cloneStage(stage)" class="fa fa-clone" aria-hidden="true"></i> 
+                                </div>
+                            </div>                        
+                        
+                            <h4 class="list-group-item-heading">{{stage.Name != "" ? stage.Name : "New stage"}}</h4>
+                            <p class="list-group-item-text">{{stage.Description != "" ? stage.Description : "..."}}</p>                 
+                    </li>
+                    </div>
+                </ul>
+                <div class="card-footer">
+                     <startmodal></startmodal>
+                     <button  (click)="addNewStage()" type="button" class="btn pull-right btn-primary-outline">
+                         <i class="fa fa-plus" aria-hidden="true"></i> Stage</button>
+                     <div *ngIf="loading" class="loading">loading</div>
+                </div>
+            </div>
+
+            <div *ngIf="start.Show" class="card">
+                <div class="card-block">
+                    <div class="col-md-2">
+                        <div *ngIf="start.Loading" class="loading"></div>
+                    </div>
+                    {{start.Msg}}
+                    <div class="col-md-1"></div>
+                                    
+                            
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <!--<phase-config *ngIf(selected) [model]="selected"></phase-config>
+            <study-config *ngIf(!selected) [model]="model"></study-config>-->
+        </div>
+    </div>
+
+    
+</div>
+
+

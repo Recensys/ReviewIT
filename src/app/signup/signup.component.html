@@ -1,0 +1,18 @@
+<div class="signup card  center-block">
+  <h1 class="card-header">Sign up</h1>
+  <form role="form" (submit)="signin(username.value, password.value)">
+    <div class="form-group card-block">
+      <label for="username">Username</label>
+      <input type="text" #username class="form-control" id="username" placeholder="Username">
+    </div>
+    <div class="form-group card-block">
+      <label for="password">Password</label>
+      <input type="password" #password class="form-control" id="password" placeholder="Password">
+    </div>
+    <div class="card-block">
+      <button type="submit" class="btn btn-lg">Sign up</button>
+      <div [hidden]="!loading" class="loading">loading</div>
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+  </form>
+</div>

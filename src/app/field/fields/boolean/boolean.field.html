@@ -1,0 +1,11 @@
+
+<div class="btn-group">
+    <label class="btn btn-secondary" *ngFor="let item of Field.Options">
+        <input type="radio" 
+        (click)="Field.Pick = item" 
+        [checked]="item === Field.Pick">
+        {{item}}
+    </label>
+</div>
+<!--<button (click)="Field.model.options = 'one'">set one</button>-->
+<!--{{Field.debug}}-->

@@ -3,23 +3,20 @@
  */
 
 import {provideRouter, RouterConfig} from '@angular/router';
-import {StudyConfigComponent} from './study-config.component';
-import {PhaseConfigComponent} from './phase-config.component';
-import {StudyComponent} from './study.component';
-import {TasklistComponent} from './task-list.component';
-import {TaskDetailsComponent} from './task-details.component';
-import {LoginComponenet} from './login.component';
-import {SignupComponent} from './signup.component';
+
+import { taskRoutes } from './task/task.routes';
+import { LoginComponent } from './login';
+import { SignupComponent } from './signup';
+import { StudyconfigMenuComponent } from './studyconfig-menu/studyconfig-menu.component';
+import { PageNotFoundComponent } from './page-not-found';
 
 export const routes: RouterConfig = [
-  { path: '', component: TasklistComponent },
-  { path: 'tasks', component: TasklistComponent },
-  { path: 'task/:id', component: TaskDetailsComponent },
-  { path: 'phase/:id', component: PhaseConfigComponent },
-  { path: 'study', component: StudyComponent },
-  { path: 'study/:id', component: StudyComponent },
-  { path: 'login', component: LoginComponenet },
-  { path: 'signup', component: SignupComponent }
+  ...taskRoutes,
+  { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'studyconfig', component: StudyconfigMenuComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 export const APP_ROUTER_PROVIDERS = [

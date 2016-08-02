@@ -1,5 +1,5 @@
 
-import { Field } from "./field";
+import { Field } from "../field";
 import { Data } from "./data";
 
 export enum TaskState {
