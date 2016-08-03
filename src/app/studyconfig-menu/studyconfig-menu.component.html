@@ -64,8 +64,8 @@
 
         </div>
         <div class="col-md-8">
-            <!--<phase-config *ngIf(selected) [model]="selected"></phase-config>
-            <study-config *ngIf(!selected) [model]="model"></study-config>-->
+            <app-stageconfig *ngIf(selected) [model]="selected"></app-stageconfig>
+            <app-studyconfig *ngIf(!selected) [model]="model"></app-studyconfig>
         </div>
     </div>
 

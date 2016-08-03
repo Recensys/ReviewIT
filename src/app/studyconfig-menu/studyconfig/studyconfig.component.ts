@@ -5,9 +5,10 @@ import { APIService } from '../../services/api.service'
 
 
 @Component({
+    moduleId: module.id,
     selector: 'app-studyconfig',
     providers: [ APIService ],
-    templateUrl: './studyconfig.component.html',
+    templateUrl: 'studyconfig.component.html',
     styleUrls: ['studyconfig.component.css']
 })
 
