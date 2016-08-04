@@ -15,19 +15,27 @@ import { APIService } from '../../services/api.service';
 })
 export class StartmodalComponent implements OnInit {
 
-  @Input() model: any = {Loading: true, Msg: "The first stage of the study is being initiated"};
+  @Input() model: any = {Loading: true, Msg: ""};
   @Input() studyId: number;
+  private loading: boolean = false;
 
   constructor(private _api:APIService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   startStudy(){
-    console.log("start study");
-    this._api.startStudy(this.studyId).subscribe(
-      msg => this.model.Msg = msg,
-      error => this.model.Msg = error
+    this.model.Msg = "The first stage of the study is being initiated";    
+    this.loading = true;
+    this._api.startStudy(0).subscribe(
+      msg => {
+        console.log(msg);
+        this.loading = false;
+        this.model.Msg = `The first stage has been initiated with ${msg.NrOfCreatedTasks} tasks`;
+      },
+      error => {
+        this.loading = false;
+        this.model.Msg = error
+      }
     );
   }
 

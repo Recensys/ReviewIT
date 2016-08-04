@@ -99,14 +99,14 @@ export class APIService {
   /***
    * STUDY METHODS
    */
-  public startStudy(id: number) : Observable<string> {
-    let url = `${Globals.api}stage/${id}/details`;
+  public startStudy(id: number) : Observable<any> {
+    let url = `${Globals.api}study/${id}/start`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
     args.headers = headers; 
     return this.http.post(url, {}, args)
-      .map(this.exstractStatusText)
+      .map(this.extractJson)
       .catch(this.handleError);
   }
 

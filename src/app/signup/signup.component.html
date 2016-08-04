@@ -10,9 +10,8 @@
       <input type="password" #password class="form-control" id="password" placeholder="Password">
     </div>
     <div class="card-block">
-      <button type="submit" class="btn btn-lg">Sign up</button>
-      <div [hidden]="!loading" class="loading">loading</div>
+        <button type="submit" class="btn btn-lg">Sign up <i [hidden]="!loading" class="fa fa-circle-o-notch fa-spin"></i></button>
+        <div class="card-block alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
-    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
   </form>
 </div>

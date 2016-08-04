@@ -37,4 +37,8 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
             this.sub.unsubscribe();
         }
     }
+
+    saveDetails(){
+        
+    }
 }

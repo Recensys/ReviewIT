@@ -43,7 +43,7 @@
                     </div>
                 </ul>
                 <div class="card-footer">
-                     <startmodal></startmodal>
+                     <startmodal [studyId]="model.Id"></startmodal>
                      <button  (click)="addNewStage()" type="button" class="btn pull-right btn-primary-outline">
                          <i class="fa fa-plus" aria-hidden="true"></i> Stage</button>
                      <div *ngIf="loading" class="loading">loading</div>

@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-success" (click)="staticModal.show()" (click)="startStudy()">Start Study</button>
 
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static', width: '50%'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -11,6 +11,7 @@
         <h4 class="modal-title">Initiate Study</h4>
       </div>
       <div class="modal-body">
+        <i [hidden]="!loading" class="fa fa-circle-o-notch fa-spin"></i>        
         {{model.Msg}}
       </div>
     </div>

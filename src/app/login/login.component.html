@@ -9,10 +9,9 @@
       <label for="password">Password</label>
       <input type="password" #password class="form-control" id="password" placeholder="Password">
     </div>
-    <div class="card-block">
-      <button type="submit" class="btn btn-lg">Log in</button>
-      <div *ngIf="loading" class="loading">loading</div>
+      <div class="card-block">
+        <button type="submit" class="btn btn-lg">Log in <i [hidden]="!loading" class="fa fa-circle-o-notch fa-spin"></i></button>
+        <div class="card-block alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
-    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
   </form>
 </div>
