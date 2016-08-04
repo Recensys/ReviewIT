@@ -58,7 +58,7 @@ const barrels: string[] = [
   'app/test',
   'app/components/test',
   'app/components/studyconfig',
-  'app/study',
+  'app/studylist',
   'app/task/task-list',
   'app/task/task-details',
   'app/study/config/stageconfig',
@@ -72,6 +72,8 @@ const barrels: string[] = [
   'app/studyconfig-menu',
   'app/page-not-found',
   'app/shared/navbar',
+  'app/index',
+  'app/home',
   /** @cli-barrel */
 ];
 

@@ -9,10 +9,11 @@ import { LoginComponent } from './login';
 import { SignupComponent } from './signup';
 import { StudyconfigMenuComponent } from './studyconfig-menu/studyconfig-menu.component';
 import { PageNotFoundComponent } from './page-not-found';
+import { HomeComponent } from './home';
 
 export const routes: RouterConfig = [
   ...taskRoutes,
-  { path: '', component: LoginComponent},
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'studyconfig', component: StudyconfigMenuComponent },
