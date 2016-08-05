@@ -1,0 +1,14 @@
+
+
+
+<div *ngIf="!user">
+  <button class="btn btn-primary" [routerLink]="['login']">sign in</button>
+  <button class="btn btn-secondary" [routerLink]="['signup']">sign up</button>
+</div>
+
+<div *ngIf="user">
+  
+  logged in as: {{user.Name}}
+  
+  <button clas="btn btn-secondary" (click)="logOut()">sign out</button>
+</div>
