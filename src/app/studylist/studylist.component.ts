@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
 import { Studydetails } from '../model';
+import { APIService } from '../services/api.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-studylist',
+  directives: [ROUTER_DIRECTIVES],
+  providers: [APIService],
   templateUrl: 'studylist.component.html',
   styleUrls: ['studylist.component.css']
 })
 export class StudylistComponent implements OnInit {
 
 
-  public studyDetails : Studydetails[];
+  public studyDetails : Studydetails[] = [];
 
 
-  constructor() { }
+  constructor(private _api: APIService, private router: Router) { }
 
   ngOnInit() {
-    this.studyDetails = [
-      {Id: 0, Name: "Study 1", Description: "Description of study 1, blah blah"},
-      {Id: 1, Name: "Study 2", Description: "Description of study 2, blah blah"},
-    ];
+    this._api.getStudies().subscribe(
+      studies => {
+        this.studyDetails = studies
+        console.log(studies);
+        },
+      error => console.log(error)
+    );
   }
 
   continueStudy(studyId: number){
@@ -31,5 +38,12 @@ export class StudylistComponent implements OnInit {
 
   }
 
-
+  newStudy(){
+      this._api.newStudy().subscribe(
+        id => {
+          this.router.navigate([`study/${id}/config`]);
+        },
+        error => console.log(error)
+      )
+  }
 }

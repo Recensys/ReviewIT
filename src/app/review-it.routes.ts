@@ -12,11 +12,13 @@ import { PageNotFoundComponent } from './page-not-found';
 import { HomeComponent } from './home';
 
 export const routes: RouterConfig = [
-  ...taskRoutes,
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'studyconfig', component: StudyconfigMenuComponent },
+  { path: 'study/:id', children: [
+    { path: 'config', component: StudyconfigMenuComponent },
+    ...taskRoutes,
+  ] },
   { path: '**', component: PageNotFoundComponent },
 ];
 

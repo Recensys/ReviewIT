@@ -8,7 +8,7 @@ import { StudyConfigComponent } from './studyconfig/studyconfig.component';
 import { APIService } from '../services/api.service';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
 import { StartmodalComponent } from './startmodal/startmodal.component';
-import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS } from 'ng2-bootstrap/ng2-bootstrap';
+import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 
 
@@ -17,7 +17,7 @@ import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS } from 'ng2-bootstrap/ng2-bootstrap
     selector: 'app-studyconfig-menu',
     templateUrl: 'studyconfig-menu.component.html',
     styleUrls: ['studyconfig-menu.component.css'],
-    directives: [ StageconfigComponent, StudyConfigComponent, DND_DIRECTIVES, StartmodalComponent ],
+    directives: [ StageconfigComponent, StudyConfigComponent, DND_DIRECTIVES, StartmodalComponent, TOOLTIP_DIRECTIVES ],
     providers: [ APIService ],
     viewProviders:[ BS_VIEW_PROVIDERS ]
 })

@@ -1,19 +1,25 @@
 <div class="card">
+  <div class="card-header">
+    <b>Your studies</b>
+    <button (click)="newStudy()" type="button" class="btn btn-sm btn-success pull-right"><i class="fa fa-plus"></i> New Study</button>
+  </div>
   <div class="card-block">
-    <h4 class="card-title">Your Studies</h4>
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let studyDetail of studyDetails" class="list-group-item">
+    <div *ngIf="studyDetails.length == 0">
+      you don't have any studies...
+    </div>
+    <ul *ngIf="studyDetails.length > 0" class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let studyDetail of studyDetails" >
+        
         <div class="row">
-          <div class="col-sm-8">
-            <h5 class="list-group-item-heading">{{studyDetail.Name}}</h5>
-            <p class="list-group-item-text">{{studyDetail.Description}}</p>
+          <div class="col-sm-10">
+            <a [routerLink]="['study/'+studyDetail.Id+'/tasks']" class="list-group-item">{{studyDetail.Name}}</a>
           </div>
-          <div class="col-sm-4 btn-group-vertical">
-            <button (click)="continueStudy(studyDetail.Id)" class="btn btn-primary">Continue</button>
-            <button (click)="studyConfig(studyDetail.Id)" class="btn">Study config</button>
+          <div class="col-sm-2">
+            <a (click)="studyConfig(studyDetail.Id)" class="btn btn-default"><i class="fa fa-wrench"></i></a>
           </div>
         </div>
       </li>
   </ul>
   </div>
 </div>
+
