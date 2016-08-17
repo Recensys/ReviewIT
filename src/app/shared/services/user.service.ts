@@ -1,20 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
+import { ReplaySubject }    from 'rxjs/ReplaySubject';
+import {CookieService} from 'angular2-cookie/core';
+
+import { User } from '../../model'
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
-
-  private loggedInUserSource = new Subject<any>();
-
-  login$ = this.loggedInUserSource.asObservable();
-
-  user:any;
-
-  logIn(name: string){
-    this.loggedInUserSource.next({Name: name});
+  constructor(private _cookieService: CookieService) { 
+    let user = this._cookieService.get('user')
+    if(user){
+      this.user =  JSON.parse(user);
+    }
   }
+
+  private loggedInUserSource = new ReplaySubject<User>();
+
+  get login$(){
+    return this.loggedInUserSource.asObservable();
+  }
+
+  user:User;
+
+  get token(){
+    return this._cookieService.get('token');
+  }
+
+  logIn(user: User, token: string){
+    this.user = user;
+    this.loggedInUserSource.next(this.user);
+    this._cookieService.put('user', JSON.stringify(this.user));
+    this._cookieService.put('token', token);
+  }
+
+  logOut(){
+    this.user = null;
+    this.loggedInUserSource.next(this.user);
+    this._cookieService.remove('user');
+    this._cookieService.remove('token');
+  }
+
 
 
 }

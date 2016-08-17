@@ -1,14 +1,15 @@
+<div>
+  <div *ngIf="!user" class="pull-right">
+    <button class="btn btn-primary" [routerLink]="['login']">sign in</button>
+    <button class="btn btn-secondary" [routerLink]="['signup']">sign up</button>
+  </div>
 
-
-
-<div *ngIf="!user">
-  <button class="btn btn-primary" [routerLink]="['login']">sign in</button>
-  <button class="btn btn-secondary" [routerLink]="['signup']">sign up</button>
-</div>
-
-<div *ngIf="user">
-  
-  logged in as: {{user.Name}}
-  
-  <button clas="btn btn-secondary" (click)="logOut()">sign out</button>
+  <div *ngIf="user" class="row">
+    <div class="col-sm-8">
+        logged in as: {{user.Username}}
+    </div>
+    <div class="pull-right">
+      <button type="button" class="btn btn-secondary btn-sm" (click)="logOut()">sign out</button>
+    </div>
+  </div>
 </div>

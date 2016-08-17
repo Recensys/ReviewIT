@@ -3,12 +3,13 @@ import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { APIService } from "../services/api.service";
 import { UserService } from '../shared';
+import { User } from '../model';
 
 
 @Component({
   moduleId: module.id,
   selector: 'app-login',
-  providers: [ APIService, CookieService, UserService ],  
+  providers: [ APIService ],  
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
@@ -31,8 +32,7 @@ export class LoginComponent {
           this.loading = false;
           console.log(json);
           var token = json['token'];  
-          this._cookieService.put('token', token);  
-          this._userService.logIn(username);    
+          this._userService.logIn(json['user'], token);    
         },
         error => {
           this.loading = false;

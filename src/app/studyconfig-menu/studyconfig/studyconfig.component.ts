@@ -49,7 +49,6 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
     }
 
     deleteStudy(){
-        console.log('deleting study with id: ' + this.id);
         this._api.deleteStudy(this.id).subscribe(
             res => this.router.navigate(['']),
             error => console.log(error)

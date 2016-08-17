@@ -1,13 +1,11 @@
-/**
- * Created by jbec on 13/07/2016.
- */
 
+export class User{
 
-export interface User {
-  id: number,
-  display_name: string
-}
+  Id: number;
+  Username: string;
 
-export interface Strategy {
-  shares: Map<User,number>
+  constructor(id: number, username: string){
+    this.Id = id;
+    this.Username = username;
+  }
 }

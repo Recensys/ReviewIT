@@ -1,33 +1,42 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from "@angular/router";
+import {Subscription} from 'rxjs/Subscription';
 
 import { UserService } from '../../services';
+import { User } from '../../../model';
 
 
 @Component({
   moduleId: module.id,
   selector: 'app-usernav',
   directives: [ROUTER_DIRECTIVES],
-  providers: [ UserService ],
   templateUrl: 'usernav.component.html',
   styleUrls: ['usernav.component.css']
 })
-export class UsernavComponent implements OnInit {
+export class UsernavComponent implements OnInit, OnDestroy {
 
-  user: any;
+  user: User;
+  subscription: Subscription;
 
   constructor(private _userService: UserService) { 
     
   }
 
   ngOnInit() {
-    this._userService.login$.subscribe(e => {
-      this.user = e;
-      console.log(e);
+    this.user = this._userService.user;
+    this.subscription = this._userService.login$.subscribe(user => {
+      this.user = user;
     });
+    
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   logOut(){
+    this._userService.logOut();
   }
+
 
 }
