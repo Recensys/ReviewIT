@@ -25,6 +25,11 @@ module.exports = function(defaults) {
       'ng2-slider-component/**/*.js',
       'ng2-slider-component/**/*.html',
       'ng2-styled-directive/**/*.js',
+      'primeui/**/*.js',
+      'primeng/**/*.js',
+      'primeui/themes/omega/theme.css',
+      'primeui/primeui-ng-all.min.css',
+      'primeui/themes/omega/**'
     ]
   });
 };

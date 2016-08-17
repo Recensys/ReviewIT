@@ -14,6 +14,7 @@ const map: any = {
     'ng2-slider-component': 'vendor/ng2-slider-component',
     'ng2-slideable-directive': 'vendor/ng2-slideable-directive',
     'ng2-styled-directive': 'vendor/ng2-styled-directive',
+    'primeng':                    'vendor/primeng',
   };
 
 /** User packages configuration. */
@@ -31,6 +32,7 @@ const packages: any = {
     'ng2-slider-component': {defaultExtension: 'js', main: 'ng2-slider.component'},
     'ng2-slideable-directive': {defaultExtension: 'js'},
     'ng2-styled-directive': {defaultExtension: 'js'},
+    'primeng':                    { defaultExtension: 'js' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
