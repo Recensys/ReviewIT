@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject }    from 'rxjs/ReplaySubject';
 import {CookieService} from 'angular2-cookie/core';
+import { Router } from '@angular/router'
 
 import { User } from '../../model'
 
 @Injectable()
 export class UserService {
 
-  constructor(private _cookieService: CookieService) { 
+  constructor(private _cookieService: CookieService, private router: Router) { 
     let user = this._cookieService.get('user')
     if(user){
       this.user =  JSON.parse(user);
@@ -26,6 +27,10 @@ export class UserService {
     return this._cookieService.get('token');
   }
 
+  get isLoggedIn(){
+    return this.token != null;
+  }
+
   logIn(user: User, token: string){
     this.user = user;
     this.loggedInUserSource.next(this.user);
@@ -38,6 +43,7 @@ export class UserService {
     this.loggedInUserSource.next(this.user);
     this._cookieService.remove('user');
     this._cookieService.remove('token');
+    this.router.navigate(['']);
   }
 
 

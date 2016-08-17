@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!userService.isLoggedIn">
     <div class="row" style="min-height: 300px;">
         <center>
             <br>
@@ -6,7 +6,14 @@
             <h1>Welcome to Reviewit</h1>
         </center>
     </div>
-    <div class="row">
+    
+    <div class="row" >
+        <center>
+            <h4>Create a user or sign in to begin!</h4>
+        </center>
+    </div>
+</div>
+<div class="container" *ngIf="userService.isLoggedIn">
         <div class="col-md-6">
             <p>Recent changes...</p>
         </div>
@@ -14,6 +21,5 @@
             <app-studylist></app-studylist>
         </div>
     </div>
-</div>
 
 

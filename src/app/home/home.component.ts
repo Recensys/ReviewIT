@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StudylistComponent } from '../studylist';
+import { UserService } from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -11,7 +12,7 @@ import { StudylistComponent } from '../studylist';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }

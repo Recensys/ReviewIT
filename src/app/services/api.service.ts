@@ -27,7 +27,7 @@ export class APIService {
   public ValidateUser(username: string, password: string) : Observable<string>{
     let body = JSON.stringify({'Username': username, 'Password': password});
 
-    return this.http.post(Globals.api+'login', body, this.GetOptions())
+    return this.http.post(Globals.api+'login', body, this.AuthOptions())
               .map(this.extractJson)
               .catch(this.handleError);
   }
@@ -37,7 +37,7 @@ export class APIService {
     
     let url = Globals.api+'user/create';
 
-    return this.http.post(url, body, this.GetOptions())
+    return this.http.post(url, body, this.AuthOptions())
       .map(this.extractJson)
       .catch(this.handleError);
   }
@@ -157,16 +157,13 @@ export class APIService {
   /*** 
    * HELPER METHODS 
   */
-  private GetOptions () : RequestOptions {
+  private AuthOptions () : RequestOptions {
       let token = this._cookieService.get('token');
-      console.log('stored token: '+token);
+      let args = new RequestOptions();
+      args.withCredentials = true;
       let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
-      headers.append('withCredentials','true');
-        headers.append('sessiontoken','token');
-        console.log(headers);
-      
-      let options = new RequestOptions({ headers: headers });
-      return options
+      args.headers = headers;
+      return args;
   }
   private handleError (error: any) {
     // In a real world app, we might use a remote logging infrastructure

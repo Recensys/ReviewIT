@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CookieService } from 'angular2-cookie/core';
 import { APIService } from "../services/api.service";
@@ -18,7 +19,7 @@ export class LoginComponent {
   errorMessage: string;
   loading: boolean;
 
-  constructor(private _api: APIService, private _cookieService:CookieService, private _userService: UserService){
+  constructor(private _api: APIService, private _cookieService:CookieService, private _userService: UserService, private router: Router){
       this.loading = false;
   }
 
@@ -33,6 +34,7 @@ export class LoginComponent {
           console.log(json);
           var token = json['token'];  
           this._userService.logIn(json['user'], token);    
+          this.router.navigate(['']);
         },
         error => {
           this.loading = false;

@@ -5,8 +5,10 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {CookieService} from 'angular2-cookie/core';
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {DND_PROVIDERS} from 'ng2-dnd/ng2-dnd';
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from 'ng2-bootstrap/ng2-bootstrap';  
-import {UserService} from './app/shared/services'
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from 'ng2-bootstrap/ng2-bootstrap'; 
+
+import { UserService } from './app/shared/services'
+import { LoggedInGuard } from './app/loggedin.guard'
 
 
 if (environment.production) {
@@ -15,7 +17,7 @@ if (environment.production) {
 
 Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
 
-bootstrap(ReviewITAppComponent, [APP_ROUTER_PROVIDERS, disableDeprecatedForms(),
+bootstrap(ReviewITAppComponent, [LoggedInGuard, APP_ROUTER_PROVIDERS, disableDeprecatedForms(),
   provideForms(),HTTP_PROVIDERS, CookieService, DND_PROVIDERS, UserService]);
 
 
