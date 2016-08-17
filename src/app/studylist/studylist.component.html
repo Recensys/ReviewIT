@@ -15,7 +15,7 @@
             <a [routerLink]="['study/'+studyDetail.Id+'/tasks']" class="list-group-item">{{studyDetail.Name}}</a>
           </div>
           <div class="col-sm-2">
-            <a (click)="studyConfig(studyDetail.Id)" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+            <a [routerLink]="['study/'+studyDetail.Id+'/config']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
           </div>
         </div>
       </li>
