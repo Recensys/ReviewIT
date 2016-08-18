@@ -1,6 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode, Component, ViewContainerRef } from '@angular/core';
-import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS } from './app/';
+import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS, LoggedInGuard } from './app/';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {CookieService} from 'angular2-cookie/core';
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
@@ -8,7 +8,6 @@ import {DND_PROVIDERS} from 'ng2-dnd/ng2-dnd';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from 'ng2-bootstrap/ng2-bootstrap'; 
 
 import { UserService } from './app/shared/services'
-import { LoggedInGuard } from './app/loggedin.guard'
 
 
 if (environment.production) {
