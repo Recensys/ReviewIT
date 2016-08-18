@@ -9,11 +9,7 @@ const map: any = {
     'ng2-bootstrap': 'vendor/ng2-bootstrap',
     'moment': 'vendor/moment/moment.js',
     'dragula': 'vendor/dragula/dist/dragula.js',
-    'ng2-dragula': 'vendor/ng2-dragula',
     'ng2-dnd': 'vendor/ng2-dnd',
-    'ng2-slider-component': 'vendor/ng2-slider-component',
-    'ng2-slideable-directive': 'vendor/ng2-slideable-directive',
-    'ng2-styled-directive': 'vendor/ng2-styled-directive',
     'primeng':                    'vendor/primeng',
     'notifications': 'vendor/angular2-notifications',
   };
@@ -27,12 +23,8 @@ const packages: any = {
         defaultExtension: 'js',
         main: 'ng2-bootstrap.js'
     },
-    'ng2-dragula': { format: 'cjs', defaultExtension: 'js', main: 'ng2-dragula' },
     //'ng2-dragula': {main:'ng2-dragula.js', defaultExtension: 'js',},
     'ng2-dnd':         { defaultExtension: 'js' },
-    'ng2-slider-component': {defaultExtension: 'js', main: 'ng2-slider.component'},
-    'ng2-slideable-directive': {defaultExtension: 'js'},
-    'ng2-styled-directive': {defaultExtension: 'js'},
     'primeng':                    { defaultExtension: 'js' },
     'notifications': { main: 'components.js', defaultExtension: 'js' }
 };

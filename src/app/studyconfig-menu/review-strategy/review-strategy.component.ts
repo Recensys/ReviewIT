@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 
 import {APIService} from '../../services/api.service';
 import {COMMON_DIRECTIVES} from '@angular/common';
-import {Ng2SliderComponent} from 'ng2-slider-component/ng2-slider.component';
 
 
 @Component({
@@ -11,7 +10,7 @@ import {Ng2SliderComponent} from 'ng2-slider-component/ng2-slider.component';
     templateUrl: 'review-strategy.component.html',
     styleUrls: ['review-strategy.component.css'],
     providers: [],
-    directives: [COMMON_DIRECTIVES, Ng2SliderComponent]
+    directives: [COMMON_DIRECTIVES]
 })
 
 export class ReviewStrategyComponent{
