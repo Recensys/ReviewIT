@@ -21,6 +21,7 @@
     "@angular/upgrade": "2.0.0-rc.4",
     "angular-sortablejs": "^0.1.0",
     "angular2-cookie": "^1.2.2",
+    "angular2-notifications": "^0.3.1",
     "dragula": "^3.7.1",
     "es6-shim": "^0.35.0",
     "moment": "^2.14.1",

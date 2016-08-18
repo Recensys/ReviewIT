@@ -15,9 +15,9 @@
                         [class.selected]="!selected"
                         (click)="onSelect(undefined)">
                         <h4 class="list-group-item-heading">
-                            {{model.Name}}
+                            {{model.StudyDetails.Name != "" ? model.StudyDetails.Name : "New Study"}}
                         </h4>
-                        <p class="list-group-item-text">{{model.Description}}</p>
+                        <p class="list-group-item-text">{{model.StudyDetails.Description != "" ? model.StudyDetails.Description : "..."}}</p>
                     </li>
 
                     <h3 class="card-header card-header-nospace">
@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-8">
             <app-stageconfig *ngIf(selected) [model]="selected"></app-stageconfig>
-            <app-studyconfig *ngIf(!selected) [model]="model"></app-studyconfig>
+            <app-studyconfig *ngIf(!selected) [model]="model.StudyDetails"></app-studyconfig>
         </div>
     </div>
 

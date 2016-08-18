@@ -24,15 +24,6 @@ import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-boo
 
 export class StudyconfigMenuComponent implements OnInit, OnDestroy {
 
-    public phases: Phase[] = [
-    {
-      id: 1,
-      name: 'Stage 1',
-      description: 'based on the title assess whether the paper is related to global software engineering',
-      fields: null,
-      tasks: null
-    }
-  ];
 
     
     public start = { Loading: false, Show: false, Msg: "Starting Study..."};
@@ -41,7 +32,7 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     public disabled: boolean = false;
 
-    public model = {Id: 1, Name: "Name of Study", Description: "Study Description", Stages: [{Name: "", Description: ""}]};
+    public model = {StudyDetails: {Id: 0, Name: "", Description: ""}, Stages: [{Name: "", Description: ""}]};
 
     constructor(
         private route: ActivatedRoute,
@@ -56,10 +47,6 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             let id = +params['id'];
 
-            this._api.GetStages(id).subscribe(
-                stages => this.phases,
-                error => console.log(error)
-            );
 
 
             //GET STUDY TOO!

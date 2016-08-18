@@ -29,7 +29,8 @@ module.exports = function(defaults) {
       'primeng/**/*.js',
       'primeui/themes/omega/theme.css',
       'primeui/primeui-ng-all.min.css',
-      'primeui/themes/omega/**'
+      'primeui/themes/omega/**',
+      'angular2-Notifications/**/*.js',
     ]
   });
 };
