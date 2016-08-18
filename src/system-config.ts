@@ -74,6 +74,7 @@ const barrels: string[] = [
   'app/shared/services',
   'app/services',
   'app/model',
+  'app/task',
   /** @cli-barrel */
 ];
 

@@ -7,8 +7,17 @@ import {CookieService} from 'angular2-cookie/core';
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {DND_PROVIDERS} from 'ng2-dnd/ng2-dnd';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from 'ng2-bootstrap/ng2-bootstrap'; 
+import { RouterModule } from '@angular/router'
+import { FormsModule } from '@angular/forms';
 
-import { UserService } from './shared'
+import { UserService } from './shared';
+import { TaskDetailsComponent, TasklistComponent } from './task';
+import { taskRoutes } from './task/task.routes';
+import { LoginComponent } from './login';
+import { SignupComponent } from './signup';
+import { StudyconfigMenuComponent } from './studyconfig-menu/studyconfig-menu.component';
+import { PageNotFoundComponent } from './page-not-found';
+import { HomeComponent } from './home';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS, LoggedInGuard } from './';
@@ -16,18 +25,27 @@ import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS, LoggedInGuard 
 
 
 @NgModule({
-    declarations:   [ReviewITAppComponent],
-    imports:        [ BrowserModule,
+    // TODO: depend on modules instead of importing components here
+    declarations:   [ReviewITAppComponent, HomeComponent, SignupComponent, LoginComponent, StudyconfigMenuComponent, PageNotFoundComponent, TaskDetailsComponent, TasklistComponent],
+    imports:        [   BrowserModule,
+                        FormsModule,
+                        RouterModule.forRoot([
+                                            { path: '', component: HomeComponent },
+                                            { path: 'login', component: LoginComponent },
+                                            { path: 'signup', component: SignupComponent },
+                                            { path: 'study/:id', children: [
+                                                { path: 'config', component: StudyconfigMenuComponent, canActivate: [LoggedInGuard] },
+                                                ...taskRoutes,
+                                            ]},
+                                            { path: '**', component: PageNotFoundComponent },
+                                        ], LoggedInGuard),
                 ],
     providers:      [
-                    LoggedInGuard, 
-                    APP_ROUTER_PROVIDERS,
                     HTTP_PROVIDERS, 
                     CookieService, 
                     DND_PROVIDERS, 
                     UserService,
-                    disableDeprecatedForms(),
-                    provideForms()
+                    LoggedInGuard
                 ],
     bootstrap:    [ReviewITAppComponent],
 })
