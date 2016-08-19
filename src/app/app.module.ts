@@ -10,7 +10,7 @@ import {Ng2BootstrapConfig, Ng2BootstrapTheme} from 'ng2-bootstrap/ng2-bootstrap
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 
-import { UserService } from './shared';
+import { UserService, MessageService } from './shared';
 import { TaskDetailsComponent, TasklistComponent } from './task';
 import { taskRoutes } from './task/task.routes';
 import { LoginComponent } from './login';
@@ -45,7 +45,8 @@ import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS, LoggedInGuard 
                     CookieService, 
                     DND_PROVIDERS, 
                     UserService,
-                    LoggedInGuard
+                    LoggedInGuard,
+                    MessageService
                 ],
     bootstrap:    [ReviewITAppComponent],
 })

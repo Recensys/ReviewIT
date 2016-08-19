@@ -20,6 +20,10 @@ li.selected{
     background-color: #e6e6ff;
 }
 
+.ui-growl{
+    padding-top:50px;
+}
+
 td textarea{
     position:absolute;
     top:10px;

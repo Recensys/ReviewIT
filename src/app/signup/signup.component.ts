@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { APIService } from "../services/api.service";
+import { MessageService } from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -14,7 +15,9 @@ export class SignupComponent {
   errorMessage: string;
   loading: boolean;
 
-  constructor(private _api : APIService){ this.loading=false;  }
+  constructor(private _api : APIService, private messageService: MessageService){ 
+    this.loading=false;  
+  }
 
   signin(username, password) {
     console.log(username + " " + password);
@@ -24,7 +27,10 @@ export class SignupComponent {
     this._api.CreateUser(username, password)
       .subscribe(
         bool => this.loading = false,
-        error => {this.loading = false; this.errorMessage = <any>error;}
+        error => {
+          this.loading = false; 
+          this.messageService.addMessage({severity: 'error', summary: 'Error!', detail: error});
+        }
       );
   }
 
