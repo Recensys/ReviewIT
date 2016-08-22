@@ -31,7 +31,6 @@ export class LoginComponent {
       .subscribe(
         json => {
           this.loading = false;
-          console.log(json);
           var token = json['token'];  
           this._userService.logIn(json['user'], token);    
           this.router.navigate(['']);
