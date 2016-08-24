@@ -41,17 +41,18 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
   
     }
 
-        private sub: any;
+    private sub: any;
+    private id: number;
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            let id = +params['id'];
+        // subscribe to id
+        this.sub = this.route.params.subscribe(params => this.id = +params['id'] );
 
-
-
-            //GET STUDY TOO!
-
-       });
+        // get model
+        this._api.getStudy(this.id).subscribe(
+                json => this.model = json,
+                error => console.log(error)
+        );
     }
 
 

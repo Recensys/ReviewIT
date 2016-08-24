@@ -41,36 +41,29 @@ export class StageconfigComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-          this._api.GetFields(0).subscribe(
-                    fieldArray => {
-                        console.log(fieldArray);
-                        this.availableFields = fieldArray
-                    },
-                    error => console.log(error)
-                );
+        this.availableFields.push(...this.model.AvailableFields);
     }
-
-    dropToVisible(field: Field){
-        field.Input = false;
-    }
-    dropToRequested(field: Field){
-        field.Input = true;
-    }
-    dropToAvailable(){}
 
 
     saveDatafields(){
-        this._api.SaveDatefields(0, this.visibleFields, this.requestedFields).subscribe(
+        this._api.SaveDatefields(this.model.Id, this.visibleFields, this.requestedFields).subscribe(
             status => this.messages.datafields = status,
             error => this.messages.datafields = error
         );
     }
 
     saveDetails(){
-        this._api.SaveStageDetails(0, this.name, this.description).subscribe(
+        this._api.SaveStageDetails(this.model.Id, this.name, this.description).subscribe(
             status => this.messages.details = status,
             error => this.messages.details = error
         )
+    }
+
+    resetDatafields(){
+        this.availableFields = [];
+        this.availableFields.push(...this.model.AvailableFields);
+        this.visibleFields = [];
+        this.requestedFields = [];
     }
 
     ngOnDestroy() {

@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 
 import { APIService } from '../../services';
 import { Studydetails } from '../../model';
+import { MessageService } from '../../shared';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
      constructor(
         private route: ActivatedRoute,
         private _api: APIService,
-        private router: Router
+        private router: Router,
+        private messageService: MessageService
     ) {}
 
     private id: number;
@@ -29,9 +31,8 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
     ngOnInit() {
             this.sub = this.route.params.subscribe(params => {
                 this.id = +params['id'];
-                
-                //TODO get study
             });
+
     }
 
 
@@ -41,14 +42,14 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
         }
     }
 
-    saveDetails(){
+    saveDetails() {
         this._api.saveStudyDetails(this.id, {Name: this.model.Name, Description: this.model.Description}).subscribe(
             status => console.log(),
             error => console.log(error)
         );
     }
 
-    deleteStudy(){
+    deleteStudy() {
         this._api.deleteStudy(this.id).subscribe(
             res => this.router.navigate(['']),
             error => console.log(error)

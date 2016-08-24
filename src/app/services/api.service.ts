@@ -130,6 +130,12 @@ export class APIService {
         .map(this.exstractStatusText)
         .catch(this.handleError);
   }
+  public getStudy(id: number) {
+    let url = `${Globals.api}study/${id}`;
+    return this.http.get(url, this.AuthOptions())
+        .map(this.extractJson)
+        .catch(this.handleError);
+  }
   public getStudies() : Observable<Studydetails[]>{
     let url = `${Globals.api}study/`;
     let args = new RequestOptions();

@@ -4,7 +4,7 @@ import { APP_ROUTER_PROVIDERS } from "./review-it.routes";
 
 import { NavbarComponent, MessageService } from './shared'
 import { Message } from 'primeng/primeng';
-import {Growl} from 'primeng/primeng';
+import { Growl } from 'primeng/primeng';
 
 @Component({
   moduleId: module.id,

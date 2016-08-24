@@ -5,4 +5,8 @@
 
 'use strict';
 
-export var api = "http://reviewit-backend-latest.azurewebsites.net/api/";
+// deploy
+//export var api = 'http://reviewit-backend-latest.azurewebsites.net/api/';
+
+// local
+export var api = 'http://localhost:7807/api/';
