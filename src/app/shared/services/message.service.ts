@@ -9,7 +9,15 @@ export class MessageService {
 
     msgs: Message[] = [];
 
-    addMessage(msg: Message){
-        this.msgs.push(msg);
+    addInfo(msg: string) {
+        this.msgs.push({severity: 'info', summary: 'Error!', detail: msg});
+    }
+
+    addWarning(msg: string) {
+        this.msgs.push({severity: 'warn', summary: 'Warning', detail: msg});
+    }
+
+    addError(msg: string) {
+        this.msgs.push({severity: 'error', summary: 'Info:', detail: msg});
     }
 }

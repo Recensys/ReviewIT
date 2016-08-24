@@ -29,7 +29,7 @@ export class SignupComponent {
         bool => this.loading = false,
         error => {
           this.loading = false; 
-          this.messageService.addMessage({severity: 'error', summary: 'Error!', detail: error});
+          this.messageService.addError(error);
         }
       );
   }
