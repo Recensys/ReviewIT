@@ -1,51 +1,79 @@
-<div class="card">
+<div class="card card-block-divided">
 	<div class="card-header">
 		Review strategy
 	</div>
 	<div class="card-block">
-
-
-		<!--<input type="range" min="10" max="1000" step="10" />-->
-
-		<div class="container-fluid">
-
-
-			<dl class="dl-horizontal">
-				<dt class="col-sm-2 text-truncate">Distribution</dt>
-				<dd class="col-sm-10">
-					<div class="form-group">
-						<select class="form-control" [(ngModel)]="selectedPreset" (ngModelChange)="onPresetChange()">
-							<option *ngFor="let preset of presets" [ngValue]="preset">{{preset.Name}}</option>
-						</select>
+		<dl class="dl-horizontal">
+			<dt class="col-sm-2 text-truncate">Researchers</dt>
+			<dd class="col-sm-10 form-group">
+				<p-autoComplete 
+					[(ngModel)]="selectedResearchers"
+					[suggestions]="results"
+					[minLength]="0"
+					[multiple]="true"	
+					[dropdown]="false"
+					[size]="30"
+					styleClass="wid100"
+					(completeMethod)="search($event)"
+					(onDropdownClick)="handleDropdown($event)"
+					(onSelect)="onSelectedResearcherChanged($event)"
+					(onUnselect)="onSelectedResearcherChanged($event)"
+					placeholder="Search for researchers"
+					field="Name"
+				>
+				</p-autoComplete>
+				<p class="text-muted form-group-info">
+					Select the researchers that should participate in this stage	
+				</p>
+			</dd>
+		</dl>
+	</div>
+	<div class="card-block">
+		<dl class="dl-horizontal">
+			<dt class="col-sm-2 text-truncate">Distribution</dt>
+			<dd class="col-sm-10 form-group">
+				<select class="form-control" [(ngModel)]="selectedPreset" (ngModelChange)="onPresetChange()">
+					<option *ngFor="let preset of presets" [ngValue]="preset">{{preset.Name}}</option>
+				</select>
+				<p class="text-muted form-group-info">
+					This is a preset for how to distribute tasks between researchers. You can change to a custom configuration by draging the bars below.
+				</p>
+			</dd>
+		</dl>
+	</div>
+	<div class="card-block">
+		<dl class="dl-horizontal">
+			<dt class="col-sm-2 text-truncate">Coverage</dt>
+			<dd class="col-sm-9">
+				<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+					<div 
+						*ngFor="let range of coverage"
+						class="ui-slider-range ui-widget-header ui-corner-all"
+						[style.left]="range[0] + '%'" 
+						[style.width]="range[1] + '%'"
+					>
 					</div>
-					<p class="text-muted">
-						This is a preset for how to distribute tasks between researchers. You can change to a custom configuration by draging the bars below.
-					</p>
-				</dd>
-			</dl>
-			<dl class="dl-horizontal">
-				<hr/>
-				<dt class="col-sm-2 text-truncate">All</dt>
+				</div>
+			</dd>
+			<dd class="col-sm-1">
+			{{coveragePercent}}%	
+			</dd>
+
+			<div *ngFor="let researcher of selectedResearchers">
+				<dt class="col-sm-2 text-truncate">{{researcher.Name}}</dt>
 				<dd class="col-sm-9">
-				<p-slider class="read-only" [(ngModel)]="rangeValues" [range]="true" animation="true" disabled="true"></p-slider>
+				<p-slider [(ngModel)]="researcher.Range" (ngModelChange)="onRangeChange()" animation="true" [range]="true"></p-slider>
 				</dd>
 				<dd class="col-sm-1">
-					{{rangeValues[1] - rangeValues[0]}}%
+					{{researcher.Range[1] - researcher.Range[0]}}%
 				</dd>
-
-				<div *ngFor="let researcher of researchers">
-					<dt class="col-sm-2 text-truncate">{{researcher.Name}}</dt>
-					<dd class="col-sm-9">
-					<p-slider [(ngModel)]="researcher.Range" (ngModelChange)="onRangeChange()" animation="true" [range]="true"></p-slider>
-					</dd>
-					<dd class="col-sm-1">
-						{{researcher.Range[1] - researcher.Range[0]}}%
-					</dd>
-				</div>
-			</dl>
-		</div>
+			</div>
+		</dl>
+	</div>
+	<div class="card-block" *ngIf="!checkIfValid()">
+		<p-messages [value]="msgs" [closable]="false"></p-messages>
 	</div>
 	<div class="card-footer">
-		<a (click)="updateDivision()" class="btn btn-primary">Save</a>
+		<button (click)="save()" class="btn btn-primary" [disabled]="!isValid">Save</button>
 	</div>
 </div>

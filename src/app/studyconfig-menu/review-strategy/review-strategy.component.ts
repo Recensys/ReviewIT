@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {APIService} from '../../services/api.service';
-import {COMMON_DIRECTIVES} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { APIService } from '../../services/api.service';
+import { MessageService } from '../../shared';
+import { COMMON_DIRECTIVES } from '@angular/common';
+import { Message } from 'primeng/primeng';
 
 @Component({
 	moduleId: module.id,
@@ -8,12 +10,29 @@ import {COMMON_DIRECTIVES} from '@angular/common';
 	templateUrl: 'review-strategy.component.html',
 	styleUrls: ['review-strategy.component.css'],
 	providers: [],
-	directives: [COMMON_DIRECTIVES]
+	directives: [COMMON_DIRECTIVES],
 })
 
 export class ReviewStrategyComponent {
 
 	public model2 = 'mooooodel2';
+
+	results: any[];
+	msgs: Message[] = [];
+
+	search(event) {
+		this.results = this.researchers
+		.filter(user => user.Name.indexOf(event.query) >= 0);
+	}
+
+	handleDropdown(event) {
+		this.results = [];
+		this.results = this.researchers;
+	}
+
+	onSelectedResearcherChanged(event) {
+		this.onPresetChange();
+	}
 
 	presets: any[] = [
 		{ Id: 0, Name: 'Equal Distribution' },
@@ -22,16 +41,19 @@ export class ReviewStrategyComponent {
 	];
 
 	researchers: any[] = [
-		{ Id: 0, Name: 'Mathias', Range: [0, 100] },
-		{ Id: 1, Name: 'Jacob', Range: [0, 100] },
-		{ Id: 2, Name: 'Paolo', Range: [0, 100] }
+		{ Id: 0, Name: 'Mathias', Range: [0, 0] },
+		{ Id: 1, Name: 'Jacob', Range: [0, 0] },
+		{ Id: 2, Name: 'Paolo', Range: [0, 0] }
 	];
 
-	rangeValues: number[] = [0, 100];
+	selectedResearchers: any[] = [];
+
+	coverage: number[][] = [];
+	coveragePercent: number = 0;
 
 	selectedPreset: any;
 
-	constructor(private _api: APIService) {
+	constructor(private _api: APIService, private _messages: MessageService) {
 		if (this.selectedPreset === undefined) {
 			this.selectedPreset = this.presets[0];
 		}
@@ -42,9 +64,9 @@ export class ReviewStrategyComponent {
 		if (this.selectedPreset.Id === 0) {
 			let rest = 100;
 			let last = 0;
-			let n = this.researchers.length;
+			let n = this.selectedResearchers.length;
 
-			for (let researcher of this.researchers){
+			for (let researcher of this.selectedResearchers){
 				let share = Math.floor(rest / n);
 
 				researcher.Range = [last, last + share];
@@ -53,13 +75,12 @@ export class ReviewStrategyComponent {
 				rest -= share;
 				n -= 1;
 			}
-			this.updateRanges();
 		} else if (this.selectedPreset.Id === 1) {
-			for (let researcher of this.researchers){
+			for (let researcher of this.selectedResearchers){
 				researcher.Range = [0, 100];
 			}
-			this.updateRanges();
 		}
+		this.updateRanges();
 	}
 
 	onRangeChange() {
@@ -68,18 +89,66 @@ export class ReviewStrategyComponent {
 	}
 
 	updateRanges() {
-		let c: boolean[] = [];
-		for (let researcher of this.researchers) {
+
+		let coverage: Array<number> = new Array<number>(100);
+
+		for (let i = 0; i < coverage.length; i++) coverage[i] = 0;
+
+		for (let researcher of this.selectedResearchers) {
 			let min = researcher.Range[0];
 			let max = researcher.Range[1];
-			for (let i = min; i < max; i++) c[i] = true;
+			for (let i = min; i < max; i++) coverage[i]++;
 		}
 
-		let count = 0;
-		for (let i = 0; i < c.length; i++) {
-			if (c[i]) count++;
+		this.coverage = [];
+
+		let start = 0;
+		let width = 0;
+
+
+		for (let i = 0; i < coverage.length; i++) {
+
+			let last = i > 0 ? coverage[i - 1] > 0 : 0;
+			let current = coverage[i] > 0;
+
+			if (last && current) width++;
+			if (last && !current || (i === coverage.length - 1 && width !== 0)) {
+				this.coverage.push([start, width + 1]);
+				width = 0;
+			}
+			if (!current) start = i + 1;
 		}
 
-		this.rangeValues = [0, count];
+		this.coveragePercent = 0;
+		for (let i = 0; i < coverage.length; i++) {
+			if (coverage[i] > 0) this.coveragePercent++;
+		}
+	}
+
+	isValid: boolean = false;
+
+	checkIfValid(): boolean {
+
+		/* Clears messages */
+		this.msgs = [];
+
+		if (this.selectedResearchers.length <= 0) {
+			this.msgs.push({
+				severity: 'warn',
+				summary: 'No researchers added',
+				detail: 'There must be at least one researcher in a strage.'
+			});
+		} else if (this.coveragePercent < 100) {
+			this.msgs.push({
+				severity: 'warn',
+				summary: 'Invalid distribution',
+				detail: 'The coverage percentage of a review strategy must be 100%.'
+			});
+		}
+
+		return (this.isValid = this.msgs.length <= 0);
+	}
+
+	save() {
 	}
 }

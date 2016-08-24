@@ -22,13 +22,13 @@ import { HomeComponent } from './home';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ReviewITAppComponent, environment, APP_ROUTER_PROVIDERS, LoggedInGuard } from './';
 
-import { SliderModule } from 'primeng/primeng';
+import { SliderModule, AutoCompleteModule, MessagesModule } from 'primeng/primeng';
 
 
 @NgModule({
 	// TODO: depend on modules instead of importing components here
 	declarations: [ ReviewITAppComponent, HomeComponent, SignupComponent, LoginComponent, StudyconfigMenuComponent, PageNotFoundComponent, TaskDetailsComponent, TasklistComponent],
-	imports: [ BrowserModule, FormsModule, SliderModule,
+	imports: [ BrowserModule, FormsModule, SliderModule, AutoCompleteModule, MessagesModule,
 		RouterModule.forRoot([
 			{ path: '', component: HomeComponent },
 			{ path: 'login', component: LoginComponent },
