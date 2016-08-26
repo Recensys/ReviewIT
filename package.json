@@ -25,6 +25,7 @@
     "moment": "^2.14.1",
     "ng2-bootstrap": "^1.0.24",
     "ng2-dnd": "1.8.2",
+    "ng2-file-upload": "^1.0.3",
     "primeng": "^1.0.0-beta.13",
     "primeui": "^4.1.15",
     "reflect-metadata": "0.1.3",

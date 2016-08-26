@@ -3,9 +3,9 @@
 		Review strategy
 	</div>
 	<div class="card-block">
-		<dl class="dl-horizontal">
-			<dt class="col-sm-2 text-truncate">Researchers</dt>
-			<dd class="col-sm-10 form-group">
+		<div class="row">
+			<div class="col-sm-2 text-truncate">Researchers</div>
+			<div class="col-sm-10 form-group">
 				<p-autoComplete 
 					[(ngModel)]="selectedResearchers"
 					[suggestions]="results"
@@ -25,26 +25,26 @@
 				<p class="text-muted form-group-info">
 					Select the researchers that should participate in this stage	
 				</p>
-			</dd>
-		</dl>
+			</div>
+		</div>
 	</div>
 	<div class="card-block">
-		<dl class="dl-horizontal">
-			<dt class="col-sm-2 text-truncate">Distribution</dt>
-			<dd class="col-sm-10 form-group">
+		<div class="row">
+			<div class="col-sm-2 text-truncate">Distribution</div>
+			<div class="col-sm-10 form-group">
 				<select class="form-control" [(ngModel)]="selectedPreset" (ngModelChange)="onPresetChange()">
 					<option *ngFor="let preset of presets" [ngValue]="preset">{{preset.Name}}</option>
 				</select>
 				<p class="text-muted form-group-info">
 					This is a preset for how to distribute tasks between researchers. You can change to a custom configuration by draging the bars below.
 				</p>
-			</dd>
-		</dl>
+			</div>
+		</div>
 	</div>
 	<div class="card-block">
-		<dl class="dl-horizontal">
-			<dt class="col-sm-2 text-truncate">Coverage</dt>
-			<dd class="col-sm-9">
+		<div class="row">
+			<div class="col-sm-2 text-truncate">Coverage</div>
+			<div class="col-sm-9">
 				<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
 					<div 
 						*ngFor="let range of coverage"
@@ -54,21 +54,21 @@
 					>
 					</div>
 				</div>
-			</dd>
-			<dd class="col-sm-1">
+			</div>
+			<div class="col-sm-1">
 			{{coveragePercent}}%	
-			</dd>
+			</div>
 
 			<div *ngFor="let researcher of selectedResearchers">
-				<dt class="col-sm-2 text-truncate">{{researcher.Name}}</dt>
-				<dd class="col-sm-9">
+				<div class="col-sm-2 text-truncate">{{researcher.Name}}</div>
+				<div class="col-sm-9">
 				<p-slider [(ngModel)]="researcher.Range" (ngModelChange)="onRangeChange()" animation="true" [range]="true"></p-slider>
-				</dd>
-				<dd class="col-sm-1">
+				</div>
+				<div class="col-sm-1">
 					{{researcher.Range[1] - researcher.Range[0]}}%
-				</dd>
+				</div>
 			</div>
-		</dl>
+		</div>
 	</div>
 	<div class="card-block" *ngIf="!checkIfValid()">
 		<p-messages [value]="msgs" [closable]="false"></p-messages>

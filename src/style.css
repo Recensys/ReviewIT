@@ -303,3 +303,14 @@ dd > .form-group, dd.form-group {
 	}
 }
 
+/* File upload */
+.my-drop-zone { 
+	border: dotted 3px lightgray;
+	width:100%;
+	padding:50px;
+}
+
+.nv-file-over { border: dotted 3px red; }
+.float-right {
+	float:right !important;
+}

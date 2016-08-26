@@ -6,7 +6,7 @@ import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { APIService } from '../../services/api.service';
 import { Field } from '../../field';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
-import { ReviewStrategyComponent } from '../review-strategy/review-strategy.component';
+import { ReviewStrategyComponent } from './review-strategy/review-strategy.component';
 
 @Component({
 	moduleId: module.id,

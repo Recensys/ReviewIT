@@ -29,6 +29,7 @@ module.exports = function(defaults) {
 			'angular2-Notifications/**/*.js',
 			'jquery/**/*.js',
 			'jquery-ui/**/*.js',
+			'ng2-file-upload/**/*.+(js|js.map)'
 		]
 	});
 };
