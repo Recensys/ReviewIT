@@ -10,7 +10,7 @@ export class MessageService {
     msgs: Message[] = [];
 
     addInfo(msg: string) {
-        this.msgs.push({severity: 'info', summary: 'Error!', detail: msg});
+        this.msgs.push({severity: 'info', summary: 'Info', detail: msg});
     }
 
     addWarning(msg: string) {
@@ -18,6 +18,6 @@ export class MessageService {
     }
 
     addError(msg: string) {
-        this.msgs.push({severity: 'error', summary: 'Info:', detail: msg});
+        this.msgs.push({severity: 'error', summary: 'Error!', detail: msg});
     }
 }

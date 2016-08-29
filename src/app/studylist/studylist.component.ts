@@ -1,8 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
 import { Studydetails } from '../model';
 import { APIService } from '../services/api.service';
+
 
 @Component({
   moduleId: module.id,
@@ -17,6 +19,7 @@ export class StudylistComponent implements OnInit {
 
   public studyDetails : Studydetails[] = [];
 
+  
 
   constructor(private _api: APIService, private router: Router) { }
 
@@ -24,7 +27,6 @@ export class StudylistComponent implements OnInit {
     this._api.getStudies().subscribe(
       studies => {
         this.studyDetails = studies
-        console.log(studies);
         },
       error => console.log(error)
     );

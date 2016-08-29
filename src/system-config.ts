@@ -3,12 +3,9 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-    //'angular-sortablejs': 'vendor/angular-sortablejs',
-    sortablejs: 'vendor/sortablejs/Sortable.js',
     'angular2-cookie': 'vendor/angular2-cookie',    
     'ng2-bootstrap': 'vendor/ng2-bootstrap',
     'moment': 'vendor/moment/moment.js',
-    'dragula': 'vendor/dragula/dist/dragula.js',
     'ng2-dnd': 'vendor/ng2-dnd',
     'primeng':                    'vendor/primeng',
     'notifications': 'vendor/angular2-notifications',
@@ -16,14 +13,12 @@ const map: any = {
 
 /** User packages configuration. */
 const packages: any = {
-    //'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
     'angular2-cookie': { main: 'core.js',  defaultExtension: 'js' },
     'ng2-bootstrap': {
         format: 'cjs',
         defaultExtension: 'js',
         main: 'ng2-bootstrap.js'
     },
-    //'ng2-dragula': {main:'ng2-dragula.js', defaultExtension: 'js',},
     'ng2-dnd':         { defaultExtension: 'js' },
     'primeng':                    { defaultExtension: 'js' },
     'notifications': { main: 'components.js', defaultExtension: 'js' }

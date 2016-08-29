@@ -4,26 +4,28 @@
 <div class="container-fluid">
 
 
-    <div class="row">
+    <div *ngIf='model != null' class="row">
         <div class="col-md-4">
             <div class="card">
                 <h3 class="card-header card-header-nospace">
                     Study
+                    <a (click)="saveStudy(model)" class="btn btn-primary btn-sm pull-right">Save</a>
                 </h3>
+                
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"
                         [class.selected]="!selected"
                         (click)="onSelect(undefined)">
                         <h4 class="list-group-item-heading">
-                            {{model.StudyDetails.Name != "" ? model.StudyDetails.Name : "New Study"}}
+                            {{model.StudyDetails.Name ? model.StudyDetails.Name : "New Study"}}
                         </h4>
-                        <p class="list-group-item-text">{{model.StudyDetails.Description != "" ? model.StudyDetails.Description : "..."}}</p>
+                        <p class="list-group-item-text">{{model.StudyDetails.Description ? model.StudyDetails.Description : "..."}}</p>
                     </li>
 
                     <h3 class="card-header card-header-nospace">
                     Stages
                     </h3>
-                    <li *ngIf="model.Stages.length == 0" class="list-group-item">add a new stage!</li>
+                    <li *ngIf="model.Stages != null && model.Stages.length == 0" class="list-group-item">add a new stage!</li>
                     <li class="list-group-item" 
                         *ngFor="let stage of model.Stages; let i = index"
                         [class.selected]="stage === selected"
@@ -37,8 +39,8 @@
                                 </div>
                             </div>                        
                         
-                            <h4 class="list-group-item-heading">{{stage.Name != "" ? stage.Name : "New stage"}}</h4>
-                            <p class="list-group-item-text">{{stage.Description != "" ? stage.Description : "..."}}</p>                 
+                            <h4 class="list-group-item-heading">{{stage.StageDetails.Name ? stage.StageDetails.Name : "New stage"}}</h4>
+                            <p class="list-group-item-text">{{stage.StageDetails.Description ? stage.StageDetails.Description : "..."}}</p>                 
                     </li>
                     
                 </ul>
@@ -64,7 +66,7 @@
 
         </div>
         <div class="col-md-8">
-            <app-stageconfig *ngIf(selected) [model]="selected"></app-stageconfig>
+            <app-stageconfig *ngIf(selected) [model]="selected" [availableFields]="model.AvailableFields"></app-stageconfig>
             <app-studyconfig *ngIf(!selected) [model]="model.StudyDetails"></app-studyconfig>
         </div>
     </div>

@@ -3,7 +3,7 @@
     <div class="card-header">
       <h5>Stage details</h5>
     </div>
-    <form (ngSubmit)="saveDetails()">
+    <form (ngSubmit)="saveStage()">
       <div class="card-block">
 
 
@@ -11,7 +11,7 @@
             <label class="col-sm-2 form-control-label" for="name">Name</label>
             <div class="col-sm-10">
                   <input type="text" ngModel class="form-control" required
-                    [(ngModel)]="model.Name" name="name"
+                    [(ngModel)]="model.StageDetails.Name" name="name"
                       placeholder="Enter stage title">
                   </div>
           </div>
@@ -20,14 +20,13 @@
             <label class="col-sm-2 form-control-label" for="name">Description</label>
             <div class="col-sm-10">
                   <textarea class="form-control" rows="3"
-                    [(ngModel)]="model.Description" #desc="ngModel" name="desc"
+                    [(ngModel)]="model.StageDetails.Description" #desc="ngModel" name="desc"
                       placeholder="Enter stage description"></textarea>
             </div>
           </div>
 
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
         <a class="text-muted">{{messages.details}}</a>
       </div>
     </form>
@@ -48,7 +47,7 @@
                     <div class="card-title">Available Fields</div>
                     <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="availableFields" [dropZones]="['datafields']">
                         <div *ngFor="let field of availableFields; let i = index" class="list-group-item" 
-                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i" (onDropSuccess)="dropToAvailable($event)">
+                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i">
                               {{field.Name}}
                         </div>
                     </div>
@@ -57,9 +56,9 @@
             <div class="card">
                 <div class="card-block">
                     <div class="card-title">Visible Fields</div>
-                    <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="visibleFields" [dropZones]="['datafields']">
-                        <div *ngFor="let field of visibleFields; let i = index" class="list-group-item" 
-                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i" (onDropSuccess)="dropToVisible($event)">
+                    <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="model.StageFields.VisibleFields" [dropZones]="['datafields']">
+                        <div *ngFor="let field of model.StageFields.VisibleFields; let i = index" class="list-group-item" 
+                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i">
                               {{field.Name}}
                         </div>
                     </div>
@@ -68,9 +67,9 @@
             <div class="card">
                 <div class="card-block">
                     <div class="card-title">Requested Fields</div>
-                    <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="requestedFields" [dropZones]="['datafields']">
-                        <div *ngFor="let field of requestedFields; let i = index" class="list-group-item" 
-                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i" (onDropSuccess)="dropToRequested($event)">
+                    <div class="list-group" style="min-height: 50px;" dnd-sortable-container [sortableData]="model.StageFields.RequestedFields" [dropZones]="['datafields']">
+                        <div *ngFor="let field of model.StageFields.RequestedFields; let i = index" class="list-group-item" 
+                            dnd-sortable [dragEnabled]="true" [dragData]="field" [sortableIndex]="i">
                               <div>{{field.Name}}</div>
                         </div>
                     </div>
@@ -87,12 +86,11 @@
       </p>
     </div>
     <div class="card-footer">
-      <a (click)="saveDatafields()" class="btn btn-primary">Save</a>
       <a (click)="resetDatafields()" class="btn btn-secondary">Reset</a>
       <a class="text-muted" >{{messages.datafields}}</a>      
     </div>
   </div>
-  <review-strategy></review-strategy>
+  <app-review-strategy></app-review-strategy>
   
 
 

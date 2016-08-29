@@ -9,8 +9,8 @@ import { APIService } from '../services/api.service';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
 import { StartmodalComponent } from './startmodal/startmodal.component';
 import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
-
-
+import { Study, Stage, StageDetails, StudyDetails, Study2, StageFields } from '../model/models';
+import { MessageService } from '../shared';
 
 @Component({
     moduleId: module.id,
@@ -27,18 +27,19 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
 
     
     public start = { Loading: false, Show: false, Msg: "Starting Study..."};
-    public selected: Phase;
+    
     public bibtexError: string;
     public loading: boolean = false;
     public disabled: boolean = false;
 
-    public model = {StudyDetails: {Id: 0, Name: "", Description: ""}, Stages: [{Name: "", Description: ""}]};
+    public model: Study2 = null;
+    public selected: Stage = null;
 
     constructor(
         private route: ActivatedRoute,
-        private _api: APIService
-    ) {
-  
+        private _api: APIService,
+        private _msg: MessageService
+    ) { 
     }
 
     private sub: any;
@@ -46,13 +47,21 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         // subscribe to id
-        this.sub = this.route.params.subscribe(params => this.id = +params['id'] );
+        this.sub = this.route.params.subscribe(params => {
+            let id = +params['id'];
 
-        // get model
-        this._api.getStudy(this.id).subscribe(
-                json => this.model = json,
-                error => console.log(error)
-        );
+            // get model
+            this._api.getStudy(id).subscribe(
+                    study => {
+                        this.model = study;
+                        console.log('study');
+                        console.log(study);
+                        },
+                    error => console.log(error)
+            );
+        } );
+
+
     }
 
 
@@ -62,7 +71,7 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
         }
     }
 
-    onSelect(phase: Phase) { this.selected = phase; }
+    onSelect(stage) { this.selected = stage; }
 
     loadBibtex(){
         this.bibtexError = "";
@@ -86,7 +95,7 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     }
 
     addNewStage(){
-        this.model.Stages.push({Name: "", Description: ""});
+        this.model.Stages.push({Id: -1, StageDetails: {Name: '', Description: ''}, StageFields: {Id: -1, VisibleFields: [], RequestedFields: []}});
     }
 
     removeStage(index: number){
@@ -98,4 +107,13 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     cloneStage(stage){
         this.model.Stages.push(JSON.parse(JSON.stringify(stage)));
     }
+
+    saveStudy(study){
+        this._api.saveStudy(study).subscribe(
+            res => this._msg.addInfo(res),
+            error => this._msg.addError(error)
+        );
+    }
+
+    
 }
