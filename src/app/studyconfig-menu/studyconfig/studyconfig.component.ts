@@ -1,17 +1,17 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
-
+import { StudysourcesComponent } from './studysources/studysources.component';
 import { APIService } from '../../services';
 import { Studydetails } from '../../model';
 import { MessageService } from '../../shared';
 
-
 @Component({
-    moduleId: module.id,
-    selector: 'app-studyconfig',
-    providers: [ APIService ],
-    templateUrl: 'studyconfig.component.html',
-    styleUrls: ['studyconfig.component.css']
+	moduleId: module.id,
+	selector: 'app-studyconfig',
+	providers: [ APIService ],
+	directives: [ StudysourcesComponent ],
+	templateUrl: 'studyconfig.component.html',
+	styleUrls: ['studyconfig.component.css']
 })
 
 export class StudyConfigComponent implements OnInit, OnDestroy {
@@ -56,3 +56,4 @@ export class StudyConfigComponent implements OnInit, OnDestroy {
         );
     }
 }
+
