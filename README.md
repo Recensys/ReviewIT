@@ -2,6 +2,16 @@
 
 ReviewIT is a tool to assist with systematic literature reviews.
 
+## Dependencies
+
+https://nodejs.org/en/ v6.5.0^
+
+run `npm install` from root scope of the repo
+
+## Running the tool
+
+run `ng server` from root scope of the repo
+
 ## Screenshots
 
 ![Alt text](/../screenshots/screenshots/1.png?raw=true "screenshot")
