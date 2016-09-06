@@ -3,7 +3,6 @@ import { NgClass, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, NgModel }
 
 import { Data } from "../model/data";
 import { Field } from "./fields";
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
@@ -35,7 +34,7 @@ export class FieldComponent implements OnInit {
     @Component({
       selector: 'field-content',
       templateUrl: Field.getView(),
-      directives: [ CORE_DIRECTIVES, BUTTON_DIRECTIVES, NgModel]
+      directives: [ CORE_DIRECTIVES, NgModel]
     })
 
     class FieldContentComponent {

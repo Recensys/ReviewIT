@@ -1,15 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS } from 'ng2-bootstrap/ng2-bootstrap';
+//import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS } from 'ng2-bootstrap/ng2-bootstrap';
 import { APIService } from '../../services/api.service';
 
 
 @Component({
   moduleId: module.id,
   selector: 'startmodal',
-  directives: [ MODAL_DIRECTIVES ],
+  //directives: [ MODAL_DIRECTIVES ],
   providers: [ APIService ],
-  viewProviders:[ BS_VIEW_PROVIDERS ],
+  //viewProviders:[ BS_VIEW_PROVIDERS ],
   templateUrl: 'startmodal.component.html',
   styleUrls: ['startmodal.component.css']
 })

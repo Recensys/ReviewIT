@@ -9,7 +9,7 @@ import { Data } from '../../model/data';
 import { FieldComponent } from '../../field';
 import { APIService } from '../../services/api.service';
 import { BooleanField, CheckboxField, NumberField, RadioField, ResourceField, StringField } from '../../field';
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+//import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { StageModel } from '../../model/stageModel';
 
 
@@ -18,7 +18,7 @@ import { StageModel } from '../../model/stageModel';
     selector: 'app-task-details',
     templateUrl: 'task-details.component.html',
     styleUrls: ['task-details.component.css'],
-    directives: [ FieldComponent, BUTTON_DIRECTIVES, CORE_DIRECTIVES ],
+    directives: [ FieldComponent, CORE_DIRECTIVES ],
     providers: [ APIService ],
 })
 
