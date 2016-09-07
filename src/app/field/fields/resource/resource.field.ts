@@ -4,6 +4,9 @@
 
 import {Field} from '../field';
 
+import { DataType } from '../../../model';
+
+
 export class ResourceField implements Field {
 
     
@@ -15,7 +18,7 @@ export class ResourceField implements Field {
 
     Name: string;
     Input: boolean;
-    Type: string = 'resource';
+    Type: DataType = DataType.Resource;
 
     getView() {
         return 'app/fields/resource.field.html';

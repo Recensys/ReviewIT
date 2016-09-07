@@ -55,6 +55,7 @@ const barrels: string[] = [
 	'app/signup',
 	'app/field',
 	'app/field/fields',
+	'app/field/fields/string',
 	'app/studyconfig-menu/stageconfig/review-strategy',
 	'app/studyconfig-menu/stageconfig',
 	'app/studyconfig-menu/studyconfig',
@@ -69,6 +70,7 @@ const barrels: string[] = [
 	'app/model',
 	'app/task',
 	'app/studyconfig-menu/studyconfig/studysources',
+	'app/studyconfig-menu/datafieldeditor',
 	/** @cli-barrel */
 ];
 

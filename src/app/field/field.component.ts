@@ -1,4 +1,4 @@
-import { Component, Input, ViewContainerRef, ComponentResolver, ViewChild, OnInit} from "@angular/core";
+import { Component, Input, ViewContainerRef, ComponentResolver, ViewChild, OnInit, NgZone} from "@angular/core";
 import { NgClass, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, NgModel } from "@angular/common";
 
 import { Data } from "../model/data";
@@ -21,7 +21,7 @@ export class FieldComponent implements OnInit {
   @ViewChild('typedfield', { read: ViewContainerRef })
   protected contentTarget: ViewContainerRef;
 
-  constructor(private componentResolver: ComponentResolver) {}
+  constructor(private componentResolver: ComponentResolver, private zone: NgZone) {}
 
   ngOnInit() {
     var dynamicComponent = FieldComponent.createContentComponent(this.field, this.data);

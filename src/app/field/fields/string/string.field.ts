@@ -4,6 +4,9 @@
 
 import {Field} from '../field';
 
+import { DataType } from '../../../model';
+
+
 export class StringField implements Field {
 
   constructor(data) {
@@ -13,10 +16,10 @@ export class StringField implements Field {
 
   Name: string;
   Input: boolean;
-  Type: string =  'string';
+  Type: DataType = DataType.String;
 
   getView() {
-    return 'app/fields/string.field.html';
+    return 'app/field/fields/string/string.field.html';
   }
 
 }

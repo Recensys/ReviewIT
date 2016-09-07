@@ -4,6 +4,9 @@
 
 import {Field} from '../field';
 
+import { DataType } from '../../../model';
+
+
 export class NumberField implements Field {
 
   constructor(data) {
@@ -16,9 +19,9 @@ export class NumberField implements Field {
   Input: boolean;
   Min: number;
   Max: number;
-  Type: string = 'number';
+  Type: DataType = DataType.Number;
 
   getView() {
-    return 'app/fields/number.field.html';
+    return 'app/field/fields/number/number.field.html';
   }
 }

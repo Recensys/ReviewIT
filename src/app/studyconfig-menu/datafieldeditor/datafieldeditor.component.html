@@ -1,0 +1,65 @@
+<div class="card">
+        <div class="card-header">
+            <h5>Data Field Editor</h5> <p class="text-muted">use this to create input fields for the study.</p>
+        </div>
+        <div class="card-block">
+          <div class="col-sm-6">
+
+              <h5>Custom fields <button type="button" class="btn btn-sm" (click)="addNewField()"><i class="fa fa-plus" aria-hidden="true"></i> field</button> </h5>                            
+
+              <p *ngIf="fields.length == 0">You have no custom fields yet...</p>
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let field of fields" [class.selected]="field === newField" [class.selected] class="list-group-item" (click)="selectField(field)">
+                  <p class="list-group-item-text">{{field.Name}}</p>
+                </li>
+              </ul>
+          </div>
+
+
+          <div *ngIf="newField" class="col-sm-6">
+            <div class="card-block">
+              Field Title:
+              <input type="text" pInputText [(ngModel)]="newField.Name"/>
+            </div>
+            <div class="card-block">
+              Field Type:
+              <p-radioButton [disabled]="true"  name="groupname" label="String" value="0" [(ngModel)]="newField.Type"></p-radioButton>
+              <p-radioButton [disabled]="true"  name="groupname" label="Radio Button" value="2" [(ngModel)]="newField.Type"></p-radioButton>          
+              <p-radioButton (click)="setFieldType(1)" name="groupname" label="Boolean" value="1" [(ngModel)]="newField.Type"></p-radioButton>
+              <p-radioButton [disabled]="true" name="groupname" label="Checkbox" value="3" [(ngModel)]="newField.Type"></p-radioButton>
+            </div>
+            <div [ngSwitch]="newField.Type" class="card-block">
+              <div *ngSwitchCase="dataTypes.Radio">
+                Options:
+                <ul>
+                  <li *ngFor="let option of newField.Options; let i = index">
+                    <input type="text" pInputText [(ngModel)]="newField.Options[i].value"/>
+                  </li>
+                </ul>
+                <button type="button" pButton (click)="newField.Options.push({value:''})" icon="fa-plus" label="Add option"></button>
+              </div>
+              <div *ngSwitchCase="dataTypes.Boolean">
+              </div>
+              <div *ngSwitchCase="dataTypes.Checkbox">
+              </div>
+            </div>
+            <div class="card-block">
+              <h4>Field preview</h4>
+              <div class="col-sm-2">
+                <b>{{newField.Name}}</b>
+              </div>
+              <div class="col-sm-4">
+              <field [field]="newField" [data]="{}"></field>
+              </div>
+              
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" pButton (click)="addField(newField)" label="Save fields"></button>    
+      debugging: {{getModelJson}}          
+    </div>
+<div>
+

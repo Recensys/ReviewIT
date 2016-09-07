@@ -7,22 +7,23 @@ import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup} from '@angular/comm
 import {Component} from '@angular/core';
 import {NgFor} from '@angular/common';
 
+import { DataType } from '../../../model';
+
 
 export class RadioField implements Field {
 
-  constructor(name: string, input: boolean, options: string[]) {
+  constructor(name: string, input: boolean) {
     this.Name = name;
     this.Input = input;
-    this.Options = options;
   }
 
   Name: string;
   Input: boolean;
-  Options: string[];
+  Options: {value:string}[] = [{value: 'new option'}];
   Pick: string;
-  Type: string = 'radio';
+  Type: DataType = DataType.Radio;
 
-  getView(): string { return 'app/fields/radio.field.html'; }
+  getView(): string { return 'app/field/fields/radio/radio.field.html'; }
   get debug() { return JSON.stringify(this); }
 }
 

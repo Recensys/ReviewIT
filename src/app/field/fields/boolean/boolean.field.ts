@@ -4,6 +4,9 @@
 
 import {Field} from '../field';
 
+import { DataType } from '../../../model';
+
+
 export class BooleanField implements Field {
 
 	constructor(data) {
@@ -17,14 +20,14 @@ export class BooleanField implements Field {
 	Input: boolean;
 	Trueval: string;
 	Falseval: string;
-	Type: string = 'boolean';
+	Type: DataType = DataType.Boolean;
 	Options: string[] = ['Yes', 'No'];
 	Pick: string;
 
 	get debug() { return JSON.stringify(this); };
 
 	getView() {
-		return 'app/fields/boolean.field.html';
+		return 'app/field/fields/boolean/boolean.field.html';
 	}
 
 }

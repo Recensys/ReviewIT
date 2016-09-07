@@ -4,6 +4,9 @@
 
 import {Field} from '../field';
 
+import { DataType } from '../../../model';
+
+
 export class CheckboxField implements Field {
 
   constructor(name: string, input: boolean, options: string[]) {
@@ -15,10 +18,10 @@ export class CheckboxField implements Field {
   Name: string;
   Input: boolean;
   Options: string[];
-  Type: string = 'checkbox';
+  Type: DataType = DataType.Checkbox;
 
   getView() {
-    return 'app/fields/checkbox.field.html';
+    return 'app/field/fields/checkbox/checkbox.field.html';
   }
 
 }
