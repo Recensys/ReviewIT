@@ -39,13 +39,13 @@
             <p-radioButton class="mute" [disabled]="true" name="groupname" label="String" value="0" [(ngModel)]="newField.Type"></p-radioButton>
           </dd>
           <dd class="col-sm offset-sm-4">
-            <p-radioButton [disabled]="true" name="groupname" label="Radio Button" value="2" [(ngModel)]="newField.Type"></p-radioButton>
+            <p-radioButton class="mute" [disabled]="true" name="groupname" label="Radio Button" value="2" [(ngModel)]="newField.Type"></p-radioButton>
           </dd>
           <dd class="col-sm offset-sm-4">
             <p-radioButton (click)="setFieldType(1)" name="groupname" label="Boolean" value="1" [(ngModel)]="newField.Type"></p-radioButton>            
           </dd>
           <dd class="col-sm offset-sm-4">
-            <p-radioButton [disabled]="true" name="groupname" label="Checkbox" value="3" [(ngModel)]="newField.Type"></p-radioButton>            
+            <p-radioButton class="mute" [disabled]="true" name="groupname" label="Checkbox" value="3" [(ngModel)]="newField.Type"></p-radioButton>            
           </dd>
         </dl>
 
@@ -82,6 +82,6 @@
     </div>
   </div>
   <div class="card-footer">
-    <button type="button" pButton (click)="addField(newField)" label="Save fields"></button> debugging: {{getModelJson}}
+    <button type="button" class="btn btn-success" (click)="addField(newField)" label="Save fields">Save fields</button> debugging: {{getModelJson}}
   </div>
   <div>
