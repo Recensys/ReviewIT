@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StudylistComponent } from '../studylist';
-import { UserService } from '../shared';
+import { UserService } from '../core';
 import {DatafieldeditorComponent} from '../studyconfig-menu/datafieldeditor'
 
 @Component({
   moduleId: module.id,
   selector: 'app-home',
-  directives: [ StudylistComponent, DatafieldeditorComponent ],
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css']
 })

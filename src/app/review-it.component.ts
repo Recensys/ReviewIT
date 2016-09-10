@@ -1,10 +1,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { ROUTER_DIRECTIVES } from "@angular/router";
-import { APP_ROUTER_PROVIDERS } from "./review-it.routes";
 
-import { NavbarComponent, MessageService } from './shared'
-import { Message } from 'primeng/primeng';
-import { Growl } from 'primeng/primeng';
+import {Message} from 'primeng/primeng';
+import {MessageService} from './core';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +13,6 @@ import { Growl } from 'primeng/primeng';
         <p-growl [life]='3000' [value]="msgs"></p-growl>
       </div>
   `,
-  directives: [ ROUTER_DIRECTIVES, NavbarComponent, Growl ]
 })
 
 export class ReviewITAppComponent {

@@ -7,7 +7,6 @@ import { DataType } from '../../model';
 @Component({
   moduleId: module.id,
   selector: 'app-datafieldeditor',
-  directives: [FieldComponent, RadioButton],
   templateUrl: 'datafieldeditor.component.html',
   styleUrls: ['datafieldeditor.component.css']
 })

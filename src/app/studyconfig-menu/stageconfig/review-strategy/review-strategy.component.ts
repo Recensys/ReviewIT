@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../../services/api.service';
-import { MessageService } from '../../../shared';
-import { COMMON_DIRECTIVES } from '@angular/common';
+import { MessageService } from '../../../core';
 import { Message } from 'primeng/primeng';
 
 @Component({
@@ -10,7 +9,6 @@ import { Message } from 'primeng/primeng';
 	templateUrl: 'review-strategy.component.html',
 	styleUrls: ['review-strategy.component.css'],
 	providers: [],
-	directives: [COMMON_DIRECTIVES],
 })
 
 export class ReviewStrategyComponent {

@@ -1,8 +1,7 @@
 
 import {ActivatedRoute} from '@angular/router';
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
-import {CORE_DIRECTIVES} from '@angular/common';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 import { Task, TaskState } from '../../model/task';
 import { Data } from '../../model/data';
@@ -18,7 +17,6 @@ import { StageModel } from '../../model/stageModel';
     selector: 'app-task-details',
     templateUrl: 'task-details.component.html',
     styleUrls: ['task-details.component.css'],
-    directives: [ FieldComponent, CORE_DIRECTIVES ],
     providers: [ APIService ],
 })
 
@@ -39,7 +37,6 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private sanitizer: DomSanitizationService,
         private _api: APIService
     ) {
         

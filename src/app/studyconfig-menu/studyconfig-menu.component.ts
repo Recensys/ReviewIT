@@ -7,17 +7,15 @@ import { StageconfigComponent } from './stageconfig/stageconfig.component';
 import { StudyConfigComponent } from './studyconfig/studyconfig.component';
 import { APIService } from '../services/api.service';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
-import { StartmodalComponent } from './startmodal/startmodal.component';
 //import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { Study, Stage, StageDetails, StudyDetails, Study2, StageFields } from '../model/models';
-import { MessageService } from '../shared';
+import { MessageService } from '../core';
 
 @Component({
     moduleId: module.id,
     selector: 'app-studyconfig-menu',
     templateUrl: 'studyconfig-menu.component.html',
     styleUrls: ['studyconfig-menu.component.css'],
-    directives: [ StageconfigComponent, StudyConfigComponent, DND_DIRECTIVES, StartmodalComponent ],
     providers: [ APIService ],
     //viewProviders:[ BS_VIEW_PROVIDERS ]
 })

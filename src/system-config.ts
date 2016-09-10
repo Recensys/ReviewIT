@@ -3,6 +3,7 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+	"@angular": "vendor/@angular",
 	'angular2-cookie': 'vendor/angular2-cookie',
 	'moment': 'vendor/moment/moment.js',
 	'ng2-file-upload': 'vendor/ng2-file-upload',
@@ -19,7 +20,32 @@ const packages: any = {
 	'ng2-dnd': { defaultExtension: 'js' },
 	'ng2-file-upload': { main: 'ng2-file-upload.js', defaultExtension: 'js' },
 	'primeng': { defaultExtension: 'js' },
-	'notifications': { main: 'components.js', defaultExtension: 'js' }
+	'notifications': { main: 'components.js', defaultExtension: 'js' },
+
+    "@angular/core": {
+        main: "bundles/core.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/common": {
+        main: "bundles/common.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/compiler": {
+        main: "bundles/compiler.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/forms": {
+        main: "bundles/forms.umd.js"
+    },
+    "@angular/http": {
+        main: "bundles/http.umd.js"
+    },
+    "@angular/platform-browser": {
+        main: "bundles/platform-browser.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/platform-browser-dynamic": {
+        main: "bundles/platform-browser-dynamic.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/router": {
+        main: "bundles/router.umd.js" //use the ESM entry point for bundling tools
+    },
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +97,11 @@ const barrels: string[] = [
 	'app/task',
 	'app/studyconfig-menu/studyconfig/studysources',
 	'app/studyconfig-menu/datafieldeditor',
+	'app/core',
+	'app/core/services',
+	'app/navbar',
+	'app/navbar/usernav',
+	'app/ng2-dnd-module/'
 	/** @cli-barrel */
 ];
 

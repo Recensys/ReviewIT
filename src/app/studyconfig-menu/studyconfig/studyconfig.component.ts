@@ -3,13 +3,12 @@ import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { StudysourcesComponent } from './studysources/studysources.component';
 import { APIService } from '../../services';
 import { Studydetails } from '../../model';
-import { MessageService } from '../../shared';
+import { MessageService } from '../../core';
 
 @Component({
 	moduleId: module.id,
 	selector: 'app-studyconfig',
 	providers: [ APIService ],
-	directives: [ StudysourcesComponent ],
 	templateUrl: 'studyconfig.component.html',
 	styleUrls: ['studyconfig.component.css']
 })

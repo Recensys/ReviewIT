@@ -4,18 +4,23 @@ td{
 	position:relative;
 }
 
+.ui-radiobutton .mute{
+    background-color: grey;
+}
+
+/*
 .ng-valid[required] {
-	border: 1px solid #42A948; /* green */
+	border: 1px solid #42A948;
 }
 
 .ng-valid {
-	border: 1px solid grey; /* green */
+	border: 1px solid grey;
 }
 
 .ng-invalid {
-	border: 1px solid #a94442; /* red */
+	border: 1px solid #a94442;
 }
-
+*/
 li.selected{
 	background-color: #e6e6ff;
 }

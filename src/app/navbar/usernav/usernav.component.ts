@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES } from "@angular/router";
 import {Subscription} from 'rxjs/Subscription';
 
-import { UserService } from '../../services';
-import { User } from '../../../model';
+import { UserService } from '../../core';
+import { User } from '../../model';
 
 
 @Component({
   moduleId: module.id,
   selector: 'app-usernav',
-  directives: [ROUTER_DIRECTIVES],
   templateUrl: 'usernav.component.html',
   styleUrls: ['usernav.component.css']
 })

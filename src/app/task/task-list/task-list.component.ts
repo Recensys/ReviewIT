@@ -11,7 +11,6 @@ import { APIService } from '../../services/api.service';
   selector: 'app-task-list',
   templateUrl: 'task-list.component.html',
   styleUrls: ['task-list.component.css'],
-  directives: [ FieldComponent ],
   providers: [ APIService ]
 })
 

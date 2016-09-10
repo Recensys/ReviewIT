@@ -1,16 +1,16 @@
 <div class="container" *ngIf="!userService.isLoggedIn">
-    <div class="row" style="min-height: 300px;">
-        <center>
+    <div class="row m-x-auto" style="min-height: 300px;">
+        
             <br>
             <br>
             <h1>Welcome to Reviewit</h1>
-        </center>
+        
     </div>
     
-    <div class="row" >
-        <center>
+    <div class="row m-x-auto" >
+        
             <h4>Create a user or sign in to begin!</h4>
-        </center>
+        
     </div>
 </div>
 <div class="container" *ngIf="userService.isLoggedIn">

@@ -1,9 +1,8 @@
-import { Component, Input, ViewContainerRef, ComponentResolver, ViewChild, OnInit, NgZone} from "@angular/core";
-import { NgClass, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, NgModel } from "@angular/common";
+import { Component, Input, ViewContainerRef, /*ComponentResolver,*/ ViewChild, OnInit, NgZone} from "@angular/core";
+import { NgClass } from "@angular/common";
 
 import { Data } from "../model/data";
 import { Field } from "./fields";
-import { CORE_DIRECTIVES } from '@angular/common';
 import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
@@ -21,12 +20,12 @@ export class FieldComponent implements OnInit {
   @ViewChild('typedfield', { read: ViewContainerRef })
   protected contentTarget: ViewContainerRef;
 
-  constructor(private componentResolver: ComponentResolver, private zone: NgZone) {}
+  constructor(/*private componentResolver: ComponentResolver*/ private zone: NgZone) {}
 
   ngOnInit() {
     var dynamicComponent = FieldComponent.createContentComponent(this.field, this.data);
-    this.componentResolver.resolveComponent(dynamicComponent)
-      .then((factory: any) => this.contentTarget.createComponent(factory));
+    //this.componentResolver.resolveComponent(dynamicComponent)
+    //  .then((factory: any) => this.contentTarget.createComponent(factory));
   }
 
   static createContentComponent(Field: Field, Data: Data) {
@@ -34,7 +33,6 @@ export class FieldComponent implements OnInit {
     @Component({
       selector: 'field-content',
       templateUrl: Field.getView(),
-      directives: [ CORE_DIRECTIVES, NgModel]
     })
 
     class FieldContentComponent {

@@ -1,1 +1,1 @@
-export * from './studylist.component';
+export * from './studylist.module';

@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="!user" class="pull-right">
-    <button class="btn btn-primary" [routerLink]="['login']">sign in</button>
-    <button class="btn btn-secondary" [routerLink]="['signup']">sign up</button>
+    <button class="btn btn-primary" routerLink="login" routerLinkActive="active">sign in</button>
+    <button class="btn btn-secondary" routerLink="signup">sign up</button>
   </div>
 
   <div *ngIf="user" class="row">

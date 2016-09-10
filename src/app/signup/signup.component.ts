@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { APIService } from "../services/api.service";
-import { MessageService } from '../shared';
+import { MessageService } from '../core';
 
 @Component({
   moduleId: module.id,

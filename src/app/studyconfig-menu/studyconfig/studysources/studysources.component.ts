@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FILE_UPLOAD_DIRECTIVES, FileUploader } from 'ng2-file-upload';
+import { FileUploader} from 'ng2-file-upload';
 
 
 @Component({
@@ -7,7 +7,6 @@ import { FILE_UPLOAD_DIRECTIVES, FileUploader } from 'ng2-file-upload';
 	selector: 'app-studysources',
 	templateUrl: 'studysources.component.html',
 	styleUrls: ['studysources.component.css'],
-	directives: [FILE_UPLOAD_DIRECTIVES]
 })
 
 export class StudysourcesComponent implements OnInit {

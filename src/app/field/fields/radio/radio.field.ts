@@ -3,7 +3,6 @@
  */
 
 import {Field} from '../field';
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup} from '@angular/common';
 import {Component} from '@angular/core';
 import {NgFor} from '@angular/common';
 

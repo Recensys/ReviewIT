@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { CookieService } from 'angular2-cookie/core';
 import { APIService } from "../services/api.service";
-import { UserService } from '../shared';
+import { UserService } from '../core';
 import { User } from '../model';
 
 

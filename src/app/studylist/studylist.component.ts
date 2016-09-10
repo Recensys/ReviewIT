@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 import { Studydetails } from '../model';
 import { APIService } from '../services/api.service';
@@ -9,7 +9,6 @@ import { APIService } from '../services/api.service';
 @Component({
   moduleId: module.id,
   selector: 'app-studylist',
-  directives: [ROUTER_DIRECTIVES],
   providers: [APIService],
   templateUrl: 'studylist.component.html',
   styleUrls: ['studylist.component.css']

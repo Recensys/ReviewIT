@@ -1,9 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule }        from '@angular/router';
 
-import { TaskDetailsComponent, TasklistComponent }    from './';
+import { LoginComponent }    from './login.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: 'task', component: TaskDetailsComponent},
-  { path: 'task/:id/details', component: TasklistComponent},
+  { path: 'login', component: LoginComponent}
 ]);
