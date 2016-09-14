@@ -1,13 +1,8 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { PageNotFoundComponent } from './page-not-found';
 
 export const routes: Routes = [
-	{
-		path: '',
-		redirectTo: '/home',
-		pathMatch: 'full'
-	},
 	{
 		path: 'login',
 		loadChildren:
@@ -17,6 +12,10 @@ export const routes: Routes = [
 		path: 'signup',
 		loadChildren:
 		'app/signup/signup.module#SignupModule'
+	},
+	{
+		path: '**',
+		component: PageNotFoundComponent
 	},
 ];
 

@@ -6,7 +6,8 @@ import { NavbarModule } from './navbar';
 import { HttpModule } from '@angular/http';
 import { ReviewITAppComponent } from './';
 import { MessagesModule, GrowlModule } from 'primeng/primeng';
-import { CoreModule } from './core/core.module'
+import { CoreModule } from './core/core.module';
+import { PageNotFoundModule } from './page-not-found'
 
 /* Feature Modules */
 import { routing, routeProviders } from './'
@@ -25,7 +26,8 @@ import { HomeModule } from './home';
 		MessagesModule,
 		GrowlModule,
 		CoreModule,
-		HttpModule
+		HttpModule,
+		PageNotFoundModule
 	],
 	providers: [
 		routeProviders,
