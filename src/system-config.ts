@@ -96,12 +96,13 @@ const barrels: string[] = [
 	'app/model',
 	'app/task',
 	'app/studyconfig-menu/studyconfig/studysources',
+	'app/studyconfig-menu/studyconfig/criteria-config',
 	'app/studyconfig-menu/datafieldeditor',
 	'app/core',
 	'app/core/services',
 	'app/navbar',
 	'app/navbar/usernav',
-	'app/ng2-dnd-module/'
+	'app/ng2-dnd-module/',
 	/** @cli-barrel */
 ];
 

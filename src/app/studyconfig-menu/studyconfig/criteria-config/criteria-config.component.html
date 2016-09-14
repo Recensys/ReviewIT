@@ -1,0 +1,95 @@
+<div class="card">
+
+  <div class="card-header">
+    <h5>Inclusion/exclusion criteria</h5>
+    <p class="text-muted">Configure how you want to determine which articles are relevant or not</p>
+  </div>
+
+  <div class="card-block">
+    <dl class="row">
+      <dd class="col-sm-3">
+        <div class="col-sm-10">
+          <h5>Inclusion criteria</h5>
+          <div class="text-muted small">articles that meet these conditions will be included</div>
+        </div>
+      </dd>
+      <dd class="col-sm">
+        <p-autoComplete [(ngModel)]="inclField" placeholder="field lookup" [suggestions]="inclResults" (completeMethod)="inclSearch($event)"
+          (onSelect)="selectInclusion($event)" field="Name" [size]="20">
+        </p-autoComplete>
+      </dd>
+    </dl>
+    <div *ngIf="model.Inclusions.length > 0" class="card-block">
+      <div class="ui-g">
+        <div class="ui-g-1"></div>
+        <div class="ui-g-2 text-muted">field name</div>
+        <div class="ui-g-1 text-muted">operator</div>
+        <div class="ui-g-2 text-muted">value</div>
+      </div>
+
+      <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index" [ngSwitch]="inclusion.Field.Type">
+        <div class="ui-g-1"><button (click)="model.Inclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
+        <div class="ui-g-2">
+          {{inclusion.Field.Name}}
+          <div class="text-muted small" *ngSwitchCase="1">(boolean)</div>
+        </div>
+        <div class="ui-g-1">
+          <p-dropdown *ngSwitchCase="1" [options]="boolOperators" [(ngModel)]="inclusion.Operator"></p-dropdown>
+        </div>
+        <div class="ui-g-2">
+          <div *ngSwitchCase="1">
+            <p-radioButton name="inclgroup" value="1" [(ngModel)]="inclusion.Value" label="true"></p-radioButton>
+            <p-radioButton name="inclgroup" value="0" [(ngModel)]="inclusion.Value" label="false"></p-radioButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-block">
+    <dl class="row">
+      <dt class="col-sm-3">
+        <div class="col-sm-10">
+          <h5>Exclusion criteria</h5>
+          <div class="text-muted small">articles that meet these conditions will be excluded</div>
+        </div>
+      </dt>
+      <dd class="col-sm">
+        <p-autoComplete [(ngModel)]="exclField" placeholder="field lookup" [suggestions]="exclResults" (completeMethod)="exclSearch($event)"
+          (onSelect)="selectExclusion($event)" field="Name" [size]="20">
+        </p-autoComplete>
+      </dd>
+      <dt class="col-sm-3">
+      </dt>
+    </dl>
+    <div *ngIf="model.Exclusions.length > 0" class="card-block">
+      <div class="ui-g">
+        <div class="ui-g-1"></div>
+        <div class="ui-g-2 text-muted">field name</div>
+        <div class="ui-g-1 text-muted">operator</div>
+        <div class="ui-g-2 text-muted">value</div>
+      </div>
+
+      <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index" [ngSwitch]="exclusion.Field.Type">
+        <div class="ui-g-1"><button (click)="model.Exclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
+        <div class="ui-g-2">
+          {{exclusion.Field.Name}}
+          <div class="text-muted small" *ngSwitchCase="1">(boolean)</div>
+        </div>
+        <div class="ui-g-1 text-muted">
+          <p-dropdown *ngSwitchCase="1" [options]="boolOperators" [(ngModel)]="exclusion.Operator"></p-dropdown>
+        </div>
+        <div class="ui-g-2">
+          <div *ngSwitchCase="1">
+            <p-radioButton name="exclGroup" value="1" [(ngModel)]="exclusion.Value" label="true"></p-radioButton>
+            <p-radioButton name="exclGroup" value="0" [(ngModel)]="exclusion.Value" label="false"></p-radioButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button type="button" class="btn btn-success">Save criteria</button> debugging: {{getModelJson}}
+  </div>
+</div>
