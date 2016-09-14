@@ -4,5 +4,5 @@ import { RouterModule }        from '@angular/router';
 import { NavbarComponent }    from './navbar.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: 'login', component: NavbarComponent}
+  { path: '', component: NavbarComponent}
 ]);

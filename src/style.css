@@ -4,8 +4,12 @@ td{
 	position:relative;
 }
 
-ui-radiobutton .mute{
-    background-color: grey;
+.autocompleteWidth{
+	width: 200px !important;
+}
+
+.ui-state-hover .overwrite {
+    background: white;
 }
 
 /*
@@ -126,6 +130,7 @@ border-top-left-radius: 0;
 
 /* Slider */
 
+/*
 p-autocomplete {
 	border: none !important;
 }
@@ -160,7 +165,7 @@ dd > .form-group, dd.form-group {
 .form-group .form-group-info {
 	padding: 10px 5px 0px 5px; 
 	margin-bottom: 0;
-}
+}*/
 
 /* Loading */
 

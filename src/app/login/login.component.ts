@@ -10,7 +10,6 @@ import { User } from '../model';
 @Component({
   moduleId: module.id,
   selector: 'app-login',
-  providers: [ APIService ],  
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
