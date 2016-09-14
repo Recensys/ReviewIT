@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 /* App Root */
 import { NavbarModule } from './navbar';
 import { HttpModule } from '@angular/http';
-import { ReviewITAppComponent, LoggedInGuard } from './';
+import { ReviewITAppComponent } from './';
 import { MessagesModule, GrowlModule } from 'primeng/primeng';
 import { CoreModule } from './core/core.module'
 
 /* Feature Modules */
-import { routing } from './review-it.routes'
+import { routing, routeProviders } from './'
 import { HomeModule } from './home';
 
 
@@ -28,7 +28,7 @@ import { HomeModule } from './home';
 		HttpModule
 	],
 	providers: [
-		LoggedInGuard,
+		routeProviders,
 	],
 	bootstrap: [ReviewITAppComponent],
 })
