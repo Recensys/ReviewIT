@@ -14,6 +14,16 @@ export const routes: Routes = [
 		'app/signup/signup.module#SignupModule'
 	},
 	{
+		path: 'study:id',
+		loadChildren:
+		'app/studyconfig-menu/config.module#ConfigModule'
+	},
+	{
+		path: 'home',
+		loadChildren:
+		'app/studyconfig-menu/config.module#ConfigModule'
+	},
+	{
 		path: '**',
 		component: PageNotFoundComponent
 	},
