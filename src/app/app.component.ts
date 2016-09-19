@@ -9,7 +9,9 @@ import {MessageService} from './core';
   template: `
       <div class="container-fluid">
         <app-navbar></app-navbar>
-        <router-outlet></router-outlet>
+        <div style="padding-top: 90px;">
+          <router-outlet></router-outlet>
+        </div>
         <p-growl [life]='3000' [value]="msgs"></p-growl>
       </div>
   `,

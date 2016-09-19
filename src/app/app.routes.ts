@@ -24,6 +24,11 @@ export const routes: Routes = [
 		'app/studyconfig-menu/config.module#ConfigModule'
 	},
 	{
+		path: 'task',
+		loadChildren:
+		'app/task/task.module#TaskModule'
+	},
+	{
 		path: '**',
 		component: PageNotFoundComponent
 	},
