@@ -17,7 +17,6 @@ import { StageModel } from '../../model/stageModel';
     selector: 'app-task-details',
     templateUrl: 'task-details.component.html',
     styleUrls: ['task-details.component.css'],
-    providers: [ APIService ],
 })
 
 export class TaskDetailsComponent implements OnInit, OnDestroy {
