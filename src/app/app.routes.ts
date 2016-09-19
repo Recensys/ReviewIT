@@ -4,6 +4,11 @@ import { PageNotFoundComponent } from './page-not-found';
 
 export const routes: Routes = [
 	{
+		path: '',
+		redirectTo: '/home',
+		pathMatch: 'full'
+	},
+	{
 		path: 'login',
 		loadChildren:
 		'app/login/login.module#LoginModule'
@@ -12,11 +17,6 @@ export const routes: Routes = [
 		path: 'signup',
 		loadChildren:
 		'app/signup/signup.module#SignupModule'
-	},
-	{
-		path: 'study:id',
-		loadChildren:
-		'app/studyconfig-menu/config.module#ConfigModule'
 	},
 	{
 		path: 'home',

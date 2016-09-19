@@ -9,10 +9,12 @@ import { User } from '../../model'
 export class UserService {
 
   constructor(private _cookieService: CookieService, private router: Router) { 
-    let user = this._cookieService.get('user')
+    /*let user = this._cookieService.get('user')
     if(user){
       this.user =  JSON.parse(user);
-    }
+    }*/
+    this.user = new User();
+    this.user.Username = 'testUSer';
   }
 
   private loggedInUserSource = new ReplaySubject<User>();
