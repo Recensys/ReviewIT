@@ -22,6 +22,7 @@ export class UsernavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this._userService.user;
+    console.log(this.user);
     this.subscription = this._userService.login$.subscribe(user => {
       this.user = user;
     });
