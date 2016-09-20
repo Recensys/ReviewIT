@@ -5,9 +5,10 @@ import { SharedModule } from '../shared';
 
 import { TaskDetailsComponent, TasklistComponent } from './';
 import { APIService } from '../services';
+import {FieldDynModule} from '../field-dyn/field-dyn.module';
 
 @NgModule({
-  imports:      [ routing, SharedModule ],
+  imports:      [ routing, SharedModule, FieldDynModule ],
   providers:    [ APIService ],
   declarations: [ TaskDetailsComponent, TasklistComponent ],
 })

@@ -4,11 +4,11 @@
     <button (click)="newStudy()" type="button" class="btn btn-sm btn-success pull-right"><i class="fa fa-plus"></i> New Study</button>
   </div>
   <div class="card-block">
-    <div *ngIf="studyDetails.length == 0">
+    <div *ngIf="model.length == 0">
       you don't have any studies...
     </div>
-    <ul *ngIf="studyDetails.length > 0" class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="let studyDetail of studyDetails" >
+    <ul *ngIf="model.length > 0" class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let studyDetail of model" >
         
         <div class="row">
           <div class="col-sm-10">

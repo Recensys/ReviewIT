@@ -2,49 +2,50 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { Studydetails } from '../model';
-import { APIService } from '../services/api.service';
+import { Study, StudyDetails} from '../model';
+import { StudylistService } from './studylist.service';
+import { MessageService } from '../core';
 
 
 @Component({
   moduleId: module.id,
   selector: 'app-studylist',
-  providers: [APIService],
   templateUrl: 'studylist.component.html',
   styleUrls: ['studylist.component.css']
 })
 export class StudylistComponent implements OnInit {
 
 
-  public studyDetails : Studydetails[] = [];
+  public model: StudyDetails[] = [];
 
-  
 
-  constructor(private _api: APIService, private router: Router) { }
+  constructor(
+      private studylistService: StudylistService,
+      private router: Router,
+      private msgService: MessageService
+    ) { }
 
   ngOnInit() {
-    this._api.getStudies().subscribe(
+    this.studylistService.get().subscribe(
       studies => {
-        this.studyDetails = studies
-        },
+        this.model = studies;
+      },
       error => console.log(error)
     );
   }
 
-  continueStudy(studyId: number){
-    
-  }
-
-  studyConfig(studyId: number){
+  continueStudy(studyId: number) {
 
   }
 
-  newStudy(){
-      this._api.newStudy().subscribe(
-        id => {
-          this.router.navigate([`study/${id}/config`]);
-        },
-        error => console.log(error)
-      )
+  studyConfig(studyId: number) {
+
+  }
+
+  newStudy() {
+    this.studylistService.postStudy(new Study()).subscribe(
+      study => this.router.navigate([`study/${study.Id}/config`]),
+      error => this.msgService.addError(error)
+    );
   }
 }

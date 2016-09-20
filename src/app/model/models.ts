@@ -35,16 +35,7 @@ export interface StageFields {
 	VisibleFields: Field[];
 }
 
-export interface Study {
-	AvailableFields: Field[];
-	Id: number;
-	Researchers: User[];
-	Sources: any[];
-	Stages: Stage[];
-	StudyDetails: StudyDetails;
-}
-
-export interface Study2 {
+export class Study {
 	AvailableFields: Field[];
 	Id: number;
 	Researchers: User[];

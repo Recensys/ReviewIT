@@ -31,7 +31,7 @@
           <tr *ngFor="let task of stage.Tasks">
             <th>{{task.Id}}</th>
             <td *ngFor="let data of task.Data; let i = index">
-              <field [field]="stage.Fields[i]" [data]="data"></field>
+              <field-dyn [field]="stage.Fields[i]" [data]="data"></field-dyn>
             </td>
             <td style="text-align:center;">
               <span [ngSwitch]="task.State">

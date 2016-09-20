@@ -2,8 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StageModel } from "../../model/stageModel";
+import { BooleanField } from "../../field";
 import { FieldComponent } from "../../field";
 import { APIService } from '../../services/api.service';
+import {Stage} from '../../model/models'
 
 
 @Component({
@@ -22,12 +24,5 @@ export class TasklistComponent implements OnInit{
   }
 
   ngOnInit(){
-    this._api.GetStages(0).subscribe(
-      stageModels =>{
-          console.log(stageModels);
-          this.stages = stageModels
-      },
-      error => this.errorMessage = error
-    );
   }
 }
