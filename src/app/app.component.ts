@@ -12,7 +12,7 @@ import {MessageService} from './core';
         <div style="padding-top: 90px;">
           <router-outlet></router-outlet>
         </div>
-        <p-growl [life]='3000' [value]="msgs"></p-growl>
+        <notifications [value]="msgs"></notifications>
       </div>
   `,
 })
