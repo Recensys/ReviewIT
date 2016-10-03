@@ -10,10 +10,10 @@
     <div *ngIf="model.length > 0" class="list-group list-group-flush">
       <dl *ngFor="let studyDetail of model">
           <dt class="col-sm-10">
-            <a [routerLink]="['study/'+studyDetail.id+'/tasks']">{{studyDetail.Name}}</a>
+            <a [routerLink]="['study/'+studyDetail.Id+'/tasks']">{{studyDetail.Name}}</a>
           </dt>
           <dd class="col-sm-2">
-            <a [routerLink]="['study/'+studyDetail.id+'/config']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+            <a [routerLink]="['study/'+studyDetail.Id+'/config']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
           </dd>
       </dl>
     </div>
