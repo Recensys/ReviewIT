@@ -1,5 +1,5 @@
 ﻿
-export enum DataType {
+export const enum DataType {
 	String = 0,
 	Boolean = 1,
 	Radio = 2,
@@ -7,57 +7,41 @@ export enum DataType {
 	Number = 4,
 	Resource = 5
 }
-
-export class Article {
+export class CriteriaDTO {
+	Field: FieldDTO;
+	Id: number;
+	Value: string;
 }
-
-export class Field {
+export class FieldDTO {
 	DataType: DataType;
 	Id: number;
-	Input: boolean;
 	Name: string;
 }
-
-export interface Stage {
-	Id: number;
-	StageDetails: StageDetails;
-	StageFields: StageFields;
-}
-
-export class StageDetails {
-	Description: string;
-	Name: string;
-}
-
-export interface StageFields {
-	Id: number;
-	RequestedFields: Field[];
-	VisibleFields: Field[];
-}
-
-export class Study {
-	AvailableFields: Field[];
-	Id: number;
-	Researchers: User[];
-	Sources: any[];
-	Stages: Stage[];
-	StudyDetails: StudyDetails;
-}
-
-export class StudyDetails {
-	Description: string;
-	Name: string;
-}
-
-export class User {
+export class ResearcherDetailsDTO {
 	FirstName: string;
 	Id: number;
-	LastName: string;
-	Password: string;
-	PasswordSalt: string;
-	Username: string;
 }
-
+export class StageConfigDTO {
+	Description: string;
+	Id: number;
+	Name: string;
+	RequestedFields: FieldDTO[];
+	VisibleFields: FieldDTO[];
+}
+export class StudyConfigDTO {
+	AvailableFields: FieldDTO[];
+	Criteria: CriteriaDTO[];
+	Description: string;
+	Id: number;
+	Name: string;
+	Researchers: ResearcherDetailsDTO[];
+	Stages: StageConfigDTO[];
+}
+export class StudyDetailsDTO {
+	Description: string;
+	Id: number;
+	Name: string;
+}
 
 
 

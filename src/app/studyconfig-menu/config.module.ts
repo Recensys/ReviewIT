@@ -17,7 +17,7 @@ import {CriteriaConfigComponent, FieldlookupService} from './studyconfig/criteri
 import {routing} from './study.routes';
 
 @NgModule({
-  imports:      [  HttpModule, BrowserModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
+  imports:      [ routing, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
   providers:    [ MessageService, FieldlookupService ],
   declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],

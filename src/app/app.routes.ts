@@ -19,7 +19,7 @@ export const routes: Routes = [
 		'app/signup/signup.module#SignupModule'
 	},
 	{
-		path: 'home',
+		path: 'study',
 		loadChildren:
 		'app/studyconfig-menu/config.module#ConfigModule'
 	},

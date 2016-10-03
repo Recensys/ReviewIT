@@ -12,7 +12,7 @@ import {CookieService} from 'angular2-cookie/core';
 import {StageModel} from '../model/stageModel';
 import {Field, StringField, ResourceField, RadioField, NumberField, CheckboxField, BooleanField} from '../field';
 import {Task} from '../model/task';
-import { Study,StudyDetails } from '../model';
+import { StudyConfigDTO, StudyDetailsDTO } from '../model';
 
 
 @Injectable()
@@ -139,13 +139,13 @@ export class APIService {
         .map(this.exstractStatusText)
         .catch(this.handleError);
   }
-  public getStudy(id: number) : Observable<Study> {
+  public getStudy(id: number) : Observable<StudyConfigDTO> {
     let url = `${Globals.api}study/${id}`;
     return this.http.get(url, this.AuthOptions())
         .map(this.extractJson)
         .catch(this.handleError);
   }
-  public getStudies() : Observable<StudyDetails[]>{
+  public getStudies() : Observable<StudyDetailsDTO[]>{
     let url = `${Globals.api}study/`;
     let args = new RequestOptions();
     args.withCredentials = true;
@@ -155,7 +155,7 @@ export class APIService {
         .map(this.extractJson)
         .catch(this.handleError);
   }
-  public saveStudyDetails(id: number, studydetails: StudyDetails) : Observable<string> {
+  public saveStudyDetails(id: number, studydetails: StudyDetailsDTO) : Observable<string> {
     let body = JSON.stringify({'Id': id, 'StudyDetails': studydetails});
     console.log(body);
     let url = `${Globals.api}study/${id}`;
@@ -167,7 +167,7 @@ export class APIService {
       .map(this.exstractStatusText)
       .catch(this.handleError);
   }
-  public saveStudy(study: Study) {
+  public saveStudy(study: StudyConfigDTO) {
     let body = JSON.stringify(study);
     let url = `${Globals.api}study/${study.Id}`;
     let args = new RequestOptions();

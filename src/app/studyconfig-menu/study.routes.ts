@@ -4,5 +4,9 @@ import { RouterModule }        from '@angular/router';
 import { StudyconfigMenuComponent }    from './studyconfig-menu.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: '', component: StudyconfigMenuComponent}
+  {
+    path: ':id', children: [
+      { path: 'config', component: StudyconfigMenuComponent }
+    ]
+  }
 ]);

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import Globals = require('../shared/globals');
 import { ApiHelper } from '../shared';
-import { StudyDetails, Study } from '../model/models';
+import { StudyDetailsDTO, StudyConfigDTO } from '../model/models';
 
 @Injectable()
 export class StudylistService {
@@ -18,7 +18,7 @@ export class StudylistService {
         private http: Http
     ) { }
 
-    public get(): Observable<StudyDetails[]> {
+    public get(): Observable<StudyDetailsDTO[]> {
         let url = `${Globals.api}study/list`;
         return this.http.get(url, this.apihelper.AuthOptions)
             .map(this.apihelper.extractJson)

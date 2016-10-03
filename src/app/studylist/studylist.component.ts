@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { Study, StudyDetails} from '../model';
+import { StudyDetailsDTO } from '../model';
 import { StudylistService } from './studylist.service';
 import { MessageService } from '../core';
 
@@ -16,7 +16,7 @@ import { MessageService } from '../core';
 export class StudylistComponent implements OnInit {
 
 
-  public model: StudyDetails[] = [];
+  public model: StudyDetailsDTO[] = [];
 
 
   constructor(
@@ -27,12 +27,9 @@ export class StudylistComponent implements OnInit {
 
   ngOnInit() {
     this.studylistService.get().subscribe(
-      studies => {
-        this.model = studies;
-        console.log(this.model);
-      },
-      error => console.log(error)
-    );
+      dto => this.model = dto,
+      error => this.msgService.addError(error)
+    )
   }
 
   continueStudy(studyId: number) {

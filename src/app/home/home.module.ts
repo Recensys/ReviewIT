@@ -8,7 +8,7 @@ import { ConfigModule } from '../studyconfig-menu';
 import {FieldDynModule} from '../field-dyn/field-dyn.module'
 
 @NgModule({
-  imports:      [ routing, StudylistModule, SharedModule, ConfigModule, FieldDynModule ],
+  imports:      [ routing, StudylistModule, SharedModule ],
   providers:    [ ],
   declarations: [ HomeComponent ],
 })
