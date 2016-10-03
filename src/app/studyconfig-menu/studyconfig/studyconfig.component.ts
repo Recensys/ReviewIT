@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { StudysourcesComponent } from './studysources/studysources.component';
 import { APIService } from '../../services';
-import { Studydetails } from '../../model';
+import { StudyDetails } from '../../model';
 import { MessageService } from '../../core';
 
 @Component({

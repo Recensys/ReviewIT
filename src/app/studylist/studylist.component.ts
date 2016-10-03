@@ -29,6 +29,7 @@ export class StudylistComponent implements OnInit {
     this.studylistService.get().subscribe(
       studies => {
         this.model = studies;
+        console.log(this.model);
       },
       error => console.log(error)
     );
@@ -43,9 +44,9 @@ export class StudylistComponent implements OnInit {
   }
 
   newStudy() {
-    this.studylistService.postStudy(new Study()).subscribe(
-      study => this.router.navigate([`study/${study.Id}/config`]),
-      error => this.msgService.addError(error)
-    );
+    // this.studylistService.postStudy(new Study()).subscribe(
+    //   study => this.router.navigate([`study/${study.Id}/config`]),
+    //   error => this.msgService.addError(error)
+    // );
   }
 }

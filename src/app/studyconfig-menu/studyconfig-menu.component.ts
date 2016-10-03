@@ -8,7 +8,7 @@ import { StudyConfigComponent } from './studyconfig/studyconfig.component';
 import { APIService } from '../services/api.service';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
 //import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
-import { Study, Stage, StageDetails, StudyDetails, Study2, StageFields } from '../model/models';
+import { Study, Stage, StageDetails, StudyDetails, StageFields } from '../model/models';
 import { MessageService } from '../core';
 
 @Component({
@@ -30,7 +30,7 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     public disabled: boolean = false;
 
-    public model: Study2 = null;
+    public model: Study = null;
     public selected: Stage = null;
 
     constructor(

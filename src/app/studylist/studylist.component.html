@@ -7,19 +7,16 @@
     <div *ngIf="model.length == 0">
       you don't have any studies...
     </div>
-    <ul *ngIf="model.length > 0" class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="let studyDetail of model" >
-        
-        <div class="row">
-          <div class="col-sm-10">
-            <a [routerLink]="['study/'+studyDetail.Id+'/tasks']" class="list-group-item">{{studyDetail.Name}}</a>
-          </div>
-          <div class="col-sm-2">
-            <a [routerLink]="['study/'+studyDetail.Id+'/config']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
-          </div>
-        </div>
-      </li>
-  </ul>
+    <div *ngIf="model.length > 0" class="list-group list-group-flush">
+      <dl *ngFor="let studyDetail of model">
+
+          <dt class="col-sm-10">
+            <a [routerLink]="['study/'+studyDetail.id+'/tasks']">{{studyDetail.name}}</a>
+          </dt>
+          <dd class="col-sm-2">
+            <a [routerLink]="['study/'+studyDetail.id+'/config']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+          </dd>
+      </dl>
+    </div>
   </div>
 </div>
-
