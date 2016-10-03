@@ -7,6 +7,7 @@ import { Field } from '../../field';
 import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
 import { MessageService } from '../../core';
 import { ReviewStrategyComponent } from './review-strategy/review-strategy.component';
+import {StageConfigDTO} from '../../model';
 
 @Component({
 	moduleId: module.id,
@@ -19,7 +20,7 @@ import { ReviewStrategyComponent } from './review-strategy/review-strategy.compo
 export class StageconfigComponent implements OnInit{
 
 
-	@Input() model: any;
+	@Input() model: StageConfigDTO;
     @Input() availableFields: any = [];
 
 	name: string;
@@ -49,7 +50,7 @@ export class StageconfigComponent implements OnInit{
 
     resetDatafields(){
         this.availableFields = [];
-        this.availableFields.push(...this.model.AvailableFields);
+        //this.availableFields.push(...this.model.AvailableFields);
         this.model.VisibleFields = [];
         this.model.RequestedFields = [];
     }

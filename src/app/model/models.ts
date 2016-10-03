@@ -1,5 +1,5 @@
 ﻿
-export const enum DataType {
+export enum DataType {
 	String = 0,
 	Boolean = 1,
 	Radio = 2,

@@ -10,6 +10,7 @@ import { DND_DIRECTIVES } from 'ng2-dnd/ng2-dnd';
 //import { MODAL_DIRECTIVES, BS_VIEW_PROVIDERS, TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { StudyConfigDTO, StageConfigDTO, StudyDetailsDTO } from '../model/models';
 import { MessageService } from '../core';
+import {ConfigService} from './config.service';
 
 @Component({
     moduleId: module.id,
@@ -35,7 +36,7 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private _api: APIService,
+        private configService: ConfigService,
         private _msg: MessageService
     ) { 
     }
@@ -49,11 +50,9 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
             let id = +params['id'];
 
             // get model
-            this._api.getStudy(id).subscribe(
+            this.configService.get(id).subscribe(
                     study => {
                         this.model = study;
-                        console.log('study');
-                        console.log(study);
                         },
                     error => console.log(error)
             );
@@ -78,22 +77,22 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     startStudy(id: number){
         
         
-        this.start.Show = true;
-        this.start.Loading = true;
-        this._api.startStudy(id).subscribe(
-            msg => {
-                this.start.Msg = msg;
-                this.start.Loading = false;                
-            },
-            error => {
-                this.start.Msg = error;
-                this.start.Loading = false;
-            }
-        );
+        // this.start.Show = true;
+        // this.start.Loading = true;
+        // this._api.startStudy(id).subscribe(
+        //     msg => {
+        //         this.start.Msg = msg;
+        //         this.start.Loading = false;                
+        //     },
+        //     error => {
+        //         this.start.Msg = error;
+        //         this.start.Loading = false;
+        //     }
+        // );
     }
 
     addNewStage(){
-        this.model.Stages.push({Id: -1, Name: '', Description: '',  VisibleFields: [], RequestedFields: []});
+        this.model.Stages.push({Id: undefined, Name: '', Description: '',  VisibleFields: [], RequestedFields: []});
     }
 
     removeStage(index: number){
@@ -107,8 +106,12 @@ export class StudyconfigMenuComponent implements OnInit, OnDestroy {
     }
 
     saveStudy(study){
-        this._api.saveStudy(study).subscribe(
-            res => this._msg.addInfo(res),
+        this.configService.updateConfig(study).subscribe(
+            res => {
+                console.log(res);
+                if(res) this._msg.addInfo("saved!");
+                if(!res) this._msg.addError("not saved!");
+            },
             error => this._msg.addError(error)
         );
     }

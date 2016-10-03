@@ -11,7 +11,7 @@
             <label class="col-sm-2 form-control-label" for="name">Name</label>
             <div class="col-sm-10">
                   <input type="text" ngModel class="form-control" required
-                    [(ngModel)]="model.StageDetails.Name" name="name"
+                    [(ngModel)]="model.Name" name="name"
                       placeholder="Enter stage title">
                   </div>
           </div>
@@ -20,7 +20,7 @@
             <label class="col-sm-2 form-control-label" for="name">Description</label>
             <div class="col-sm-10">
                   <textarea class="form-control" rows="3"
-                    [(ngModel)]="model.StageDetails.Description" #desc="ngModel" name="desc"
+                    [(ngModel)]="model.Description" #desc="ngModel" name="desc"
                       placeholder="Enter stage description"></textarea>
             </div>
           </div>

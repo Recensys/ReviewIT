@@ -5,8 +5,6 @@ import { StudyconfigMenuComponent }    from './studyconfig-menu.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
-    path: ':id', children: [
-      { path: 'config', component: StudyconfigMenuComponent }
-    ]
+    path: ':id', component: StudyconfigMenuComponent
   }
 ]);

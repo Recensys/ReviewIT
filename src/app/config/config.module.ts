@@ -14,11 +14,12 @@ import {StageconfigComponent} from './stageconfig';
 import {ReviewStrategyComponent} from './stageconfig/review-strategy';
 import {StudysourcesComponent} from './studyconfig/studysources';
 import {CriteriaConfigComponent, FieldlookupService} from './studyconfig/criteria-config';
-import {routing} from './study.routes';
+import {routing} from './config.routes';
+import {ConfigService} from './config.service';
 
 @NgModule({
   imports:      [ routing, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, FieldlookupService ],
+  providers:    [ MessageService, FieldlookupService, ConfigService ],
   declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],
 })

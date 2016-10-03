@@ -19,9 +19,9 @@ export const routes: Routes = [
 		'app/signup/signup.module#SignupModule'
 	},
 	{
-		path: 'study',
+		path: 'config',
 		loadChildren:
-		'app/studyconfig-menu/config.module#ConfigModule'
+		'app/config/config.module#ConfigModule'
 	},
 	{
 		path: 'task',

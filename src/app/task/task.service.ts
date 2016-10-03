@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 
 import Globals = require('../shared/globals');
 import { ApiHelper } from '../shared';
-import { StudyDetails, Study } from '../model/models';
 
 @Injectable()
 export class TaskService {
@@ -18,20 +17,20 @@ export class TaskService {
         private http: Http
     ) { }
 
-    public get(): Observable<StudyDetails[]> {
-        let url = `${Globals.api}study/`;
-        return this.http.get(url, this.apihelper.AuthOptions)
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
-    }
+    // public get(): Observable<StudyDetailsDTO[]> {
+    //     let url = `${Globals.api}study/`;
+    //     return this.http.get(url, this.apihelper.AuthOptions)
+    //         .map(this.apihelper.extractJson)
+    //         .catch(this.apihelper.handleError);
+    // }
 
-    public postStudy(study: Study): Observable<Study> {
-        let url = `${Globals.api}study/`;
-        let body = JSON.stringify(study);
-        return this.http.post(url, body, this.apihelper.AuthOptions)
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
-    }
+    // public postStudy(study: Study): Observable<Study> {
+    //     let url = `${Globals.api}study/`;
+    //     let body = JSON.stringify(study);
+    //     return this.http.post(url, body, this.apihelper.AuthOptions)
+    //         .map(this.apihelper.extractJson)
+    //         .catch(this.apihelper.handleError);
+    // }
 
 
 }

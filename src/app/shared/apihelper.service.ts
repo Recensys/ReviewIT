@@ -20,6 +20,13 @@ export class ApiHelper {
         args.headers = headers;
         return args;
     }
+    public JsonOptions(): RequestOptions {
+        let args = new RequestOptions();
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        args.headers = headers;
+        return args;
+    }
+
     public handleError(error: any) {
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message

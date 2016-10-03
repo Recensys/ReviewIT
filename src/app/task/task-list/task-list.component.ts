@@ -5,7 +5,6 @@ import { StageModel } from "../../model/stageModel";
 import { BooleanField } from "../../field";
 import { FieldComponent } from "../../field";
 import { APIService } from '../../services/api.service';
-import {Stage} from '../../model/models'
 
 
 @Component({

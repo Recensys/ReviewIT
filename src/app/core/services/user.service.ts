@@ -14,7 +14,7 @@ export class UserService {
       this.user =  JSON.parse(user);
     }*/
     this.user = new User();
-    this.user.Username = 'testUSer';
+    this.user.Name = 'testUSer';
   }
 
   private loggedInUserSource = new ReplaySubject<User>();

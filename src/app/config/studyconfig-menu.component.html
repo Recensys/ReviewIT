@@ -16,9 +16,9 @@
                         [class.selected]="!selected"
                         (click)="onSelect(undefined)">
                         <h4 class="list-group-item-heading">
-                            {{model.StudyDetails.Name ? model.StudyDetails.Name : "New Study"}}
+                            {{model.Name ? model.Name : "New Study"}}
                         </h4>
-                        <p class="list-group-item-text">{{model.StudyDetails.Description ? model.StudyDetails.Description : "..."}}</p>
+                        <p class="list-group-item-text">{{model.Description ? model.Description : "..."}}</p>
                     </li>
 
                     <h3 class="card-header card-header-nospace">
@@ -38,8 +38,8 @@
                                 </div>
                             </div>                        
                         
-                            <h4 class="list-group-item-heading">{{stage.StageDetails.Name ? stage.StageDetails.Name : "New stage"}}</h4>
-                            <p class="list-group-item-text">{{stage.StageDetails.Description ? stage.StageDetails.Description : "..."}}</p>                 
+                            <h4 class="list-group-item-heading">{{stage.Name ? stage.Name : "New stage"}}</h4>
+                            <p class="list-group-item-text">{{stage.Description ? stage.Description : "..."}}</p>                 
                     </li>
                     
                 </ul>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-8">
             <app-stageconfig *ngIf(selected) [model]="selected" [availableFields]="model.AvailableFields"></app-stageconfig>
-            <app-studyconfig *ngIf(!selected) [model]="model.StudyDetails"></app-studyconfig>
+            <app-studyconfig *ngIf(!selected) [model]="model"></app-studyconfig>
         </div>
     </div>
 </div>

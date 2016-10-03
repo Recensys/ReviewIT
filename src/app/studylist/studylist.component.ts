@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { StudyDetailsDTO } from '../model';
+import { StudyDetailsDTO, StudyConfigDTO } from '../model';
 import { StudylistService } from './studylist.service';
 import { MessageService } from '../core';
 
@@ -41,9 +41,9 @@ export class StudylistComponent implements OnInit {
   }
 
   newStudy() {
-    // this.studylistService.postStudy(new Study()).subscribe(
-    //   study => this.router.navigate([`study/${study.Id}/config`]),
-    //   error => this.msgService.addError(error)
-    // );
+    this.studylistService.postStudy(new StudyConfigDTO()).subscribe(
+      id => this.router.navigate([`config/${id}`]),
+      error => this.msgService.addError(error)
+    );
   }
 }

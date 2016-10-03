@@ -3,11 +3,10 @@ import { NgModule }      from '@angular/core';
 import { SharedModule } from '../shared';
 import { StudylistComponent } from './studylist.component';
 import { RouterModule } from '@angular/router';
-import { ConfigModule } from '../studyconfig-menu';
-import { StudylistService } from './studylist.service'
+import { StudylistService } from './studylist.service';
 
 @NgModule({
-  imports:      [ SharedModule, RouterModule, ConfigModule ],
+  imports:      [ SharedModule, RouterModule ],
   providers:    [ StudylistService ],
   declarations: [ StudylistComponent ],
   exports:      [ StudylistComponent ]
