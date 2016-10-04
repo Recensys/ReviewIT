@@ -15,12 +15,13 @@ import {ReviewStrategyComponent} from './stageconfig/review-strategy';
 import {StudysourcesComponent} from './studyconfig/studysources';
 import {CriteriaConfigComponent, FieldlookupService} from './studyconfig/criteria-config';
 import {routing} from './config.routes';
+import {DndModule} from 'ng2-dnd';
 import {ConfigService} from './config.service';
 import {TooltipModule} from 'primeng/primeng';
 import {FileUploader} from 'ng2-file-upload';
 
 @NgModule({
-  imports:      [ routing, TooltipModule, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
+  imports:      [ routing, TooltipModule, DndModule, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
   providers:    [ MessageService, FieldlookupService, ConfigService, FileUploader ],
   declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent, StudysourcesComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],
