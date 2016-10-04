@@ -16,9 +16,10 @@ import {StudysourcesComponent} from './studyconfig/studysources';
 import {CriteriaConfigComponent, FieldlookupService} from './studyconfig/criteria-config';
 import {routing} from './config.routes';
 import {ConfigService} from './config.service';
+import {TooltipModule} from 'primeng/primeng';
 
 @NgModule({
-  imports:      [ routing, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
+  imports:      [ routing, TooltipModule, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
   providers:    [ MessageService, FieldlookupService, ConfigService ],
   declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],

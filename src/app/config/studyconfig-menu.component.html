@@ -10,11 +10,9 @@
                     Study
                     <button (click)="saveStudy(model)" class="btn btn-sm pull-right btn-primary-outline"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
                 </h3>
-                
+
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"
-                        [class.selected]="!selected"
-                        (click)="onSelect(undefined)">
+                    <li class="list-group-item" [class.selected]="!selected" (click)="onSelect(undefined)">
                         <h4 class="list-group-item-heading">
                             {{model.Name ? model.Name : "New Study"}}
                         </h4>
@@ -22,25 +20,25 @@
                     </li>
 
                     <h3 class="card-header card-header-nospace">
-                    Stages
-                    <button  (click)="addNewStage()" type="button" class="btn btn-sm pull-right btn-primary-outline"><i class="fa fa-plus" aria-hidden="true"></i> Stage</button>
+                        Stages
+                        <button (click)="addNewStage()" type="button" class="btn btn-sm pull-right btn-primary-outline"><i class="fa fa-plus" aria-hidden="true"></i> Stage</button>
                     </h3>
                     <li *ngIf="model.Stages != null && model.Stages.length == 0" class="list-group-item">add a new stage!</li>
-                    <li class="list-group-item" 
-                        *ngFor="let stage of model.Stages; let i = index"
-                        [class.selected]="stage === selected"
+                    <li class="list-group-item col-sm-12" *ngFor="let stage of model.Stages; let i = index" [class.selected]="stage === selected"
                         (click)="onSelect(stage)">
-                            <div class="tag tag-default tag-pill pull-xs-right">
-                                <div>
-                                    <i (click)="removeStage(i)" class="fa fa-times" tooltip="remove stage" tooltipPlacement="left" aria-hidden="true"></i> 
-                                </div>
-                                <div>
-                                    <i (click)="cloneStage(stage)" class="fa fa-clone" tooltip="clone stage" tooltipPlacement="left" aria-hidden="true"></i> 
-                                </div>
-                            </div>                        
-                        
+                        <a class="col-sm-11">
                             <h4 class="list-group-item-heading">{{stage.Name ? stage.Name : "New stage"}}</h4>
-                            <p class="list-group-item-text">{{stage.Description ? stage.Description : "..."}}</p>                 
+                            <p class="list-group-item-text">{{stage.Description ? stage.Description : "..."}}</p>
+                        </a>
+                        <a class="col-sm-1">
+                            <div>
+                                <i (click)="removeStage(i)" class="fa fa-times" pTooltip="remove" tooltipPosition="left" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <i (click)="cloneStage(stage)" class="fa fa-clone" pTooltip="clone" tooltipPosition="left" aria-hidden="true"></i>
+                            </div>
+                        </a>
+
                     </li>
                 </ul>
             </div>
@@ -52,8 +50,8 @@
                     </div>
                     {{start.Msg}}
                     <div class="col-md-1"></div>
-                                    
-                            
+
+
                 </div>
             </div>
 
@@ -64,5 +62,3 @@
         </div>
     </div>
 </div>
-
-
