@@ -17,11 +17,12 @@ import {CriteriaConfigComponent, FieldlookupService} from './studyconfig/criteri
 import {routing} from './config.routes';
 import {ConfigService} from './config.service';
 import {TooltipModule} from 'primeng/primeng';
+import {FileUploader} from 'ng2-file-upload';
 
 @NgModule({
   imports:      [ routing, TooltipModule, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, FieldlookupService, ConfigService ],
-  declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent],
+  providers:    [ MessageService, FieldlookupService, ConfigService, FileUploader ],
+  declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent, StudysourcesComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],
 })
 export class ConfigModule { }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileUploader} from 'ng2-file-upload';
-
+import Globals = require('../../../shared/globals');
 
 @Component({
 	moduleId: module.id,
@@ -11,12 +11,16 @@ import { FileUploader} from 'ng2-file-upload';
 
 export class StudysourcesComponent implements OnInit {
 
-	public uploader: FileUploader = new FileUploader({url: 'https://evening-anchorage-3159.herokuapp.com/api/'});
+	@Input() studyId: number;
+
+	private url = `${Globals.api}study/${this.studyId}/config/source`;
+	public uploader: FileUploader = new FileUploader({url: this.url});
 	public hasFileOverDrop: boolean = false;
 
 	constructor() { }
 
 	ngOnInit() {
+		
 	}
 
 	public fileOverDrop(e: any): void {
