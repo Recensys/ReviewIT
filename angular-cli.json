@@ -16,7 +16,8 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

@@ -13,13 +13,17 @@ export class StudysourcesComponent implements OnInit {
 
 	@Input() studyId: number;
 
-	private url = `${environment.api}study/${this.studyId}/config/source`;
-	public uploader: FileUploader = new FileUploader({url: this.url});
+	public uploader: MyUploader;
 	public hasFileOverDrop: boolean = false;
 
 	constructor() { }
 
 	ngOnInit() {
+		console.log(this.studyId);
+		if(this.studyId != undefined){
+			var url = `${environment.api}study/${this.studyId}/config/source`;
+			this.uploader = new MyUploader({url: url});
+		}
 		
 	}
 
@@ -30,4 +34,10 @@ export class StudysourcesComponent implements OnInit {
 	public log(e: any) {
 		console.log(e);
 	}
+}
+
+class MyUploader extends FileUploader {
+  onAfterAddingFile(file: any) {
+    file.withCredentials = false;
+  }
 }
