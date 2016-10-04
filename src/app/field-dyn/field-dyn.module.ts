@@ -3,10 +3,11 @@ import {
 import { CommonModule }      from '@angular/common';
 
 import {FieldDynComponent} from './field-dyn.component';
-import {BooleanFieldComponent} from './fields/boolean-field.component'
+import {BooleanFieldComponent} from './fields/boolean-field.component';
+import { ButtonsModule } from 'ng2-bootstrap';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, ButtonsModule],
     declarations: [FieldDynComponent, BooleanFieldComponent],
     exports: [FieldDynComponent],
     providers: [],

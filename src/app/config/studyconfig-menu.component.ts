@@ -12,7 +12,7 @@ import { MessageService } from '../core';
 import {ConfigService} from './config.service';
 
 @Component({
-    moduleId: module.id,
+    
     selector: 'app-studyconfig-menu',
     templateUrl: 'studyconfig-menu.component.html',
     styleUrls: ['studyconfig-menu.component.css'],

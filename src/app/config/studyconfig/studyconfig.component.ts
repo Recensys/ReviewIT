@@ -6,7 +6,7 @@ import { StudyConfigDTO } from '../../model';
 import { MessageService } from '../../core';
 
 @Component({
-	moduleId: module.id,
+	
 	selector: 'app-studyconfig',
 	templateUrl: 'studyconfig.component.html',
 	styleUrls: ['studyconfig.component.css']

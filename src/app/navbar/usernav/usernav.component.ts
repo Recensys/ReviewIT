@@ -6,7 +6,7 @@ import { User } from '../../model';
 
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-usernav',
   templateUrl: 'usernav.component.html',
   styleUrls: ['usernav.component.css']

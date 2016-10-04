@@ -8,7 +8,7 @@ import { APIService } from '../../services/api.service';
 
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-task-list',
   templateUrl: 'task-list.component.html',
   styleUrls: ['task-list.component.css'],

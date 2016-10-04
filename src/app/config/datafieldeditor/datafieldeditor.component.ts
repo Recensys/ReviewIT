@@ -5,7 +5,7 @@ import { InputTextModule, ButtonModule, RadioButton } from 'primeng/primeng';
 import { DataType } from '../../model';
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-datafieldeditor',
   templateUrl: 'datafieldeditor.component.html',
   styleUrls: ['datafieldeditor.component.css']

@@ -8,7 +8,7 @@ import { MessageService } from '../core';
 
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-studylist',
   templateUrl: 'studylist.component.html',
   styleUrls: ['studylist.component.css']

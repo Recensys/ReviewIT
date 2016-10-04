@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FileUploader} from 'ng2-file-upload';
-import Globals = require('../../../shared/globals');
+import { environment } from '../../../../environments/environment';
 
 @Component({
-	moduleId: module.id,
+	
 	selector: 'app-studysources',
 	templateUrl: 'studysources.component.html',
 	styleUrls: ['studysources.component.css'],
@@ -13,7 +13,7 @@ export class StudysourcesComponent implements OnInit {
 
 	@Input() studyId: number;
 
-	private url = `${Globals.api}study/${this.studyId}/config/source`;
+	private url = `${environment.api}study/${this.studyId}/config/source`;
 	public uploader: FileUploader = new FileUploader({url: this.url});
 	public hasFileOverDrop: boolean = false;
 

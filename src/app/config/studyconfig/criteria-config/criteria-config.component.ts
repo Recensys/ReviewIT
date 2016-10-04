@@ -6,7 +6,7 @@ import {FieldlookupService} from './fieldlookup.service';
 import {SelectItem} from 'primeng/primeng';
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-criteria-config',
   templateUrl: 'criteria-config.component.html',
   styleUrls: ['criteria-config.component.css']

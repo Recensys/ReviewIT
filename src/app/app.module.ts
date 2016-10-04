@@ -4,20 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 /* App Root */
 import { NavbarModule } from './navbar';
 import { HttpModule } from '@angular/http';
-import { ReviewITAppComponent } from './';
+import { ReviewITAppComponent } from './app.component';
 import { MessagesModule, GrowlModule } from 'primeng/primeng';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundModule } from './page-not-found'
 
 /* Feature Modules */
-import { routing, routeProviders } from './'
+import {routing, routeProviders } from './app.routes'
 import { HomeModule } from './home';
 
 
 @NgModule({
 	declarations: [
 		ReviewITAppComponent,
-		],
+	],
 	imports: [
 		HomeModule,
 		NavbarModule,
@@ -32,6 +32,7 @@ import { HomeModule } from './home';
 	providers: [
 		routeProviders,
 	],
-	bootstrap: [ReviewITAppComponent],
+	bootstrap: [ReviewITAppComponent
+	],
 })
-export class AppModule {}
+export class AppModule { }

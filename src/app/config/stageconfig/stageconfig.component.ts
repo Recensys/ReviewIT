@@ -9,7 +9,7 @@ import { ReviewStrategyComponent } from './review-strategy/review-strategy.compo
 import {StageConfigDTO} from '../../model';
 
 @Component({
-	moduleId: module.id,
+	
 	selector: 'app-stageconfig',
 	templateUrl: 'stageconfig.component.html',
 	styleUrls: ['stageconfig.component.css'],

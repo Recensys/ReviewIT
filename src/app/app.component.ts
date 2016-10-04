@@ -4,7 +4,7 @@ import {Message} from 'primeng/primeng';
 import {MessageService} from './core';
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'review-it-app',
   template: `
       <div class="container-fluid">

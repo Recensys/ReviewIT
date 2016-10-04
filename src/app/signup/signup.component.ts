@@ -4,7 +4,7 @@ import { APIService } from "../services/api.service";
 import { MessageService } from '../core';
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-signup',
   providers: [ APIService ],
   templateUrl: 'signup.component.html',

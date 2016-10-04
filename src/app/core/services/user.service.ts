@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject }    from 'rxjs/ReplaySubject';
-import {CookieService} from 'angular2-cookie/core';
-import { Router } from '@angular/router'
+import { CookieService } from 'angular2-cookie/core';
+import { Router } from '@angular/router';
 
-import { User } from '../../model'
+import { User } from '../../model';
 
 @Injectable()
 export class UserService {
@@ -14,7 +14,7 @@ export class UserService {
       this.user =  JSON.parse(user);
     }*/
     this.user = new User();
-    this.user.Name = 'testUSer';
+    this.user.Name = 'testUser';
   }
 
   private loggedInUserSource = new ReplaySubject<User>();

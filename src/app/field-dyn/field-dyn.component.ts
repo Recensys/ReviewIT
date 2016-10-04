@@ -2,14 +2,13 @@ import { Component, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild
 import { DomSanitizer } from '@angular/platform-browser';
 
 
-import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 import { DataType } from '../model/models';
 import {Field} from './field';
 import {Data} from '../model/data';
 import {BooleanFieldComponent} from './fields/boolean-field.component'
 
 @Component({
-    moduleId: module.id,
+    
     selector: 'field-dyn',
     template: 'dynfield:<div #target></div>'
 })

@@ -3,10 +3,9 @@ import { NgClass } from "@angular/common";
 
 import { Data } from "../model/data";
 import { Field } from "./fields";
-import { ButtonRadioDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'field',
   template: '<div #typedfield></div>',
   styleUrls: ['field.component.css']

@@ -7,7 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 
-import Globals = require('../shared/globals');
+
+import { environment } from '../../environments/environment';
 import {CookieService} from 'angular2-cookie/core';
 import {StageModel} from '../model/stageModel';
 import {Field, StringField, ResourceField, RadioField, NumberField, CheckboxField, BooleanField} from '../field';
@@ -21,14 +22,13 @@ export class APIService {
   constructor(private http: Http, private _cookieService:CookieService){  }
 
 
-
   /***
    * USER METHODS
    */
   public ValidateUser(username: string, password: string) : Observable<string>{
     let body = JSON.stringify({'Username': username, 'Password': password});
 
-    return this.http.post(Globals.api+'login', body, this.AuthOptions())
+    return this.http.post(environment.api+'login', body, this.AuthOptions())
               .map(this.extractJson)
               .catch(this.handleError);
   }
@@ -36,7 +36,7 @@ export class APIService {
   public CreateUser(username: string, password: string) : Observable<string> {
     let body = JSON.stringify({'Username': username, 'Password': password});
     
-    let url = Globals.api+'user/create';
+    let url = environment.api+'user/create';
 
     return this.http.post(url, body, this.AuthOptions())
       .map(this.extractJson)
@@ -47,13 +47,13 @@ export class APIService {
    * TASK METHODS
    */
   public GetTask(id: number) : Observable<StageModel>{
-    let url = Globals.api + 'task/' + id;
+    let url = environment.api + 'task/' + id;
     return this.http.get(url, { withCredentials: true })
       .map(this.exstractStageModel.bind(this))
       .catch(this.handleError);
   }
   public GetStages(studyId: number) : Observable<StageModel[]> {
-    let url = Globals.api + 'stage';
+    let url = environment.api + 'stage';
     return this.http.get(url, { withCredentials: true })
       .map(this.exstractStageModels.bind(this))
       .catch(this.handleError);
@@ -63,7 +63,7 @@ export class APIService {
    * FIELD METHODS
    */
   public GetFields(studyId: number) : Observable<Field[]> {
-    let url = `${Globals.api}study/${studyId}/field`
+    let url = `${environment.api}study/${studyId}/field`
     return this.http.get(url, { withCredentials: true })
       .map(this.extractJson)
       .catch(this.handleError);
@@ -75,7 +75,7 @@ export class APIService {
    */
   public SaveDatefields(stageId: number, visible: Field[], requested: Field[]) : Observable<string> {
     let body = JSON.stringify({'Visible': visible, 'Requested': requested});
-    let url = `${Globals.api}stage/${stageId}/datafields`;
+    let url = `${environment.api}stage/${stageId}/datafields`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -87,7 +87,7 @@ export class APIService {
 
   public SaveStageDetails(stageId: number, name: string, description: string) : Observable<string> {
     let body = JSON.stringify({'Name': name, 'Description': description});
-    let url = `${Globals.api}stage/${stageId}/details`;
+    let url = `${environment.api}stage/${stageId}/details`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -99,7 +99,7 @@ export class APIService {
   
   public saveStage(stage: any) {
     let body = JSON.stringify(stage);
-    let url = `${Globals.api}stage/${stage.Id}`;
+    let url = `${environment.api}stage/${stage.Id}`;
     return this.http.post(url, body, this.AuthOptions())
       .map(this.exstractStatusText)
       .catch(this.handleError);
@@ -110,7 +110,7 @@ export class APIService {
    * STUDY METHODS
    */
   public startStudy(id: number) : Observable<any> {
-    let url = `${Globals.api}study/${id}/start`;
+    let url = `${environment.api}study/${id}/start`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -120,7 +120,7 @@ export class APIService {
       .catch(this.handleError);
   }
   public newStudy() : Observable<number> {
-    let url = `${Globals.api}study/new`;
+    let url = `${environment.api}study/new`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -130,7 +130,7 @@ export class APIService {
         .catch(this.handleError);
   }
   public deleteStudy(id: number){
-    let url = `${Globals.api}study/${id}`;
+    let url = `${environment.api}study/${id}`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -140,13 +140,13 @@ export class APIService {
         .catch(this.handleError);
   }
   public getStudy(id: number) : Observable<StudyConfigDTO> {
-    let url = `${Globals.api}study/${id}`;
+    let url = `${environment.api}study/${id}`;
     return this.http.get(url, this.AuthOptions())
         .map(this.extractJson)
         .catch(this.handleError);
   }
   public getStudies() : Observable<StudyDetailsDTO[]>{
-    let url = `${Globals.api}study/`;
+    let url = `${environment.api}study/`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -158,7 +158,7 @@ export class APIService {
   public saveStudyDetails(id: number, studydetails: StudyDetailsDTO) : Observable<string> {
     let body = JSON.stringify({'Id': id, 'StudyDetails': studydetails});
     console.log(body);
-    let url = `${Globals.api}study/${id}`;
+    let url = `${environment.api}study/${id}`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
@@ -169,7 +169,7 @@ export class APIService {
   }
   public saveStudy(study: StudyConfigDTO) {
     let body = JSON.stringify(study);
-    let url = `${Globals.api}study/${study.Id}`;
+    let url = `${environment.api}study/${study.Id}`;
     let args = new RequestOptions();
     args.withCredentials = true;
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});

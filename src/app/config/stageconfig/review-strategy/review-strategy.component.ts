@@ -4,7 +4,7 @@ import { MessageService } from '../../../core';
 import { Message } from 'primeng/primeng';
 
 @Component({
-	moduleId: module.id,
+	
 	selector: 'app-review-strategy',
 	templateUrl: 'review-strategy.component.html',
 	styleUrls: ['review-strategy.component.css'],
