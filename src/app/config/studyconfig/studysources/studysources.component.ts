@@ -44,8 +44,8 @@ export class StudysourcesComponent implements OnInit {
 			}
 
 			this.uploader.onSuccessItem = (file, res, status, headers) => {
-				file.formData['articles'] = 50;
-				console.log(file);
+				// file.formData.
+				// console.log(file);
 			}
 		}
 		
