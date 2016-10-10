@@ -19,11 +19,14 @@ import {DndModule} from 'ng2-dnd';
 import {ConfigService} from './config.service';
 import {TooltipModule} from 'primeng/primeng';
 import {FileUploadModule} from 'ng2-file-upload';
+import {StudymembersComponent} from './studyconfig/studymembers/studymembers.component'
+import {StudymembersService} from './studyconfig/studymembers/studymembers.service'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports:      [ routing, TooltipModule, FileUploadModule, DndModule, HttpModule, DropdownModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, FieldlookupService, ConfigService ],
-  declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent, StudysourcesComponent],
+  imports:      [ routing, TooltipModule, FileUploadModule, DndModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
+  providers:    [ MessageService, FieldlookupService, ConfigService, StudymembersService ],
+  declarations: [ StudyconfigMenuComponent, DatafieldeditorComponent, StageconfigComponent, StudyConfigComponent, ReviewStrategyComponent, CriteriaConfigComponent, StudysourcesComponent, StudymembersComponent],
   exports:      [ StudyconfigMenuComponent, DatafieldeditorComponent, CriteriaConfigComponent],
 })
 export class ConfigModule { }

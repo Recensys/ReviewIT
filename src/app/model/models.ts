@@ -1,12 +1,16 @@
 ﻿
 
-export const enum DataType {
+export enum DataType {
 	String = 0,
 	Boolean = 1,
 	Radio = 2,
 	Checkbox = 3,
 	Number = 4,
 	Resource = 5
+}
+export enum ResearcherRole {
+		Researcher = 0,
+		ResearchManager = 1
 }
 export class CriteriaDTO {
 	Field: FieldDTO;
@@ -47,6 +51,11 @@ export class StudyDetailsDTO {
 	Description: string;
 	Id: number;
 	Name: string;
+}
+export class StudyResearcherDTO {
+	FirstName: string;
+	ResearcherId: number;
+	Role: ResearcherRole;
 }
 export class KeyValuePair<TKey, TValue> {
 	Key: TKey;
