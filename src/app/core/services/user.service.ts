@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject }    from 'rxjs/ReplaySubject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CookieService } from 'angular2-cookie/core';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class UserService {
     this.user.Name = 'testUser';
   }
 
-  private loggedInUserSource = new ReplaySubject<User>();
+  private loggedInUserSource = new BehaviorSubject<User>(null);
 
   get login$(){
     return this.loggedInUserSource.asObservable();
