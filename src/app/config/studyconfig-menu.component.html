@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container">
     <div *ngIf='model != null' class="row">
-        <div class="col-md-4">
+        <div class="col-xl-4">
             <div class="card">
                 <h3 class="card-header card-header-nospace">
                     Study
@@ -52,7 +52,7 @@
             </div>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-xl-8">
             <app-stageconfig *ngIf(selected) [model]="selected" [availableFields]="model.AvailableFields"></app-stageconfig>
             <app-studyconfig *ngIf(!selected) [model]="model"></app-studyconfig>
         </div>
