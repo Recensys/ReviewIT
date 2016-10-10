@@ -3,6 +3,8 @@ import { APIService } from '../../../services/api.service';
 import { MessageService } from '../../../core';
 import { Message } from 'primeng/primeng';
 
+import { DistributionDTO } from '../../../model/models'
+
 @Component({
 	
 	selector: 'app-review-strategy',
@@ -13,7 +15,7 @@ import { Message } from 'primeng/primeng';
 
 export class ReviewStrategyComponent {
 
-	public model2 = 'mooooodel2';
+	public model: DistributionDTO;
 
 	results: any[];
 	msgs: Message[] = [];
