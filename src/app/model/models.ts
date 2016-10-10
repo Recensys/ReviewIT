@@ -1,5 +1,6 @@
 ﻿
-export enum DataType {
+
+export const enum DataType {
 	String = 0,
 	Boolean = 1,
 	Radio = 2,
@@ -11,6 +12,11 @@ export class CriteriaDTO {
 	Field: FieldDTO;
 	Id: number;
 	Value: string;
+}
+export class DistributionDTO {
+	Distribution: KeyValuePair<ResearcherDetailsDTO, number>[];
+	IsRandomized: boolean;
+	StageId: number;
 }
 export class FieldDTO {
 	DataType: DataType;
@@ -42,6 +48,12 @@ export class StudyDetailsDTO {
 	Id: number;
 	Name: string;
 }
+export class KeyValuePair<TKey, TValue> {
+	Key: TKey;
+	Value: TValue;
+}
+
+
 
 
 
