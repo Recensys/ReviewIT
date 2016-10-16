@@ -1,10 +1,15 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule }        from '@angular/router';
 
-import { StudyconfigMenuComponent }    from './studyconfig-menu.component';
+import { ConfigComponent }    from './config.component';
+import {StudyConfigComponent} from './studydetails/studydetails.component'
+import {StudysourcesComponent} from './studysources/studysources.component'
+import {StudydetailsResolve} from './studydetails/studydetails-resolve.service'
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  {
-    path: ':id', component: StudyconfigMenuComponent
-  }
+  {    path: ':id', children: [
+    { path: '', component: ConfigComponent},
+    { path: 'studydetails', component: StudyConfigComponent, outlet: 'config', resolve: {studydetail: StudydetailsResolve}},
+    { path: 'studysources', component: StudysourcesComponent, outlet: 'config'}
+  ]  },
 ]);
