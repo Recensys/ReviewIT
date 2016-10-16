@@ -3,11 +3,13 @@ import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 
 import { ApiHelper } from './apihelper.service';
+import { DndModule } from 'ng2-dnd';
+
 
 @NgModule({
-  imports:      [ CommonModule ],
+  imports:      [ CommonModule, DndModule.forRoot() ],
   declarations: [ ],
-  exports:      [ CommonModule, FormsModule ],
+  exports:      [ CommonModule, FormsModule, DndModule ],
   providers:    [ ApiHelper ]
 })
 export class SharedModule { }

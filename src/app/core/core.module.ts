@@ -6,6 +6,7 @@ import { CommonModule }      from '@angular/common';
 import { UserService, MessageService }       from './services';
 import { CookieService } from 'angular2-cookie/core';
 
+
 @NgModule({
   imports:      [ CommonModule ],
   declarations: [ ],
