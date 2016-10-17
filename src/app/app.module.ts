@@ -8,11 +8,7 @@ import { ReviewITAppComponent } from './app.component';
 import { MessagesModule, GrowlModule } from 'primeng/primeng';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundModule } from './page-not-found'
-
-/* for config outlet */
-import { FileUploadModule } from 'ng2-file-upload';
-import { ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule, RadioButtonModule, AutoCompleteModule, SliderModule, ButtonModule, DropdownModule, TooltipModule } from 'primeng/primeng';
+import { MaterialModule } from '@angular/material';
 
 /* Feature Modules */
 import {routing, routeProviders } from './app.routes'
@@ -33,7 +29,7 @@ import { HomeModule } from './home';
 		CoreModule,
 		HttpModule,
 		PageNotFoundModule,
-		InputTextModule, RadioButtonModule, AutoCompleteModule, SliderModule, ButtonModule, DropdownModule, TooltipModule, ReactiveFormsModule, FileUploadModule
+		MaterialModule.forRoot()
 	],
 	providers: [
 		routeProviders,

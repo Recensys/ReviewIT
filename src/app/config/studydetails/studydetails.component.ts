@@ -23,8 +23,9 @@ export class StudyConfigComponent {
     ) {}
 
    ngOnInit() {
-		this.route.data.forEach((data: { studydetails: StudyDetailsDTO }) => {
-            this.model = data.studydetails;
+		this.route.data.forEach((data: { studydetail: StudyDetailsDTO }) => {
+            console.log(data);
+            this.model = data.studydetail;
         });
 	}
     

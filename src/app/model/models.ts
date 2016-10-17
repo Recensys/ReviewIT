@@ -43,6 +43,11 @@ export class StageFieldsDTO {
 	RequestedFields: FieldDTO[];
 	VisibleFields: FieldDTO[];
 }
+export class StageDetailsDTO {
+	Description: string;
+	Id: number;
+	Name: string;
+}
 export class StudyConfigDTO {
 	AvailableFields: FieldDTO[];
 	Criteria: CriteriaDTO[];

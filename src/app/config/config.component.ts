@@ -17,10 +17,5 @@ export class ConfigComponent {
     constructor(
         private route: ActivatedRoute,
         private _msg: MessageService
-    ) { 
-
-
-
-        
-    }
+    ) { }
 }

@@ -12,6 +12,7 @@ import {MessageService} from './core';
         <div class="container" style="padding-top: 90px;">
           <router-outlet></router-outlet>
           <router-outlet name="config"></router-outlet>
+          <router-outlet name="stageconfig"></router-outlet>
         </div>
         <p-growl [life]='3000' [value]="msgs"></p-growl>
       </div>
