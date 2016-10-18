@@ -21,14 +21,16 @@ import { StudydetailsService } from './studydetails/studydetails.service'
 import { StudysourcesComponent } from './studysources/studysources.component'
 import { StudysourcesService } from './studysources/studysources.service'
 import {StudydetailsResolve} from './studydetails/studydetails-resolve.service'
+import {CriteriaConfigComponent} from './criteriaconfig/criteriaconfig.component'
+import {CriteriaconfigService} from './criteriaconfig/criteriaconfig.service'
 
 /* stage config */
 import { StageconfigModule } from './stageconfig/stageconfig.module'
 
 @NgModule({
   imports:      [ routing, StageconfigModule, MaterialModule, RouterModule, TooltipModule, FileUploadModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve ],
-  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent ],
+  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService ],
+  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent ],
   exports:      [ ],
 })
 export class ConfigModule { }
