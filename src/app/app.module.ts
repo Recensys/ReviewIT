@@ -11,7 +11,7 @@ import { PageNotFoundModule } from './page-not-found'
 import { MaterialModule } from '@angular/material';
 
 /* Feature Modules */
-import {routing, routeProviders } from './app.routes'
+import { routing, routeProviders } from './app.routes'
 import { HomeModule } from './home';
 
 

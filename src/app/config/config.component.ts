@@ -13,6 +13,7 @@ import { MessageService } from '../core';
 
 export class ConfigComponent {
 
+    loading = true;
 
     constructor(
         private router: Router,
@@ -23,5 +24,6 @@ export class ConfigComponent {
     ngOnInit(){
         // open studydetails as default
         this.router.navigate(['studydetails'], {relativeTo: this.route});
+        this.loading = false;
     }
 }
