@@ -1,21 +1,20 @@
-<div class="card">
-  <div class="card-header">
-    <b>Your studies</b>
-    <button (click)="newStudy()" type="button" class="btn btn-sm btn-success pull-sm-right"><i class="fa fa-plus"></i> New Study</button>
-  </div>
-  <div class="card-block">
-    <div *ngIf="model.length == 0">
-      you don't have any studies...
+<md-card>
+  <md-card-title>
+    <div class="row">
+    <div class="col-sm-10">
+    <h5>Your studies</h5> 
     </div>
-    <div *ngIf="model.length > 0" class="list-group list-group-flush">
-      <dl *ngFor="let studyDetail of model">
-          <dt class="col-sm-10">
-            <a [routerLink]="['']">{{studyDetail.Name}}</a>
-          </dt>
-          <dd class="col-sm-2">
-            <a [routerLink]="['config/'+studyDetail.Id]" class="btn btn-default"><i class="fa fa-wrench"></i></a>
-          </dd>
-      </dl>
+    <div class="col-sm">
+    <a (click)="newStudy()" class="btn btn-sm btn-default"><i class="fa fa-plus"></i></a>
     </div>
-  </div>
-</div>
+    </div>
+  </md-card-title>
+</md-card>
+
+
+<md-card *ngFor="let studyDetail of model">
+  <md-card-content>
+    <a [routerLink]="['']">{{studyDetail.Name}}</a>
+    <a [routerLink]="['config/'+studyDetail.Id]" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+  </md-card-content>
+</md-card>
