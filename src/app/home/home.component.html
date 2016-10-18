@@ -8,10 +8,12 @@
         <h4>Create a user or sign in to begin!</h4>
     </div>
 </div>
-<!--<div class="container" *ngIf="userService.isLoggedIn">-->
+
 <div class="container">
     <div class="col-md-6">
-        <p>Recent changes...</p>
+        <md-card>
+            <md-card-content>Recent changes...</md-card-content>
+        </md-card>
     </div>
     <div class="col-md-6">
         <app-studylist></app-studylist>
