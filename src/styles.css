@@ -1,10 +1,11 @@
 
 body{
-	background-color: #fcfaf8 !important;
+	background-color: #edebe9 !important;
 }
 
 md-card {
   margin: 20px;
+  background-color: white;
 }
 
 td{

@@ -26,11 +26,14 @@ import {CriteriaconfigService} from './criteriaconfig/criteriaconfig.service'
 
 /* stage config */
 import { StageconfigModule } from './stageconfig/stageconfig.module'
+import { Sharedstagelist } from './stagelist/sharedstagelist.service'
+import { StagelistService } from './stagelist/stagelist.service'
+import { StagelistComponent } from './stagelist/stagelist.component'
 
 @NgModule({
   imports:      [ routing, StageconfigModule, MaterialModule, RouterModule, TooltipModule, FileUploadModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService ],
-  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent ],
+  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService ],
+  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent, StagelistComponent ],
   exports:      [ ],
 })
 export class ConfigModule { }

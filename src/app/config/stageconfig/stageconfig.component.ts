@@ -1,10 +1,8 @@
 
 import {Component, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { MessageService } from '../../core';
-import { StageDetailsDTO } from '../../model/models'
-import { StageconfigService } from './stageconfig.service'
 
 @Component({
     
@@ -15,45 +13,15 @@ import { StageconfigService } from './stageconfig.service'
 
 export class StageconfigComponent {
 
-    model: StageDetailsDTO[];
-    selected: StageDetailsDTO;
-    menu: number;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
-        private msg: MessageService,
-        private api: StageconfigService
+        private _msg: MessageService
     ) { }
 
-    ngOnInit() {        
-        this.route.params.forEach((params: Params) => {
-            let id = +params['id'];
-            this.api.get(id).subscribe(
-            dtos => {
-                this.model = dtos;
-                console.log(dtos);
-            },
-            error => this.msg.addError(error)
-        );
-        });
-    }
-
-    select(detail){
-        console.log(detail);
-        this.selected = detail;
-    }
-
-    add(){
-        this.route.params.forEach((params: Params) => {
-            let id = +params['id'];
-            let dto = new StageDetailsDTO();
-            this.api.create(id, dto).subscribe(
-                id => {
-                    dto.Id = id,
-                    this.model.push(dto);
-                },
-                error => this.msg.addError(error)
-            )
-        });
+    ngOnInit(){
+        // open stagedetails as default
+        this.router.navigate(['stagedetails'], {relativeTo: this.route});
     }
 }

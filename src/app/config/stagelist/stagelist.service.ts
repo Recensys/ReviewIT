@@ -11,7 +11,7 @@ import { ApiHelper } from '../../shared';
 import { StageDetailsDTO } from '../../model/models';
 
 @Injectable()
-export class StageconfigService {
+export class StagelistService {
     
     constructor(
         private apihelper: ApiHelper,

@@ -2,19 +2,18 @@
 <md-card>
     <div class="row">
         <div class="col-sm-3">
-            <button [routerLink]="[{outlets: {'config': ['studydetails']}}]" class="btn">Study Details</button>
+            <button [routerLink]="['studydetails']" class="btn">Study Details</button>
         </div>
         <div class="col-sm-3">
-            <button [routerLink]="[{outlets: {'config': ['studysources']}}]" class="btn">Study Sources</button>
+            <button [routerLink]="['studysources']" class="btn">Study Sources</button>
         </div>
         <div class="col-sm-3">
-            <button [routerLink]="[{outlets: {'config': ['criteriaconfig']}}]" class="btn">Study Criteria</button>
+            <button [routerLink]="['criteriaconfig']" class="btn">Study Criteria</button>
         </div>
         <div class="col-sm-3">
-            <button [routerLink]="[{outlets: {'config': ['stages']}}]" class="btn">Stages</button>
+            <button [routerLink]="['stagelist']" class="btn">Stages</button>
         </div>
     </div>
-    <div>
-    </div>
-    <div style="height:20px;"></div>
 </md-card>
+
+<router-outlet></router-outlet>

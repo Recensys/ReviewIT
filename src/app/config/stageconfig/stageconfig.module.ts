@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms'
 import { MaterialModule } from '@angular/material'
 
 import { StageconfigComponent } from './stageconfig.component'
-import { StageconfigService } from './stageconfig.service'
 import { StagedetailsComponent } from './stagedetails/stagedetails.component'
+import { Sharedstagelist } from '../stagelist/sharedstagelist.service'
 import { StagedetailsService } from './stagedetails/stagedetails.service'
 
 @NgModule({
-  imports:      [ CommonModule, RouterModule, FormsModule, MaterialModule.forRoot() ],
-  providers:    [ StageconfigService, StagedetailsService ],
+  imports:      [ CommonModule, RouterModule, FormsModule, MaterialModule ],
+  providers:    [ Sharedstagelist, StagedetailsService ],
   declarations: [ StageconfigComponent, StagedetailsComponent ],
   exports:      [ ],
 })

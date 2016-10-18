@@ -13,19 +13,26 @@ import { StudydetailsService } from './studydetails.service'
 
 export class StudyConfigComponent {
 
-    //@Input() studyId: number;
-    model: StudyDetailsDTO;
+    model: StudyDetailsDTO = new StudyDetailsDTO();
 
-     constructor(
+    constructor(
         private route: ActivatedRoute,
         private msg: MessageService,
         private api: StudydetailsService
     ) {}
 
    ngOnInit() {
-		this.route.data.forEach((data: { studydetail: StudyDetailsDTO }) => {
-            console.log(data);
-            this.model = data.studydetail;
+       console.log(this.route);
+       this.route.parent.params.forEach((params: Params) => {
+            let id = +params['id'];
+            console.log(id);
+            this.api.get(id).subscribe(
+                dto => {
+                    this.model = dto;
+                    console.log(dto);
+                },
+                error => this.msg.addError(error)
+            );
         });
 	}
     

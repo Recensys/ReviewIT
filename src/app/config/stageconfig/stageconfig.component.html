@@ -1,18 +1,19 @@
+
 <md-card>
-    <md-card-content class="demo-basic-list">
-        <md-grid-list cols="8" rowHeight="100px">
-            <md-grid-tile class="add" (click)="add()"> add </md-grid-tile>            
-            <md-grid-tile (click)="select(detail)" style="background-color: lightgrey;" *ngFor="let detail of model">
-                     #{{detail.Id}} - {{detail.Name}} 
-            </md-grid-tile>
-        </md-grid-list>
-    </md-card-content>
+    <div class="row">
+        <div class="col-sm-3">
+            <button [routerLink]="['stagedetails']" class="btn">Stage Details</button>
+        </div>
+        <!--<div class="col-sm-3">
+            <button [routerLink]="['studysources']" class="btn">Study Sources</button>
+        </div>
+        <div class="col-sm-3">
+            <button [routerLink]="['criteriaconfig']" class="btn">Study Criteria</button>
+        </div>
+        <div class="col-sm-3">
+            <button [routerLink]="['stagelist']" class="btn">Stages</button>
+        </div>-->
+    </div>
 </md-card>
 
-<md-card *ngIf="selected">
-    <button (click)="menu=1" class="btn" [style.btn-primary]="menu==1">Stage Details</button>
-    <button (click)="menu=2" class="btn">Stage Fields</button>
-    <button (click)="menu=3" class="btn">Division of labour</button>
-</md-card>
-
-<app-stagedetails *ngIf="menu==1" [model]="selected"></app-stagedetails>
+<router-outlet></router-outlet>
