@@ -1,18 +1,11 @@
+
 <md-card>
-    <div class="row">
-        <div class="col-sm-3">
-            <button [routerLink]="['studydetails']" class="btn">Study Details</button>
-        </div>
-        <div class="col-sm-3">
-            <button [routerLink]="['studysources']" class="btn">Study Sources</button>
-        </div>
-        <div class="col-sm-3">
-            <button [routerLink]="['criteriaconfig']" class="btn">Study Criteria</button>
-        </div>
-        <div class="col-sm-3">
-            <button [routerLink]="['stagelist']" class="btn">Stages</button>
-        </div>
-    </div>
+    <button [routerLink]="['studydetails']" class="btn">Study Details</button>
+    <button [routerLink]="['studysources']" class="btn">Study Sources</button>
+    <button [routerLink]="['fieldeditor']" class="btn">Datafield Editor</button>
+    <button [routerLink]="['criteriaconfig']" class="btn">Study Criteria</button>
+    <button [routerLink]="['members']" class="btn">Study Members</button>
+    <button [routerLink]="['stagelist']" class="btn">Stages</button>
 </md-card>
 
 <router-outlet></router-outlet>
