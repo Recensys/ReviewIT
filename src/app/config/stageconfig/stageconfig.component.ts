@@ -21,7 +21,8 @@ export class StageconfigComponent {
     ) { }
 
     ngOnInit(){
+        // bug: when reloading, the stage list hasn't been populated yet.
         // open stagedetails as default
-        this.router.navigate(['stagedetails'], {relativeTo: this.route});
+        //this.router.navigate(['stagedetails'], {relativeTo: this.route});
     }
 }

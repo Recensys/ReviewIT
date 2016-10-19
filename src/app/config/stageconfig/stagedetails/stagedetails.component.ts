@@ -16,7 +16,7 @@ import { Sharedstagelist } from '../../stagelist/sharedstagelist.service'
 
 export class StagedetailsComponent implements OnInit{
 
-	model: StageDetailsDTO;
+	model: StageDetailsDTO = new StageDetailsDTO();
 
 	constructor(
         private route: ActivatedRoute,
@@ -28,7 +28,6 @@ export class StagedetailsComponent implements OnInit{
 	ngOnInit(){
         this.route.parent.params.forEach((params: Params) => {
             let id = +params['id'];
-            console.log(this.list.detailsList);
             this.model = this.list.getDetail(id);
         });
 	}
