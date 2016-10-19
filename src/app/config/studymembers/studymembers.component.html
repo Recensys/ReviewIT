@@ -1,0 +1,29 @@
+<md-card>
+    <md-card-title>
+        Study Members
+    </md-card-title>
+
+    <md-card-content>
+        <h5>Add new member</h5>
+        <input type="text" [formControl]="term" />
+        <div class="card-block">
+            <button class="btn btn-secondary btn-sm" (click)="add(researcher)" *ngFor="let researcher of researchers | async">
+                <i class="fa fa-plus"></i> {{researcher.FirstName}}
+            </button>
+        </div>
+    </md-card-content>
+
+    <md-card-content>
+        <h5>Members</h5>
+        <div class="ui-g">
+            <div class="ui-g-1 text-muted"></div>
+            <div class="ui-g-3 text-muted">Name</div>
+            <div class="ui-g-2 text-muted">Is admin?</div>
+        </div>
+        <div class="ui-g" *ngFor="let member of model; let i = index">
+            <div class="ui-g-1"><button class="btn btn-secondary btn-sm" (click)="remove(i)"><i class="fa fa-times"></i></button></div>
+            <div class="ui-g-3">{{member.FirstName}}</div>
+            <div class="ui-g-2">{{member.Role == 1}}</div>
+        </div>
+    </md-card-content>
+</md-card>

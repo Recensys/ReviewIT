@@ -15,14 +15,18 @@ import {FileUploadModule} from 'ng2-file-upload';
 import { ReactiveFormsModule } from '@angular/forms';
 
 /* study config */
-import {ConfigComponent} from './config.component'
+import { ConfigComponent } from './config.component'
 import { StudyConfigComponent } from './studydetails/studydetails.component'
 import { StudydetailsService } from './studydetails/studydetails.service'
 import { StudysourcesComponent } from './studysources/studysources.component'
 import { StudysourcesService } from './studysources/studysources.service'
-import {StudydetailsResolve} from './studydetails/studydetails-resolve.service'
-import {CriteriaConfigComponent} from './criteriaconfig/criteriaconfig.component'
-import {CriteriaconfigService} from './criteriaconfig/criteriaconfig.service'
+import { StudydetailsResolve} from './studydetails/studydetails-resolve.service'
+import { CriteriaConfigComponent } from './criteriaconfig/criteriaconfig.component'
+import { CriteriaconfigService } from './criteriaconfig/criteriaconfig.service'
+import { StudymembersComponent } from './studymembers/studymembers.component'
+import { StudymembersService } from './studymembers/studymembers.service'
+import { DatafieldeditorComponent } from './datafieldeditor/datafieldeditor.component'
+
 
 /* stage config */
 import { StageconfigModule } from './stageconfig/stageconfig.module'
@@ -32,8 +36,8 @@ import { StagelistComponent } from './stagelist/stagelist.component'
 
 @NgModule({
   imports:      [ routing, StageconfigModule, MaterialModule, RouterModule, TooltipModule, FileUploadModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService ],
-  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent, StagelistComponent ],
+  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService, StudymembersService ],
+  declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent, StagelistComponent, StudymembersComponent, DatafieldeditorComponent ],
   exports:      [ ],
 })
 export class ConfigModule { }
