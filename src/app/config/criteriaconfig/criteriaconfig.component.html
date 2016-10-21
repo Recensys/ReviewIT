@@ -6,6 +6,16 @@
   </md-card-header>
 
   <md-card-content>
+        <h5>fields</h5>
+        <input type="text" [formControl]="term" />
+        <div class="card-block">
+            <button class="btn btn-secondary btn-sm" *ngFor="let field of fields | async">
+                <i class="fa fa-plus"></i> {{field.Name}}
+            </button>
+        </div>
+    </md-card-content>
+
+  <md-card-content>
     <dl class="row">
       <dd class="col-sm-3">
         <div class="col-sm-10">

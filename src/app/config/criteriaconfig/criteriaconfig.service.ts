@@ -1,38 +1,43 @@
-import { Injectable } from '@angular/core';
+
+import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
-import { Observable }    from 'rxjs/Observable';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import {Field, BooleanField} from '../../field';
+import { api } from '../../shared/globals';
+import { ApiHelper } from '../../shared';
+import { CriteriaDTO, FieldDTO } from '../../model/models'
 
 @Injectable()
 export class CriteriaconfigService {
-    
+
     constructor(
-      private http: Http
-      ) {}
-
-    fields : Field[] =  [
-      new BooleanField({Name: 'john'}),
-      new BooleanField({Name: 'steve'}),
-      new BooleanField({Name: 'mathias'}),
-    ]
-
-    getFields(search: string) {
-        return this.fields.filter(f => f.Name.indexOf(search) >= 0)
+        private apihelper: ApiHelper,
+        private http: Http
+    ) { }
+    
+    public search(studyId: number, str: string): Observable<FieldDTO[]> {
+        let url = `${api}/study/${studyId}/fields/search/${str}`;
+        return this.http.get(url, this.apihelper.JsonOptions())
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
     }
 
-    save(){
-      
-    }
+    // public updateResearcher(studyId: number, researchers: StudyResearcherDTO[]): Observable<StudyResearcherDTO[]> {
+    //     let url = `${api}/study/${studyId}/researchers`;
+    //     let body = JSON.stringify(researchers);
+    //     return this.http.put(url, body, this.apihelper.JsonOptions())
+    //         .map(this.apihelper.extractJson)
+    //         .catch(this.apihelper.handleError);
+    // }
 
-    private handleError (error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  }
+    // public getAll(): Observable<ResearcherDetailsDTO[]> {
+    //     let url = `${api}/users`;
+    //     return this.http.get(url, this.apihelper.JsonOptions())
+    //         .map(this.apihelper.extractJson)
+    //         .catch(this.apihelper.handleError);
+    // }
+
 }
