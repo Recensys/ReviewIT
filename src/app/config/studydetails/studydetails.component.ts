@@ -14,6 +14,7 @@ import { StudydetailsService } from './studydetails.service'
 export class StudyConfigComponent {
 
     model: StudyDetailsDTO = new StudyDetailsDTO();
+    obs: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,7 +27,8 @@ export class StudyConfigComponent {
        this.route.parent.params.forEach((params: Params) => {
             let id = +params['id'];
             console.log(id);
-            this.api.get(id).subscribe(
+            this.obs = this.api.get(id);
+            this.obs.subscribe(
                 dto => {
                     this.model = dto;
                     console.log(dto);

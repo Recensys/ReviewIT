@@ -1,6 +1,6 @@
 
-import {Component, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { MessageService } from '../../core';
 import { StageDetailsDTO } from '../../model/models'
@@ -8,7 +8,7 @@ import { StagelistService } from './stagelist.service'
 import { Sharedstagelist } from './sharedstagelist.service'
 
 @Component({
-    
+
     selector: 'app-stageconfig',
     templateUrl: 'stagelist.component.html',
     styleUrls: ['stagelist.component.css'],
@@ -19,6 +19,7 @@ export class StagelistComponent {
     model: StageDetailsDTO[];
     selected: StageDetailsDTO;
     menu: number;
+    obs: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -30,29 +31,30 @@ export class StagelistComponent {
     ngOnInit() {
         this.route.parent.params.forEach((params: Params) => {
             let id = +params['id'];
-            this.api.get(id).subscribe(
-            dtos => {
-                this.model = dtos;
-                this.stagelist.details = dtos;
-            },
-            error => this.msg.addError(error)
-        );
+            this.obs = this.api.get(id);
+            this.obs.subscribe(
+                dtos => {
+                    this.model = dtos;
+                    this.stagelist.details = dtos;
+                },
+                error => this.msg.addError(error)
+            );
         });
     }
 
-    select(detail){
+    select(detail) {
         console.log(detail);
         this.selected = detail;
     }
 
-    add(){
+    add() {
         this.route.params.forEach((params: Params) => {
             let id = +params['id'];
             let dto = new StageDetailsDTO();
             this.api.create(id, dto).subscribe(
                 id => {
                     dto.Id = id,
-                    this.model.push(dto);
+                        this.model.push(dto);
                 },
                 error => this.msg.addError(error)
             )
