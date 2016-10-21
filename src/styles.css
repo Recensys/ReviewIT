@@ -177,6 +177,10 @@ dd > .form-group, dd.form-group {
 
 /* Loading */
 
+.testLoading{
+	background-color: blue;
+}
+
 .loading {
 	position: fixed;
 	z-index: 999;

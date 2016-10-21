@@ -4,12 +4,12 @@ import { FormsModule }         from '@angular/forms';
 
 import { ApiHelper } from './apihelper.service';
 import { DndModule } from 'ng2-dnd';
-import { CardInitDirective } from './card-init.directive'
+import { CardInitModule } from './card-init/card-init.module'
 
 @NgModule({
-  imports:      [ CommonModule, DndModule.forRoot() ],
-  declarations: [ CardInitDirective ],
-  exports:      [ CommonModule, FormsModule, DndModule, CardInitDirective ],
+  imports:      [ CommonModule, DndModule.forRoot(), CardInitModule ],
+  declarations: [ ],
+  exports:      [ CommonModule, FormsModule, DndModule, CardInitModule ],
   providers:    [ ApiHelper ]
 })
 export class SharedModule { }

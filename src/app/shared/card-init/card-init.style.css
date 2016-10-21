@@ -1,0 +1,45 @@
+
+md-card-loading-overlay{
+    min-height: 100%;
+    min-width: 100%;
+    left:50%;
+   top:50%;
+   -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   position:absolute;
+    background-color:white;
+   opacity: 0.7;
+   
+}
+
+.error{
+    background-color: red;
+    opacity: 0.5;
+}
+
+md-card-loading-animation{
+    left:50%;
+   top:30%;
+   -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   position:absolute;
+}
+
+.hidden
+{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.1s, opacity 0.1s linear;
+}    
+
+h3{
+    color: grey;
+    left:50%;
+   top:50%;
+   -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   position:absolute;
+}

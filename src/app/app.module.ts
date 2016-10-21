@@ -14,12 +14,16 @@ import { MaterialModule } from '@angular/material';
 import { routing, routeProviders } from './app.routes'
 import { HomeModule } from './home';
 
+/* test module */
+import { TestModule } from './testcomponent/test.module'
+
 
 @NgModule({
 	declarations: [
 		ReviewITAppComponent,
 	],
 	imports: [
+		TestModule,
 		HomeModule,
 		NavbarModule,
 		routing,
