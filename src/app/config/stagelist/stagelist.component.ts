@@ -44,11 +44,6 @@ export class StagelistComponent {
         });
     }
 
-    select(detail) {
-        console.log(detail);
-        this.selected = detail;
-    }
-
     add() {
         let dto = new StageDetailsDTO();
         this.api.create(this.studyId, dto).subscribe(
