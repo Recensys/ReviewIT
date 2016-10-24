@@ -23,7 +23,7 @@ export class StudysourcesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.route.params.forEach((params: Params) => {
+		this.route.parent.params.forEach((params: Params) => {
 			let studyId = +params['id'];
 			if(studyId != undefined){
 				var url = `${environment.api}study/${studyId}/config/source`;
