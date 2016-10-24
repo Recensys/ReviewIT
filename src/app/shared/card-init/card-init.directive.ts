@@ -14,6 +14,10 @@ export class CardInitDirective {
     private renderer: Renderer
   ) { }
 
+  // Jquery setup https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-jQuery
+  // "devDependencies": {
+  // "@types/jquery": "^2.0.33" }
+
   @Input('cardInit')
   set delayTime(loading: Observable<any>) {
 
@@ -35,10 +39,14 @@ export class CardInitDirective {
         this.renderer.setElementClass(lanimation, 'hidden', true);
         var errormsg = this.renderer.createElement(lelement, 'h3');
         this.renderer.setText(errormsg, error);
+        setTimeout(() => $(lanimation).remove() , 200)        
       },
       () => {
+               
         this.renderer.setElementClass(lanimation, 'hidden', true);
         this.renderer.setElementClass(lelement, 'hidden', true);
+        setTimeout(() => $(lanimation).remove() , 200)
+        setTimeout(() => $(lelement).remove() , 200)
       }
     )
   }
