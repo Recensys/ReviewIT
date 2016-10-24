@@ -20,6 +20,7 @@ export class StagelistComponent {
     selected: StageDetailsDTO;
     menu: number;
     obs: any;
+    studyId: number;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class StagelistComponent {
     ngOnInit() {
         this.route.parent.params.forEach((params: Params) => {
             let id = +params['id'];
+            this.studyId = id;
             this.obs = this.api.get(id);
             this.obs.subscribe(
                 dtos => {
@@ -48,16 +50,14 @@ export class StagelistComponent {
     }
 
     add() {
-        this.route.params.forEach((params: Params) => {
-            let id = +params['id'];
-            let dto = new StageDetailsDTO();
-            this.api.create(id, dto).subscribe(
-                id => {
-                    dto.Id = id,
-                        this.model.push(dto);
-                },
-                error => this.msg.addError(error)
-            )
-        });
+        let dto = new StageDetailsDTO();
+        this.api.create(this.studyId, dto).subscribe(
+            id => {
+                dto.Id = id,
+                    this.model.push(dto);
+            },
+            error => this.msg.addError(error)
+        )
+            
     }
 }
