@@ -56,8 +56,7 @@ export class CriteriaConfigComponent implements OnInit {
       this.fields = this.term.valueChanges
         .debounceTime(400)
         .distinctUntilChanged()
-        .take(5)
-        .switchMap(term => this._lookup.search(studyId, term));
+        .switchMap(term => this._lookup.search(studyId, term) );
     });
   }
 
@@ -65,9 +64,6 @@ export class CriteriaConfigComponent implements OnInit {
 
   }
 
-  get getModelJson() {
-    return JSON.stringify(this.model);
-  }
 
   // inclSearch(event) {
   //   this.inclResults = this._lookup.getFields(event.query);
@@ -77,15 +73,15 @@ export class CriteriaConfigComponent implements OnInit {
   //   this.exclResults = this._lookup.getFields(event.query);
   // }
 
-  selectInclusion(value: Field) {
+  addInclusion(value: Field){
     let fc = new FieldCriteria();
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;
     this.model.Inclusions.push(fc);
     this.inclField = null;
   }
-
-  selectExclusion(value: Field) {
+  
+  addExclusion(value: Field) {
     let fc = new FieldCriteria();
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;

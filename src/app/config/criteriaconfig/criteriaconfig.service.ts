@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
+import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -19,8 +19,14 @@ export class CriteriaconfigService {
     ) { }
     
     public search(studyId: number, str: string): Observable<FieldDTO[]> {
-        let url = `${api}/study/${studyId}/fields/search/${str}`;
-        return this.http.get(url, this.apihelper.JsonOptions())
+        let params: URLSearchParams = new URLSearchParams();
+        //params.set('appid', StaticSettings.API_KEY);
+        params.set('term', str);
+        var options = this.apihelper.JsonOptions()
+        options.search = params;
+
+        let url = `${api}/study/${studyId}/fields/search`;
+        return this.http.get(url, options)
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }

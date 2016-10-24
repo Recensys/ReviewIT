@@ -6,29 +6,17 @@
   </md-card-header>
 
   <md-card-content>
-        <h5>fields</h5>
+    <h5>Inclusion criteria</h5>
+    <div class="row">
+      <div class="col-sm-3">
         <input type="text" [formControl]="term" />
-        <div class="card-block">
-            <button class="btn btn-secondary btn-sm" *ngFor="let field of fields | async">
-                <i class="fa fa-plus"></i> {{field.Name}}
-            </button>
-        </div>
-    </md-card-content>
-
-  <md-card-content>
-    <dl class="row">
-      <dd class="col-sm-3">
-        <div class="col-sm-10">
-          <h5>Inclusion criteria</h5>
-          <div class="text-muted small">articles that meet these conditions will be included</div>
-        </div>
-      </dd>
-      <dd class="col-sm">
-        <p-autoComplete [(ngModel)]="inclField" placeholder="field lookup" [suggestions]="inclResults" (completeMethod)="inclSearch($event)"
-          (onSelect)="selectInclusion($event)" field="Name" [size]="20">
-        </p-autoComplete>
-      </dd>
-    </dl>
+      </div>
+      <div class="col-sm-9">
+        <button (click)="addInclusion(field)" class="btn btn-secondary btn-sm" *ngFor="let field of fields | async">
+              <i class="fa fa-plus"></i> {{field.Name}}
+          </button>
+      </div>
+    </div>
     <div *ngIf="model.Inclusions.length > 0" class="card-block">
       <div class="ui-g">
         <div class="ui-g-1"></div>
@@ -36,7 +24,6 @@
         <div class="ui-g-1 text-muted">operator</div>
         <div class="ui-g-2 text-muted">value</div>
       </div>
-
       <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index" [ngSwitch]="inclusion.Field.Type">
         <div class="ui-g-1"><button (click)="model.Inclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
         <div class="ui-g-2">
@@ -57,21 +44,17 @@
   </md-card-content>
 
   <md-card-content>
-    <dl class="row">
-      <dt class="col-sm-3">
-        <div class="col-sm-10">
-          <h5>Exclusion criteria</h5>
-          <div class="text-muted small">articles that meet these conditions will be excluded</div>
-        </div>
-      </dt>
-      <dd class="col-sm">
-        <p-autoComplete [(ngModel)]="exclField" placeholder="field lookup" [suggestions]="exclResults" (completeMethod)="exclSearch($event)"
-          (onSelect)="selectExclusion($event)" field="Name" [size]="20">
-        </p-autoComplete>
-      </dd>
-      <dt class="col-sm-3">
-      </dt>
-    </dl>
+    <h5>Exclusion criteria</h5>
+    <div class="row">
+      <div class="col-sm-3">
+        <input type="text" [formControl]="term" />
+      </div>
+      <div class="col-sm-9">
+        <button (click)="addExclusion(field)" class="btn btn-secondary btn-sm" *ngFor="let field of fields | async">
+              <i class="fa fa-plus"></i> {{field.Name}}
+          </button>
+      </div>
+    </div>
     <div *ngIf="model.Exclusions.length > 0" class="card-block">
       <div class="ui-g">
         <div class="ui-g-1"></div>
@@ -79,20 +62,19 @@
         <div class="ui-g-1 text-muted">operator</div>
         <div class="ui-g-2 text-muted">value</div>
       </div>
-
       <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index" [ngSwitch]="exclusion.Field.Type">
         <div class="ui-g-1"><button (click)="model.Exclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
         <div class="ui-g-2">
           {{exclusion.Field.Name}}
           <div class="text-muted small" *ngSwitchCase="1">(boolean)</div>
         </div>
-        <div class="ui-g-1 text-muted">
+        <div class="ui-g-1">
           <p-dropdown *ngSwitchCase="1" [options]="boolOperators" [(ngModel)]="exclusion.Operator"></p-dropdown>
         </div>
         <div class="ui-g-2">
           <div *ngSwitchCase="1">
-            <p-radioButton name="exclGroup" value="1" [(ngModel)]="exclusion.Value" label="true"></p-radioButton>
-            <p-radioButton name="exclGroup" value="0" [(ngModel)]="exclusion.Value" label="false"></p-radioButton>
+            <p-radioButton name="inclgroup" value="1" [(ngModel)]="exclusion.Value" label="true"></p-radioButton>
+            <p-radioButton name="inclgroup" value="0" [(ngModel)]="exclusion.Value" label="false"></p-radioButton>
           </div>
         </div>
       </div>
@@ -100,7 +82,6 @@
   </md-card-content>
 
   <md-card-actions>
-    <button class="btn">Save</button> 
-    <!--debugging: {{getModelJson}}-->
+    <button class="btn">Save</button>
   </md-card-actions>
 </md-card>
