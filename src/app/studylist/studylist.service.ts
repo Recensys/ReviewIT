@@ -26,7 +26,7 @@ export class StudylistService {
     }
 
     public postStudy(study: StudyConfigDTO): Observable<number> {
-        let url = `${environment.api}study/config`;
+        let url = `${environment.api}study`;
         let body = JSON.stringify(study);
         return this.http.post(url, body, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
