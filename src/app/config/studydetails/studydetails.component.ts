@@ -37,6 +37,13 @@ export class StudyConfigComponent {
             );
         });
 	}
+
+    save(){
+        this.api.update(this.model).subscribe(
+            bool => {if(true) this.msg.addError('updated')},
+            error => this.msg.addError(error)
+        );
+    }
     
 }
 
