@@ -9,7 +9,7 @@ import { CardInitModule } from './card-init/card-init.module'
 @NgModule({
   imports:      [ CommonModule, DndModule.forRoot(), CardInitModule ],
   declarations: [ ],
-  exports:      [ CommonModule, FormsModule, DndModule, CardInitModule ],
+  exports:      [ CommonModule, FormsModule, DndModule, CardInitModule, ],
   providers:    [ ApiHelper ]
 })
 export class SharedModule { }

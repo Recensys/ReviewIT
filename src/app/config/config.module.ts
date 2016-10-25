@@ -26,7 +26,7 @@ import { CriteriaconfigService } from './criteriaconfig/criteriaconfig.service'
 import { StudymembersComponent } from './studymembers/studymembers.component'
 import { StudymembersService } from './studymembers/studymembers.service'
 import { DatafieldeditorComponent } from './datafieldeditor/datafieldeditor.component'
-
+import { DatafieldeditorService } from './datafieldeditor/datafieldeditor.service'
 
 /* stage config */
 import { StageconfigModule } from './stageconfig/stageconfig.module'
@@ -36,7 +36,7 @@ import { StagelistComponent } from './stagelist/stagelist.component'
 
 @NgModule({
   imports:      [ routing, StageconfigModule, MaterialModule, RouterModule, TooltipModule, FileUploadModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService, StudymembersService ],
+  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService, StudymembersService, DatafieldeditorService ],
   declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent, StagelistComponent, StudymembersComponent, DatafieldeditorComponent ],
   exports:      [ ],
 })

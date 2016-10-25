@@ -25,7 +25,7 @@ export class CriteriaconfigService {
         var options = this.apihelper.JsonOptions()
         options.search = params;
 
-        let url = `${api}/study/${studyId}/fields/search`;
+        let url = `${api}/study/${studyId}/field/search`;
         return this.http.get(url, options)
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);

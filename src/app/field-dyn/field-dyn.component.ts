@@ -2,7 +2,7 @@ import { Component, Input, ViewContainerRef, ComponentFactoryResolver, ViewChild
 import { DomSanitizer } from '@angular/platform-browser';
 
 
-import { DataType } from '../model/models';
+import { DataType, FieldDTO } from '../model/models';
 import {Field} from './field';
 import {Data} from '../model/data';
 import {BooleanFieldComponent} from './fields/boolean-field.component'
@@ -15,7 +15,7 @@ import {BooleanFieldComponent} from './fields/boolean-field.component'
 
 export class FieldDynComponent implements OnInit {
 
-    @Input() field: Field;
+    @Input() field: FieldDTO;
     @Input() data: Data;
     @ViewChild('target', { read: ViewContainerRef }) target: any;
     cmpRef: ComponentRef<any>
@@ -35,7 +35,7 @@ export class FieldDynComponent implements OnInit {
 
     ngOnInit() {
         if (this.field !== undefined) {
-            let factory = this.componentFactoryResolver.resolveComponentFactory(this.map[this.field.Type]);
+            let factory = this.componentFactoryResolver.resolveComponentFactory(this.map[this.field.DataType]);
             this.cmpRef = this.target.createComponent(factory);
             this.cmpRef.instance.data = this.data;
             this.cmpRef.instance.field = this.field;

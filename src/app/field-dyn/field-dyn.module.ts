@@ -10,7 +10,7 @@ import { ButtonsModule } from 'ng2-bootstrap';
     imports: [CommonModule, ButtonsModule],
     declarations: [FieldDynComponent, BooleanFieldComponent],
     exports: [FieldDynComponent],
-    providers: [],
+    providers: [ ],
     entryComponents: [BooleanFieldComponent]
 })
 export class FieldDynModule {

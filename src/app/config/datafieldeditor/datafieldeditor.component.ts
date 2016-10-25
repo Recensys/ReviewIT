@@ -1,8 +1,12 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router'
 
 import { Field, StringField, BooleanField, CheckboxField, NumberField, RadioField, ResourceField, FieldComponent } from '../../field';
 import { InputTextModule, ButtonModule, RadioButton } from 'primeng/primeng';
-import { DataType } from '../../model';
+import { DataType, FieldDTO } from '../../model';
+import { DatafieldeditorService } from './datafieldeditor.service'
+import { MessageService } from '../../core'
+
 
 @Component({
   
@@ -12,58 +16,51 @@ import { DataType } from '../../model';
 })
 export class DatafieldeditorComponent implements OnInit {
 
-  fields: Field[] = [];
+  fields: FieldDTO[] = [];
   newField: Field ;
+  studyId: number;
+
+  selection: FieldDTO;
 
   dataTypes = DataType;
 
-  constructor() { }
+  constructor(
+    private api: DatafieldeditorService,
+    private route: ActivatedRoute,
+    private msg: MessageService
+  ) { }
 
   ngOnInit() {
+    this.route.parent.params.forEach((params: Params) => {
+			let studyId = +params['id'];
+      this.studyId = studyId;
+      this.api.get(studyId).subscribe(
+        dtos => this.fields = dtos,
+        error => this.msg.addError(error)
+      );
+    });
   }
 
   addNewField(){
-    let field = new BooleanField({Name: 'new field'});
+    let field = new FieldDTO();
+    field.DataType = DataType.Boolean;
+    field.Name = "new field";
     this.fields.push(field);
-  }
-
-  addField(field: Field){
-    this.fields.push(field);
-    this.newField = new BooleanField({Name: 'new field'});
   }
 
   selectField(field: Field){
     this.newField = field;
   }
 
-  get getModelJson(){
-    return JSON.stringify(this.fields);
+  save(){
+    this.api.save(this.studyId, this.fields).subscribe(
+      bool => {
+        if(bool) this.msg.addInfo('fields updated')
+      },
+      error => this.msg.addError(error)
+    );
   }
 
-  setFieldType(type: number){
-    let field = InstanceLoader.getFieldInstance<Field>(type, this.newField.Name);
-    field.Name = this.newField.Name;
-    field.Type = <DataType>type;
-    this.newField = field;
-    
-  }
+  
 }
 
-class InstanceLoader {
-
-    public static map = {
-      0 : StringField,
-      1 : BooleanField,      
-      2 : RadioField,
-      3 : CheckboxField,      
-      4 : NumberField,
-      5 : ResourceField,
-    }
-
-    static getFieldInstance<T>(type: number, ...args: any[]) : T {
-        var instance = Object.create(this.map[type].prototype);
-        instance.constructor.apply(instance, args);
-        return <T> instance;
-    }
-
-}

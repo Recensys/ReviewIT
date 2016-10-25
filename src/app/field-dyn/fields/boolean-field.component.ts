@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 
+import { FieldDTO } from '../../model/models'
+
 import {Data} from '../../model/data';
 import {Field} from '../field';
 
@@ -20,7 +22,7 @@ import {Field} from '../field';
 export class BooleanFieldComponent {
 
     @Input() data: Data;
-    @Input() field: Field;
+    @Input() field: FieldDTO;
 
     constructor() {
     }
