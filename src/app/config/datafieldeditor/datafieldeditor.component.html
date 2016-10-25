@@ -1,10 +1,10 @@
 <md-card>
   <md-card-title>
-    <h5>Data Field Editor</h5>
+    <h5 class="col-sm-3">Data Field Editor</h5>
+    <div class="col-sm">
+      <button type="button" class="btn btn-success" (click)="save()" label="Save fields">Save fields</button>
+    </div>
   </md-card-title>
-  <md-card-actions>
-    <button type="button" class="btn btn-success" (click)="save()" label="Save fields">Save fields</button>
-  </md-card-actions>
 </md-card>
 
 <div class="row">
@@ -19,7 +19,8 @@
       <md-card-content>
         <div>
           <a *ngIf="fields.length == 0"> You have no fields... </a>
-          <button (click)="selection = field" style="margin:5px;" *ngFor="let field of fields" [class.btn-primary]="field === selection" class="btn">{{field.Name}}</button>
+          <button (click)="selection = field" style="margin:5px;" *ngFor="let field of fields" [class.btn-primary]="field === selection"
+            class="btn">{{field.Name}}</button>
         </div>
       </md-card-content>
     </md-card>
