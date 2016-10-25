@@ -11,7 +11,7 @@ import {MessageService} from './core';
         <app-navbar></app-navbar>
         <div class="container" style="padding-top: 90px;">
           <router-outlet></router-outlet>
-          <app-test></app-test>
+          <!--<app-test></app-test>-->
         </div>
         <p-growl [life]='3000' [value]="msgs"></p-growl>
       </div>
