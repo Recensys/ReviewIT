@@ -27,7 +27,6 @@ export class DatafieldeditorService {
 
     public save(studyId: number, dtos: FieldDTO[]): Observable<boolean> {
         let url = `${environment.api}study/${studyId}/field`;
-        let body = JSON.stringify(dtos);
         return this.http.put(url, dtos, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
