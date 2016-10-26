@@ -19,7 +19,7 @@ export class StagefieldseditorService
     ) { }
 
     public get(stageId: number): Observable<StageFieldsDTO> {
-        let url = `${environment.api}stage/${stageId}/distribution`;
+        let url = `${environment.api}stage/${stageId}/stagefield`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
