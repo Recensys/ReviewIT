@@ -24,5 +24,13 @@ export class StagefieldseditorService
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
+
+    public save(stageId: number, dto: StageFieldsDTO): Observable<boolean> {
+        let url = `${environment.api}stage/${stageId}/stagefield`;
+        let body = JSON.stringify(dto);
+        return this.http.put(url, body, this.apihelper.JsonOptions())
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
+    }
 }
 

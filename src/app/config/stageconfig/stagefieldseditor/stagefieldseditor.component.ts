@@ -27,7 +27,7 @@ export class StagefieldseditorComponent implements OnInit {
 			let id = +params['id'];
 			this.stageId = id;
 			this._api.get(this.stageId).subscribe(
-				dto => { this.model = dto; console.log(dto) },
+				dto => { this.model = dto; console.log(dto);},
 				error => this._msg.addError(error)
 			)
 		})
@@ -35,7 +35,10 @@ export class StagefieldseditorComponent implements OnInit {
 	}
 
 	save(){
-		
+		this._api.save(this.stageId, this.model).subscribe(
+			bool => this._msg.addInfo(bool+''),
+			error => this._msg.addError(error)
+		)
 	}
 }
 
