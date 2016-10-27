@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
-import { ResearcherDetailsDTO, StudyResearcherDTO } from '../../../model';
+import { StudyMemberDTO, StudyMemberDTO } from '../../../model';
 import { MessageService } from '../../../core';
 import { StudymembersService } from './studymembers.service';
 import { FormControl } from '@angular/forms';
@@ -20,8 +20,8 @@ import 'rxjs/add/operator/take';
 export class StudymembersComponent implements OnInit {
 
     @Input() studyId: number;
-    model: StudyResearcherDTO[];
-    researchers: Observable<ResearcherDetailsDTO[]>;
+    model: StudyMemberDTO[];
+    researchers: Observable<StudyMemberDTO[]>;
     term = new FormControl();
 
     ngOnInit() {
@@ -38,7 +38,7 @@ export class StudymembersComponent implements OnInit {
     }
 
 
-    add(r: ResearcherDetailsDTO) {
+    add(r: StudyMemberDTO) {
         this.model.push({ FirstName: r.FirstName, ResearcherId: r.Id, Role: 0 })
         this.update();
     }

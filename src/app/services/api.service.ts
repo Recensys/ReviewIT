@@ -13,7 +13,7 @@ import {CookieService} from 'angular2-cookie/core';
 import {StageModel} from '../model/stageModel';
 import {Field, StringField, ResourceField, RadioField, NumberField, CheckboxField, BooleanField} from '../field';
 import {Task} from '../model/task';
-import { StudyConfigDTO, StudyDetailsDTO } from '../model';
+import { StudyDetailsDTO } from '../model';
 
 
 @Injectable()
@@ -139,12 +139,6 @@ export class APIService {
         .map(this.exstractStatusText)
         .catch(this.handleError);
   }
-  public getStudy(id: number) : Observable<StudyConfigDTO> {
-    let url = `${environment.api}study/${id}`;
-    return this.http.get(url, this.AuthOptions())
-        .map(this.extractJson)
-        .catch(this.handleError);
-  }
   public getStudies() : Observable<StudyDetailsDTO[]>{
     let url = `${environment.api}study/`;
     let args = new RequestOptions();
@@ -167,17 +161,7 @@ export class APIService {
       .map(this.exstractStatusText)
       .catch(this.handleError);
   }
-  public saveStudy(study: StudyConfigDTO) {
-    let body = JSON.stringify(study);
-    let url = `${environment.api}study/${study.Id}`;
-    let args = new RequestOptions();
-    args.withCredentials = true;
-    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8'});
-    args.headers = headers;
-    return this.http.put(url, body, args)
-      .map(this.exstractStatusText)
-      .catch(this.handleError);
-  }
+
 
 
   /*** 

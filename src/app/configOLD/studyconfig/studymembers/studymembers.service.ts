@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { api } from '../../../shared/globals';
 import { ApiHelper } from '../../../shared';
-import {ResearcherDetailsDTO,StudyResearcherDTO} from '../../../model/models'
+import {StudyMemberDTO,StudyMemberDTO} from '../../../model/models'
 
 @Injectable()
 export class StudymembersService {
@@ -18,21 +18,21 @@ export class StudymembersService {
         private http: Http
     ) { }
     
-    public getResearchers(studyId: number): Observable<StudyResearcherDTO[]> {
+    public getResearchers(studyId: number): Observable<StudyMemberDTO[]> {
         let url = `${api}/study/${studyId}/researchers`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 
-    public search(str: string): Observable<StudyResearcherDTO[]> {
+    public search(str: string): Observable<StudyMemberDTO[]> {
         let url = `${api}/users/${str}`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 
-    public updateResearcher(studyId: number, researchers: StudyResearcherDTO[]): Observable<StudyResearcherDTO[]> {
+    public updateResearcher(studyId: number, researchers: StudyMemberDTO[]): Observable<StudyMemberDTO[]> {
         let url = `${api}/study/${studyId}/researchers`;
         let body = JSON.stringify(researchers);
         return this.http.put(url, body, this.apihelper.JsonOptions())
@@ -40,7 +40,7 @@ export class StudymembersService {
             .catch(this.apihelper.handleError);
     }
 
-    public getAll(): Observable<ResearcherDetailsDTO[]> {
+    public getAll(): Observable<StudyMemberDTO[]> {
         let url = `${api}/users`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)

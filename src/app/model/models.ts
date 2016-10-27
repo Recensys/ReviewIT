@@ -23,7 +23,7 @@ export class FieldCriteriaDTO {
 	Value: string;
 }
 export class DistributionDTO {
-	Distribution: KeyValuePair<ResearcherDetailsDTO, number>[];
+	Distribution: KeyValuePair<StudyMemberDTO, number>[];
 	IsRandomized: boolean;
 	StageId: number;
 }
@@ -31,10 +31,6 @@ export class FieldDTO {
 	DataType: DataType;
 	Id: number;
 	Name: string;
-}
-export class ResearcherDetailsDTO {
-	FirstName: string;
-	Id: number;
 }
 export class StageConfigDTO {
 	Description: string;
@@ -53,24 +49,22 @@ export class StageDetailsDTO {
 	Id: number;
 	Name: string;
 }
-export class StudyConfigDTO {
-	AvailableFields: FieldDTO[];
-	Criteria: CriteriaDTO[];
-	Description: string;
-	Id: number;
-	Name: string;
-	Researchers: ResearcherDetailsDTO[];
-	Stages: StageConfigDTO[];
-}
 export class StudyDetailsDTO {
 	Description: string;
 	Id: number;
 	Name: string;
 }
-export class StudyResearcherDTO {
+export class StudyMemberDTO {
 	FirstName: string;
-	ResearcherId: number;
+	Id: number;
+	LastName: string;
 	Role: ResearcherRole;
+}
+export class UserDetailsDTO {
+	Email: string;
+	FirstName: string;
+	Id: number;
+	LastName: string;
 }
 export class KeyValuePair<TKey, TValue> {
 	Key: TKey;

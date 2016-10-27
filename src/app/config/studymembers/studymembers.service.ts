@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
 import { ApiHelper } from '../../shared';
-import { ResearcherDetailsDTO, StudyResearcherDTO } from '../../model/models'
+import { UserDetailsDTO, StudyMemberDTO } from '../../model/models'
 
 @Injectable()
 export class StudymembersService {
@@ -18,14 +18,14 @@ export class StudymembersService {
         private http: Http
     ) { }
     
-    public getResearchers(studyId: number): Observable<ResearcherDetailsDTO[]> {
+    public getResearchers(studyId: number): Observable<UserDetailsDTO[]> {
         let url = `${environment.api}study/${studyId}/studymember`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 
-    public searchGlobalUsers(str: string): Observable<ResearcherDetailsDTO[]> {
+    public searchGlobalUsers(str: string): Observable<UserDetailsDTO[]> {
         let url = `${environment.api}user/search`;
         let params: URLSearchParams = new URLSearchParams();
         //params.set('appid', StaticSettings.API_KEY);
@@ -37,7 +37,7 @@ export class StudymembersService {
             .catch(this.apihelper.handleError);
     }
 
-    public save(studyId: number, dtos: ResearcherDetailsDTO[]): Observable<boolean> {
+    public save(studyId: number, dtos: UserDetailsDTO[]): Observable<boolean> {
         let url = `${environment.api}study/${studyId}/studymember`;
         return this.http.put(url, dtos, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)

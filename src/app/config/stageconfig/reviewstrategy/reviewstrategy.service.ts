@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { environment } from '../../../../environments/environment';
 import { ApiHelper } from '../../../shared';
-import { ResearcherDetailsDTO, DistributionDTO } from '../../../model/models'
+import { StudyMemberDTO, DistributionDTO } from '../../../model/models'
 
 @Injectable()
 export class ReviewstrategyService {
@@ -18,7 +18,7 @@ export class ReviewstrategyService {
         private http: Http
     ) { }
     
-    search(studyId: number, str: string): Observable<ResearcherDetailsDTO[]> {
+    search(studyId: number, str: string): Observable<StudyMemberDTO[]> {
         let params: URLSearchParams = new URLSearchParams();
         //params.set('appid', StaticSettings.API_KEY);
         params.set('term', str);
@@ -30,7 +30,7 @@ export class ReviewstrategyService {
             .catch(this.apihelper.handleError);
     }
 
-    getAllResearchers(studyId: number): Observable<ResearcherDetailsDTO[]> {
+    getAllResearchers(studyId: number): Observable<StudyMemberDTO[]> {
         let url = `${environment.api}study/${studyId}/users`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)

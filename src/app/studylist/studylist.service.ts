@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { environment } from '../../environments/environment';
 import { ApiHelper } from '../shared';
-import { StudyDetailsDTO, StudyConfigDTO } from '../model/models';
+import { StudyDetailsDTO } from '../model/models';
 
 @Injectable()
 export class StudylistService {
@@ -25,7 +25,7 @@ export class StudylistService {
             .catch(this.apihelper.handleError);
     }
 
-    public postStudy(study: StudyConfigDTO): Observable<number> {
+    public postStudy(study: StudyDetailsDTO): Observable<number> {
         let url = `${environment.api}study`;
         let body = JSON.stringify(study);
         return this.http.post(url, body, this.apihelper.JsonOptions())
