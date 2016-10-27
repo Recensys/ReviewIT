@@ -38,7 +38,6 @@ export class StudymembersComponent implements OnInit {
         this.researchers = this.term.valueChanges
             .debounceTime(400)
             .distinctUntilChanged()
-            .take(5)
             .switchMap(term => this.service.search(term));
     }
 
