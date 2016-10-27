@@ -23,7 +23,7 @@ export class ConfigComponent {
 
     ngOnInit(){
         // open studydetails as default
-        this.router.navigate(['studydetails'], {relativeTo: this.route});
-        this.loading = false;
+        //this.router.navigate(['studydetails'], {relativeTo: this.route});
+        //this.loading = false;
     }
 }
