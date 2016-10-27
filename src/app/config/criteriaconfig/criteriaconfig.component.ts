@@ -7,11 +7,12 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchmap';
 import 'rxjs/add/operator/take';
 import { Field } from '../../field';
+import { MessageService } from '../../core'
 
 import { CriteriaconfigService } from './criteriaconfig.service';
 import { SelectItem } from 'primeng/primeng';
 
-import {FieldDTO} from '../../model/models'
+import { FieldDTO, CriteriaDTO, FieldCriteriaDTO } from '../../model/models'
 
 @Component({
 
@@ -22,8 +23,9 @@ import {FieldDTO} from '../../model/models'
 export class CriteriaConfigComponent implements OnInit {
 
   constructor(
-    private _lookup: CriteriaconfigService,
-    private route: ActivatedRoute
+    private api: CriteriaconfigService,
+    private route: ActivatedRoute,
+    private msg: MessageService
   ) { }
 
   fields: Observable<FieldDTO[]>;
@@ -37,7 +39,8 @@ export class CriteriaConfigComponent implements OnInit {
   inclResults: Field[];
   exclResults: Field[];
 
-  model: CriteriaModel = new CriteriaModel();
+  model: CriteriaDTO;
+  studyId: number;
 
   // the first operator is initialized on the model in the select methods below
   // when expanding operator types, find out how to do this for the selected type
@@ -47,21 +50,26 @@ export class CriteriaConfigComponent implements OnInit {
   ]
 
   ngOnInit() {
-    this.model.Exclusions = new Array();
-    this.model.Inclusions = new Array();
-
     this.route.parent.params.forEach((params: Params) => {
 			let studyId = +params['id'];
+      this.studyId = studyId;
+      this.api.get(studyId).subscribe(
+        dto => this.model = dto,
+        error => this.msg.addError(error)
+      )
     
       this.fields = this.term.valueChanges
         .debounceTime(400)
         .distinctUntilChanged()
-        .switchMap(term => this._lookup.search(studyId, term) );
+        .switchMap(term => this.api.search(studyId, term) );
     });
   }
 
   save() {
-
+    this.api.save(this.studyId, this.model).subscribe(
+      bool => this.msg.addInfo(bool+''),
+      error => this.msg.addError(error)
+    )
   }
 
 
@@ -73,31 +81,20 @@ export class CriteriaConfigComponent implements OnInit {
   //   this.exclResults = this._lookup.getFields(event.query);
   // }
 
-  addInclusion(value: Field){
-    let fc = new FieldCriteria();
+  addInclusion(value: FieldDTO){
+    let fc = new FieldCriteriaDTO();
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;
     this.model.Inclusions.push(fc);
     this.inclField = null;
   }
-  
-  addExclusion(value: Field) {
-    let fc = new FieldCriteria();
+
+  addExclusion(value: FieldDTO) {
+    let fc = new FieldCriteriaDTO();
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;
     this.model.Exclusions.push(fc);
     this.exclField = null;
   }
 
-}
-
-class CriteriaModel {
-  Inclusions: FieldCriteria[];
-  Exclusions: FieldCriteria[];
-}
-
-class FieldCriteria {
-  Field: Field;
-  Operator: string;
-  Value: string;
 }

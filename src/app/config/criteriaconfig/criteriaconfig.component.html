@@ -7,10 +7,11 @@
   <md-card-content>
     <input type="text" [formControl]="term" placeholder="search by field name" />
   </md-card-content>
-  <button class="btn btn-primary">Save</button>
+  <button (click)="save()" class="btn btn-primary">Save</button>
 </md-card>
 
-<div class="row">
+<div *ngIf="model" class="row">
+
   <div class="col-sm-6">
     <md-card>
       <md-card-title>
@@ -30,7 +31,7 @@
             <div class="ui-g-3 text-muted">operator</div>
             <div class="ui-g-4 text-muted">value</div>
           </div>
-          <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index" [ngSwitch]="inclusion.Field.Type">
+          <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index" [ngSwitch]="inclusion.Field.DataType">
             <div class="ui-g-1"><button (click)="model.Inclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
             <div class="ui-g-4">
               {{inclusion.Field.Name}}
@@ -70,7 +71,7 @@
             <div class="ui-g-3 text-muted">operator</div>
             <div class="ui-g-4 text-muted">value</div>
           </div>
-          <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index" [ngSwitch]="exclusion.Field.Type">
+          <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index" [ngSwitch]="exclusion.Field.DataType">
             <div class="ui-g-1"><button (click)="model.Exclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
             <div class="ui-g-4">
               {{exclusion.Field.Name}}
