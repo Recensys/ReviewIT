@@ -4,7 +4,7 @@ import { MessageService } from '../../../core';
 import { Message } from 'primeng/primeng';
 import { ActivatedRoute, Params } from '@angular/router'
 
-import { DistributionDTO } from '../../../model/models'
+import { DistributionDTO, StudyMemberDTO } from '../../../model/models'
 
 import { ReviewstrategyService } from './reviewstrategy.service'
 
@@ -25,7 +25,7 @@ export class ReviewStrategyComponent {
 
 	search(event) {
 		this.results = this.researchers
-			.filter(user => user.Name.indexOf(event.query) >= 0);
+			.filter(user => user.FirstName.indexOf(event.query) >= 0);
 	}
 
 	handleDropdown(event) {
@@ -43,13 +43,11 @@ export class ReviewStrategyComponent {
 		{ Id: 2, Name: 'Custom' }
 	];
 
-	researchers: any[] = [
-		{ Id: 0, Name: 'Mathias', Range: [0, 0] },
-		{ Id: 1, Name: 'Jacob', Range: [0, 0] },
-		{ Id: 2, Name: 'Paolo', Range: [0, 0] }
-	];
+	researchers: StudyMemberDTO[];
 
-	selectedResearchers: any[] = [];
+	get selectedResearchers(){
+		return this.model.Dist;
+	}
 
 	coverage: number[][] = [];
 	coveragePercent: number = 0;
@@ -57,6 +55,8 @@ export class ReviewStrategyComponent {
 	selectedPreset: any;
 
 	constructor(private oldapi: APIService, private msg: MessageService, private api: ReviewstrategyService, private route: ActivatedRoute) {
+		this.model = new DistributionDTO();
+		this.model.Dist = new Array();
 		if (this.selectedPreset === undefined) {
 			this.selectedPreset = this.presets[0];
 		}
@@ -65,6 +65,7 @@ export class ReviewStrategyComponent {
 
 	obs: any;
 	studyId: number;
+	stageId: number;
 
 	ngOnInit() {
 		this.route.parent.parent.parent.params.forEach((params: Params) => {
@@ -75,6 +76,16 @@ export class ReviewStrategyComponent {
 				error => this.msg.addError(error)
 			)
 		});
+		this.route.parent.params.forEach((params: Params) => {
+			this.stageId = +params['id'];
+			this.api.get(this.stageId).subscribe(
+				model => {
+					this.model = model;
+					this.updateRanges();
+				},
+				error => this.msg.addError(error)
+			)
+		})
 	}
 
 	onPresetChange() {
@@ -167,5 +178,9 @@ export class ReviewStrategyComponent {
 	}
 
 	save() {
+		this.api.save(this.stageId, this.model).subscribe(
+			bool => this.msg.addInfo(bool+''),
+			error => this.msg.addError(error)
+		)
 	}
 }

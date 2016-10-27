@@ -1,7 +1,7 @@
-<div class="card card-block-divided">
-	<div class="card-header">
+<md-card>
+	<md-card-title>
 		Review strategy
-	</div>
+	</md-card-title>
 	<div class="card-block">
 		<div class="row">
 			<div class="col-sm-2 text-truncate">Researchers</div>
@@ -19,7 +19,7 @@
 					(onSelect)="onSelectedResearcherChanged($event)"
 					(onUnselect)="onSelectedResearcherChanged($event)"
 					placeholder="Search for researchers"
-					field="Name"
+					field="FirstName"
 				>
 				</p-autoComplete>
 				<p class="text-muted form-group-info">
@@ -60,7 +60,7 @@
 			</div>
 
 			<div *ngFor="let researcher of selectedResearchers">
-				<div class="col-sm-2 text-truncate">{{researcher.Name}}</div>
+				<div class="col-sm-2 text-truncate">{{researcher.FirstName}}</div>
 				<div class="col-sm-9">
 				<p-slider [(ngModel)]="researcher.Range" (ngModelChange)="onRangeChange()" animation="true" [range]="true"></p-slider>
 				</div>
@@ -73,7 +73,7 @@
 	<div class="card-block" *ngIf="!checkIfValid()">
 		<p-messages [value]="msgs" [closable]="false"></p-messages>
 	</div>
-	<div class="card-footer">
+	<md-card-actions>
 		<button (click)="save()" class="btn btn-primary" [disabled]="!isValid">Save</button>
-	</div>
-</div>
+	</md-card-actions>
+</md-card>

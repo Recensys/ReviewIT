@@ -24,32 +24,32 @@ export class ReviewstrategyService {
         params.set('term', str);
         var options = this.apihelper.JsonOptions()
         options.search = params;
-        let url = `${environment.api}study/${studyId}/users`;
+        let url = `${environment.api}study/${studyId}/studymember`;
         return this.http.get(url, options)
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 
     getAllResearchers(studyId: number): Observable<StudyMemberDTO[]> {
-        let url = `${environment.api}study/${studyId}/users`;
+        let url = `${environment.api}study/${studyId}/studymember`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 
-    // public get(studyId: number): Observable<CriteriaDTO> {
-    //     let url = `${environment.api}study/${studyId}/criteria`;
-    //     return this.http.get(url, this.apihelper.JsonOptions())
-    //         .map(this.apihelper.extractJson)
-    //         .catch(this.apihelper.handleError);
-    // }
+    public get(stageId: number): Observable<DistributionDTO> {
+        let url = `${environment.api}stage/${stageId}/distribution`;
+        return this.http.get(url, this.apihelper.JsonOptions())
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
+    }
 
-    // public save(studyId: number, dto: CriteriaDTO): Observable<boolean> {
-    //     let url = `${environment.api}study/${studyId}/criteria`;
-    //     return this.http.put(url, dto, this.apihelper.JsonOptions())
-    //         .map(this.apihelper.extractJson)
-    //         .catch(this.apihelper.handleError);
-    // }
+    public save(stageId: number, dto: DistributionDTO): Observable<boolean> {
+        let url = `${environment.api}stage/${stageId}/distribution`;
+        return this.http.put(url, dto, this.apihelper.JsonOptions())
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
+    }
 
 
 }

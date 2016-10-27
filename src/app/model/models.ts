@@ -23,9 +23,15 @@ export class FieldCriteriaDTO {
 	Value: string;
 }
 export class DistributionDTO {
-	Distribution: KeyValuePair<StudyMemberDTO, number>[];
+	Dist: UserWorkDTO[];
+	Distribution: KeyValuePair<UserDetailsDTO, number>[];
 	IsRandomized: boolean;
 	StageId: number;
+}
+export class UserWorkDTO {
+	FirstName: string;
+	Id: number;
+	Range: number[];
 }
 export class FieldDTO {
 	DataType: DataType;
