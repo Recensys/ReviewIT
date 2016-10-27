@@ -23,7 +23,6 @@ export class StudyConfigComponent {
     ) {}
 
    ngOnInit() {
-       console.log(this.route);
        this.route.parent.params.forEach((params: Params) => {
             let id = +params['id'];
             console.log(id);
