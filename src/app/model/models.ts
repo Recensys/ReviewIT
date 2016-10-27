@@ -9,12 +9,17 @@ export enum DataType {
 	Resource = 5
 }
 export enum ResearcherRole {
-		Researcher = 0,
-		ResearchManager = 1
+	Researcher = 0,
+	ResearchManager = 1
 }
 export class CriteriaDTO {
+	Exclusions: FieldCriteriaDTO[];
+	Inclusions: FieldCriteriaDTO[];
+}
+export class FieldCriteriaDTO {
 	Field: FieldDTO;
 	Id: number;
+	Operator: string;
 	Value: string;
 }
 export class DistributionDTO {
