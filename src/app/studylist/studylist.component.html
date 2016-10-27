@@ -15,6 +15,6 @@
 <md-card *ngFor="let studyDetail of model">
   <md-card-content>
     <a [routerLink]="['']">{{studyDetail.Name}}</a>
-    <a [routerLink]="['config/'+studyDetail.Id]" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+    <a [routerLink]="['config/'+studyDetail.Id+'/studydetails']" class="btn btn-default"><i class="fa fa-wrench"></i></a>
   </md-card-content>
 </md-card>
