@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ResearcherDetailsDTO, StudyResearcherDTO } from '../../model';
 import { MessageService } from '../../core';
@@ -19,50 +19,59 @@ import 'rxjs/add/operator/take';
 
 export class StudymembersComponent implements OnInit {
 
-    @Input() studyId: number;
-    model: StudyResearcherDTO[];
+    studyId: number;
+    model: ResearcherDetailsDTO[];
     researchers: Observable<ResearcherDetailsDTO[]>;
     term = new FormControl();
+    obs: any;
 
     constructor(
         private msg: MessageService,
-        private service: StudymembersService
+        private api: StudymembersService,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this.service.getResearchers(this.studyId).subscribe(
-            res => this.model = res,
+        this.route.parent.params.forEach((params: Params) => {
+            let id = +params['id'];
+            this.studyId = id;
+            this.obs = this.api.getResearchers(id)
+            this.obs.subscribe(
+                res => this.model = res,
+                error => this.msg.addError(error)
+            );
+
+            this.researchers = this.term.valueChanges
+                .debounceTime(400)
+                .distinctUntilChanged()
+                .switchMap(term => this.api.searchGlobalUsers(term));
+        });
+    }
+
+    save(){
+        this.api.save(this.studyId, this.model).subscribe(
+            bool => this.msg.addInfo(bool+''),
             error => this.msg.addError(error)
         );
-
-        this.researchers = this.term.valueChanges
-            .debounceTime(400)
-            .distinctUntilChanged()
-            .switchMap(term => this.service.search(term));
     }
 
 
     add(r: ResearcherDetailsDTO) {
-        this.model.push({ FirstName: r.FirstName, ResearcherId: r.Id, Role: 0 })
-        this.update();
+        this.model.push(r)
+        //this.update();
     }
 
     remove(i: number) {
-        this.model.splice(i,1);
-        this.update();
+        this.model.splice(i, 1);
+        //this.update();
     }
 
-    update() {
-        this.service.updateResearcher(this.studyId, this.model).subscribe(
-            res => this.msg.addInfo("researchers updated"),
-            error => this.msg.addError(error)
-        )
-    }
-
-    
-
-
-
+    // update() {
+    //     this.api.updateResearcher(this.studyId, this.model).subscribe(
+    //         res => this.msg.addInfo("researchers updated"),
+    //         error => this.msg.addError(error)
+    //     )
+    // }
 
 }
 

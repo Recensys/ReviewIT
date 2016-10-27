@@ -1,4 +1,4 @@
-<md-card>
+<md-card *cardInit="obs">
     <md-card-title>
         Study Members
     </md-card-title>
@@ -26,4 +26,8 @@
             <div class="ui-g-2">{{member.Role == 1}}</div>
         </div>
     </md-card-content>
+
+    <md-card-actions>
+        <button (click)="save()" class="btn btn-success">Save</button>
+    </md-card-actions>
 </md-card>
