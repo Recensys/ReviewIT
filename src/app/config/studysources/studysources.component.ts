@@ -48,6 +48,7 @@ export class StudysourcesComponent implements OnInit {
 
 				this.uploader.onSuccessItem = (file, res, status, headers) => {
 					file['articles'] = res;
+					this.msg.addSuccess(res+' articles added');
 				}
 			}
 		});
