@@ -67,7 +67,7 @@ export class CriteriaConfigComponent implements OnInit {
 
   save() {
     this.api.save(this.studyId, this.model).subscribe(
-      bool => this.msg.addInfo(bool+''),
+      bool => this.msg.addSuccess('criteria updated!'),
       error => this.msg.addError(error)
     )
   }

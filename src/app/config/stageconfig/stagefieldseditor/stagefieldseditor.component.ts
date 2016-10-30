@@ -36,7 +36,7 @@ export class StagefieldseditorComponent implements OnInit {
 
 	save(){
 		this._api.save(this.stageId, this.model).subscribe(
-			bool => this._msg.addInfo(bool+''),
+			bool => this._msg.addSuccess('fields updated!'),
 			error => this._msg.addError(error)
 		)
 	}

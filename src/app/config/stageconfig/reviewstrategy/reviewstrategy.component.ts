@@ -179,7 +179,7 @@ export class ReviewStrategyComponent {
 
 	save() {
 		this.api.save(this.stageId, this.model).subscribe(
-			bool => this.msg.addInfo(bool+''),
+			bool => this.msg.addSuccess('distribution saved!'),
 			error => this.msg.addError(error)
 		)
 	}

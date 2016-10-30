@@ -34,10 +34,7 @@ export class StagedetailsComponent implements OnInit{
 
     save(){
         this.api.save(this.model).subscribe(
-            bool => {
-                if(bool) this.msg.addInfo('stage saved');
-                else this.msg.addWarning('the stage was not saved');
-            },
+            bool => this.msg.addSuccess('stage details updated!'),
             error => this.msg.addError(error)
         );
     }

@@ -50,7 +50,7 @@ export class StudymembersComponent implements OnInit {
 
     save(){
         this.api.save(this.studyId, this.model).subscribe(
-            bool => this.msg.addInfo(bool+''),
+            bool => this.msg.addSuccess('study members updated!'),
             error => this.msg.addError(error)
         );
     }

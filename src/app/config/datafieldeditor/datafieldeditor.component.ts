@@ -54,9 +54,7 @@ export class DatafieldeditorComponent implements OnInit {
 
   save(){
     this.api.save(this.studyId, this.fields).subscribe(
-      bool => {
-        if(bool) this.msg.addInfo('fields updated')
-      },
+      bool => this.msg.addSuccess('fields saved!'),
       error => this.msg.addError(error)
     );
   }
