@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import {RouterModule,RouterOutlet} from '@angular/router'
 import {MaterialModule} from '@angular/material'
 
-import { MessageService } from '../core';
 import { InputTextModule, RadioButtonModule, AutoCompleteModule, SliderModule, MessagesModule, ButtonModule, DropdownModule } from 'primeng/primeng';
 import {SharedModule} from '../shared';
 import {routing} from './config.routes';
@@ -27,6 +26,7 @@ import { StudymembersComponent } from './studymembers/studymembers.component'
 import { StudymembersService } from './studymembers/studymembers.service'
 import { DatafieldeditorComponent } from './datafieldeditor/datafieldeditor.component'
 import { DatafieldeditorService } from './datafieldeditor/datafieldeditor.service'
+import { ConfigService } from './config.service'
 
 /* stage config */
 import { StageconfigModule } from './stageconfig/stageconfig.module'
@@ -36,7 +36,7 @@ import { StagelistComponent } from './stagelist/stagelist.component'
 
 @NgModule({
   imports:      [ routing, StageconfigModule, MaterialModule, RouterModule, TooltipModule, FileUploadModule, HttpModule, DropdownModule, ReactiveFormsModule, SharedModule, InputTextModule, RadioButtonModule, CommonModule, FormsModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule],
-  providers:    [ MessageService, StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService, StudymembersService, DatafieldeditorService ],
+  providers:    [ StudydetailsService, StudysourcesService, StudydetailsResolve, CriteriaconfigService, Sharedstagelist, StagelistService, StudymembersService, DatafieldeditorService, ConfigService ],
   declarations: [ ConfigComponent, StudyConfigComponent, StudysourcesComponent, CriteriaConfigComponent, StagelistComponent, StudymembersComponent, DatafieldeditorComponent ],
   exports:      [ ],
 })
