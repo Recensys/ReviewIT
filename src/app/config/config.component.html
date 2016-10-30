@@ -6,6 +6,7 @@
     <button [routerLink]="['criteriaconfig']" class="btn">Study Criteria</button>
     <button [routerLink]="['members']" class="btn">Study Members</button>
     <button [routerLink]="['stagelist']" class="btn">Stages</button>
+    <button (click)="startStudy()" class="btn btn-success pull-xs-right">Start Study</button>
 </md-card>
 
 <router-outlet></router-outlet>

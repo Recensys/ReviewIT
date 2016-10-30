@@ -1,8 +1,9 @@
 
 import {Component, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, Params} from '@angular/router';
 
 import { MessageService } from '../core';
+import { ConfigService } from './config.service'
 
 @Component({
     
@@ -13,17 +14,28 @@ import { MessageService } from '../core';
 
 export class ConfigComponent {
 
-    loading = true;
+    studyId: number;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private _msg: MessageService
+        private _msg: MessageService,
+        private api: ConfigService
     ) { }
 
     ngOnInit(){
-        // open studydetails as default
-        //this.router.navigate(['studydetails'], {relativeTo: this.route});
-        //this.loading = false;
+        this.route.params.forEach((params: Params) => {
+            this.studyId = +params['id'];
+        })
+    }
+
+    startStudy(){
+        this.api.startStudy(this.studyId).subscribe(
+            num => {
+                this._msg.addInfo(num+' tasks created successfully');
+                console.log(num);
+            },
+            error => this._msg.addError(error)
+        )
     }
 }
