@@ -9,6 +9,10 @@ export class MessageService {
 
     msgs: Message[] = [];
 
+    addSuccess(msg: string) {
+        this.msgs.push({severity: 'success', summary: 'Success!', detail: msg});
+    }
+
     addInfo(msg: string) {
         this.msgs.push({severity: 'info', summary: 'Info', detail: msg});
     }
