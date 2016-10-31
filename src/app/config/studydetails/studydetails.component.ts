@@ -39,7 +39,7 @@ export class StudyConfigComponent {
 
     save(){
         this.api.update(this.model).subscribe(
-            bool => {if(true) this.msg.addError('updated')},
+            bool => this.msg.addSuccess('study details updated!'),
             error => this.msg.addError(error)
         );
     }
