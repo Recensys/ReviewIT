@@ -31,10 +31,7 @@ export class ConfigComponent {
 
     startStudy(){
         this.api.startStudy(this.studyId).subscribe(
-            num => {
-                this._msg.addInfo(num+' tasks created successfully');
-                console.log(num);
-            },
+            num => this._msg.addSuccess(num+' tasks created successfully'),
             error => this._msg.addError(error)
         )
     }
