@@ -1,0 +1,14 @@
+<md-card *cardInit="obs">
+    <md-card-title>
+        Select a stage to work on
+    </md-card-title>
+    <md-card-content>
+        <md-grid-list cols="8" rowHeight="100px">
+            <md-grid-tile [routerLink]="['../../stage', detail.Id, 'list']" style="background-color: lightgrey;" *ngFor="let detail of model">
+                     #{{detail.Id}} - {{detail.Name}} 
+            </md-grid-tile>
+        </md-grid-list>
+    </md-card-content>
+</md-card>
+
+<router-outlet></router-outlet>

@@ -33,7 +33,7 @@ import { TestModule } from './testcomponent/test.module'
 		CoreModule,
 		HttpModule,
 		PageNotFoundModule,
-		MaterialModule.forRoot()
+		MaterialModule
 	],
 	providers: [
 		routeProviders,

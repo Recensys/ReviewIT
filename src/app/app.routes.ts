@@ -27,6 +27,7 @@ export const routes: Routes = [
 		path: 'task',
 		loadChildren:
 		'app/task/task.module#TaskModule'
+		
 	},
 	{
 		path: '**',

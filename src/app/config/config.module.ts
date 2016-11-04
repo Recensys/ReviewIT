@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule,RouterOutlet} from '@angular/router'
-import {MaterialModule} from '@angular/material'
+import { RouterModule, RouterOutlet } from '@angular/router'
+import { MaterialModule } from '@angular/material'
 
 import { InputTextModule, RadioButtonModule, AutoCompleteModule, SliderModule, MessagesModule, ButtonModule, DropdownModule } from 'primeng/primeng';
 import {SharedModule} from '../shared';
