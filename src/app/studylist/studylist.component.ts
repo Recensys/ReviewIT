@@ -17,7 +17,7 @@ export class StudylistComponent implements OnInit {
 
 
   public model: StudyDetailsDTO[] = [];
-
+  obs: any;
 
   constructor(
       private studylistService: StudylistService,
@@ -26,7 +26,8 @@ export class StudylistComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.studylistService.get().subscribe(
+    this.obs = this.studylistService.get();
+    this.obs.subscribe(
       dto => this.model = dto,
       error => this.msgService.addError(error)
     )
