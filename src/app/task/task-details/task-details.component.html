@@ -15,6 +15,7 @@
         </div>
     </md-card-title>
     <md-card-content>
+        <field-dyn [field]="testfield" [data]="testdata"></field-dyn>
         <dl class="dl-horizontal">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" *ngFor="let field of model.Fields; let i = index">

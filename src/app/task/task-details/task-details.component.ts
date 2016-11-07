@@ -56,6 +56,7 @@ export class TaskDetailsComponent implements OnInit {
         t2.Data.push(d2);
         stub.Tasks.push(t2)
 
+        console.log(stub);
 
         this.route.params.forEach((params: Params) => {
             this.stageId = +params['id'];

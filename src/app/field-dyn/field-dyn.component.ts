@@ -10,7 +10,7 @@ import {BooleanFieldComponent} from './fields/boolean-field.component'
 @Component({
     
     selector: 'field-dyn',
-    template: 'dynfield:<div #target></div>'
+    template: '<div #target></div>'
 })
 
 export class FieldDynComponent implements OnInit {
