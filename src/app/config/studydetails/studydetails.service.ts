@@ -32,5 +32,12 @@ export class StudydetailsService {
             .catch(this.apihelper.handleError);
     }
 
+    public delete(id: number) {
+        let url = `${environment.api}study/${id}`;
+        return this.http.delete(url, this.apihelper.JsonOptions())
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
+    }
+
 
 }
