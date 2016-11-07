@@ -16,7 +16,6 @@
               <th style="text-align:center;"><i class="fa fa-filter"></i></th>
             </thead>
             <tbody>
-
               <tr *ngFor="let task of model.Tasks">
                 <th>{{task.Id}}</th>
                 <td *ngFor="let data of task.Data; let i = index">
@@ -29,7 +28,6 @@
                   <span *ngSwitchCase="3" class="label label-default">Done</span>
                 </td>
               </tr>
-
             </tbody>
           </table>
         </div>
