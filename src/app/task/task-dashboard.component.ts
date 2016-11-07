@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
-import { StageDetailsDTO } from "../model/models";
+import { ReviewTaskListDTO } from "../model/models";
 import { TaskDashboardService } from './task-dashboard.service';
 
 
@@ -13,8 +13,8 @@ import { TaskDashboardService } from './task-dashboard.service';
 
 export class TaskDashboard implements OnInit{
 
-  model: StageDetailsDTO[];
-  studyId: number;
+  model: ReviewTaskListDTO;
+  stageId: number;
   obs: any;
 
   constructor(
@@ -24,10 +24,9 @@ export class TaskDashboard implements OnInit{
   }
 
   ngOnInit(){
-    this.route.parent.params.forEach((params: Params) => {
-            let id = +params['id'];
-            this.studyId = id;
-            this.obs = this.api.get(id);
+    this.route.params.forEach((params: Params) => {
+            this.stageId = +params['id'];
+            this.obs = this.api.getTasks(1, this.stageId);
             this.obs.subscribe(
                 dtos => {
                     this.model = dtos;

@@ -2,6 +2,9 @@
     <md-card-title>
         Task Dashboard
     </md-card-title>
+    <md-card-content>
+        total tasks: {{model?.Tasks?.length}}
+    </md-card-content>
 </md-card>
 
-<router-outlet></router-outlet>
+<app-task-details ></app-task-details>

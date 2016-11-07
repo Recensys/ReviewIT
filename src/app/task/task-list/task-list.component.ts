@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
 import { MessageService, UserService } from '../../core'
@@ -18,10 +18,9 @@ import { ReviewTaskListDTO, TaskState, ReviewTaskDTO } from '../../model/models'
 
 export class TasklistComponent implements OnInit{
 
-  model: ReviewTaskListDTO;
-  errorMessage: string;
-  obs: any;
   public state: TaskState;
+
+  @Input() model: ReviewTaskListDTO;
 
   constructor(
     private api: TaskListService,
@@ -31,15 +30,6 @@ export class TasklistComponent implements OnInit{
   ){}
 
   ngOnInit(){
-    this.route.parent.params.forEach((params: Params) => {
-            let id = +params['id'];
-            this.obs = this.api.getTasks(/*this.us.user.Id*/ 1, id);
-            this.obs.subscribe(
-                dtos => {
-                    this.model = dtos;
-                    console.log(dtos);
-                }
-            );
-        });
+    
   }
 }

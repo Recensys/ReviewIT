@@ -1,16 +1,10 @@
 
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
-import { Task, TaskState } from '../../model/task';
-import { Data } from '../../model/data';
-import { FieldComponent } from '../../field';
-import { APIService } from '../../services/api.service';
-import { BooleanField, CheckboxField, NumberField, RadioField, ResourceField, StringField } from '../../field';
-//import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
-import { StageModel } from '../../model/stageModel';
-
+import { ReviewTaskListDTO, ReviewTaskDTO, TaskState, FieldDTO, DataType, DataDTO } from '../../model/models';
+import { TaskDetailsService } from './task-details.service' 
 
 @Component({
     
@@ -19,78 +13,72 @@ import { StageModel } from '../../model/stageModel';
     styleUrls: ['task-details.component.css'],
 })
 
-export class TaskDetailsComponent implements OnInit, OnDestroy {
+export class TaskDetailsComponent implements OnInit {
 
-    public stageModel: StageModel;
-    public task: Task;
-    public fieldData = [];
-    public visible: Data[];
-    public requested: Data[];
-    public resource: Data;
-    public url: SafeResourceUrl;
-    private sub: any;
-    public errorMessage: string;
+    // public task: Task;
+    // public fieldData = [];
+    // public visible: Data[];
+    // public requested: Data[];
+    // public resource: Data;
+
     public taskState = TaskState;
-    public loading = false;
-
+    public url: SafeResourceUrl;
+    model: ReviewTaskListDTO;
+    selected: ReviewTaskDTO;
+    stageId: number;
+    obs: any;
 
     constructor(
         private route: ActivatedRoute,
-        private _api: APIService
-    ) {
-        
+        private api: TaskDetailsService
+    ) {       
     }
 
     ngOnInit() {
-            this.sub = this.route.params.subscribe(params => {
-                let id = +params['id'];
-                this.loading = true;
 
-/*
-this.taskModel = new TaskModel([
-new StringField ('author', false ),
-new StringField ('title', false ),
-new NumberField ('year', false),
-new StringField ('abstract', false ),
-new BooleanField ('isGsd?', true, 'yes', 'no' ),
-new RadioField ('Quality of study', true, ['Bad', 'Good', 'Great']),
-new ResourceField ('pdf', false )
-],[
-new Task (1, TaskState.New, [
-{Id: 1, Value: 'John Doe'},
-{Id: 2, Value: "John Doe's big adventure"}, 
-{Id: 3, Value: 2005}, 
-{Id: 4, Value: 'This paper describes the adventure of John Doe, a masculine and handsome young man. It is also written by John Doe'}, 
-{Id: 7, Value: 'hej'},
-{Id: 5, Value: false, }, 
-{Id: 6, Value: 'http://nexgsd.org/wp-content/uploads/2013/09/BjornEtal2014b.pdf'},
-]),
-]);
-*/
+        let stub = new ReviewTaskListDTO();
+        stub.Tasks = new Array();
+        stub.Fields = new Array();
+        let f1 = new FieldDTO()
+        f1.Name = 'Title';
+        f1.DataType = DataType.String;
+        stub.Fields.push(f1);
+        let t1 = new ReviewTaskDTO()
+        let d1 = new DataDTO()
+        d1.Value = 'How to dance the tango and other important life achievements'
+        t1.Data = new Array();
+        t1.Data.push(d1);
+        stub.Tasks.push(t1)
+        let t2 = new ReviewTaskDTO()
+        let d2 = new DataDTO()
+        d2.Value = `Answering life's questions with the sciences, or how to waste your life`
+        t2.Data = new Array();
+        t2.Data.push(d2);
+        stub.Tasks.push(t2)
 
-                        this._api.GetTask(id).subscribe(
-                            stageModel => {
-                                this.stageModel = stageModel;
-                                this.task = stageModel.Tasks[0];
-                                this.loading = false;
-                            }
-                            , 
-                            error =>{
-                                this.loading = false;                                
-                                this.errorMessage = error;
-                            }
-                        );
 
-            });
-        
+        this.route.params.forEach((params: Params) => {
+            this.stageId = +params['id'];
+            this.obs = this.api.getTasks(1, this.stageId);
+            this.obs.subscribe(
+                dtos => {
+                    this.model = stub;
+                    this.selected = this.model.Tasks[0];
+                }
+            );
+        });
     }
 
-
-    ngOnDestroy() {
-        if (this.sub) {
-            this.sub.unsubscribe();
-        }
+    previous(){
+        let i = this.model.Tasks.indexOf(this.selected);
+        this.selected = this.model.Tasks[i-1];
     }
+
+    next(){
+        let i = this.model.Tasks.indexOf(this.selected);
+        this.selected = this.model.Tasks[i+1];
+    }
+    
 
 }
 

@@ -1,49 +1,37 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-            <div [hidden]="!loading" class="loading">loading</div>
-            <div class="card" *ngIf="task">
-                <h3 class="card-header">
-                    Task #{{task.Id}}
-                    <div class="label" [ngSwitch]="task.State">
-                        <p *ngSwitchCase="taskState.New"><span class="label label-default">new</span></p>
-                        <p *ngSwitchCase="taskState.InProgress"><span class="label label-warning">in progress</span></p>
-                        <p *ngSwitchCase="taskState.Subnmitted"><span class="label label-success">submitted</span></p>
-                        <p *ngSwitchDefault><span class="label label-danger">unknown</span></p>
-                    </div>
-                    <span class="menu">
-                        <a class="btn btn-primary-outline" href="/details/{{task.Id - 1}}">
-                            <i class="fa fa-angle-left"></i> previous 
-                        </a>
-                        <a class="btn btn-primary-outline" href="/details/{{task.Id + 1}}">
-                            next <i class="fa fa-angle-right"></i>
-                        </a>
-                    </span>
-                </h3>
-                <div class="card-block">
-                    
-                            <div class="container-fluid">
-                                <dl class="dl-horizontal">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" *ngFor="let field of stageModel.Fields; let i = index">
-                                            <div class="container-fluid">
-                                                <dt  class="col-sm-4">{{field.Name}}</dt>
-                                                <field-dyn [field]="field" [data]="task.Data[i]"></field-dyn>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </dl>
-                            </div>
-           
-                </div>
-                
-            </div>
+<md-card class="row">
+    <button [disabled]="model?.Tasks?.indexOf(selected) <= 0" (click)="previous()" class="btn">Previous</button>
+    <a>task {{model?.Tasks?.indexOf(selected)+1}} of {{model?.Tasks?.length}}</a>
+    <button [disabled]="model?.Tasks?.indexOf(selected) >= model?.Tasks?.length-1" (click)="next()" class="btn btn-success pull-sm-right">Next</button>
+</md-card>
+
+<md-card *ngIf="selected">
+    <md-card-title>
+        Task #{{selected.Id}}
+        <div class="label" [ngSwitch]="selected.TaskState">
+            <p *ngSwitchCase="taskState.New"><span class="label label-default">new</span></p>
+            <p *ngSwitchCase="taskState.InProgress"><span class="label label-warning">in progress</span></p>
+            <p *ngSwitchCase="taskState.Subnmitted"><span class="label label-success">submitted</span></p>
+            <p *ngSwitchDefault><span class="label label-danger">unknown</span></p>
         </div>
+    </md-card-title>
+    <md-card-content>
+        <dl class="dl-horizontal">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let field of model.Fields; let i = index">
+                    <div class="container-fluid">
+                        <dt class="col-sm-4">{{field.Name}}</dt>
+                        <!--<field-dyn [field]="field" [data]="selected.Data[i]"></field-dyn>-->
+                    </div>
+                </li>
+            </ul>
+        </dl>
+    </md-card-content>
+    <md-card-content>
         <div class="pdf-view hidden-md-down" *ngIf="resource">
-            <object [data]="url" type="application/pdf">
+        <object [data]="url" type="application/pdf">
                 <p>It appears you don't have a PDF plugin for this browser.</p>
             </object>
-        </div>
     </div>
-</div>
+    </md-card-content>
+
+</md-card>
