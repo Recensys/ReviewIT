@@ -41,7 +41,9 @@ export class StudylistComponent implements OnInit {
   }
 
   newStudy() {
-    this.studylistService.postStudy(new StudyDetailsDTO()).subscribe(
+    var study = new StudyDetailsDTO();
+    study.Name = 'New Study';
+    this.studylistService.postStudy(study).subscribe(
       id => this.router.navigate([`config/${id}`]),
       error => this.msgService.addError(error)
     );
