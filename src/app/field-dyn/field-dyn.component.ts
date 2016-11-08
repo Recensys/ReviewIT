@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DataType, FieldDTO, DataDTO } from '../model/models';
 import { BooleanFieldComponent } from './fields/boolean-field.component'
 import { StringFieldComponent } from './fields/string-field.component'
+import { NumberFieldComponent } from './fields/number-field.component'
 
 @Component({
     selector: 'field-dyn',
@@ -27,12 +28,11 @@ export class FieldDynComponent implements OnInit {
         1 : BooleanFieldComponent,
         //'2' : RadioField,
         //'3' : CheckboxField,      
-        //'4' : NumberField,
+        4 : NumberFieldComponent,
         //'5' : ResourceField,
     }
 
     ngOnInit() {
-        console.log('dyn field:', this);
         if (this.field !== undefined) {
             let factory = this.componentFactoryResolver.resolveComponentFactory(this.map[this.field.DataType]);
             this.cmpRef = this.target.createComponent(factory);
