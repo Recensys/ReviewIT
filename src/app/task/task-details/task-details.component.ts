@@ -36,34 +36,32 @@ export class TaskDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        let stub = new ReviewTaskListDTO();
-        stub.Tasks = new Array();
-        stub.Fields = new Array();
-        let f1 = new FieldDTO()
-        f1.Name = 'Title';
-        f1.DataType = DataType.String;
-        stub.Fields.push(f1);
-        let t1 = new ReviewTaskDTO()
-        let d1 = new DataDTO()
-        d1.Value = 'How to dance the tango and other important life achievements'
-        t1.Data = new Array();
-        t1.Data.push(d1);
-        let t2 = new ReviewTaskDTO()
-        let d2 = new DataDTO()
-        d2.Value = `Answering life's questions with the sciences, or how to waste your life`
-        t2.Data = new Array();
-        t2.Data.push(d2);
-        stub.Tasks.push(t2)
-        stub.Tasks.push(t1)
-
-
+        // let stub = new ReviewTaskListDTO();
+        // stub.Tasks = new Array();
+        // stub.Fields = new Array();
+        // let f1 = new FieldDTO()
+        // f1.Name = 'Title';
+        // f1.DataType = DataType.String;
+        // stub.Fields.push(f1);
+        // let t1 = new ReviewTaskDTO()
+        // let d1 = new DataDTO()
+        // d1.Value = 'How to dance the tango and other important life achievements'
+        // t1.Data = new Array();
+        // t1.Data.push(d1);
+        // let t2 = new ReviewTaskDTO()
+        // let d2 = new DataDTO()
+        // d2.Value = `Answering life's questions with the sciences, or how to waste your life`
+        // t2.Data = new Array();
+        // t2.Data.push(d2);
+        // stub.Tasks.push(t2)
+        // stub.Tasks.push(t1)
 
         this.route.params.forEach((params: Params) => {
             this.stageId = +params['id'];
             this.obs = this.api.getTasks(1, this.stageId);
             this.obs.subscribe(
-                dtos => {
-                    this.model = stub;
+                dto => {
+                    this.model = dto;
                     this.selected = this.model.Tasks[0];
                 }
             );
