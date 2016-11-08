@@ -7,32 +7,23 @@
 <md-card *ngIf="selected">
     <md-card-title>
         Task #{{selected.Id}}
-        <div class="label" [ngSwitch]="selected.TaskState">
+        <!--<div class="label" [ngSwitch]="selected.TaskState">
             <p *ngSwitchCase="taskState.New"><span class="label label-default">new</span></p>
             <p *ngSwitchCase="taskState.InProgress"><span class="label label-warning">in progress</span></p>
             <p *ngSwitchCase="taskState.Subnmitted"><span class="label label-success">submitted</span></p>
             <p *ngSwitchDefault><span class="label label-danger">unknown</span></p>
-        </div>
+        </div>-->
     </md-card-title>
-    <md-card-content>
-        <field-dyn [field]="testfield" [data]="testdata"></field-dyn>
-        <dl class="dl-horizontal">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" *ngFor="let field of model.Fields; let i = index">
-                    <div class="container-fluid">
-                        <dt class="col-sm-4">{{field.Name}}</dt>
-                        <!--<field-dyn [field]="field" [data]="selected.Data[i]"></field-dyn>-->
-                    </div>
-                </li>
-            </ul>
-        </dl>
+    <md-card-content class="row" *ngFor="let field of model.Fields; let i = index">
+        <h5 class="col-sm-3">{{field.Name}}</h5>
+        <field-dyn class="col-sm-9" [requested]="true" [field]="field" [data]="selected.Data[i]"></field-dyn>
     </md-card-content>
     <md-card-content>
         <div class="pdf-view hidden-md-down" *ngIf="resource">
-        <object [data]="url" type="application/pdf">
+            <object [data]="url" type="application/pdf">
                 <p>It appears you don't have a PDF plugin for this browser.</p>
             </object>
-    </div>
+        </div>
     </md-card-content>
 
 </md-card>
