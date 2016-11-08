@@ -6,7 +6,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchmap';
 import 'rxjs/add/operator/take';
-import { Field } from '../../field';
 import { MessageService } from '../../core'
 
 import { CriteriaconfigService } from './criteriaconfig.service';
@@ -32,12 +31,6 @@ export class CriteriaConfigComponent implements OnInit {
   term = new FormControl();
 
   op: string;
-
-  inclField: Field;
-  exclField: Field;
-
-  inclResults: Field[];
-  exclResults: Field[];
 
   model: CriteriaDTO;
   studyId: number;
@@ -86,7 +79,6 @@ export class CriteriaConfigComponent implements OnInit {
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;
     this.model.Inclusions.push(fc);
-    this.inclField = null;
   }
 
   addExclusion(value: FieldDTO) {
@@ -94,7 +86,6 @@ export class CriteriaConfigComponent implements OnInit {
     fc.Field = value;
     fc.Operator = this.boolOperators[0].value;
     this.model.Exclusions.push(fc);
-    this.exclField = null;
   }
 
 }

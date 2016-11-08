@@ -2,7 +2,6 @@
 import {Component, Input} from '@angular/core';
 
 import { FieldDTO, DataType, DataDTO } from '../../model/models'
-import {Data} from '../../model/data';
 
 @Component({
     selector: 'string-field',

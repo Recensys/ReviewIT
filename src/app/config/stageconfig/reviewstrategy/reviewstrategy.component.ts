@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService } from '../../../services/api.service';
 import { MessageService } from '../../../core';
 import { Message } from 'primeng/primeng';
 import { ActivatedRoute, Params } from '@angular/router'
@@ -54,7 +53,7 @@ export class ReviewStrategyComponent {
 
 	selectedPreset: any;
 
-	constructor(private oldapi: APIService, private msg: MessageService, private api: ReviewstrategyService, private route: ActivatedRoute) {
+	constructor(private msg: MessageService, private api: ReviewstrategyService, private route: ActivatedRoute) {
 		this.model = new DistributionDTO();
 		this.model.Dist = new Array();
 		if (this.selectedPreset === undefined) {

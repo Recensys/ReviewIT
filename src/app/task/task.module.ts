@@ -5,7 +5,6 @@ import { SharedModule } from '../shared';
 import { MaterialModule } from '@angular/material';
 
 import { TaskDetailsComponent, TasklistComponent } from './';
-import { APIService } from '../services';
 import { FieldDynModule } from '../field-dyn/field-dyn.module';
 import { TaskDashboardService } from './task-dashboard.service'
 import { TaskDashboard } from './task-dashboard.component'
@@ -16,7 +15,7 @@ import { TaskDetailsService } from './task-details/task-details.service'
 
 @NgModule({
   imports:      [ routing, SharedModule, FieldDynModule, MaterialModule ],
-  providers:    [ APIService, TaskDashboardService, StagelistService, TaskListService, TaskDetailsService ],
+  providers:    [ TaskDashboardService, StagelistService, TaskListService, TaskDetailsService ],
   declarations: [ TaskDetailsComponent, TasklistComponent, TaskDashboard, StagelistComponent ],
 })
 export class TaskModule { }

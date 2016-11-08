@@ -2,7 +2,6 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 
-import { APIService } from '../../../services/api.service';
 import { MessageService } from '../../../core';
 import { StageDetailsDTO } from '../../../model';
 import { StagedetailsService } from './stagedetails.service'

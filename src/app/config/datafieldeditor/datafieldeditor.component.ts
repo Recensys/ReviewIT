@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
-import { Field, StringField, BooleanField, CheckboxField, NumberField, RadioField, ResourceField, FieldComponent } from '../../field';
 import { InputTextModule, ButtonModule, RadioButton } from 'primeng/primeng';
 import { DataType, FieldDTO } from '../../model';
 import { DatafieldeditorService } from './datafieldeditor.service'
@@ -17,7 +16,7 @@ import { MessageService } from '../../core'
 export class DatafieldeditorComponent implements OnInit {
 
   fields: FieldDTO[] = [];
-  newField: Field ;
+  newField: FieldDTO ;
   studyId: number;
 
   selection: FieldDTO;
@@ -48,7 +47,7 @@ export class DatafieldeditorComponent implements OnInit {
     this.fields.push(field);
   }
 
-  selectField(field: Field){
+  selectField(field: FieldDTO){
     this.newField = field;
   }
 

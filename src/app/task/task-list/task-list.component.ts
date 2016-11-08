@@ -3,9 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
 import { MessageService, UserService } from '../../core'
-import { StageModel } from "../../model/stageModel";
-import { BooleanField } from "../../field";
-import { FieldComponent } from "../../field";
 import { TaskListService } from './task-list.service';
 import { ReviewTaskListDTO, TaskState, ReviewTaskDTO } from '../../model/models'
 
