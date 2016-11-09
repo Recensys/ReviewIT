@@ -16,7 +16,7 @@
     </md-card-title>
     <md-card-content class="row" *ngFor="let field of model.Fields; let i = index">
         <h5 class="col-sm-3">{{field.Name}}</h5>
-        <field-dyn class="col-sm-9" [requested]="true" [field]="field" [data]="selected.Data[i]"></field-dyn>
+        <field-dyn class="col-sm-9" [requested]="field.FieldType == 1" [field]="field" [data]="selected.Data[i]"></field-dyn>
     </md-card-content>
     <md-card-content>
         <div class="pdf-view hidden-md-down" *ngIf="resource">

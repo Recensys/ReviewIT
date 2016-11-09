@@ -62,6 +62,7 @@ export class TaskDetailsComponent implements OnInit {
             this.obs.subscribe(
                 dto => {
                     this.model = dto;
+                    console.log(this.model);
                     this.selected = this.model.Tasks[0];
                 }
             );

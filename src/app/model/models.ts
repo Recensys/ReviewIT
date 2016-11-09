@@ -20,6 +20,10 @@ export enum TaskState {
 	InProgress = 2,
 	Done = 3
 }
+export const enum FieldType {
+	Visible = 0,
+	Requested = 1
+}
 
 /**
  * classes
@@ -44,7 +48,7 @@ export class ReviewTaskDTO {
 	TaskState: TaskState;
 }
 export class ReviewTaskListDTO {
-	Fields: FieldDTO[];
+	Fields: TaskFieldDTO[];
 	Tasks: ReviewTaskDTO[];
 }
 export class DistributionDTO {
@@ -82,6 +86,12 @@ export class StageDetailsDTO {
 }
 export class StudyDetailsDTO {
 	Description: string;
+	Id: number;
+	Name: string;
+}
+export class TaskFieldDTO {
+	DataType: DataType;
+	FieldType: FieldType;
 	Id: number;
 	Name: string;
 }
