@@ -8,16 +8,16 @@ export const routes: Routes = [
 		redirectTo: '/home',
 		pathMatch: 'full'
 	},
-	{
-		path: 'login',
-		loadChildren:
-		'app/login/login.module#LoginModule'
-	},
-	{
-		path: 'signup',
-		loadChildren:
-		'app/signup/signup.module#SignupModule'
-	},
+	// {
+	// 	path: 'login',
+	// 	loadChildren:
+	// 	'app/login/login.module#LoginModule'
+	// },
+	// {
+	// 	path: 'signup',
+	// 	loadChildren:
+	// 	'app/signup/signup.module#SignupModule'
+	// },
 	{
 		path: 'config',
 		loadChildren:
