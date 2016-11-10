@@ -70,6 +70,7 @@ export class TaskDetailsComponent implements OnInit {
     }
 
     previous() {
+        this.save(this.selected);
         let i = this.model.Tasks.indexOf(this.selected);
         this.selected = null;
         this.ref.detectChanges();
@@ -77,12 +78,16 @@ export class TaskDetailsComponent implements OnInit {
     }
 
     next() {
+        this.save(this.selected);        
         let i = this.model.Tasks.indexOf(this.selected);
         this.selected = null;
         this.ref.detectChanges();
         this.selected = this.model.Tasks[i + 1]
     }
 
+    save(dto: ReviewTaskDTO){
+        this.api.UpdateTask(dto).subscribe();
+    }
 
 }
 
