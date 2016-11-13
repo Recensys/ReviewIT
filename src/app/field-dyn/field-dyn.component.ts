@@ -5,6 +5,7 @@ import { DataType, FieldDTO, DataDTO } from '../model/models';
 import { BooleanFieldComponent } from './fields/boolean-field.component'
 import { StringFieldComponent } from './fields/string-field.component'
 import { NumberFieldComponent } from './fields/number-field.component'
+import { ResourceFieldComponent } from './fields/resource-field.component'
 
 @Component({
     selector: 'field-dyn',
@@ -29,7 +30,7 @@ export class FieldDynComponent implements OnInit {
         //'2' : RadioField,
         //'3' : CheckboxField,      
         4 : NumberFieldComponent,
-        //'5' : ResourceField,
+        5 : ResourceFieldComponent,
     }
 
     ngOnInit() {
