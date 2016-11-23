@@ -86,6 +86,7 @@ export class TaskDetailsComponent implements OnInit {
     }
 
     save(dto: ReviewTaskDTO){
+        dto.TaskState = TaskState.Done;
         this.api.UpdateTask(dto).subscribe();
     }
 
