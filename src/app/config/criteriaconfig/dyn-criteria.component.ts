@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { DataType, FieldCriteriaDTO, DataDTO } from '../../model/models';
 import { BooleanCriteriaComponent } from './dyn-criteria/boolean-criteria.component';
+import { NumberCriteriaComponent } from './dyn-criteria/number-criteria.component';
 
 @Component({
     selector: 'dyn-criteria',
@@ -24,7 +25,7 @@ export class DynCriteriaComponent implements OnInit {
         1 : BooleanCriteriaComponent,
         //'2' : RadioField,
         //'3' : CheckboxField,      
-        //4 : NumberFieldComponent,
+        4 : NumberCriteriaComponent,
         //'5' : ResourceField,
     }
 
