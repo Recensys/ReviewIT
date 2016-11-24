@@ -31,21 +31,9 @@
             <div class="ui-g-3 text-muted">operator</div>
             <div class="ui-g-4 text-muted">value</div>
           </div>
-          <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index" [ngSwitch]="inclusion.Field.DataType">
+          <div class="ui-g" *ngFor="let inclusion of model.Inclusions; let i = index">
             <div class="ui-g-1"><button (click)="model.Inclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
-            <div class="ui-g-4">
-              {{inclusion.Field.Name}}
-              <div class="text-muted small" *ngSwitchCase="1">(boolean)</div>
-            </div>
-            <div class="ui-g-3">
-              <p-dropdown *ngSwitchCase="1" [options]="boolOperators" [(ngModel)]="inclusion.Operator"></p-dropdown>
-            </div>
-            <div class="ui-g-4">
-              <div *ngSwitchCase="1">
-                <p-radioButton name="inclgroup" value="true" [(ngModel)]="inclusion.Value" label="true"></p-radioButton>
-                <p-radioButton name="inclgroup" value="false" [(ngModel)]="inclusion.Value" label="false"></p-radioButton>
-              </div>
-            </div>
+            <dyn-criteria class="ui-g-11" [criteria]="inclusion"></dyn-criteria>
           </div>
         </div>
       </md-card-content>
@@ -71,21 +59,9 @@
             <div class="ui-g-3 text-muted">operator</div>
             <div class="ui-g-4 text-muted">value</div>
           </div>
-          <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index" [ngSwitch]="exclusion.Field.DataType">
+          <div class="ui-g" *ngFor="let exclusion of model.Exclusions; let i = index">
             <div class="ui-g-1"><button (click)="model.Exclusions.splice(i,1)" class="btn btn-secondary btn-sm">x</button></div>
-            <div class="ui-g-4">
-              {{exclusion.Field.Name}}
-              <div class="text-muted small" *ngSwitchCase="1">(boolean)</div>
-            </div>
-            <div class="ui-g-3">
-              <p-dropdown *ngSwitchCase="1" [options]="boolOperators" [(ngModel)]="exclusion.Operator"></p-dropdown>
-            </div>
-            <div class="ui-g-4">
-              <div *ngSwitchCase="1">
-                <p-radioButton name="inclgroup" value="true" [(ngModel)]="exclusion.Value" label="true"></p-radioButton>
-                <p-radioButton name="inclgroup" value="false" [(ngModel)]="exclusion.Value" label="false"></p-radioButton>
-              </div>
-            </div>
+            <dyn-criteria class="ui-g-11" [criteria]="exclusion"></dyn-criteria>
           </div>
         </div>
       </md-card-content>
