@@ -42,7 +42,7 @@
             <p><strong>Field Type:</strong></p>
           </dl>
           <dd class="col-sm">
-            <p-radioButton class="mute" [disabled]="true" name="groupname" label="String" value="0" [(ngModel)]="selection.DataType"></p-radioButton>
+            <p-radioButton name="groupname" label="String" value="0" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
           <dd class="col-sm">
             <p-radioButton name="groupname" label="Number" value="4" [(ngModel)]="selection.DataType"></p-radioButton>
@@ -57,7 +57,7 @@
             <p-radioButton class="mute" [disabled]="true" name="groupname" label="Checkbox" value="3" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
           <dd class="col-sm offset-sm-4">
-            <p-radioButton class="mute" [disabled]="true" name="groupname" label="PDF Resource" value="6" [(ngModel)]="selection.DataType"></p-radioButton>
+            <p-radioButton name="groupname" label="PDF Resource" value="6" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
         </dl>
       </md-card-content>
