@@ -8,7 +8,8 @@ export enum DataType {
 	Radio = 2,
 	Checkbox = 3,
 	Number = 4,
-	Resource = 5
+	Resource = 5,
+	Pdf = 6
 }
 export enum ResearcherRole {
 	Researcher = 0,
