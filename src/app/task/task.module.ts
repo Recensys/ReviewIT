@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { RouterModule }      from '@angular/router';
 
 import { routing } from './task.routes';
 import { SharedModule } from '../shared';
@@ -14,7 +15,7 @@ import { TaskListService } from './task-list/task-list.service'
 import { TaskDetailsService } from './task-details/task-details.service'
 
 @NgModule({
-  imports:      [ routing, SharedModule, FieldDynModule, MaterialModule ],
+  imports:      [ routing, RouterModule, SharedModule, FieldDynModule, MaterialModule ],
   providers:    [ TaskDashboardService, StagelistService, TaskListService, TaskDetailsService ],
   declarations: [ TaskDetailsComponent, TasklistComponent, TaskDashboard, StagelistComponent ],
 })
