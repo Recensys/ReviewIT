@@ -87,6 +87,7 @@ export class PdfFieldComponent implements OnInit {
 
             this.uploader.onSuccessItem = (file, res, status, headers) => {
                 this.msg.addSuccess('Pdf updated!');
+                this.data.Value = res;
             }
 
     }
