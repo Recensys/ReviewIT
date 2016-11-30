@@ -33,12 +33,20 @@ td{
 	border: 1px solid #a94442;
 }
 */
-li.selected{
-	background-color: #e6e6ff;
-}
 
-.selected{
-	background-color: #0084FF;
+md-grid-tile{
+    background-color: lightgray;
+    cursor: pointer;
+}
+md-grid-tile:hover{
+    background-color: grey;
+}
+md-grid-tile.selected{
+    background-color: #0084FF;
+    color: white;
+}
+md-grid-tile.selected:hover{
+    background-color: #006ace;
 }
 
 .ui-growl{
