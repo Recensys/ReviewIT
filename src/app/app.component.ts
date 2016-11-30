@@ -9,7 +9,7 @@ import {MessageService} from './core';
   template: `
       <div class="container-fluid">
         <app-navbar></app-navbar>
-        <div class="container" style="padding-top: 90px;">
+        <div style="padding-top: 90px;">
           <router-outlet></router-outlet>
           <!--<app-test></app-test>-->
         </div>
