@@ -1,5 +1,5 @@
 import { NgModule }      from '@angular/core';
-import { MaterialModule } from '@angular/material'
+import { MaterialModule, MdIconModule } from '@angular/material'
 
 import { SharedModule } from '../shared';
 import { StudylistComponent } from './studylist.component';

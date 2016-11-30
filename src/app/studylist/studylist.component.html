@@ -1,20 +1,19 @@
 <md-card *cardInit="obs">
   <md-card-title>
-    <div class="row">
     <div class="col-sm-10">
-    <h5>Your studies</h5> 
+      <h5>Your studies</h5>
     </div>
     <div class="col-sm">
-    <a (click)="newStudy()" class="btn btn-sm btn-default"><i class="fa fa-plus"></i></a>
-    </div>
+      <a (click)="newStudy()" class="btn btn-sm btn-default"><i class="fa fa-plus"></i></a>
     </div>
   </md-card-title>
 </md-card>
 
-
-<md-card *ngFor="let studyDetail of model">
-  <md-card-content>
-    <a [routerLink]="['task', 'study', studyDetail.Id]">{{studyDetail.Name}}</a>
-    <a [routerLink]="['config', studyDetail.Id, 'studydetails']" class="btn btn-default pull-sm-right"><i class="fa fa-wrench"></i></a>
-  </md-card-content>
+<md-card class="r-list" *ngFor="let studyDetail of model">
+  <div class="col-sm-10 r-list-primary">
+    <a>{{studyDetail.Name}}</a>
+  </div>
+  <div class="col-sm-2 r-list-secondary">
+    <a (click)="newStudy()" class="btn btn-sm btn-default"><i class="fa fa-wrench"></i></a>
+  </div>
 </md-card>

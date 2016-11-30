@@ -34,6 +34,33 @@ td{
 }
 */
 
+.r-list{
+    padding: 0px;
+    height: 60px;    
+}
+.r-list .r-list-primary{
+    cursor: pointer;
+    height: auto;
+    padding: 15px;
+}
+
+.r-list .r-list-secondary{
+    cursor: pointer;
+    min-height: 60px;
+    padding: 15px;
+	text-align: center;
+}
+.r-list .r-list-secondary:hover{
+    color: white;
+    background-color: #0084FF;
+}
+
+md-card-button{
+	height: 100%;
+	width: 100%;
+	background-color: lightgray;
+}
+
 md-grid-tile{
     background-color: lightgray;
     cursor: pointer;
