@@ -37,6 +37,10 @@ li.selected{
 	background-color: #e6e6ff;
 }
 
+.selected{
+	background-color: #0084FF;
+}
+
 .ui-growl{
 	padding-top:50px;
 }
