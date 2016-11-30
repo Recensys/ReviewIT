@@ -33,7 +33,6 @@ export class TaskDetailsService {
     public UpdateTask(dto: ReviewTaskDTO) {
         let url = `${environment.api}tasks`;
         return this.http.put(url, dto, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
 

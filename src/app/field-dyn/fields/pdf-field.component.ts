@@ -21,20 +21,20 @@ export class SafePipe implements PipeTransform {
     selector: 'pdf-field',
     template: `
     <div *ngIf="requested">
-        
        <div ng2FileDrop
             [ngClass]="{'nv-file-over': hasFileOverDrop}"
             (fileOver)="fileOverDrop($event)"
             [uploader]="uploader"
             class="my-drop-zone text-muted">
-            <a class="btn btn-default" (click)="open()"><i [class.hasPdf]="data.Value" class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i></a>
+            <a class="btn btn-default" *ngIf="data.Value" (click)="open()"><i [class.hasPdf]="data.Value" class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i></a>
+            <a *ngIf="!data.Value"><i [class.hasPdf]="data.Value" class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i></a>
             <p *ngIf="data.Value">This article already has a Pdf. Drag in a replacement or click the icon to open it</p>
             <p *ngIf="!data.Value">Drag pdf here</p>
             <span *ngIf="uploader.queue[0]?.isUploading"><i class="fa fa-spinner fa-pulse"></i></span>
         </div>
     </div>
-    <div *ngIf="!requested">
-        <object [data]="data.Value | safe" type="application/pdf">
+    <div *ngIf="!requested" class="pdf-view">
+        <object  [data]="pdfUrl | safe" type="application/pdf">
             <p>It appears you don't have a PDF plugin for this browser.</p>
         </object>
     </div>
@@ -76,24 +76,27 @@ export class PdfFieldComponent implements OnInit {
                 switch(filter.name){
                     case "fileSize" :
                         this.msg.addError("The file is too big. Max file size is 1 mb");
-                        console.log("The file is too big. Max file size is 1 mb");
                         break;
                     case "fileType" :
                         this.msg.addError("Only Pdf's are allowed");
-                        console.log("Only Pdf's are allowed");
                         break;
                 }
             }
 
             this.uploader.onSuccessItem = (file, res, status, headers) => {
                 this.msg.addSuccess('Pdf updated!');
-                this.data.Value = res;
+                console.log(res);
+                this.data.Value = JSON.parse(res).Value;
             }
 
     }
 
     open(){
-        window.location.href = environment.blob+this.data.Value;
+        window.open(this.pdfUrl, '_blank');
+    }
+
+    get pdfUrl(){
+        return environment.blob+this.data.Value;
     }
 
     public fileOverDrop(e: any): void {

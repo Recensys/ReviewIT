@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
-import { ReviewTaskListDTO, ReviewTaskDTO, TaskState, FieldDTO, DataType, DataDTO } from '../../model/models';
+import { ReviewTaskListDTO, ReviewTaskDTO, TaskState, FieldDTO, DataType, DataDTO, FieldType } from '../../model/models';
 import { TaskDetailsService } from './task-details.service'
 
 @Component({
@@ -19,7 +19,9 @@ export class TaskDetailsComponent implements OnInit {
     // public fieldData = [];
     // public visible: Data[];
     // public requested: Data[];
-    // public resource: Data;
+
+    public resourceField : FieldDTO;
+    public resourceData : DataDTO;
 
     public taskState = TaskState;
     public url: SafeResourceUrl;
@@ -61,12 +63,25 @@ export class TaskDetailsComponent implements OnInit {
             this.obs = this.api.getTasks(1, this.stageId);
             this.obs.subscribe(
                 dto => {
+                    this.checkForPdf(dto);
                     this.model = dto;
-                    console.log(this.model);
                     this.selected = this.model.Tasks[0];
                 }
             );
         });
+    }
+
+    checkForPdf(dto: ReviewTaskListDTO){
+        if(dto == null || dto.Fields == null || dto.Tasks == null || dto.Tasks[0] == null) return;
+        var index = 0;
+        for(let el of dto.Fields){
+            if(el.DataType == 6 && el.FieldType == FieldType.Visible)  {
+                this.resourceField = dto.Fields.splice(index,1)[0];
+                this.resourceData = dto.Tasks[0].Data.splice(index,1)[0];
+                break;
+            };
+            index++;
+        };
     }
 
     previous() {
