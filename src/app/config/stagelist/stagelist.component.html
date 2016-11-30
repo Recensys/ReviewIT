@@ -2,7 +2,7 @@
     <md-card-content>
         <md-grid-list cols="8" rowHeight="100px">
             <md-grid-tile class="add" (click)="add()"> add </md-grid-tile>            
-            <md-grid-tile [routerLink]="['stage/'+detail.Id]" [routerLinkActive]="['selected']" *ngFor="let detail of model">
+            <md-grid-tile [routerLink]="['stage/', detail.Id, 'stagedetails']" [routerLinkActive]="['selected']" *ngFor="let detail of model">
                      #{{detail.Id}} - {{detail.Name}} 
             </md-grid-tile>
         </md-grid-list>
