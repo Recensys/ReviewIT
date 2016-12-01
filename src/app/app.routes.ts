@@ -1,12 +1,17 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found';
+import { WhoAreYouComponent } from './who-are-you/who-are-you.component'
 
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: '/home',
+		redirectTo: '/who',
 		pathMatch: 'full'
+	},
+	{
+		path: 'who',
+		component: WhoAreYouComponent
 	},
 	// {
 	// 	path: 'login',
@@ -29,10 +34,10 @@ export const routes: Routes = [
 		'app/task/task.module#TaskModule'
 		
 	},
-	{
-		path: '**',
-		component: PageNotFoundComponent
-	},
+	// {
+	// 	path: '**',
+	// 	component: PageNotFoundComponent
+	// },
 ];
 
 export const routeProviders: any[] = [

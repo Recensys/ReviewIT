@@ -1,12 +1,11 @@
 <div>
   <div *ngIf="!user">
-    <button class="btn btn-primary" routerLink="login" routerLinkActive="active">sign in</button>
-    <button class="btn btn-secondary" routerLink="signup">sign up</button>
+    <button class="btn btn-primary" [routerLink]="['who']">sign in</button>
   </div>
 
   <div *ngIf="user" class="col-sm">
     <div class="col-sm" style="color: white;">
-        logged in as: {{user.Username}}
+        logged in as: {{user.FirstName}}
       <button type="button" class="btn btn-secondary btn-sm pull-sm-right" (click)="logOut()">sign out</button>
     </div>
   </div>

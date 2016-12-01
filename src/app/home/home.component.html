@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="userService.isLoggedIn">
     <div class="col-md-6">
         <md-card>
             <md-card-content>Recent changes...</md-card-content>

@@ -3,50 +3,41 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CookieService } from 'angular2-cookie/core';
 import { Router } from '@angular/router';
 
-import { User } from '../../model';
+import { UserDetailsDTO } from '../../model/models';
 
 @Injectable()
 export class UserService {
 
   constructor(private _cookieService: CookieService, private router: Router) { 
-    /*let user = this._cookieService.get('user')
+    let user = this._cookieService.get('user')
     if(user){
       this.user =  JSON.parse(user);
-    }*/
-    this.user = new User();
-    this.user.Name = 'testUser';
+    }
   }
 
-  private loggedInUserSource = new BehaviorSubject<User>(null);
+  private loggedInUserSource = new BehaviorSubject<UserDetailsDTO>(null);
 
   get login$(){
     return this.loggedInUserSource.asObservable();
   }
 
-  user:User;
-
-  get token(){
-    return this._cookieService.get('token');
-  }
+  user:UserDetailsDTO;
 
   get isLoggedIn(){
-    //return this.token != null;
-    return true;
+    return this.user != null;
   }
 
-  logIn(user: User, token: string){
+  logIn(user: UserDetailsDTO){
     this.user = user;
     this.loggedInUserSource.next(this.user);
     this._cookieService.put('user', JSON.stringify(this.user));
-    this._cookieService.put('token', token);
   }
 
   logOut(){
     this.user = null;
     this.loggedInUserSource.next(this.user);
     this._cookieService.remove('user');
-    this._cookieService.remove('token');
-    this.router.navigate(['']);
+    this.router.navigate(['who']);
   }
 
 

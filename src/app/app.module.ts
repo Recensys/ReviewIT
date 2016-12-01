@@ -13,6 +13,8 @@ import { MaterialModule } from '@angular/material';
 /* Feature Modules */
 import { routing, routeProviders } from './app.routes'
 import { HomeModule } from './home';
+import { WhoAreYouModule } from './who-are-you/who-are-you.module'
+
 
 /* test module */
 import { TestModule } from './testcomponent/test.module'
@@ -33,7 +35,8 @@ import { TestModule } from './testcomponent/test.module'
 		CoreModule,
 		HttpModule,
 		PageNotFoundModule,
-		MaterialModule
+		MaterialModule,
+		WhoAreYouModule
 	],
 	providers: [
 		routeProviders,

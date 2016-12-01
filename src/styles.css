@@ -63,21 +63,6 @@ md-card-button{
 	background-color: lightgray;
 }
 
-md-grid-tile{
-    background-color: lightgray;
-    cursor: pointer;
-}
-md-grid-tile:hover{
-    background-color: grey;
-}
-md-grid-tile.selected{
-    background-color: #0084FF;
-    color: white;
-}
-md-grid-tile.selected:hover{
-    background-color: #006ace;
-}
-
 .ui-growl{
 	padding-top:50px;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 
 import { UserService } from '../../core';
-import { User } from '../../model';
+import { UserDetailsDTO } from '../../model/models';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { User } from '../../model';
 })
 export class UsernavComponent implements OnInit, OnDestroy {
 
-  user: User;
+  user: UserDetailsDTO;
   subscription: Subscription;
 
   constructor(private _userService: UserService) { 
@@ -22,7 +22,6 @@ export class UsernavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this._userService.user;
-    console.log(this.user);
     this.subscription = this._userService.login$.subscribe(user => {
       this.user = user;
     });
