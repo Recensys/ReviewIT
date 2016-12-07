@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DataType, FieldCriteriaDTO, DataDTO } from '../../model/models';
 import { BooleanCriteriaComponent } from './dyn-criteria/boolean-criteria.component';
 import { NumberCriteriaComponent } from './dyn-criteria/number-criteria.component';
+import { StringCriteriaComponent } from './dyn-criteria/string-criteria.component';
 
 @Component({
     selector: 'dyn-criteria',
@@ -21,7 +22,7 @@ export class DynCriteriaComponent implements OnInit {
     ) { }
 
     map = {
-        //0 : StringFieldComponent,
+        0 : StringCriteriaComponent,
         1 : BooleanCriteriaComponent,
         //'2' : RadioField,
         //'3' : CheckboxField,      
