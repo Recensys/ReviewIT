@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!userService.isLoggedIn">
+<div class="container" *ngIf="!userService.getUser">
     <div class="row m-x-auto" style="min-height: 300px;">
         <br>
         <br>
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="container" *ngIf="userService.isLoggedIn">
+<div class="container" *ngIf="userService.getUser">
     <div class="col-md-6">
         <md-card>
             <md-card-content>Recent changes...</md-card-content>
