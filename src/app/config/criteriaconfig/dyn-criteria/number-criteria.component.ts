@@ -16,10 +16,7 @@ import { SelectItem } from 'primeng/primeng';
         <p-dropdown [options]="operators" [(ngModel)]="criteria.Operator" [style]="{'width':'120px'}"></p-dropdown>
     </div>
     <div class="ui-g-4" [style]="{'padding-top':'0px'}">
-        <div class="ui-g">
-            <div class="ui-g-6"><p-radioButton name="inclgroup" value="true" [(ngModel)]="criteria.Value" label="Yes"></p-radioButton></div>
-            <div class="ui-g-6"><p-radioButton name="inclgroup" value="false" [(ngModel)]="criteria.Value" label="No"></p-radioButton></div>
-        </div>
+        <input type="number" [(ngModel)]="criteria.Value">
     </div>
     `
 })
