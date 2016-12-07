@@ -33,7 +33,7 @@ export class ConfigComponent {
         this.api.startStudy(this.studyId).subscribe(
             num => {
                 this._msg.addSuccess(num+' tasks created successfully');
-                this.router.navigate(['/', 'task', 'study', this.studyId]);
+                this.router.navigate(['/', 'home', 'task', 'study', this.studyId]);
             },
             error => this._msg.addError(error)
         )
