@@ -11,25 +11,16 @@ import { UserDetailsDTO } from '../../model/models';
   templateUrl: 'usernav.component.html',
   styleUrls: ['usernav.component.css']
 })
-export class UsernavComponent implements OnInit, OnDestroy {
+export class UsernavComponent implements OnInit {
 
   user: UserDetailsDTO;
-  subscription: Subscription;
 
-  constructor(private _userService: UserService) { 
-    
-  }
+  constructor(private _userService: UserService) { }
 
   ngOnInit() {
-    this.user = this._userService.user;
-    this.subscription = this._userService.login$.subscribe(user => {
+    this._userService.login$.subscribe(user => {
       this.user = user;
     });
-    
-  }
-
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
   }
 
   logOut(){

@@ -28,7 +28,7 @@ export class ApiHelper {
     public UidJsonOptions(): RequestOptions {
         let args = new RequestOptions();
         let params = new URLSearchParams()
-        params.set('uid',this.user.user.Id.toString());
+        params.set('uid', this.user.getUser.Id.toString());
         args.search = params;
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
         args.headers = headers;

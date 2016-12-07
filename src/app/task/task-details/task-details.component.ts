@@ -60,7 +60,7 @@ export class TaskDetailsComponent implements OnInit {
 
         this.route.params.forEach((params: Params) => {
             this.stageId = +params['id'];
-            this.obs = this.api.getTasks(1, this.stageId);
+            this.obs = this.api.getTasks(this.stageId);
             this.obs.subscribe(
                 dto => {
                     this.checkForPdf(dto);

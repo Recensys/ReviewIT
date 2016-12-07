@@ -9,9 +9,10 @@ import { UserDetailsDTO } from '../../model/models';
 export class UserService {
 
   constructor(private _cookieService: CookieService, private router: Router) { 
-    let user = this._cookieService.get('user')
-    if(user){
-      this.user =  JSON.parse(user);
+    let userJson = this._cookieService.get('user')
+    if(userJson){
+      let user =  JSON.parse(userJson);
+      this.loggedInUserSource.next(user);
     }
   }
 
@@ -21,21 +22,17 @@ export class UserService {
     return this.loggedInUserSource.asObservable();
   }
 
-  user:UserDetailsDTO;
-
-  get isLoggedIn(){
-    return this.user != null;
+  get getUser(){
+    return this.loggedInUserSource.getValue();
   }
 
   logIn(user: UserDetailsDTO){
-    this.user = user;
-    this.loggedInUserSource.next(this.user);
-    this._cookieService.put('user', JSON.stringify(this.user));
+    this.loggedInUserSource.next(user);
+    this._cookieService.put('user', JSON.stringify(user));
   }
 
   logOut(){
-    this.user = null;
-    this.loggedInUserSource.next(this.user);
+    this.loggedInUserSource.next(null);
     this._cookieService.remove('user');
     this.router.navigate(['who']);
   }

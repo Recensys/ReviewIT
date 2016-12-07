@@ -17,14 +17,10 @@ export class TaskDetailsService {
         private http: Http
     ) { }
 
-    public getTasks(userId: number, stageId: number): Observable<ReviewTaskListDTO> {
+    public getTasks(stageId: number): Observable<ReviewTaskListDTO> {
         let url = `${environment.api}tasks`;
-        let params: URLSearchParams = new URLSearchParams();
-        //params.set('appid', StaticSettings.API_KEY);
-        params.set('uid', userId.toString());
-        params.set('sid', stageId.toString());
-        var options = this.apihelper.JsonOptions()
-        options.search = params;
+        var options = this.apihelper.UidJsonOptions();
+        options.search.set('sid', stageId.toString());
         return this.http.get(url, options)
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
