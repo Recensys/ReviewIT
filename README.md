@@ -1,4 +1,4 @@
-# ReviewIT [![Build Status](https://travis-ci.org/cholewa1992/ReviewIT.svg?branch=master)](https://travis-ci.org/cholewa1992/ReviewIT)
+# ReviewIT [![Build Status](https://travis-ci.org/Recensys/ReviewIT.svg?branch=master)](https://travis-ci.org/Recensys/ReviewIT)
 
 ReviewIT is a tool to assist with systematic literature reviews.
 
