@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   api: 'http://localhost:2529/api/',
-  blob: 'https://reviewitblob2.blob.core.windows.net/reviewitblob2/'
+  blob: 'https://reitblob.blob.core.windows.net/resources/'
 };
