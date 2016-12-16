@@ -20,6 +20,15 @@ td{
     background: white;
 }
 
+md-grid-tile.btn-tile{
+    background-color: lightgray;
+    cursor: pointer;
+}
+md-grid-tile.btn-tile:hover{
+    background-color: #0084FF;
+    color: white;
+}
+
 /*
 .ng-valid[required] {
 	border: 1px solid #42A948;

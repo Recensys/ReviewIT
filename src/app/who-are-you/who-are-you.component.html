@@ -17,7 +17,7 @@
             <button type="submit" (click)="create()" class="btn"><i class="fa fa-plus"></i></button>
           </form>
         </md-grid-tile>
-        <md-grid-tile (click)="selectUser(user)" *ngFor="let user of model" class="user">
+        <md-grid-tile (click)="selectUser(user)" *ngFor="let user of model" class="btn-tile">
           <h6>{{user.FirstName}}</h6>
         </md-grid-tile>
       </md-grid-list>

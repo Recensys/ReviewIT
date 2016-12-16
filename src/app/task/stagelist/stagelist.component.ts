@@ -8,7 +8,8 @@ import { StagelistService } from './stagelist.service';
 
 @Component({
   selector: 'app-task-stagelist',
-  templateUrl: 'stagelist.component.html'
+  templateUrl: 'stagelist.component.html',
+  styleUrls: ['stagelist.component.css']
 })
 
 export class StagelistComponent implements OnInit{
