@@ -112,6 +112,18 @@ export class KeyValuePair<TKey, TValue> {
 	Key: TKey;
 	Value: TValue;
 }
+export class TaskOverviewDTO {
+	Stages: StageDetailsDTO[];
+	UserTasks: UserTaskOverviewDTO[];
+}
+export class UserTaskOverviewDTO {
+	User: UserDetailsDTO;
+	Progress: TaskProgressDTO[];
+}
+export class TaskProgressDTO {
+	DoneTasks: number;
+	TotalTasks: number;
+}
 
 
 

@@ -1,0 +1,21 @@
+<md-card *cardInit="obs">
+  <md-card-title>
+    Task overview
+  </md-card-title>
+  <md-card-content *ngIf="model">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name \ stage id</th>
+          <th *ngFor="let stage of model.Stages">#{{stage.Id}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userTask of model.UserTasks">
+          <th scope="row">{{userTask.User.FirstName}}</th>
+          <th *ngFor="let progress of userTask.Progress"><b>{{progress.DoneTasks}}</b> ({{progress.TotalTasks}})</th>
+        </tr>
+      </tbody>
+    </table>
+  </md-card-content>
+</md-card>
