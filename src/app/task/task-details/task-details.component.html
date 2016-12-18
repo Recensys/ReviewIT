@@ -1,33 +1,11 @@
-
-
-<div  class="container" [class.col-lg-6]="resourceField && resourceData">
+<div *cardInit="obs" class="container" [class.col-lg-6]="hasPdf">
     <md-card>
-        <button [disabled]="model?.Tasks?.indexOf(selected) <= 0" (click)="previous()" class="btn">Previous</button>
-        <a>task {{model?.Tasks?.indexOf(selected)+1}} of {{model?.Tasks?.length}}</a>
-        <button [disabled]="model?.Tasks?.indexOf(selected) >= model?.Tasks?.length-1" (click)="next()" class="btn btn-success pull-sm-right">Next</button>
+        <button [disabled]="model?.indexOf(selected?.Id) <= 0" (click)="previous()" class="btn">Previous</button>
+        <a>task {{model?.indexOf(selected?.Id)+1}} of {{model?.length}}</a>
+        <button *ngIf="model?.indexOf(selected?.Id) > model?.length-1" (click)="next()" class="btn btn-success pull-sm-right">Next</button>
+        <button *ngIf="model?.indexOf(selected?.Id) == model?.length-1" (click)="save(this.selected)" class="btn btn-warning pull-sm-right">Commit Tasks</button>
     </md-card>
-    <md-card *ngIf="selected">
-        <md-card-title>
-            Task #{{selected?.Id}}
-            <!--<div class="label" [ngSwitch]="selected.TaskState">
-                <p *ngSwitchCase="taskState.New"><span class="label label-default">new</span></p>
-                <p *ngSwitchCase="taskState.InProgress"><span class="label label-warning">in progress</span></p>
-                <p *ngSwitchCase="taskState.Subnmitted"><span class="label label-success">submitted</span></p>
-                <p *ngSwitchDefault><span class="label label-danger">unknown</span></p>
-            </div>-->
-        </md-card-title>
-        <md-card-content *ngIf="model?.Fields" class="row">
-            <div *ngFor="let field of model.Fields; let i = index">
-            <h5 class="col-sm-3">{{field.Name}}</h5>
-            <field-dyn class="col-sm-9" [requested]="field.FieldType == 1" [field]="field" [data]="selected.Data[i]"></field-dyn>
-            </div>
-        </md-card-content>
-        <md-card-actions>
-            <button (click)="save(selected)" class="btn">Save</button>
-        </md-card-actions>
-    </md-card>
-</div>
-<div *ngIf="resourceField && resourceData" class="col-lg-6 pdf-view hidden-md-down" >
-    <field-dyn [requested]="resourceField.FieldType == 1" [field]="resourceField" [data]="resourceData"></field-dyn>
+
+    <router-outlet></router-outlet>
 </div>
 
