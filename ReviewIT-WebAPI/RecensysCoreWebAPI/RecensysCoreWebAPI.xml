@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RecensysCoreWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:RecensysWebAPI.Controllers.StudyConfigController.Get">
+            <summary>
+            Gets a list of basic details of studies
+            </summary>
+            <description>
+            test desc
+            </description>
+            <returns>Json array of study details</returns>
+        </member>
+    </members>
+</doc>

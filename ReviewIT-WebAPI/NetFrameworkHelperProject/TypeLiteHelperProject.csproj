@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0888379-EEF1-4BA8-BD33-5890555A3511}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetFrameworkHelperProject</RootNamespace>
+    <AssemblyName>NetFrameworkHelperProject</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="TypeLite, Version=1.8.0.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypeLite.1.8.1\lib\net4\TypeLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TypeLite.Net4, Version=1.8.1.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypeLite.1.8.1\lib\net4\TypeLite.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\RecensysCoreRepository\DTOs\ArticleDTO.cs">
+      <Link>DTOs\ArticleDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\ArticleWithRequestedFieldsDTO.cs">
+      <Link>DTOs\ArticleWithRequestedFieldsDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\CriteriaDTO.cs">
+      <Link>DTOs\CriteriaDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\DataDTO.cs">
+      <Link>DTOs\DataDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\DistributionDTO.cs">
+      <Link>DTOs\DistributionDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\FieldCriteriaDTO.cs">
+      <Link>DTOs\FieldCriteriaDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\FieldDTO.cs">
+      <Link>DTOs\FieldDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\FieldType.cs">
+      <Link>DTOs\FieldType.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\ReviewTaskConfigDTO.cs">
+      <Link>DTOs\ReviewTaskConfigDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\ReviewTaskDTO.cs">
+      <Link>DTOs\ReviewTaskDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\ReviewTaskListDTO.cs">
+      <Link>DTOs\ReviewTaskListDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StageConfigDTO.cs">
+      <Link>DTOs\StageConfigDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StageDetailsDTO.cs">
+      <Link>DTOs\StageDetailsDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StageFieldsDTO.cs">
+      <Link>DTOs\StageFieldsDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StudyDetailsDTO.cs">
+      <Link>DTOs\StudyDetailsDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StudyMemberDTO.cs">
+      <Link>DTOs\StudyMemberDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\StudySourceItemDTO.cs">
+      <Link>DTOs\StudySourceItemDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\TaskFieldDTO.cs">
+      <Link>DTOs\TaskFieldDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\UserDetailsDTO.cs">
+      <Link>DTOs\UserDetailsDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\RecensysCoreRepository\DTOs\UserWorkDTO.cs">
+      <Link>DTOs\UserWorkDTO.cs</Link>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Scripts\Manager.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\TypeLite.Net4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TypeLite.Net4.d.ts</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\TypeLite.Net4.d.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TypeLite.Net4.tt</DependentUpon>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

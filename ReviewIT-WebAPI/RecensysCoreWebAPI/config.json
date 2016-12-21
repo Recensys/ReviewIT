@@ -1,0 +1,5 @@
+{
+    "MicrosoftAzureStorage": {
+        "reitblob_AzureStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=reitblob;AccountKey=5Fa7M9X1nqWy3JTg++jadiwWgp1fDBpN+WH/CUJ0Ey1qZoVSPvTYUgZMjaf1xv3yz4OcTs4FYq+TgopoE0zq2w=="
+    }
+}

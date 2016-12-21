@@ -1,0 +1,29 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ assembly name="$(TargetDir)TypeLite.dll" #>
+<#@ assembly name="$(TargetDir)TypeLite.Net4.dll" #>
+<#@ assembly name="$(TargetDir)$(TargetFileName)" #>
+
+<#@ import namespace="TypeLite" #> 
+<#@ import namespace="TypeLite.Net4" #> 
+<#@output extension=".d.ts"#>
+
+ <#@include file="Manager.ttinclude"#>
+<# var manager = Manager.Create(Host, GenerationEnvironment); #>
+
+<# var ts = TypeScript.Definitions()
+		.For<RecensysCoreRepository.DTOs.CriteriaDTO>()
+		.For<RecensysCoreRepository.DTOs.StudyDetailsDTO>()
+		.For<RecensysCoreRepository.DTOs.StageFieldsDTO>()
+		.For<RecensysCoreRepository.DTOs.StageDetailsDTO>()
+		.For<RecensysCoreRepository.DTOs.StudyMemberDTO>()
+		.For<RecensysCoreRepository.DTOs.ReviewTaskListDTO>()
+		.For<RecensysCoreRepository.DTOs.DistributionDTO>();
+#>
+
+<#= ts.ToString()
+.Replace("interface", "export class")
+.Replace("RecensysCoreRepository.DTOs.", "")
+ #>
+
+<# manager.EndBlock(); #>
+<# manager.Process(true); #>
