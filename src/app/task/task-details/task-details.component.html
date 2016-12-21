@@ -3,7 +3,7 @@
         <button [disabled]="model?.indexOf(selected?.Id) <= 0" (click)="previous()" class="btn">Previous</button>
         <a>task {{model?.indexOf(selected?.Id)+1}} of {{model?.length}}</a>
         <button *ngIf="model?.indexOf(selected?.Id) < model?.length-1" (click)="next()" class="btn btn-success pull-xm-right">Next</button>
-        <button *ngIf="model?.indexOf(selected?.Id) == model?.length-1" (click)="save(this.selected)" class="btn btn-warning pull-xm-right">Commit Tasks</button>
+        <button *ngIf="model?.indexOf(selected?.Id) == model?.length-1" (click)="done()" class="btn btn-warning pull-xm-right">Commit Tasks</button>
     </md-card>
 
     <router-outlet></router-outlet>

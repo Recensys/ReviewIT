@@ -71,6 +71,11 @@ export class TaskDetailsComponent implements OnInit {
         this.router.navigate([this.model[i + 1]], { relativeTo: this.route });
     }
 
+    done(){
+        this.save(this.selected);
+        this.router.navigate(['home']);
+    }
+
     save(dto: ReviewTaskDTO) {
         dto.TaskState = TaskState.Done;
         this.api.UpdateTask(dto).subscribe();
