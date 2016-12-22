@@ -82,7 +82,8 @@ namespace RecensysCoreRepository.DTOs
             Copyright,
             Language,
             Contents,
-            Doi
+            Doi,
+            ItemType
         }
     }
 }

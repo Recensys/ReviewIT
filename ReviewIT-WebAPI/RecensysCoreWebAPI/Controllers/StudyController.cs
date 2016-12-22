@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BibliographyParserCore;
 using BibliographyParserCore.BibTex;
 using BibliographyParserCore.ItemValidators;
 using Microsoft.AspNetCore.Authorization;
@@ -27,8 +28,10 @@ namespace RecensysCoreWebAPI.Controllers
         private readonly IStudyStartEngine _ssEngine;
         private readonly IStudyMemberRepository _studyMemberRepo;
         private readonly IOverviewRepository _overviewRepo;
+        private readonly IBibliographyParser _bibliographyParser;
+        private readonly IArticleRepository _articleRepo;
 
-        public StudyController(IStudyDetailsRepository deRepo, IStudySourceRepository soRepo, IStageDetailsRepository sdRepo, IStudyStartEngine ssEngine, IStudyMemberRepository studyMemberRepo, IOverviewRepository overviewRepo)
+        public StudyController(IStudyDetailsRepository deRepo, IStudySourceRepository soRepo, IStageDetailsRepository sdRepo, IStudyStartEngine ssEngine, IStudyMemberRepository studyMemberRepo, IOverviewRepository overviewRepo, IBibliographyParser bibliographyParser, IArticleRepository articleRepo)
         {
             _deRepo = deRepo;
             _soRepo = soRepo;
@@ -36,6 +39,8 @@ namespace RecensysCoreWebAPI.Controllers
             _ssEngine = ssEngine;
             _studyMemberRepo = studyMemberRepo;
             _overviewRepo = overviewRepo;
+            _bibliographyParser = bibliographyParser;
+            _articleRepo = articleRepo;
         }
 
         [HttpGet("{id}/stages")]
@@ -164,7 +169,7 @@ namespace RecensysCoreWebAPI.Controllers
                 using (var reader = new StreamReader(stream))
                 {
                     var fileContent = reader.ReadToEnd();
-                    var list = new BibTexParser(new ItemValidator()).Parse(fileContent);
+                    var list = _bibliographyParser.Parse(fileContent);
                     amountOfArticles = list.Count;
 
                     using (_soRepo)
@@ -174,6 +179,20 @@ namespace RecensysCoreWebAPI.Controllers
                 }
             }
             return Ok(amountOfArticles);
+        }
+
+        [HttpGet("{id}/bib")]
+        public FileStreamResult DownloadSource(int id)
+        {
+            using (_articleRepo)
+            {
+                var articles = _articleRepo.GetAllActive(id);
+
+                var stream = _bibliographyParser.Export(articles);
+
+                Response.Headers.Add("content-disposition", "attachment; filename=test.bib");
+                return File(stream, "application/octet-stream");
+            }
         }
 
         [HttpGet("{id}/start")]

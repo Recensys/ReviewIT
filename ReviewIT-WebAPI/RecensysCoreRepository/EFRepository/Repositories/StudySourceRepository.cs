@@ -100,6 +100,7 @@ namespace RecensysCoreRepository.EFRepository.Repositories
             {StudySourceItemDTO.FieldType.Language, DataType.String },
             {StudySourceItemDTO.FieldType.Contents, DataType.String },
             {StudySourceItemDTO.FieldType.Doi, DataType.String },
+            {StudySourceItemDTO.FieldType.ItemType, DataType.String }
         };
 
         

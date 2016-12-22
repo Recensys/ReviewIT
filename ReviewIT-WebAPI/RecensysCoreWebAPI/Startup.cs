@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BibliographyParserCore;
+using BibliographyParserCore.BibTex;
+using BibliographyParserCore.ItemValidators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -96,11 +99,12 @@ namespace RecensysCoreWebAPI
                 options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
             });
 
+            var bibtexParser = new BibTexParser(new ItemValidator());
+            services.AddSingleton<IBibliographyParser>(bibtexParser);
 
             /**
              *  Setup blob storage
              */
-
             var blockBlob = ConfigureCloudBlockBlob();
             services.AddSingleton(blockBlob);
 

@@ -56,15 +56,10 @@ namespace RecensysCoreRepository.EFRepository.Repositories
         /// <summary>
         ///     An active article is defined by an article that's not excluded - thus either included or not affected by a criteria
         /// </summary>
-        /// <param name="currentStage"></param>
+        /// <param name="studyIdStage"></param>
         /// <returns></returns>
-        public IEnumerable<int> GetAllActiveIds(int currentStage)
+        public IEnumerable<int> GetAllActiveIds(int studyId)
         {
-            int studyId = (from s in _context.Stages
-                where s.Id == currentStage
-                select s.StudyId).Single();
-            
-
             //For some reason, this does not return the article if it's not affected by a criteria, so it has to be done with two calls to the db
             //return (from a in _context.Articles
             //        where a.StudyId == studyId && (!a.CriteriaResultId2.HasValue || a.CriteriaResult.Criteria.Type != CriteriaType.Exclusion)
@@ -93,9 +88,9 @@ namespace RecensysCoreRepository.EFRepository.Repositories
             return _context.Articles.FromSql(query).Select(a => a.Id);
         }
 
-        public IEnumerable<ArticleDTO> GetAllActive(int stage)
+        public IEnumerable<ArticleDTO> GetAllActive(int studyId)
         {
-            var articleIds = GetAllActiveIds(stage).ToArray();
+            var articleIds = GetAllActiveIds(studyId).ToArray();
 
             return from i in _context.Articles
                    where articleIds.Any(aid => aid == i.Id)
@@ -127,7 +122,7 @@ namespace RecensysCoreRepository.EFRepository.Repositories
         /// </summary>
         /// <param name="current"></param>
         /// <param name="prevStage"></param>
-        /// <returns>true if got prev stagId, false if there is no prev stage</returns>
+        /// <returns>true if got prev stagId, false if there is no prev studyId</returns>
         private bool TryGetPreviousStage(int current, out int prevStage)
         {
             var studyId = (from s in _context.Stages

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using BibliographyParserCore.ItemValidators;
 using RecensysCoreRepository.DTOs;
@@ -55,6 +56,7 @@ namespace BibliographyParserCore.BibTex
                     string key = match.Groups[2].Value;
                     StudySourceItemDTO.ItemType type = (StudySourceItemDTO.ItemType)Enum.Parse(typeof(StudySourceItemDTO.ItemType), match.Groups[1].Value, true);
                     Dictionary<StudySourceItemDTO.FieldType, string> fields = ParseItem(match.Groups[3].Value);
+                    fields.Add(StudySourceItemDTO.FieldType.ItemType, type.ToString());
                     var item = new StudySourceItemDTO(type, fields);
 
                     // Validate the item.
@@ -72,6 +74,19 @@ namespace BibliographyParserCore.BibTex
             }
 
             return items;
+        }
+
+        public Stream Export(IEnumerable<ArticleDTO> data)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            
+            
+            writer.Write(data.ToBibtexString());
+
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
 
         private Dictionary<StudySourceItemDTO.FieldType, string> ParseItem(string data)
@@ -101,6 +116,46 @@ namespace BibliographyParserCore.BibTex
             }
 
             return items;
+        }
+    }
+
+    public static class ExportExtensions
+    {
+        public static string ToBibtexString(this IEnumerable<ArticleDTO> input)
+        {
+            string s = "";
+
+            int c = 0;
+            var articleDtos = input as ArticleDTO[] ?? input.ToArray();
+            int length = articleDtos.Length;
+            foreach (var articleDto in articleDtos)
+            {
+                c++;
+                s += ParseElement(articleDto);
+                if (c < length) s += ",\n";
+            }
+
+            return s;
+        }
+
+        private static string ParseElement(ArticleDTO element)
+        {
+            string type;
+            element.Data.TryGetValue("ItemType", out type);
+            string s = $"@{type}";
+            element.Data.Remove("ItemType");
+            s += "{";
+            s += $"{element.Id},\n";
+            int c = 0;
+            int length = element.Data.Count;
+            foreach (var d in element.Data)
+            {
+                c++;
+                s += d.Key.ToLower() + " = {" + d.Value + "}";
+                if (c < length) s += ",\n";
+            }
+            s += "}";
+            return s;
         }
     }
 }

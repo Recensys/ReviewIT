@@ -1,9 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { StageDetailsDTO } from "../../model/models";
 import { StagelistService } from './stagelist.service';
+import { environment } from '../../../environments/environment'
 
 
 @Component({
@@ -21,6 +22,7 @@ export class StagelistComponent implements OnInit{
   constructor(
     private api: StagelistService,
     private route: ActivatedRoute,
+    private router: Router
     ){
   }
 
@@ -36,4 +38,13 @@ export class StagelistComponent implements OnInit{
             );
         });
   }
+
+  download(){
+    window.location.href = this.bibtexLink;
+  }
+
+  get bibtexLink(){
+    return `${environment.api}study/${this.studyId}/bib`;
+  }
+
 }

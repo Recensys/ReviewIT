@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using RecensysCoreRepository.DTOs;
 
 namespace BibliographyParserCore
@@ -9,5 +10,6 @@ namespace BibliographyParserCore
     public interface IBibliographyParser
     {
         List<StudySourceItemDTO> Parse(string data);
+        Stream Export(IEnumerable<ArticleDTO> data);
     }
 }

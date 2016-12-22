@@ -13,5 +13,15 @@
     </md-card>
 
     <app-overview [studyId]="studyId"></app-overview>
+
+    <md-card>
+        <md-card-title>
+            Export options
+        </md-card-title>
+        <md-card-content>
+            <p>Export articles that have not been excluded</p>
+            <button class="btn" (click)="download()"><i class="fa fa-file-text" aria-hidden="true"></i> Download BibTex</button>
+        </md-card-content>
+    </md-card>
 </div>
 

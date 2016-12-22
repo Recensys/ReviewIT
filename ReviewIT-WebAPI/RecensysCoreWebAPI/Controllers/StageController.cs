@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BibliographyParserCore;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.EFRepository.Repositories;
@@ -16,10 +17,14 @@ namespace RecensysCoreWebAPI.Controllers
     {
 
         private readonly IStageDetailsRepository _repo;
+        private readonly IArticleRepository _articleRepo;
+        private readonly IBibliographyParser _bibliographyParser;
 
-        public StageController(IStageDetailsRepository repo)
+        public StageController(IStageDetailsRepository repo, IArticleRepository articleRepo, IBibliographyParser bibliographyParser)
         {
             _repo = repo;
+            _articleRepo = articleRepo;
+            _bibliographyParser = bibliographyParser;
         }
 
         //// GET: api/values
@@ -90,6 +95,8 @@ namespace RecensysCoreWebAPI.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
         
+
     }
 }

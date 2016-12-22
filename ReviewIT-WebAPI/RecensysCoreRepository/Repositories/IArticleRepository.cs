@@ -10,8 +10,8 @@ namespace RecensysCoreRepository.Repositories
         bool AddToStage(int stageId, int articleId);
         IEnumerable<int> GetAllIdsForStudy(int studyId);
         bool AddCriteriaResult(int criteriaId, int stageId, int articleId);
-        IEnumerable<int> GetAllActiveIds(int currentStage);
-        IEnumerable<ArticleDTO> GetAllActive(int stage);
+        IEnumerable<int> GetAllActiveIds(int studyId);
+        IEnumerable<ArticleDTO> GetAllActive(int studyId);
         IEnumerable<ArticleWithRequestedFieldsDTO> GetAllWithRequestedFields(int stageId);
     }
 }
