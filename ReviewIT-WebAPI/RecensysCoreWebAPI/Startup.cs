@@ -29,6 +29,7 @@ namespace RecensysCoreWebAPI
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("/config/appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -86,7 +87,7 @@ namespace RecensysCoreWebAPI
                 //Determine base path for the application.
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 //Set the comments path for the swagger json and ui.
-                options.IncludeXmlComments(basePath + "\\RecensysCoreWebAPI.xml");
+                options.IncludeXmlComments(basePath + "/RecensysCoreWebAPI.xml");
             });
 
             services.AddMvc().AddJsonOptions(options =>

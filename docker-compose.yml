@@ -1,0 +1,11 @@
+
+
+frontend:
+    build: ./ReviewIT-Angular
+    ports:
+        - 80:80
+
+webapi:
+    build: ./ReviewIT-webapi
+    ports:
+        - 8080:80
