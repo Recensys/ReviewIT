@@ -11,6 +11,7 @@ namespace RecensysCoreRepository.EFRepository.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string NameWithIdentifyProvider { get; set; }
 
         public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
         public virtual ICollection<UserStageRelation> StageRelations { get; set; } = new List<UserStageRelation>();

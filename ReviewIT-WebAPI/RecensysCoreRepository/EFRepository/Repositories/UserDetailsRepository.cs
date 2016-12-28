@@ -84,5 +84,12 @@ namespace RecensysCoreRepository.EFRepository.Repositories
             dto.Id = entity.Id;
             return dto;
         }
+
+        public int GetIdFromIdentity(string str)
+        {
+            return (from u in _context.Users
+                where u.NameWithIdentifyProvider == str
+                select u.Id).SingleOrDefault();
+        }
     }
 }
