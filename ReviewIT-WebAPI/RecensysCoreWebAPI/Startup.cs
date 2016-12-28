@@ -151,6 +151,12 @@ namespace RecensysCoreWebAPI
             app.UseSwagger();
             app.UseSwaggerUi();
 
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
+                Audience = Configuration["Authentication:AzureAd:Audience"]
+            });
+
             app.UseMvc();
         }
     }
