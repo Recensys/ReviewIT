@@ -11,6 +11,6 @@ namespace RecensysCoreRepository.Repositories
         IEnumerable<UserDetailsDTO> GetForStudy(int studyId);
         bool Update(int studyId, ICollection<UserDetailsDTO> dtos);
         UserDetailsDTO Create(UserDetailsDTO dto);
-
+        int GetIdFromIdentity(string str);
     }
 }

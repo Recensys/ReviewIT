@@ -8,9 +8,10 @@ using RecensysCoreRepository.EFRepository;
 namespace RecensysCoreRepository.Migrations
 {
     [DbContext(typeof(RecensysContext))]
-    partial class RecensysContextModelSnapshot : ModelSnapshot
+    [Migration("20161228100805_adal")]
+    partial class adal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
