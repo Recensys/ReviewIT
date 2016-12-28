@@ -27,5 +27,9 @@ export class UsernavComponent implements OnInit {
     this._userService.logOut();
   }
 
+  logIn(){
+    this._userService.logIn();
+  }
+
 
 }

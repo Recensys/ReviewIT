@@ -7,30 +7,24 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
-import { ApiHelper } from '../../shared';
+import { httpService } from '../../shared';
 import { StageDetailsDTO } from '../../model/models';
 
 @Injectable()
 export class StagelistService {
     
     constructor(
-        private apihelper: ApiHelper,
-        private http: Http
+        private http: httpService
     ) { }
 
     public get(studyId: number): Observable<StageDetailsDTO[]> {
-        let url = `${environment.api}study/${studyId}/stages`;
-        return this.http.get(url, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `study/${studyId}/stages`;
+        return this.http.get(url)
     }
 
     public create(studyId: number, dto: StageDetailsDTO): Observable<number> {
-        let url = `${environment.api}study/${studyId}/stage`;
-        let body = JSON.stringify(dto);
-        return this.http.post(url, dto, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `study/${studyId}/stage`;
+        return this.http.post(url, dto)
     }
 
     

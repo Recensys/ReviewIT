@@ -6,30 +6,26 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
-import { ApiHelper } from '../../shared';
+import { httpService } from '../../shared';
 import { ReviewTaskListDTO, ReviewTaskDTO } from '../../model';
 
 
 @Injectable()
 export class TaskDetailsService {
     constructor(
-        private apihelper: ApiHelper,
-        private http: Http
+        private http: httpService
     ) { }
 
     public getTaskIds(stageId: number): Observable<ReviewTaskListDTO> {
-        let url = `${environment.api}task`;
-        var options = this.apihelper.UidJsonOptions();
-        options.search.set('sid', stageId.toString());
-        return this.http.get(url, options)
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `task`;
+        var options = new URLSearchParams();
+        options.set('sid', stageId.toString());
+        return this.http.get(url, {search: options})
     }
 
     public UpdateTask(dto: ReviewTaskDTO) {
-        let url = `${environment.api}task`;
-        return this.http.put(url, dto, this.apihelper.JsonOptions())
-            .catch(this.apihelper.handleError);
+        let url = `task`;
+        return this.http.put(url, dto)
     }
 
 

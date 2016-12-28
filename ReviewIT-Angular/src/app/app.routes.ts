@@ -1,18 +1,13 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found';
-import { WhoAreYouComponent } from './who-are-you/who-are-you.component'
 import { HomeComponent } from './home/home.component'
 
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: '/who',
+		redirectTo: '/home',
 		pathMatch: 'full'
-	},
-	{
-		path: 'who',
-		component: WhoAreYouComponent
 	},
 	// {
 	// 	path: 'login',

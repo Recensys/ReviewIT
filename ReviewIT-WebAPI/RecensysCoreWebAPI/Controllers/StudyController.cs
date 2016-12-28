@@ -32,8 +32,9 @@ namespace RecensysCoreWebAPI.Controllers
         private readonly IOverviewRepository _overviewRepo;
         private readonly IBibliographyParser _bibliographyParser;
         private readonly IArticleRepository _articleRepo;
+        private readonly IUserDetailsRepository _userRepo;
 
-        public StudyController(IStudyDetailsRepository deRepo, IStudySourceRepository soRepo, IStageDetailsRepository sdRepo, IStudyStartEngine ssEngine, IStudyMemberRepository studyMemberRepo, IOverviewRepository overviewRepo, IBibliographyParser bibliographyParser, IArticleRepository articleRepo)
+        public StudyController(IStudyDetailsRepository deRepo, IStudySourceRepository soRepo, IStageDetailsRepository sdRepo, IStudyStartEngine ssEngine, IStudyMemberRepository studyMemberRepo, IOverviewRepository overviewRepo, IBibliographyParser bibliographyParser, IArticleRepository articleRepo, IUserDetailsRepository userRepo)
         {
             _deRepo = deRepo;
             _soRepo = soRepo;
@@ -43,6 +44,7 @@ namespace RecensysCoreWebAPI.Controllers
             _overviewRepo = overviewRepo;
             _bibliographyParser = bibliographyParser;
             _articleRepo = articleRepo;
+            _userRepo = userRepo;
         }
 
         [HttpGet("{id}/stages")]
@@ -103,39 +105,35 @@ namespace RecensysCoreWebAPI.Controllers
         {
             string sub;
             if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
-
-            try
+            
+            using (_deRepo)
+            using (_userRepo)
             {
-                using (_deRepo)
-                {
-                    return Json(_deRepo.GetAll(0).ToArray());
-                }
+                var uid = _userRepo.GetIdFromIdentity(sub);
+                return Ok(_deRepo.GetAll(uid).ToArray());
             }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] StudyDetailsDTO dto, [FromQuery]int uid)
+        public IActionResult Post([FromBody] StudyDetailsDTO dto)
         {
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
             if (!ModelState.IsValid) return BadRequest();
 
-            try
+            using (_deRepo)
+            using (_studyMemberRepo)
+            using (_userRepo)
             {
-                using (_deRepo)
-                using (_studyMemberRepo)
-                {
-                    var sid = _deRepo.Create(dto);
-                    _studyMemberRepo.Update(sid, new StudyMemberDTO[] {new StudyMemberDTO {Id = uid, Role = ResearcherRole.ResearchManager} });
-                    return Json(sid);
-                }
+                var uid = _userRepo.GetIdFromIdentity(sub);
+
+                var sid = _deRepo.Create(dto);
+                _studyMemberRepo.Update(sid, new StudyMemberDTO[] {new StudyMemberDTO {Id = uid, Role = ResearcherRole.ResearchManager} });
+                return Json(sid);
             }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            
         }
 
 
@@ -159,7 +157,7 @@ namespace RecensysCoreWebAPI.Controllers
             }
         }
         
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("{id}/config/source")]
         public IActionResult Upload(int id, IFormFile file)

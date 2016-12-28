@@ -6,5 +6,11 @@
 export const environment = {
   production: false,
   api: 'http://localhost:2529/api/',
-  blob: 'https://reitblob.blob.core.windows.net/resources/'
+  blob: 'https://reitblob.blob.core.windows.net/resources/',
+
+  // active directory
+  clientId: '041bea07-7b7e-4176-b139-eaacc75aad70',
+  postLogoutRedirectUrl: 'http://localhost:4200',
+  redirectUri: 'http://localhost:4200',
+  tenant: 'mkinitu.onmicrosoft.com'
 };
