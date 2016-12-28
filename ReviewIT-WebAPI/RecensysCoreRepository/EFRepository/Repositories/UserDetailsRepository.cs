@@ -87,9 +87,20 @@ namespace RecensysCoreRepository.EFRepository.Repositories
 
         public int GetIdFromIdentity(string str)
         {
-            return (from u in _context.Users
+            var id = (from u in _context.Users
                 where u.NameWithIdentifyProvider == str
                 select u.Id).SingleOrDefault();
+            if (id == default(int))
+            {
+                var user = new User
+                {
+                    NameWithIdentifyProvider = str
+                };
+                _context.Users.Add(user);
+                _context.SaveChanges();
+                id = user.Id;
+            }
+            return id;
         }
     }
 }
