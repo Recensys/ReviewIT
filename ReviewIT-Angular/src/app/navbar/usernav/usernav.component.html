@@ -1,5 +1,5 @@
 <div *ngIf="!user">
-  <button class="btn btn-primary" [routerLink]="['who']">sign in</button>
+  <button class="btn btn-primary" (click)="logIn()">sign in</button>
 </div>
 
 <div *ngIf="user">

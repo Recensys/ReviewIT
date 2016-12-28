@@ -6,7 +6,6 @@ import { StudyDetailsDTO } from '../model';
 import { StudylistService } from './studylist.service';
 import { MessageService } from '../core';
 
-
 @Component({
   
   selector: 'app-studylist',
@@ -28,18 +27,13 @@ export class StudylistComponent implements OnInit {
   ngOnInit() {
     this.obs = this.studylistService.get();
     this.obs.subscribe(
-      dto => this.model = dto,
+      dto => {
+        console.log(dto);
+        this.model = dto},
       error => this.msgService.addError(error)
     )
   }
 
-  continueStudy(studyId: number) {
-
-  }
-
-  studyConfig(studyId: number) {
-
-  }
 
   newStudy() {
     var study = new StudyDetailsDTO();

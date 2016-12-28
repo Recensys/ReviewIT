@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BibliographyParserCore.BibTex;
 using BibliographyParserCore.ItemValidators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository.Repositories;
@@ -13,6 +14,7 @@ using RecensysCoreRepository.Repositories;
 
 namespace RecensysCoreWebAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     public class ResourceController : Controller
     {
