@@ -14,12 +14,13 @@ using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.EFRepository;
 using RecensysCoreRepository.Repositories;
 using RecensysCoreBLL;
+using RecensysCoreWebAPI.Utils;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RecensysCoreWebAPI.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     public class StudyController : Controller
     {
@@ -98,13 +99,16 @@ namespace RecensysCoreWebAPI.Controllers
         /// </summary>
         /// <returns>Json array of study details</returns>
         [HttpGet("list")]
-        public IActionResult GetList([FromQuery]int uid)
+        public IActionResult GetList()
         {
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
             try
             {
                 using (_deRepo)
                 {
-                    return Json(_deRepo.GetAll(uid).ToArray());
+                    return Json(_deRepo.GetAll(0).ToArray());
                 }
             }
             catch (Exception e)
