@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BibliographyParserCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.EFRepository.Repositories;
@@ -12,6 +13,7 @@ using RecensysCoreRepository.Repositories;
 
 namespace RecensysCoreWebAPI.Controllers
 {
+    [Authorize]
     [Route("api/")]
     public class StageController : Controller
     {

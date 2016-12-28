@@ -4,37 +4,55 @@ import { CookieService } from 'angular2-cookie/core';
 import { Router } from '@angular/router';
 
 import { UserDetailsDTO } from '../../model/models';
+import { AdalConfig, Authentication, AuthenticationContext } from 'adal-ts'
+import { environment } from '../../../environments/environment'
 
 @Injectable()
 export class UserService {
 
-  constructor(private _cookieService: CookieService, private router: Router) { 
-    let userJson = this._cookieService.get('user')
-    if(userJson){
-      let user =  JSON.parse(userJson);
+  constructor(private _cookieService: CookieService, private router: Router) {
+    this.adal = Authentication.getContext(this.adalConfig)
+
+    let adalUser = this.adal.getUser();
+    if (adalUser) {
+      let user = new UserDetailsDTO();
+      user.FirstName = adalUser.given_name;
+      user.LastName = adalUser.family_name;
       this.loggedInUserSource.next(user);
     }
   }
 
+  private get adalConfig() {
+    return {
+      clientId: environment.clientId,
+      postLogoutRedirectUrl: environment.postLogoutRedirectUrl,
+      redirectUri: environment.redirectUri,
+      tenant: environment.tenant
+    }
+  }
+
+  private adal: AuthenticationContext;
   private loggedInUserSource = new BehaviorSubject<UserDetailsDTO>(null);
 
-  get login$(){
+  get login$() {
     return this.loggedInUserSource.asObservable();
   }
 
-  get getUser(){
+  get getUser() {
     return this.loggedInUserSource.getValue();
   }
 
-  logIn(user: UserDetailsDTO){
-    this.loggedInUserSource.next(user);
-    this._cookieService.put('user', JSON.stringify(user));
+  get token(){
+    return this.adal.getToken();
   }
 
-  logOut(){
-    this.loggedInUserSource.next(null);
-    this._cookieService.remove('user');
-    this.router.navigate(['who']);
+  logIn() {
+    this.adal.login();
+  }
+
+  logOut() {
+    this.adal.logout();
+    // this.router.navigate(['who']);
   }
 
 

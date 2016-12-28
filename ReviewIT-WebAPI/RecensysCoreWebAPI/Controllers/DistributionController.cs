@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository;
 using RecensysCoreRepository.DTOs;
@@ -11,6 +12,7 @@ using RecensysCoreRepository.Repositories;
 
 namespace RecensysCoreWebAPI.Controllers
 {
+    [Authorize]
     [Route("api/Stage/{stageId}/[controller]")]
     public class DistributionController : Controller
     {

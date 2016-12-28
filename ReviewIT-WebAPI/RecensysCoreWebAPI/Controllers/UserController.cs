@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.Repositories;
@@ -10,7 +11,7 @@ using RecensysCoreRepository.Repositories;
 
 namespace RecensysCoreWebAPI.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     public class UserController : Controller
     {
