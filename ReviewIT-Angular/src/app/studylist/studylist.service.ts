@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 import { ApiHelper } from '../shared';
 import { StudyDetailsDTO } from '../model/models';
-import { httpService } from '../shared/authHttp.service'
+import { httpService } from '../shared'
 
 @Injectable()
 export class StudylistService {
