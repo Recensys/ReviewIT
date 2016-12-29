@@ -2,6 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found';
 import { HomeComponent } from './home/home.component'
+import { LoggedInGuard } from './loggedIn.guard'
 
 export const routes: Routes = [
 	{
@@ -9,16 +10,6 @@ export const routes: Routes = [
 		redirectTo: '/home',
 		pathMatch: 'full'
 	},
-	// {
-	// 	path: 'login',
-	// 	loadChildren:
-	// 	'app/login/login.module#LoginModule'
-	// },
-	// {
-	// 	path: 'signup',
-	// 	loadChildren:
-	// 	'app/signup/signup.module#SignupModule'
-	// },
 	{
 		path: 'home',
 		children: [
@@ -28,11 +19,13 @@ export const routes: Routes = [
 			},
 			{
 				path: 'config',
+				canLoad: [ LoggedInGuard ],
 				loadChildren:
 				'app/config/config.module#ConfigModule'
 			},
 			{
 				path: 'task',
+				canLoad: [ LoggedInGuard ],
 				loadChildren:
 				'app/task/task.module#TaskModule'
 

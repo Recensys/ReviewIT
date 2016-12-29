@@ -9,6 +9,7 @@ import { MessagesModule, GrowlModule } from 'primeng/primeng';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundModule } from './page-not-found'
 import { MaterialModule } from '@angular/material';
+import { LoggedInGuard } from './loggedIn.guard'
 
 /* Feature Modules */
 import { routing, routeProviders } from './app.routes'
@@ -38,6 +39,7 @@ import { TestModule } from './testcomponent/test.module'
 	],
 	providers: [
 		routeProviders,
+		LoggedInGuard
 	],
 	bootstrap: [ReviewITAppComponent
 	],
