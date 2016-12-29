@@ -56,7 +56,7 @@ export class httpService{
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(error); // log to console instead
-        return Observable.throw(error);
+        return Observable.throw(errMsg);
     }
 
     private extractJson(res: Response) {
