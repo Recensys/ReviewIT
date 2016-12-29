@@ -50,13 +50,16 @@ export class UserService {
     return this.adal.getToken();
   }
 
+  get isAuthenticated(): boolean {
+    return this.adal.getUser() != null;
+  }
+
   logIn() {
     this.adal.login();
   }
 
   logOut() {
     this.adal.logout();
-    // this.router.navigate(['who']);
   }
 }
 
