@@ -2,6 +2,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 
 import {Message} from 'primeng/primeng';
 import {MessageService} from './core';
+import { Authentication } from 'adal-ts'
 
 @Component({
   
@@ -25,7 +26,7 @@ export class ReviewITAppComponent {
   viewContainerRef: ViewContainerRef;
   constructor(viewContainerRef:ViewContainerRef, messageService: MessageService) {
     this.viewContainerRef = viewContainerRef;
-
     messageService.msgs = this.msgs;
+    Authentication.getAadRedirectProcessor().process();
   }
 }

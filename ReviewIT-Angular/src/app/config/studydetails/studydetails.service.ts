@@ -6,37 +6,30 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
-import { ApiHelper } from '../../shared';
+import { httpService } from '../../shared';
 import { StudyDetailsDTO } from '../../model/models';
 
 @Injectable()
 export class StudydetailsService {
 
     constructor(
-        private apihelper: ApiHelper,
-        private http: Http
+        private http: httpService
     ) { }
 
     public get(id: number): Observable<StudyDetailsDTO> {
-        let url = `${environment.api}study/${id}`;
-        return this.http.get(url, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `study/${id}`;
+        return this.http.get(url)
     }
 
     public update(model: StudyDetailsDTO): Observable<boolean> {
-        let url = `${environment.api}study`;
+        let url = `study`;
         let body = JSON.stringify(model);
-        return this.http.put(url, body, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        return this.http.put(url, body)
     }
 
     public delete(id: number) {
-        let url = `${environment.api}study/${id}`;
-        return this.http.delete(url, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `study/${id}`;
+        return this.http.delete(url)
     }
 
 

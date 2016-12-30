@@ -1,5 +1,5 @@
 <div *ngIf="!user">
-  <button class="btn btn-primary" [routerLink]="['who']">sign in</button>
+  <input (click)="_userService.logIn()" type="image" style="width: 180px;" src="../../assets/images/sign-in-with-microsoft-light.png" />
 </div>
 
 <div *ngIf="user">

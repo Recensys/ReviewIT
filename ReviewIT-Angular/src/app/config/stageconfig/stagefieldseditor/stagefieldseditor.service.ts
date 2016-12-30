@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../../environments/environment';
-import { ApiHelper } from '../../../shared';
+import { httpService } from '../../../shared';
 import { StageFieldsDTO } from '../../../model';
 
 
@@ -14,23 +14,17 @@ import { StageFieldsDTO } from '../../../model';
 export class StagefieldseditorService
 {
     constructor(
-        private apihelper: ApiHelper,
-        private http: Http
+        private http: httpService
     ) { }
 
     public get(stageId: number): Observable<StageFieldsDTO> {
-        let url = `${environment.api}stage/${stageId}/stagefield`;
-        return this.http.get(url, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `stage/${stageId}/stagefield`;
+        return this.http.get(url)
     }
 
     public save(stageId: number, dto: StageFieldsDTO): Observable<boolean> {
-        let url = `${environment.api}stage/${stageId}/stagefield`;
-        let body = JSON.stringify(dto);
-        return this.http.put(url, body, this.apihelper.JsonOptions())
-            .map(this.apihelper.extractJson)
-            .catch(this.apihelper.handleError);
+        let url = `stage/${stageId}/stagefield`;
+        return this.http.put(url, dto)
     }
 }
 
