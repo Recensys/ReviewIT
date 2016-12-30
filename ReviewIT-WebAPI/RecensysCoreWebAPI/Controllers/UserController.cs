@@ -25,16 +25,9 @@ namespace RecensysCoreWebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            try
+            using (_rdRepo)
             {
-                using (_rdRepo)
-                {
-                    return Json(_rdRepo.Get());
-                }
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
+                return Ok(_rdRepo.Get());
             }
         }
 
@@ -43,20 +36,21 @@ namespace RecensysCoreWebAPI.Controllers
         {
             if (term == null) term = "";
 
-            try
+            
+            using (_rdRepo)
             {
-                using (_rdRepo)
+                var results = (from r in _rdRepo.Get()
+                    where r.FirstName.ToLower().Contains(term.ToLower())
+                    select r).ToList();
+
+                if (results != null)
                 {
-                    var results = from r in _rdRepo.Get()
-                        where r.FirstName.ToLower().Contains(term.ToLower())
-                        select r;
-                    return Json(results.ToList());
+                    return Ok(results);
                 }
+                return NoContent();
             }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+
+
         }
 
         [HttpPost]
