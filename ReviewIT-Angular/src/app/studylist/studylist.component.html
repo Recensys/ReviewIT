@@ -13,7 +13,7 @@
   <div class="col-sm-10 r-list-primary" [routerLink]="['task', 'study', studyDetail.Id]">
     <a>{{studyDetail.Name}}</a>
   </div>
-  <div class="col-sm-2 r-list-secondary">
-    <span class="btn btn-sm btn-default" [routerLink]="['config', studyDetail.Id, 'studydetails']"><i class="fa fa-wrench"></i></span>
+  <div class="col-sm-2 r-list-secondary" [routerLink]="['config', studyDetail.Id, 'studydetails']">
+    <span class="btn btn-sm btn-default"><i class="fa fa-wrench"></i></span>
   </div>
 </md-card>
