@@ -52,6 +52,10 @@ md-grid-tile.btn-tile:hover{
     height: auto;
     padding: 15px;
 	padding-left: 25px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
 }
 
 .r-list .r-list-secondary{
