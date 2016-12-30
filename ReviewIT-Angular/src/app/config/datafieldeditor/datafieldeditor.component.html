@@ -33,7 +33,7 @@
           <dl class="col-sm-4">
             <p><strong>Field title:</strong></p>
           </dl>
-          <dd class="col-sm">
+          <dd class="col-sm-8">
             <input type="text" pInputText [(ngModel)]="selection.Name" />
           </dd>
         </dl>
@@ -41,22 +41,22 @@
           <dl class="col-sm-4">
             <p><strong>Field Type:</strong></p>
           </dl>
-          <dd class="col-sm">
+          <dd class="col-sm-8">
             <p-radioButton name="groupname" label="String" value="0" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
-          <dd class="col-sm">
+          <dd class="col-sm-8">
             <p-radioButton name="groupname" label="Number" value="4" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
-          <dd class="col-sm offset-sm-4">
+          <!--<dd class="col-sm offset-sm-4">
             <p-radioButton class="mute" [disabled]="true" name="groupname" label="Radio Button" value="2" [(ngModel)]="selection.DataType"></p-radioButton>
-          </dd>
-          <dd class="col-sm offset-sm-4">
+          </dd>-->
+          <dd class="col-sm-8 offset-sm-4">
             <p-radioButton name="groupname" label="Boolean" value="1" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
-          <dd class="col-sm offset-sm-4">
+          <!--<dd class="col-sm offset-sm-4">
             <p-radioButton class="mute" [disabled]="true" name="groupname" label="Checkbox" value="3" [(ngModel)]="selection.DataType"></p-radioButton>
-          </dd>
-          <dd class="col-sm offset-sm-4">
+          </dd>-->
+          <dd class="col-sm-8 offset-sm-4">
             <p-radioButton name="groupname" label="PDF Resource" value="6" [(ngModel)]="selection.DataType"></p-radioButton>
           </dd>
         </dl>
