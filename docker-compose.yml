@@ -1,11 +1,16 @@
+version: '2.0'
 
+services:
+    frontend:
+        build: ./ReviewIT-Angular
+        ports:
+            - 80:80
 
-frontend:
-    build: ./ReviewIT-Angular
-    ports:
-        - 80:80
-
-webapi:
-    build: ./ReviewIT-webapi
-    ports:
-        - 8080:80
+    webapi:
+        build: ./ReviewIT-webapi
+        ports:
+            - 8080:80
+        volumes:
+            - apiconfig:/config/
+volumes:
+    apiconfig: {}
