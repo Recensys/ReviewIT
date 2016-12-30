@@ -11,7 +11,7 @@ import { MessageService } from '../../core'
 import { CriteriaconfigService } from './criteriaconfig.service';
 import { SelectItem } from 'primeng/primeng';
 
-import { FieldDTO, CriteriaDTO, FieldCriteriaDTO } from '../../model/models'
+import { FieldDTO, CriteriaDTO, FieldCriteriaDTO, DataType } from '../../model/models'
 
 @Component({
 
@@ -54,7 +54,9 @@ export class CriteriaConfigComponent implements OnInit {
       this.fields = this.term.valueChanges
         .debounceTime(400)
         .distinctUntilChanged()
-        .switchMap(term => this.api.search(studyId, term) );
+        .switchMap(term => this.api.search(studyId, term))
+        .filter((dtos,index) => dtos[index].DataType != DataType.Resource);
+
     });
   }
 

@@ -18,12 +18,13 @@ import { DynCriteriaComponent } from './dyn-criteria.component'
 import { BooleanCriteriaComponent } from './dyn-criteria/boolean-criteria.component'
 import { NumberCriteriaComponent } from './dyn-criteria/number-criteria.component'
 import { StringCriteriaComponent } from './dyn-criteria/string-criteria.component'
+import { PdfCriteriaComponent } from './dyn-criteria/pdf-criteria.component'
 
 @NgModule({
   imports:          [ RouterModule, HttpModule, SharedModule, FormsModule, ReactiveFormsModule, MaterialModule, DropdownModule, InputTextModule, RadioButtonModule, CommonModule, ButtonModule, AutoCompleteModule, SliderModule, MessagesModule ],
   providers:        [ CriteriaconfigService ],
-  declarations:     [ CriteriaConfigComponent, DynCriteriaComponent, BooleanCriteriaComponent, NumberCriteriaComponent, StringCriteriaComponent ],
-  entryComponents:  [ BooleanCriteriaComponent, NumberCriteriaComponent, StringCriteriaComponent ],
+  declarations:     [ CriteriaConfigComponent, DynCriteriaComponent, BooleanCriteriaComponent, NumberCriteriaComponent, StringCriteriaComponent, PdfCriteriaComponent ],
+  entryComponents:  [ BooleanCriteriaComponent, NumberCriteriaComponent, StringCriteriaComponent, PdfCriteriaComponent ],
   exports:          [ DynCriteriaComponent ],
 })
 export class CriteriaconfigModule { }
