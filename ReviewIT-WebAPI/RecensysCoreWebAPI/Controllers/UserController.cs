@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.Repositories;
+using RecensysCoreWebAPI.Utils;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,19 +17,82 @@ namespace RecensysCoreWebAPI.Controllers
     public class UserController : Controller
     {
 
-        private IUserDetailsRepository _rdRepo;
+        private readonly IUserDetailsRepository _userRepo;
 
-        public UserController(IUserDetailsRepository rdRepo)
+        public UserController(IUserDetailsRepository userRepo)
         {
-            _rdRepo = rdRepo;
+            _userRepo = userRepo;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            using (_rdRepo)
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
+            using (_userRepo)
             {
-                return Ok(_rdRepo.Get());
+                var uid = _userRepo.GetIdFromIdentity(sub);
+                var ud = _userRepo.Get(uid);
+                if (ud == null) return BadRequest("User does not exist");
+                return Ok(ud);
+            }
+        }
+
+        [HttpGet("userExists")]
+        public IActionResult UserExists()
+        {
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
+            using (_userRepo)
+            {
+                var uid = _userRepo.GetIdFromIdentity(sub);
+                var ud = _userRepo.Get(uid);
+                return Ok(ud != null);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] UserDetailsDTO dto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
+            using (_userRepo)
+            {
+                var user = _userRepo.Create(dto);
+                _userRepo.UpdateIdentityString(user.Id, sub);
+                return Ok(user);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] UserDetailsDTO dto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            using (_userRepo)
+            {
+                return Ok(_userRepo.Update(dto));
+            }
+        }
+
+        [HttpGet("ensurecreated")]
+        public IActionResult EnsureCreated()
+        {
+            string sub;
+            if (!User.Claims.TryGetSub(out sub)) return BadRequest("user could not be uniquely identified");
+
+            var email = User.Identity.Name;
+
+            using (_userRepo)
+            {
+                var uid = _userRepo.GetIdFromIdentity(sub);
+                var ud = _userRepo.Get(uid);
+                
+                return Ok();
             }
         }
 
@@ -38,10 +102,10 @@ namespace RecensysCoreWebAPI.Controllers
             if (term == null) term = "";
 
             
-            using (_rdRepo)
+            using (_userRepo)
             {
-                var results = (from r in _rdRepo.Get()
-                    where r.FirstName.ToLower().Contains(term.ToLower())
+                var results = (from r in _userRepo.Get()
+                    where r.Email != null && r.Email.ToLower().Contains(term.ToLower())
                     select r).ToList();
 
                 if (results != null)
@@ -54,16 +118,7 @@ namespace RecensysCoreWebAPI.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] UserDetailsDTO dto)
-        {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
-
-            using (_rdRepo)
-            {
-                return Ok(_rdRepo.Create(dto));
-            }
-        }
+        
 
     }
 }

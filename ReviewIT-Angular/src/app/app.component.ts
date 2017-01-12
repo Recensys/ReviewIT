@@ -1,7 +1,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
 
 import {Message} from 'primeng/primeng';
-import {MessageService} from './core';
+import {MessageService, UserService} from './core';
 import { Authentication } from 'adal-ts'
 
 @Component({
@@ -24,9 +24,12 @@ export class ReviewITAppComponent {
   msgs: Message[] = [];
   
   viewContainerRef: ViewContainerRef;
-  constructor(viewContainerRef:ViewContainerRef, messageService: MessageService) {
+  constructor(viewContainerRef:ViewContainerRef, messageService: MessageService, private userService: UserService) {
     this.viewContainerRef = viewContainerRef;
     messageService.msgs = this.msgs;
+
+    // handle token callback
     Authentication.getAadRedirectProcessor().process();
+    
   }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.EFRepository.Entities;
 using RecensysCoreRepository.Repositories;
+using Microsoft.Graph;
 
 namespace RecensysCoreRepository.EFRepository.Repositories
 {
@@ -85,22 +86,44 @@ namespace RecensysCoreRepository.EFRepository.Repositories
             return dto;
         }
 
+        public bool Update(UserDetailsDTO dto)
+        {
+            var stored = _context.Users.Single(d => d.Id == dto.Id);
+
+            stored.Email = dto.Email;
+            stored.FirstName = dto.FirstName;
+            stored.LastName = dto.LastName;
+
+            return _context.SaveChanges() > 0;
+        }
+
+        public UserDetailsDTO Get(int id)
+        {
+            return (from u in _context.Users
+                where u.Id == id
+                select new UserDetailsDTO
+                {
+                    Email = u.Email,
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName
+                }).SingleOrDefault();
+        }
+
         public int GetIdFromIdentity(string str)
         {
             var id = (from u in _context.Users
                 where u.NameWithIdentifyProvider == str
                 select u.Id).SingleOrDefault();
-            if (id == default(int))
-            {
-                var user = new User
-                {
-                    NameWithIdentifyProvider = str
-                };
-                _context.Users.Add(user);
-                _context.SaveChanges();
-                id = user.Id;
-            }
+            
             return id;
+        }
+
+        public void UpdateIdentityString(int userId, string str)
+        {
+            var u = _context.Users.Single(us => us.Id == userId);
+            u.NameWithIdentifyProvider = str;
+            _context.SaveChanges();
         }
     }
 }

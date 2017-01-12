@@ -2,27 +2,60 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CookieService } from 'angular2-cookie/core';
 import { Router } from '@angular/router';
+import { Http, RequestOptions, Headers } from '@angular/http'
 
 import { UserDetailsDTO } from '../../model/models';
 import { AdalConfig, Authentication, AuthenticationContext } from 'adal-ts'
 import { environment } from '../../../environments/environment'
+import { UserHttpService } from './userHttp.service'
+
 
 @Injectable()
 export class UserService {
 
-  constructor(private _cookieService: CookieService, private router: Router) {
+  constructor(
+    private _cookieService: CookieService,
+    private router: Router,
+    private api: UserHttpService
+  ) {
     this.adal = Authentication.getContext(this.adalConfig)
 
     // check if stored token is expired
-    var jwtHelper = new JwtHelper();    
-    if(jwtHelper.tokenExpired(this.adal.getToken())) this.logOut();
+    var jwtHelper = new JwtHelper();
+    var token = this.adal.getToken();
+    if (jwtHelper.tokenExpired(token)) this.logOut();
 
-    let adalUser = this.adal.getUser();
+    let adalUser: any = this.adal.getUser();
     if (adalUser) {
       let user = new UserDetailsDTO();
-      user.FirstName = adalUser.given_name;
-      user.LastName = adalUser.family_name;
+      console.log(adalUser);
+      user.Email = adalUser.email;
+      user.FirstName = adalUser.email;
       this.loggedInUserSource.next(user);
+
+      this.api.userExists(token).subscribe(
+        bool => { console.log('user exists: ', bool);
+          if(!bool){
+            // greet the user for the first time and create with backend
+            this.api.postUser(token, user).subscribe();
+          }else{
+            // update details with backend
+            this.api.getUser(token).subscribe(
+              user => {
+                console.log(user);
+                user.Email = adalUser.email;
+                user.FirstName = adalUser.email;
+                this.api.updateUser(token, user).subscribe();                
+              }
+            );
+          }
+        }
+      )
+
+      // this.api.getUserDetaildFromGraph(token).subscribe(
+      //   res => console.log(res)
+      // )
+
     }
   }
 
@@ -61,6 +94,8 @@ export class UserService {
   logOut() {
     this.adal.logout();
   }
+
+  
 }
 
 
