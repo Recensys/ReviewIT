@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using RecensysCoreRepository.DTOs;
 using RecensysCoreRepository.EFRepository.Entities;
 using RecensysCoreRepository.Repositories;
-using Microsoft.Graph;
 
 namespace RecensysCoreRepository.EFRepository.Repositories
 {
