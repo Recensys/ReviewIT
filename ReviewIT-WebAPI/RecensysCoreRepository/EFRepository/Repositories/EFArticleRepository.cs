@@ -76,9 +76,9 @@ namespace RecensysCoreRepository.EFRepository.Repositories
 
             //var allArticleIds = unAffectedArticles.Concat(includedArticles);
 
-            string query = $@"SELECT temp.Id, temp.CriteriaResultId2, temp.StudyId
+            string query = $@"SELECT temp.Id, temp.StudyId
                         FROM 
-	                        (SELECT dbo.Articles.Id, dbo.Articles.CriteriaResultId2, dbo.Articles.StudyId, dbo.Criterias.Type
+	                        (SELECT dbo.Articles.Id, dbo.Articles.StudyId, dbo.Criterias.Type
 	                        FROM dbo.Articles
 	                        FULL OUTER JOIN dbo.CriteriaResults ON dbo.Articles.Id = dbo.CriteriaResults.ArticleId
 	                        FULL OUTER JOIN dbo.Criterias ON dbo.Criterias.Id = dbo.CriteriaResults.CriteriaId
