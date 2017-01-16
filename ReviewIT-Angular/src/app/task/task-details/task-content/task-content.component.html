@@ -1,16 +1,16 @@
 <md-card *ngIf="selected">
   <md-card-title>
-    Task #{{selected?.Id}}
-    <div [ngSwitch]="selected.TaskState">
-                <p *ngSwitchCase="taskState.New"><span class="tag tag-default">new</span></p>
-                <p *ngSwitchCase="taskState.InProgress"><span class="tag tag-warning">in progress</span></p>
-                <p *ngSwitchCase="taskState.Subnmitted"><span class="tag tag-success">submitted</span></p>
-                <p *ngSwitchCase="taskState.Done"><span class="tag tag-success">done</span></p>
-                <p *ngSwitchDefault><span class="tag tag-danger">unknown</span></p>
-            </div>
+    <span [ngSwitch]="selected.TaskState">
+      Task #{{selected?.Id}}
+      <span *ngSwitchCase="taskState.New" class="tag tag-default">new</span>
+      <span *ngSwitchCase="taskState.InProgress" class="tag tag-warning">in progress</span>
+      <span *ngSwitchCase="taskState.Subnmitted" class="tag tag-success">submitted</span>
+      <span *ngSwitchCase="taskState.Done" class="tag tag-success">done</span>
+      <span *ngSwitchDefault class="tag tag-danger">unknown</span>
+    </span>
   </md-card-title>
-  <md-card-content *ngIf="model?.Fields" class="row">
-    <div *ngFor="let field of model.Fields; let i = index">
+  <md-card-content *ngIf="model?.Fields">
+    <div class="row" *ngFor="let field of model.Fields; let i = index">
       <h5 class="col-sm-3">{{field.Name}}</h5>
       <field-dyn class="col-sm-9" [requested]="field.FieldType == 1" [field]="field" [data]="selected.Data[i]"></field-dyn>
     </div>
@@ -18,5 +18,5 @@
 </md-card>
 
 <div *ngIf="resourceField && resourceData" class="col-lg-6 pdf-view hidden-md-down">
-    <field-dyn [requested]="resourceField.FieldType == 1" [field]="resourceField" [data]="resourceData"></field-dyn>
+  <field-dyn [requested]="resourceField.FieldType == 1" [field]="resourceField" [data]="resourceData"></field-dyn>
 </div>
