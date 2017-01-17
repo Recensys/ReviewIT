@@ -25,24 +25,26 @@ namespace RecensysCoreRepository.EFRepository.Repositories
         public void Post(int studyId, ICollection<StudySourceItemDTO> dtos)
         {
             var entityDictionary = new Dictionary<StudySourceItemDTO.FieldType, Field>();
-            foreach (var fieldType in Enum.GetValues(typeof(StudySourceItemDTO.FieldType)))
+            foreach (var dataType in _dataTypes)
             {
                 // if datastore does not already contains a field
-                var fieldEntity =
-                    _context.Fields.FirstOrDefault(f => (f.StudyId == studyId) && (f.Name == fieldType.ToString()));
+                var fieldEntity = _context.Fields.SingleOrDefault(f => (f.StudyId == studyId) && (f.Name == dataType.Key.ToString()));
                 if (fieldEntity == null)
+                {
                     fieldEntity = new Field
                     {
                         StudyId = studyId,
-                        Name = fieldType.ToString(),
-                        DataType = _dataTypes[(StudySourceItemDTO.FieldType)fieldType]
+                        Name = dataType.Key.ToString(),
+                        DataType = dataType.Value
                     };
-                entityDictionary.Add((StudySourceItemDTO.FieldType) fieldType, fieldEntity);
+                }
+                entityDictionary.Add(dataType.Key, fieldEntity);
             }
 
             // Add articles with data related to fields
             foreach (var dto in dtos)
             {
+                var allFields = new Dictionary<StudySourceItemDTO.FieldType, Field>(entityDictionary);
                 var article = new Article
                 {
                     StudyId = studyId,
@@ -53,10 +55,16 @@ namespace RecensysCoreRepository.EFRepository.Repositories
                     var d = new Data
                     {
                         Value = fieldDto.Value,
-                        Field = entityDictionary[fieldDto.Key]
+                        Field = allFields[fieldDto.Key]
                     };
-
                     article.Data.Add(d);
+                    allFields.Remove(fieldDto.Key);
+                }
+                // Add remaining data that was not on article in dto
+                // TODO alternatively alert the user that a bibtex item was incomplete and require some action
+                foreach (var e in allFields)
+                {
+                    article.Data.Add(new Data {Field = e.Value});
                 }
                 _context.Articles.Add(article);
             }

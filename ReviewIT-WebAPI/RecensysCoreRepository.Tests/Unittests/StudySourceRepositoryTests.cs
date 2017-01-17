@@ -36,12 +36,12 @@ namespace RecensysCoreRepository.Tests.Unittests
 
                 var fields = context.Fields.ToList();
 
-                Assert.Equal(1, fields.Count);
+                Assert.Equal(1, context.Data.Count(d => d.Value == "Mathias"));
             }
         }
 
         [Fact]
-        public void Post_Item_with_AuthorField__Data_Added()
+        public void Post_Data_For_All_Fields_Added()
         {
             var options = Helpers.CreateInMemoryOptions();
             var context = new RecensysContext(options);
@@ -59,7 +59,53 @@ namespace RecensysCoreRepository.Tests.Unittests
             {
                 repo.Post(1, list);
 
-                Assert.Equal("Mathias", context.Data.First().Value);
+                Assert.Equal(36, context.Data.Count());
+            }
+        }
+
+        [Fact]
+        public void Post_All_Fields_Added()
+        {
+            var options = Helpers.CreateInMemoryOptions();
+            var context = new RecensysContext(options);
+            var repo = new StudySourceRepository(context);
+            context.Studies.Add(new Study() { Id = 1 });
+            var list = new List<StudySourceItemDTO>()
+            {
+                new StudySourceItemDTO(StudySourceItemDTO.ItemType.Article, new Dictionary<StudySourceItemDTO.FieldType, string>()
+                {
+                    {StudySourceItemDTO.FieldType.Author, "Mathias"}
+                })
+            };
+
+            using (repo)
+            {
+                repo.Post(1, list);
+
+                Assert.True(context.Data.Count() > 1);
+            }
+        }
+
+        [Fact]
+        public void Post_FieldNameSetCorrectly()
+        {
+            var options = Helpers.CreateInMemoryOptions();
+            var context = new RecensysContext(options);
+            var repo = new StudySourceRepository(context);
+            context.Studies.Add(new Study() { Id = 1 });
+            var list = new List<StudySourceItemDTO>()
+            {
+                new StudySourceItemDTO(StudySourceItemDTO.ItemType.Article, new Dictionary<StudySourceItemDTO.FieldType, string>()
+                {
+                    {StudySourceItemDTO.FieldType.Author, "Mathias"}
+                })
+            };
+
+            using (repo)
+            {
+                repo.Post(1, list);
+
+                Assert.Equal(1, context.Fields.Count(f => f.Name == "Author"));
             }
         }
 
