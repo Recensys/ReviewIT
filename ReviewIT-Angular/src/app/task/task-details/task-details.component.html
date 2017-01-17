@@ -1,10 +1,20 @@
 <div *cardInit="obs" class="container" [class.col-lg-6]="hasPdf">
-    <md-card>
-        <button [disabled]="model?.indexOf(selected?.Id) <= 0" (click)="previous()" class="btn">Previous</button>
-        <a>task {{model?.indexOf(selected?.Id)+1}} of {{model?.length}}</a>
-        <button *ngIf="model?.indexOf(selected?.Id) < model?.length-1" (click)="next()" class="btn btn-success pull-xm-right">Next</button>
-        <button *ngIf="model?.indexOf(selected?.Id) == model?.length-1" (click)="done()" class="btn btn-warning pull-xm-right">Commit Tasks</button>
-    </md-card>
+    <!--<md-card>-->
+        <div class="row">
+            <div class="col-sm-3">
+                <button [disabled]="model?.indexOf(selected?.Id) <= 0" (click)="previous()" class="btn btn-outline"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous</button>
+            </div>
+            <div class="col-sm-6 text-sm-center">
+                <p class="lead">task {{model?.indexOf(selected?.Id)+1}} of {{model?.length}}</p>
+            </div>
+            <div class="col-sm-3">
+                <div class="pull-right">
+                    <button *ngIf="model?.indexOf(selected?.Id) < model?.length-1" (click)="next()" class="btn btn-outline-success">Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                    <button *ngIf="model?.indexOf(selected?.Id) == model?.length-1" (click)="done()" class="btn btn-warning ">Commit Tasks</button>
+                </div>
+            </div>
+        </div>
+    <!--</md-card>-->
 
     <router-outlet></router-outlet>
 </div>

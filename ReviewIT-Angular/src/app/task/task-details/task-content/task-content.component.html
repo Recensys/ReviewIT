@@ -10,7 +10,7 @@
     </span>
   </md-card-title>
   <md-card-content *ngIf="model?.Fields">
-    <div class="row" *ngFor="let field of model.Fields; let i = index">
+    <div class="row taskrow" *ngFor="let field of model.Fields; let i = index">
       <h5 class="col-sm-3">{{field.Name}}</h5>
       <field-dyn class="col-sm-9" [requested]="field.FieldType == 1" [field]="field" [data]="selected.Data[i]"></field-dyn>
     </div>
