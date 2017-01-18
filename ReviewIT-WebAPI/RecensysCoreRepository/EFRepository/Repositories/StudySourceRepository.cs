@@ -52,13 +52,16 @@ namespace RecensysCoreRepository.EFRepository.Repositories
                 };
                 foreach (var fieldDto in dto.Fields)
                 {
-                    var d = new Data
+                    if (allFields.ContainsKey(fieldDto.Key))
                     {
-                        Value = fieldDto.Value,
-                        Field = allFields[fieldDto.Key]
-                    };
-                    article.Data.Add(d);
-                    allFields.Remove(fieldDto.Key);
+                        var d = new Data
+                        {
+                            Value = fieldDto.Value,
+                            Field = allFields[fieldDto.Key]
+                        };
+                        article.Data.Add(d);
+                        allFields.Remove(fieldDto.Key);
+                    }
                 }
                 // Add remaining data that was not on article in dto
                 // TODO alternatively alert the user that a bibtex item was incomplete and require some action
@@ -73,41 +76,41 @@ namespace RecensysCoreRepository.EFRepository.Repositories
 
         private readonly Dictionary<StudySourceItemDTO.FieldType, DataType> _dataTypes = new Dictionary<StudySourceItemDTO.FieldType, DataType>
         {
-            {StudySourceItemDTO.FieldType.Address, DataType.String },
-            {StudySourceItemDTO.FieldType.Annote, DataType.String },
+            //{StudySourceItemDTO.FieldType.Address, DataType.String },
+            //{StudySourceItemDTO.FieldType.Annote, DataType.String },
             {StudySourceItemDTO.FieldType.Author, DataType.String },
             {StudySourceItemDTO.FieldType.Booktitle, DataType.String },
-            {StudySourceItemDTO.FieldType.Chapter, DataType.String },
-            {StudySourceItemDTO.FieldType.Crossref, DataType.String },
-            {StudySourceItemDTO.FieldType.Edition, DataType.String },
-            {StudySourceItemDTO.FieldType.Editor, DataType.String },
-            {StudySourceItemDTO.FieldType.HowPublished, DataType.String },
-            {StudySourceItemDTO.FieldType.Instritution, DataType.String },
-            {StudySourceItemDTO.FieldType.Journal, DataType.String },
-            {StudySourceItemDTO.FieldType.Key, DataType.String },
-            {StudySourceItemDTO.FieldType.Month, DataType.String },
-            {StudySourceItemDTO.FieldType.Note, DataType.String },
-            {StudySourceItemDTO.FieldType.Number, DataType.Number },
-            {StudySourceItemDTO.FieldType.Organization, DataType.String },
+            //{StudySourceItemDTO.FieldType.Chapter, DataType.String },
+            //{StudySourceItemDTO.FieldType.Crossref, DataType.String },
+            //{StudySourceItemDTO.FieldType.Edition, DataType.String },
+            //{StudySourceItemDTO.FieldType.Editor, DataType.String },
+            //{StudySourceItemDTO.FieldType.HowPublished, DataType.String },
+            //{StudySourceItemDTO.FieldType.Instritution, DataType.String },
+            //{StudySourceItemDTO.FieldType.Journal, DataType.String },
+            //{StudySourceItemDTO.FieldType.Key, DataType.String },
+            //{StudySourceItemDTO.FieldType.Month, DataType.String },
+            //{StudySourceItemDTO.FieldType.Note, DataType.String },
+            //{StudySourceItemDTO.FieldType.Number, DataType.Number },
+            //{StudySourceItemDTO.FieldType.Organization, DataType.String },
             {StudySourceItemDTO.FieldType.Pages, DataType.Number },
-            {StudySourceItemDTO.FieldType.Publisher, DataType.String },
+            //{StudySourceItemDTO.FieldType.Publisher, DataType.String },
             {StudySourceItemDTO.FieldType.School, DataType.String },
-            {StudySourceItemDTO.FieldType.Series, DataType.String },
+            //{StudySourceItemDTO.FieldType.Series, DataType.String },
             {StudySourceItemDTO.FieldType.Title, DataType.String },
             {StudySourceItemDTO.FieldType.Type, DataType.String },
-            {StudySourceItemDTO.FieldType.Volume, DataType.String },
+            //{StudySourceItemDTO.FieldType.Volume, DataType.String },
             {StudySourceItemDTO.FieldType.Year, DataType.Number },
-            {StudySourceItemDTO.FieldType.URL, DataType.String },
-            {StudySourceItemDTO.FieldType.ISBN, DataType.String },
-            {StudySourceItemDTO.FieldType.ISSN, DataType.String },
-            {StudySourceItemDTO.FieldType.LCCN, DataType.String },
+            //{StudySourceItemDTO.FieldType.URL, DataType.String },
+            //{StudySourceItemDTO.FieldType.ISBN, DataType.String },
+            //{StudySourceItemDTO.FieldType.ISSN, DataType.String },
+            //{StudySourceItemDTO.FieldType.LCCN, DataType.String },
             {StudySourceItemDTO.FieldType.Abstract, DataType.String },
             {StudySourceItemDTO.FieldType.Keywords, DataType.String },
-            {StudySourceItemDTO.FieldType.Price, DataType.String },
-            {StudySourceItemDTO.FieldType.Copyright, DataType.String },
+            //{StudySourceItemDTO.FieldType.Price, DataType.String },
+            //{StudySourceItemDTO.FieldType.Copyright, DataType.String },
             {StudySourceItemDTO.FieldType.Language, DataType.String },
             {StudySourceItemDTO.FieldType.Contents, DataType.String },
-            {StudySourceItemDTO.FieldType.Doi, DataType.String },
+            //{StudySourceItemDTO.FieldType.Doi, DataType.String },
             {StudySourceItemDTO.FieldType.ItemType, DataType.String }
         };
 
