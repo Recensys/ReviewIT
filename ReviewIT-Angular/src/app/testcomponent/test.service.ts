@@ -6,7 +6,7 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { api } from '../shared/globals';
+import { environment } from '../../environments/environment';
 import { ApiHelper } from '../shared';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class TestService {
     ) { }
     
     public getResearchers(studyId: number): Observable<any> {
-        let url = `${api}/study/${studyId}/researchers`;
+        let url = `${environment.api}/study/${studyId}/researchers`;
         return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);

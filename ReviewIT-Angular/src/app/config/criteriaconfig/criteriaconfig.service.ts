@@ -7,7 +7,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../../../environments/environment';
-import { api } from '../../shared/globals';
 import { ApiHelper } from '../../shared';
 import { CriteriaDTO, FieldDTO } from '../../model/models'
 
@@ -26,8 +25,16 @@ export class CriteriaconfigService {
         var options = this.apihelper.JsonOptions()
         options.search = params;
 
-        let url = `${api}/study/${studyId}/field/search`;
+        let url = `${environment.api}study/${studyId}/field/search`;
         return this.http.get(url, options)
+            .map(this.apihelper.extractJson)
+            .catch(this.apihelper.handleError);
+    }
+
+    getFields(studyId: number): Observable<FieldDTO[]> {
+        let url = `${environment.api}study/${studyId}/field`;
+        console.log(url);
+        return this.http.get(url, this.apihelper.JsonOptions())
             .map(this.apihelper.extractJson)
             .catch(this.apihelper.handleError);
     }
