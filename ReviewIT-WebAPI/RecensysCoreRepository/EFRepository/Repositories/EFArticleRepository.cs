@@ -104,7 +104,9 @@ namespace RecensysCoreRepository.EFRepository.Repositories
 
         public IEnumerable<ArticleWithRequestedFieldsDTO> GetAllWithRequestedFields(int stageId)
         {
-            var articleIds = GetAllActiveIds(stageId).ToArray();
+            //get studyId
+            var studyId = _context.Stages.Single(s => s.Id == stageId).StudyId;
+            var articleIds = GetAllActiveIds(studyId).ToArray();
 
             return from i in _context.Articles
                 where articleIds.Any(aid => aid == i.Id)
