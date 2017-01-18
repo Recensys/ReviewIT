@@ -13,14 +13,15 @@ import { FieldDynComponent } from './field-dyn.component';
 import { BooleanFieldComponent } from './fields/boolean-field.component';
 import { StringFieldComponent } from './fields/string-field.component';
 import { PdfFieldComponent, SafePipe } from './fields/pdf-field.component';
+import { NumberFieldComponent } from './fields/number-field.component'
 
 
 @NgModule({
     imports: [ CommonModule, ButtonsModule, RadioButtonModule, FileUploadModule ],
-    declarations: [ FieldDynComponent, BooleanFieldComponent, StringFieldComponent, PdfFieldComponent, PdfViewerComponent, SafePipe  ],
+    declarations: [ FieldDynComponent, BooleanFieldComponent, StringFieldComponent, PdfFieldComponent, PdfViewerComponent, SafePipe, NumberFieldComponent  ],
     exports: [FieldDynComponent],
     providers: [ ],
-    entryComponents: [ BooleanFieldComponent, StringFieldComponent, PdfFieldComponent ]
+    entryComponents: [ BooleanFieldComponent, StringFieldComponent, PdfFieldComponent, NumberFieldComponent ]
 })
 export class FieldDynModule {
 }
