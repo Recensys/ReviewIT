@@ -102,15 +102,50 @@ namespace RecensysCoreRepository.EFRepository.Repositories
                 {
                     Id = t.Id,
                     TaskState = t.TaskState,
-                    Data = (from d in _context.Data
-                        where fields.Any(fi => fi.Id == d.FieldId) && d.ArticleId == t.ArticleId
+                    ArticleId = t.ArticleId
+                }).ToListAsync();
+
+            foreach (var reviewTaskDto in taskDtos)
+            {
+                reviewTaskDto.Data = new List<DataDTO>();
+                foreach (var taskFieldDto in fields)
+                {
+                    var data = await (from d in _context.Data
+                        where taskFieldDto.Id == d.FieldId && d.ArticleId == reviewTaskDto.ArticleId
                         orderby d.FieldId
                         select new DataDTO
                         {
                             Id = d.Id,
                             Value = d.Value
-                        }).ToList()
-                }).ToListAsync();
+                        }).SingleOrDefaultAsync();
+                    // if there is no data for the article's field, then create it
+                    if (data == default(DataDTO))
+                    {
+                        var entity = new Data()
+                        {
+                            ArticleId = reviewTaskDto.ArticleId,
+                            FieldId = taskFieldDto.Id,
+                            TaskId = reviewTaskDto.Id,
+                            Value = ""
+                        };
+                        _context.Data.Add(entity);
+                        await _context.SaveChangesAsync();
+                        data = new DataDTO() {Id = entity.Id};
+                    }
+                    reviewTaskDto.Data.Add(data);
+                }
+            }
+
+
+
+            //Data = (from d in _context.Data
+            //        where fields.Any(fi => fi.Id == d.FieldId) && d.ArticleId == t.ArticleId
+            //        orderby d.FieldId
+            //        select new DataDTO
+            //        {
+            //            Id = d.Id,
+            //            Value = d.Value
+            //        }).ToList()
 
             var result = new ReviewTaskListDTO
             {

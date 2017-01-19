@@ -571,5 +571,129 @@ namespace RecensysCoreRepository.Tests.Unittests
             }
         }
 
+        [Fact]
+        public async void GetTaskAsync_dataEntityIsCreatedForField()
+        {
+            var options = Helpers.CreateInMemoryOptions();
+            var context = new RecensysContext(options);
+            var repo = new ReviewTaskRepository(context);
+            #region model
+            var study = new Study
+            {
+                Id = 1,
+                Stages = new List<Stage>
+                {
+                    new Stage
+                    {
+                        Id = 1,
+                        StageFields = new List<StageFieldRelation>
+                        {
+                            new StageFieldRelation{
+                                Field = new Field
+                                {
+                                    Id = 2,
+                                    Name = "Title",
+                                },
+                                FieldType = FieldType.Requested
+                            },
+                        },
+                        Tasks = new List<Task>
+                        {
+                            new Task
+                            {
+                                Id = 1,
+                                TaskType = TaskType.Review,
+                                User = new User { Id = 1 }
+                            }
+                        }
+                    }
+                }
+            };
+            #endregion
+            context.Studies.Add(study);
+            context.SaveChanges();
+
+            using (repo)
+            {
+                var r = await repo.GetTaskAsync(1);
+
+                var fields = r.Fields.ToArray();
+                var data = r.Tasks.First().Data.ToArray().First();
+
+                Assert.Equal(context.Data.First().Id, data.Id);
+            }
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task GetTaskAsync_OnlyOneDataCreated()
+        {
+            var options = Helpers.CreateInMemoryOptions();
+            var context = new RecensysContext(options);
+            var repo = new ReviewTaskRepository(context);
+            #region model
+            var study = new Study
+            {
+                Id = 1,
+                Stages = new List<Stage>
+                {
+                    new Stage
+                    {
+                        Id = 1,
+                        StageFields = new List<StageFieldRelation>
+                        {
+                            new StageFieldRelation{
+                                Field = new Field
+                                {
+                                    Id = 2,
+                                    Name = "Title",
+                                },
+                                FieldType = FieldType.Requested
+                            },
+                            new StageFieldRelation{
+                                Field = new Field
+                                {
+                                    Id = 3,
+                                    Name = "Author",
+                                    Data = new List<Data>
+                                    {
+                                        new Data {ArticleId = 2}
+                                    }
+                                },
+                                FieldType = FieldType.Requested
+                                
+                            },
+                        },
+                        Tasks = new List<Task>
+                        {
+                            new Task
+                            {
+                                Id = 1,
+                                TaskType = TaskType.Review,
+                                User = new User { Id = 1 },
+                                Article = new Article
+                                {
+                                    Id = 1
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            #endregion
+            context.Studies.Add(study);
+            context.SaveChanges();
+
+            using (repo)
+            {
+                var r = await repo.GetTaskAsync(1);
+
+                var fields = r.Fields.ToArray();
+                var data = r.Tasks.First().Data;
+
+                Assert.Equal(context.Data.Count(d => d.ArticleId == 1), data.Count);
+                Assert.Equal(context.Data.Count(d => d.ArticleId != 1), 1);
+            }
+        }
+
     }
 }
