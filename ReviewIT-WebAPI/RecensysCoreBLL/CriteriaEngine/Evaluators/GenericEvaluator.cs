@@ -8,6 +8,7 @@ namespace RecensysCoreBLL.CriteriaEngine.Evaluators
         // uses https://www.nuget.org/packages/System.Linq.Dynamic.Core
         public bool Eval(string expected, string op, string actual)
         {
+            if (actual == "") return true;
             // TODO run without the unused paramater.
             string exp = $"{expected}{op}{actual}";
             var parameter = Expression.Parameter(typeof(bool));
