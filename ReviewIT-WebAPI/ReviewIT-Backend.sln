@@ -1,31 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2D12B3BE-75BA-4FCC-AE07-7F79C402A199}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
-		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RecensysCoreRepository", "RecensysCoreRepository\RecensysCoreRepository.xproj", "{67A0D30F-5F21-4E4F-8968-76817552CD53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecensysCoreRepository", "RecensysCoreRepository\RecensysCoreRepository.csproj", "{67A0D30F-5F21-4E4F-8968-76817552CD53}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RecensysCoreBLL", "RecensysCoreBLL\RecensysCoreBLL.xproj", "{51334273-5B9E-4101-91D9-BF55889E0634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecensysCoreBLL", "RecensysCoreBLL\RecensysCoreBLL.csproj", "{51334273-5B9E-4101-91D9-BF55889E0634}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RecensysCoreWebAPI", "RecensysCoreWebAPI\RecensysCoreWebAPI.xproj", "{93E0676C-C7F3-42B8-8EE0-4A764935D49D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecensysCoreWebAPI", "RecensysCoreWebAPI\RecensysCoreWebAPI.csproj", "{93E0676C-C7F3-42B8-8EE0-4A764935D49D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RecensysCoreBLL.Tests", "RecensysCoreBLL.Tests\RecensysCoreBLL.Tests.xproj", "{8CC5C398-47B9-4E10-976B-DD21AAE1F765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecensysCoreBLL.Tests", "RecensysCoreBLL.Tests\RecensysCoreBLL.Tests.csproj", "{8CC5C398-47B9-4E10-976B-DD21AAE1F765}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RecensysCoreRepository.Tests", "RecensysCoreRepository.Tests\RecensysCoreRepository.Tests.xproj", "{D08E7CDC-BCB9-4DD4-8260-457610082774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecensysCoreRepository.Tests", "RecensysCoreRepository.Tests\RecensysCoreRepository.Tests.csproj", "{D08E7CDC-BCB9-4DD4-8260-457610082774}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeLiteHelperProject", "NetFrameworkHelperProject\TypeLiteHelperProject.csproj", "{A0888379-EEF1-4BA8-BD33-5890555A3511}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BibliographyParserCore", "BibliographyParserCore\BibliographyParserCore.xproj", "{A078F130-7C59-4831-AF31-10AAC51EDD35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliographyParserCore", "BibliographyParserCore\BibliographyParserCore.csproj", "{A078F130-7C59-4831-AF31-10AAC51EDD35}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SystemTests", "SystemTests\SystemTests.xproj", "{A1E9B5BE-552C-43B9-A485-2A472E82D9F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTests", "SystemTests\SystemTests.csproj", "{A1E9B5BE-552C-43B9-A485-2A472E82D9F0}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BibliographyParserCore.Tests", "BibliographyParserCore.Tests\BibliographyParserCore.Tests.xproj", "{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliographyParserCore.Tests", "BibliographyParserCore.Tests\BibliographyParserCore.Tests.csproj", "{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
