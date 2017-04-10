@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  recensyscorewebapi:
+    image: recensyscorewebapi
+    build:
+      context: ./RecensysCoreWebAPI
+      dockerfile: Dockerfile

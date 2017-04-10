@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTests", "SystemTests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliographyParserCore.Tests", "BibliographyParserCore.Tests\BibliographyParserCore.Tests.csproj", "{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BAF72535-FCEF-41A2-911F-DB363F71727A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0FC2DEC-C5CA-4D08-BEF2-EAF37539FDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF72535-FCEF-41A2-911F-DB363F71727A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF72535-FCEF-41A2-911F-DB363F71727A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF72535-FCEF-41A2-911F-DB363F71727A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF72535-FCEF-41A2-911F-DB363F71727A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
