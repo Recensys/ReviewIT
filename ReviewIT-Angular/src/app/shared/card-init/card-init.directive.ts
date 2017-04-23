@@ -3,6 +3,7 @@
 
 import { Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer } from '@angular/core';
 import { Observable } from 'rxjs'
+import * as $ from 'jquery';
 
 @Directive({
   selector: '[cardInit]'

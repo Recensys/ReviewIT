@@ -6,7 +6,7 @@ import { Authentication } from 'adal-ts'
 
 @Component({
   
-  selector: 'review-it-app',
+  selector: 'app',
   template: `
       <div class="container-fluid">
         <app-navbar></app-navbar>

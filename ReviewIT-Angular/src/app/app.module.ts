@@ -19,6 +19,10 @@ import { HomeModule } from './home';
 /* test module */
 import { TestModule } from './testcomponent/test.module'
 
+/* global styles */
+import '../styles/styles.scss';
+import '../styles/headings.css';
+
 
 @NgModule({
 	declarations: [
