@@ -9,8 +9,8 @@ export const environment = {
   blob: 'https://reitblob.blob.core.windows.net/resources/',
 
   // active directory
-  clientId: '041bea07-7b7e-4176-b139-eaacc75aad70',
+  clientId: '99ae2d1d-63d4-45df-934b-cd82a39727ce',
   postLogoutRedirectUrl: 'http://localhost:4200',
   redirectUri: 'http://localhost:4200',
-  tenant: 'mkinitu.onmicrosoft.com'
+  tenant: 'ituniversity.onmicrosoft.com'
 };
