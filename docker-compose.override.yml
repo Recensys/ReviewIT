@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  recensyscorewebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5001:80"
+
+  spa:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:3000"

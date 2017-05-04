@@ -1,16 +1,16 @@
-version: '2.0'
+version: '2'
 
 services:
-    frontend:
-        build: ./ReviewIT-Angular
-        ports:
-            - 80:80
+  recensyscorewebapi:
+    image: recensyscorewebapi
+    build:
+      context: ./RecensysCoreWebAPI
+      dockerfile: Dockerfile
 
-    webapi:
-        build: ./ReviewIT-webapi
-        ports:
-            - 8080:80
-        volumes:
-            - apiconfig:/config/
-volumes:
-    apiconfig: {}
+  spa:
+    image: spa
+    build:
+      context: ./Angular
+      dockerfile: Dockerfile
+    depends_on:
+      - recensyscorewebapi
