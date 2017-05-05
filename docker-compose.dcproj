@@ -3,7 +3,9 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>baf72535-fcef-41a2-911f-db363f71727a</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:5000</DockerServiceUrl>
+  </PropertyGroup>
+  <PropertyGroup>
     <DockerServiceName>recensyscorewebapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
