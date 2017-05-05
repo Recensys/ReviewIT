@@ -5,12 +5,12 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:2529/api/',
+  api: 'http://localhost:5001/api/',
   blob: 'https://reitblob.blob.core.windows.net/resources/',
 
   // active directory
   clientId: '99ae2d1d-63d4-45df-934b-cd82a39727ce',
-  postLogoutRedirectUrl: 'http://localhost:4200',
-  redirectUri: 'http://localhost:4200',
+  postLogoutRedirectUrl: 'http://localhost:5000',
+  redirectUri: 'http://localhost:5000',
   tenant: 'ituniversity.onmicrosoft.com'
 };
