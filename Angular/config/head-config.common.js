@@ -17,7 +17,7 @@ module.exports = {
   link: [
     
     /** <link> tags for android web app icons **/
-    { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/assets/icon/android-icon-192x192.png' },
+    // { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/assets/icon/android-icon-192x192.png' },
 
     /** <link> tags for favicons **/
     { rel: 'icon', type: 'image/ico', sizes: '16x16', href: '/assets/icon/favicon.ico' },
